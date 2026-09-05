@@ -1,0 +1,26 @@
+id: goodpasture_syndrome
+conditions:
+- id: goodpasture_syndrome_urine_erythrocytes
+  label: Urine erythrocytes — отклонение от нормы
+  parameter: urine_erythrocytes
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 5
+- id: goodpasture_syndrome_urine_protein
+  label: Urine protein — отклонение от нормы
+  parameter: urine_protein
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 200
+- id: goodpasture_syndrome_creatinine
+  label: Creatinine — отклонение от нормы
+  parameter: creatinine
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 150

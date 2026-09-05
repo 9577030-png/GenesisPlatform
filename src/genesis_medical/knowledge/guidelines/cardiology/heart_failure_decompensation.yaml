@@ -1,0 +1,10 @@
+id: heart_failure_decompensation
+conditions:
+- id: heart_failure_decompensation
+  label: Heart failure decompensation
+  parameter: bnp
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 500

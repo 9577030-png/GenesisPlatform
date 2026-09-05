@@ -1,0 +1,10 @@
+id: cea_elevated_non_smoker
+conditions:
+- id: cea_elevated_non_smoker
+  label: Cea elevated non smoker
+  parameter: cea
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 3

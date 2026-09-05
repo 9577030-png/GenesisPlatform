@@ -1,0 +1,10 @@
+id: chromogranin_a_elevated
+conditions:
+- id: chromogranin_a_elevated
+  label: Chromogranin a elevated
+  parameter: chromogranin_a
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 100

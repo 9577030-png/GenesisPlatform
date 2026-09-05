@@ -1,0 +1,190 @@
+# knowledge/configs/physiological_ranges.yaml
+# Абсолютные физиологические пределы для валидации входных данных.
+# Значения выходят за эти границы → система выдаст ошибку.
+
+physiological_ranges:
+  # Гематология
+  hemoglobin: [30, 250]           # г/Л
+  rbc: [1.0, 8.0]                 # 10^12/L
+  hematocrit: [10, 70]            # %
+  wbc: [0.5, 50.0]                # 10^9/L
+  platelets: [10, 1000]           # 10^9/L
+  mcv: [50, 130]                  # fL
+  mch: [15, 45]                   # pg
+  mchc: [20, 40]                  # g/dL
+  neutrophils_percent: [10, 95]   # %
+  lymphocytes_percent: [5, 90]    # %
+  monocytes_percent: [0, 30]      # %
+  eosinophils_percent: [0, 20]    # %
+  basophils_percent: [0, 5]       # %
+
+  # Биохимия
+  glucose: [1.0, 50.0]            # ммоль/л
+  hba1c: [3.0, 20.0]              # %
+  insulin: [0, 500]               # µIU/mL
+  c_peptide: [0.1, 10.0]          # ng/mL
+  fructosamine: [100, 500]        # µmol/L
+  homa_ir: [0, 15]                # индекс
+
+  # Электролиты
+  sodium: [100, 180]              # ммоль/л
+  potassium: [1.0, 10.0]          # ммоль/л
+  chloride: [70, 130]             # ммоль/л
+  calcium_total: [1.0, 4.0]       # ммоль/л
+  calcium_ionized: [0.5, 2.5]     # ммоль/л
+  magnesium: [0.2, 2.5]           # ммоль/л
+  phosphate: [0.2, 3.0]           # ммоль/л
+
+  # Липиды
+  cholesterol_total: [1.0, 15.0]  # ммоль/л
+  ldl_cholesterol: [0.5, 12.0]    # ммоль/л
+  hdl_cholesterol: [0.2, 4.0]     # ммоль/л
+  triglycerides: [0.2, 20.0]      # ммоль/л
+  non_hdl_cholesterol: [1.0, 15.0] # ммоль/л
+  atherogenic_index: [0.5, 10.0]  # отношение
+  free_fatty_acids: [0.01, 3.0]   # ммоль/л
+  apolipoprotein_a1: [0.2, 4.0]   # г/Л
+  apolipoprotein_b: [0.1, 3.0]    # г/Л
+  lipoprotein_a: [0, 200]         # mg/dL
+
+  # Маркеры воспаления
+  crp: [0, 200]                   # мг/Л
+  hs_crp: [0, 50]                 # мг/Л
+  esr: [0, 120]                   # мм/ч
+  procalcitonin: [0, 100]         # нг/мл
+  il6: [0, 500]                   # pg/mL
+  tnfa: [0, 200]                  # pg/mL
+  saa: [0, 500]                   # мг/Л
+
+  # Железо
+  ferritin: [0, 5000]             # мкг/Л
+  serum_iron: [1, 80]             # мкмоль/Л
+  transferrin: [0.5, 6.0]         # г/Л
+  tibc: [20, 120]                 # мкмоль/Л
+  uibc: [5, 80]                   # мкмоль/Л
+  transferrin_saturation: [5, 100] # %
+  soluble_transferrin_receptor: [0.5, 10.0] # мг/Л
+  hepcidin: [0, 200]              # нг/мл
+  reticulocyte_hemoglobin: [10, 50] # pg
+  hypochromic_erythrocytes: [0, 20] # %
+
+  # Витамины
+  vitamin_b12: [0, 2000]          # пг/мл
+  folate: [0, 40]                 # нг/мл
+  methylmalonic_acid: [0, 10]     # мкмоль/л
+  homocysteine: [0, 100]          # мкмоль/л
+  vitamin_d_25oh: [0, 200]        # нг/мл
+  vitamin_a: [0.1, 10.0]          # мкмоль/л
+  vitamin_e: [0, 50]              # мг/Л
+  vitamin_k: [0, 10]              # нмоль/л
+  vitamin_b1: [10, 500]           # нмоль/л
+  vitamin_b6: [5, 300]            # нмоль/л
+  zinc: [1, 50]                   # мкмоль/л
+  copper: [1, 50]                 # мкмоль/л
+  selenium_reference: [10, 500]   # мкг/л
+  iodine_urine: [10, 1000]        # мкг/л
+
+  # Функция почек
+  creatinine: [5, 2000]           # мкмоль/л
+  urea: [0.5, 50]                 # ммоль/л
+  egfr: [0, 200]                  # мл/мин/1.73м²
+  urine_protein: [0, 5000]        # мг/день
+  urine_albumin_excretion: [0, 5000] # мг/день
+  urine_creatinine: [1, 50]       # ммоль/день
+  urine_specific_gravity: [1.000, 1.050] # удельный вес
+  urine_ph: [4.0, 9.0]            # pH
+  urine_erythrocytes: [0, 100]    # cells/HPF
+  urine_leukocytes: [0, 100]      # cells/HPF
+  urine_glucose: [0, 50]          # ммоль/л (качественно обычно 0, но допустим)
+  urine_ketones: [0, 10]          # качественно
+  urine_nitrites: [0, 1]          # качественно
+
+  # Сердечные маркеры
+  troponin_i: [0, 50000]          # нг/л
+  troponin_t: [0, 1000]           # нг/л
+  ck_mb: [0, 500]                 # U/L
+  ck_mb_index: [0, 10]            # %
+  myoglobin: [0, 1000]            # нг/мл
+  bnp: [0, 5000]                  # пг/мл
+  nt_probnp: [0, 20000]           # пг/мл
+  d_dimer: [0, 50]                # мг/л FEU
+
+  # Онкомаркеры
+  psa_total: [0, 100]             # нг/мл
+  psa_free: [0, 50]               # нг/мл
+  psa_ratio: [0, 100]             # %
+  cea: [0, 100]                   # нг/мл
+  ca19_9: [0, 1000]               # U/mL
+  ca125: [0, 1000]                # U/mL
+  ca153: [0, 500]                 # U/mL
+  he4: [0, 500]                   # пмоль/л
+  scc_antigen: [0, 50]            # нг/мл
+  cyfra_21_1: [0, 50]             # нг/мл
+  nse: [0, 100]                   # нг/мл
+  chromogranin_a: [0, 1000]       # нг/мл
+  beta_hcg_tumor_marker: [0, 100] # IU/L
+  afp_tumor_marker: [0, 1000]     # нг/мл
+  ca72_4: [0, 100]                # U/mL
+  ca50: [0, 100]                  # U/mL
+
+  # Гормоны
+  tsh: [0.01, 100]                # мМЕ/л
+  free_t4: [1, 100]               # пмоль/л
+  free_t3: [0.5, 50]              # пмоль/л
+  anti_tpo: [0, 5000]             # IU/mL
+  anti_tg: [0, 5000]              # IU/mL
+  cortisol_serum: [10, 2000]      # нмоль/л
+  acth: [0, 500]                  # пг/мл
+  prolactin: [0, 10000]           # мМЕ/л
+  lh: [0, 100]                    # IU/L
+  fsh: [0, 100]                   # IU/L
+  estradiol: [0, 10000]           # пмоль/л
+  testosterone_total: [0, 100]    # нмоль/л
+  shbg: [0, 200]                  # нмоль/л
+  dhea_s: [0, 50]                 # мкмоль/л
+  free_androgen_index: [0, 300]   # %
+
+  # Иммуноглобулины
+  immunoglobulin_a: [0.1, 10.0]   # г/Л
+  immunoglobulin_g: [1, 30]       # г/Л
+  immunoglobulin_m: [0.1, 5.0]    # г/Л
+  total_ige: [0, 10000]           # IU/mL
+
+  # Артериальное давление и антропометрия
+  blood_pressure_systolic: [50, 300]   # мм рт. ст.
+  blood_pressure_diastolic: [30, 200]  # мм рт. ст.
+  waist_circumference: [30, 250]       # см
+  bmi: [10, 80]                        # кг/м²
+
+  # Прочие
+  alkaline_phosphatase: [10, 1000]     # U/L
+  bilirubin_total: [0, 300]            # мкмоль/л
+  bilirubin_direct: [0, 100]           # мкмоль/л
+  bilirubin_indirect: [0, 200]         # мкмоль/л
+  total_protein: [30, 120]             # г/Л
+  albumin: [10, 70]                    # г/Л
+  alt: [0, 1000]                       # Ед/л
+  ast: [0, 1000]                       # Ед/л
+  ggt: [0, 1000]                       # Ед/л
+  pancreatic_elastase: [0, 1000]       # мкг/г
+  uric_acid: [0, 1500]                 # мкмоль/л
+  anca: [0, 1]                         # качественно
+  anti_hcv: [0, 1]                     # качественно
+  hiv_rna: [0, 1000000]                # copies/mL
+  ebv_vca_igm: [0, 1]                  # качественно
+  rpr_syphilis: [0, 1]                 # качественно
+  tpha_syphilis: [0, 1]                # качественно
+  hemoglobin: [30, 250]
+  ferritin: [0, 5000]
+  glucose: [1.0, 50.0]
+  creatinine: [5, 2000]
+  potassium: [1.0, 10.0]
+  sodium: [100, 180]
+  calcium_total: [1.0, 4.0]
+  alt: [0, 1000]
+  ast: [0, 1000]
+  ggt: [0, 1000]
+  crp: [0, 200]
+  esr: [0, 120]
+  hba1c: [3.0, 20.0]       # <-- добавлено
+  # при необходимости добавьте другие параметры

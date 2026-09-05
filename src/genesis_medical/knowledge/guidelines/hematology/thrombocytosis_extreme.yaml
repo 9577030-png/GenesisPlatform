@@ -1,0 +1,10 @@
+id: thrombocytosis_extreme
+conditions:
+- id: thrombocytosis_extreme
+  label: Thrombocytosis extreme
+  parameter: platelets
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 1000

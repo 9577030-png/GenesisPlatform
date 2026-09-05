@@ -1,0 +1,26 @@
+id: primary_hyperparathyroidism
+conditions:
+- id: primary_hyperparathyroidism_calcium_total
+  label: Calcium total — отклонение от нормы
+  parameter: calcium_total
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 2.55
+- id: primary_hyperparathyroidism_vitamin_d
+  label: Vitamin d — отклонение от нормы
+  parameter: vitamin_d
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 30
+- id: primary_hyperparathyroidism_pth
+  label: Pth — отклонение от нормы
+  parameter: pth
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 6.9

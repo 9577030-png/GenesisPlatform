@@ -1,0 +1,26 @@
+id: acute_hepatitis
+conditions:
+- id: acute_hepatitis_alt
+  label: Alt — отклонение от нормы
+  parameter: alt
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 100
+- id: acute_hepatitis_ast
+  label: Ast — отклонение от нормы
+  parameter: ast
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 100
+- id: acute_hepatitis_bilirubin_total
+  label: Bilirubin total — отклонение от нормы
+  parameter: bilirubin_total
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 34

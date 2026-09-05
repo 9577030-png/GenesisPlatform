@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "genesis-example"
+version = "0.1.0"
+readme = "README.md"
+description = "Example domain module for the Genesis platform"
+requires-python = ">=3.11"
+dependencies = ["genesis-core>=0.3,<0.4"]
+
+[tool.setuptools]
+package-dir = {"" = "../../src"}
+
+[tool.setuptools.packages.find]
+where = ["../../src"]
+include = ["genesis_example*"]
+
+[project.entry-points."genesis.domains"]
+example = "genesis_example:get_domain_descriptor"

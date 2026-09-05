@@ -1,0 +1,10 @@
+id: hyperestrogenemia_male
+conditions:
+- id: hyperestrogenemia_male
+  label: Hyperestrogenemia male
+  parameter: estradiol
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 160

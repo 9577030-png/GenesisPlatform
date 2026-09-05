@@ -1,0 +1,18 @@
+id: heart_failure_nyha_3
+conditions:
+- id: heart_failure_nyha_3_bnp
+  label: Bnp — отклонение от нормы
+  parameter: bnp
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 200
+- id: heart_failure_nyha_3_nt_probnp
+  label: Nt probnp — отклонение от нормы
+  parameter: nt_probnp
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 600

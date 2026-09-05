@@ -1,0 +1,10 @@
+id: somatostatinoma
+conditions:
+- id: somatostatinoma
+  label: Somatostatinoma
+  parameter: glucose
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 7.0

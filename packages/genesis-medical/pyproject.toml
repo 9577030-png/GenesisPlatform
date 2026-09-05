@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "genesis-medical"
+version = "0.3.0"
+readme = "README.md"
+description = "Medical domain module for the Genesis platform"
+requires-python = ">=3.11"
+dependencies = ["genesis-core>=0.3,<0.4", "PyYAML>=6.0", "pydantic>=2.0,<3.0"]
+
+[tool.setuptools]
+package-dir = {"" = "../../src"}
+
+[tool.setuptools.packages.find]
+where = ["../../src"]
+include = ["genesis_medical*"]
+
+[tool.setuptools.package-data]
+"genesis_medical" = ["py.typed", "knowledge/**/*.yaml", "knowledge/**/*.json"]
+
+[project.entry-points."genesis.domains"]
+medical = "genesis_medical:get_domain_descriptor"

@@ -1,0 +1,10 @@
+id: psa_elevated_age_50
+conditions:
+- id: psa_elevated_age_50
+  label: Psa elevated age 50
+  parameter: psa_total
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 3.5

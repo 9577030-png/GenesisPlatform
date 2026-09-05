@@ -1,0 +1,42 @@
+id: pcos
+conditions:
+- id: pcos_glucose
+  label: Glucose — отклонение от нормы
+  parameter: glucose
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 5.6
+- id: pcos_insulin
+  label: Insulin — отклонение от нормы
+  parameter: insulin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 25
+- id: pcos_testosterone_total
+  label: Testosterone total — отклонение от нормы
+  parameter: testosterone_total
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 35
+- id: pcos_lh
+  label: Lh — отклонение от нормы
+  parameter: lh
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 8.6
+- id: pcos_fsh
+  label: Fsh — отклонение от нормы
+  parameter: fsh
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 1.5

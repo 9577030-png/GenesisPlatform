@@ -1,0 +1,14 @@
+id: steel_load_check
+version: 1
+priority: 20
+conflicts_with: [steel_load_reject]
+conditions:
+  - fact: steel_capacity_kn
+    operator: ">="
+    value: 100
+  - fact: applied_load_kn
+    operator: "<="
+    value: 100
+result:
+  status: acceptable
+  message: applied load does not exceed the demonstration capacity

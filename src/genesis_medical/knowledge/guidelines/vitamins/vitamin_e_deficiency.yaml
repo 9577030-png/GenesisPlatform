@@ -1,0 +1,10 @@
+id: vitamin_e_deficiency
+conditions:
+- id: vitamin_e_deficiency
+  label: Vitamin e deficiency
+  parameter: vitamin_e
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 5.5

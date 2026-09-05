@@ -1,0 +1,20 @@
+[project]
+name = "genesis-medical-app"
+version = "0.3.0"
+description = "Medical application built on Genesis Medical and Genesis Core"
+requires-python = ">=3.11"
+dependencies = [
+    "genesis-medical>=0.3,<0.4",
+    "fastapi",
+    "streamlit",
+    "sqlalchemy",
+    "redis",
+    "passlib[bcrypt]",
+]
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["medical_app*"]

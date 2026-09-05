@@ -1,0 +1,26 @@
+id: myocarditis_suspected
+conditions:
+- id: myocarditis_suspected_troponin_i
+  label: Troponin i — отклонение от нормы
+  parameter: troponin_i
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 40
+- id: myocarditis_suspected_crp
+  label: Crp — отклонение от нормы
+  parameter: crp
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 10
+- id: myocarditis_suspected_esr
+  label: Esr — отклонение от нормы
+  parameter: esr
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 20

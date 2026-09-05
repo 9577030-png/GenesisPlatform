@@ -1,0 +1,25 @@
+id: alt_ranges
+description: Аланинаминотрансфераза (АЛТ)
+conditions:
+- id: alt_high_male
+  label: Повышенная АЛТ (мужчины)
+  parameter: alt
+  min: 45
+  gender: male
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Оценить АСТ, ГГТ, щелочную фосфатазу, билирубин
+  - Исключить жировую болезнь печени, гепатит, лекарственное поражение
+  description: АЛТ ≥ 45 Ед/л – повышение у мужчин.
+- id: alt_high_female
+  label: Повышенная АЛТ (женщины)
+  parameter: alt
+  min: 35
+  gender: female
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Оценить АСТ, ГГТ, щелочную фосфатазу, билирубин
+  - Исключить жировую болезнь печени, гепатит, лекарственное поражение
+  description: АЛТ ≥ 35 Ед/л – повышение у женщин.

@@ -1,0 +1,34 @@
+id: rheumatoid_arthritis
+conditions:
+- id: rheumatoid_arthritis_rheumatoid_factor
+  label: Rheumatoid factor — отклонение от нормы
+  parameter: rheumatoid_factor
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 14
+- id: rheumatoid_arthritis_anti_ccp
+  label: Anti ccp — отклонение от нормы
+  parameter: anti_ccp
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 17
+- id: rheumatoid_arthritis_crp
+  label: Crp — отклонение от нормы
+  parameter: crp
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 5
+- id: rheumatoid_arthritis_esr
+  label: Esr — отклонение от нормы
+  parameter: esr
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 20

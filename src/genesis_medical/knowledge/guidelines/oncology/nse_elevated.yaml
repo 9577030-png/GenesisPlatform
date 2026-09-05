@@ -1,0 +1,10 @@
+id: nse_elevated
+conditions:
+- id: nse_elevated
+  label: Nse elevated
+  parameter: nse
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 16.3

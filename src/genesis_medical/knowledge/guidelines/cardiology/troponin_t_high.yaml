@@ -1,0 +1,10 @@
+id: troponin_t_high
+conditions:
+- id: troponin_t_high
+  label: Troponin t high
+  parameter: troponin_t
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 14

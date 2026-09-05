@@ -1,0 +1,18 @@
+id: celiac_disease
+conditions:
+- id: celiac_disease_tga_iga
+  label: Tga iga — отклонение от нормы
+  parameter: tga_iga
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 20
+- id: celiac_disease_total_iga
+  label: Total iga — отклонение от нормы
+  parameter: total_iga
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 0.5

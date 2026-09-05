@@ -1,0 +1,905 @@
+thresholds:
+  hemoglobin:
+    male:
+      low: 130
+      high: 170
+      unit: ''
+      risk_level: MEDIUM
+    female:
+      low: 120
+      high: 150
+      unit: ''
+      risk_level: MEDIUM
+    unit: g/L
+    risk_level: HIGH
+  rbc:
+    male:
+      low: 4.3
+      high: 5.7
+      unit: ''
+      risk_level: MEDIUM
+    female:
+      low: 3.8
+      high: 5.2
+      unit: ''
+      risk_level: MEDIUM
+    unit: 10^12/L
+    risk_level: HIGH
+  hematocrit:
+    male:
+      low: 40
+      high: 52
+      unit: ''
+      risk_level: MEDIUM
+    female:
+      low: 36
+      high: 46
+      unit: ''
+      risk_level: MEDIUM
+    unit: '%'
+    risk_level: HIGH
+  wbc:
+    low: 4.0
+    high: 9.0
+    unit: 10^9/L
+    risk_level: HIGH
+  mcv:
+    low: 80
+    high: 100
+    unit: fL
+    risk_level: HIGH
+  mch:
+    low: 27
+    high: 33
+    unit: pg
+    risk_level: HIGH
+  mchc:
+    low: 32
+    high: 36
+    unit: g/dL
+    risk_level: HIGH
+  platelets:
+    low: 150
+    high: 400
+    unit: 10^9/L
+    risk_level: HIGH
+  neutrophils_percent:
+    low: 40
+    high: 70
+    unit: '%'
+    risk_level: HIGH
+  lymphocytes_percent:
+    low: 20
+    high: 45
+    unit: '%'
+    risk_level: HIGH
+  monocytes_percent:
+    low: 3
+    high: 10
+    unit: '%'
+    risk_level: HIGH
+  eosinophils_percent:
+    low: 0
+    high: 5
+    unit: '%'
+    risk_level: HIGH
+  basophils_percent:
+    low: 0
+    high: 1
+    unit: '%'
+    risk_level: HIGH
+  alt:
+    male:
+      low: 10
+      high: 45
+      unit: ''
+      risk_level: MEDIUM
+    female:
+      low: 7
+      high: 35
+      unit: ''
+      risk_level: MEDIUM
+    unit: U/L
+    risk_level: HIGH
+  ast:
+    male:
+      low: 10
+      high: 40
+      unit: ''
+      risk_level: MEDIUM
+    female:
+      low: 9
+      high: 32
+      unit: ''
+      risk_level: MEDIUM
+    unit: U/L
+    risk_level: HIGH
+  ggt:
+    male:
+      low: 10
+      high: 71
+      unit: ''
+      risk_level: MEDIUM
+    female:
+      low: 6
+      high: 42
+      unit: ''
+      risk_level: MEDIUM
+    unit: U/L
+    risk_level: HIGH
+  alkaline_phosphatase:
+    low: 40
+    high: 130
+    unit: U/L
+    risk_level: HIGH
+  bilirubin_total:
+    low: 5
+    high: 21
+    unit: µmol/L
+    risk_level: HIGH
+  bilirubin_direct:
+    low: 0
+    high: 5
+    unit: µmol/L
+    risk_level: HIGH
+  bilirubin_indirect:
+    low: 3
+    high: 17
+    unit: µmol/L
+    risk_level: HIGH
+  total_protein:
+    low: 64
+    high: 83
+    unit: g/L
+    risk_level: HIGH
+  albumin:
+    low: 35
+    high: 50
+    unit: g/L
+    risk_level: HIGH
+  creatinine:
+    male:
+      low: 62
+      high: 115
+      unit: ''
+      risk_level: MEDIUM
+    female:
+      low: 44
+      high: 97
+      unit: ''
+      risk_level: MEDIUM
+    unit: µmol/L
+    risk_level: HIGH
+  urea:
+    low: 2.5
+    high: 8.3
+    unit: mmol/L
+    risk_level: HIGH
+  egfr:
+    low: 60
+    high: null
+    unit: mL/min/1.73m2
+    risk_level: HIGH
+  glucose:
+    low: 3.9
+    high: 5.5
+    unit: mmol/L
+    risk_level: HIGH
+  hba1c:
+    low: null
+    high: 6.0
+    unit: '%'
+    risk_level: HIGH
+  insulin:
+    low: null
+    high: 25
+    unit: µIU/mL
+    risk_level: HIGH
+  c_peptide:
+    low: 0.8
+    high: 3.5
+    unit: ng/mL
+    risk_level: HIGH
+  fructosamine:
+    low: 205
+    high: 285
+    unit: µmol/L
+    risk_level: HIGH
+  homa_ir:
+    low: null
+    high: 2.5
+    unit: index
+    risk_level: HIGH
+  sodium:
+    low: 136
+    high: 145
+    unit: mmol/L
+    risk_level: HIGH
+  potassium:
+    low: 3.5
+    high: 5.1
+    unit: mmol/L
+    risk_level: HIGH
+  chloride:
+    low: 98
+    high: 107
+    unit: mmol/L
+    risk_level: HIGH
+  calcium_total:
+    low: 2.15
+    high: 2.55
+    unit: mmol/L
+    risk_level: HIGH
+  calcium_ionized:
+    low: 1.15
+    high: 1.33
+    unit: mmol/L
+    risk_level: HIGH
+  magnesium:
+    low: 0.66
+    high: 1.07
+    unit: mmol/L
+    risk_level: HIGH
+  phosphate:
+    low: 0.8
+    high: 1.5
+    unit: mmol/L
+    risk_level: HIGH
+  cholesterol_total:
+    low: null
+    high: 5.0
+    unit: mmol/L
+    risk_level: HIGH
+  ldl_cholesterol:
+    low: null
+    high: 3.0
+    unit: mmol/L
+    risk_level: HIGH
+  hdl_cholesterol:
+    male:
+      low: 1.0
+      high: null
+      unit: ''
+      risk_level: MEDIUM
+    female:
+      low: 1.2
+      high: null
+      unit: ''
+      risk_level: MEDIUM
+    unit: mmol/L
+    risk_level: HIGH
+  triglycerides:
+    low: null
+    high: 1.7
+    unit: mmol/L
+    risk_level: HIGH
+  non_hdl_cholesterol:
+    low: null
+    high: 3.8
+    unit: mmol/L
+    risk_level: HIGH
+  atherogenic_index:
+    low: null
+    high: 3.0
+    unit: ratio
+    risk_level: HIGH
+  free_fatty_acids:
+    low: 0.1
+    high: 0.6
+    unit: mmol/L
+    risk_level: HIGH
+  apolipoprotein_a1:
+    male:
+      low: 1.0
+      high: 1.8
+      unit: ''
+      risk_level: MEDIUM
+    female:
+      low: 1.1
+      high: 2.0
+      unit: ''
+      risk_level: MEDIUM
+    unit: g/L
+    risk_level: HIGH
+  apolipoprotein_b:
+    low: 0.6
+    high: 1.2
+    unit: g/L
+    risk_level: HIGH
+  lipoprotein_a:
+    low: null
+    high: 30
+    unit: mg/dL
+    risk_level: HIGH
+  crp:
+    low: null
+    high: 5
+    unit: mg/L
+    risk_level: HIGH
+  hs_crp:
+    low: null
+    high: 3
+    unit: mg/L
+    risk_level: HIGH
+  esr:
+    male:
+      low: 0
+      high: 15
+      unit: ''
+      risk_level: MEDIUM
+    female:
+      low: 0
+      high: 20
+      unit: ''
+      risk_level: MEDIUM
+    unit: mm/h
+    risk_level: HIGH
+  procalcitonin:
+    low: null
+    high: 0.05
+    unit: ng/mL
+    risk_level: HIGH
+  il6:
+    low: null
+    high: 7
+    unit: pg/mL
+    risk_level: HIGH
+  tnfa:
+    low: null
+    high: 8
+    unit: pg/mL
+    risk_level: HIGH
+  saa:
+    low: null
+    high: 10
+    unit: mg/L
+    risk_level: HIGH
+  ferritin:
+    male:
+      low: 30
+      high: 400
+      unit: ''
+      risk_level: MEDIUM
+    female:
+      low: 15
+      high: 150
+      unit: ''
+      risk_level: MEDIUM
+    unit: ng/mL
+    risk_level: HIGH
+  serum_iron:
+    male:
+      low: 11
+      high: 30
+      unit: ''
+      risk_level: MEDIUM
+    female:
+      low: 9
+      high: 27
+      unit: ''
+      risk_level: MEDIUM
+    unit: µmol/L
+    risk_level: HIGH
+  transferrin:
+    low: 2.0
+    high: 3.6
+    unit: g/L
+    risk_level: HIGH
+  tibc:
+    low: 45
+    high: 72
+    unit: µmol/L
+    risk_level: HIGH
+  uibc:
+    low: 20
+    high: 62
+    unit: µmol/L
+    risk_level: HIGH
+  transferrin_saturation:
+    low: 20
+    high: 45
+    unit: '%'
+    risk_level: HIGH
+  soluble_transferrin_receptor:
+    low: 1.8
+    high: 4.6
+    unit: mg/L
+    risk_level: HIGH
+  hepcidin:
+    low: 5
+    high: 50
+    unit: ng/mL
+    risk_level: HIGH
+  reticulocyte_hemoglobin:
+    low: 28
+    high: 35
+    unit: pg
+    risk_level: HIGH
+  hypochromic_erythrocytes:
+    low: null
+    high: 5
+    unit: '%'
+    risk_level: HIGH
+  vitamin_b12:
+    low: 200
+    high: 900
+    unit: pg/mL
+    risk_level: HIGH
+  folate:
+    low: 4.0
+    high: 20
+    unit: ng/mL
+    risk_level: HIGH
+  methylmalonic_acid:
+    low: null
+    high: 0.4
+    unit: µmol/L
+    risk_level: HIGH
+  homocysteine:
+    low: 5
+    high: 15
+    unit: µmol/L
+    risk_level: HIGH
+  vitamin_d_25oh:
+    low: 30
+    high: 100
+    unit: ng/mL
+    risk_level: HIGH
+  vitamin_a:
+    low: 1.0
+    high: 3.0
+    unit: µmol/L
+    risk_level: HIGH
+  vitamin_e:
+    low: 5.5
+    high: 18
+    unit: mg/L
+    risk_level: HIGH
+  vitamin_k:
+    low: 0.2
+    high: 3.2
+    unit: nmol/L
+    risk_level: HIGH
+  vitamin_b1:
+    low: 70
+    high: 180
+    unit: nmol/L
+    risk_level: HIGH
+  vitamin_b6:
+    low: 20
+    high: 125
+    unit: nmol/L
+    risk_level: HIGH
+  zinc:
+    low: 10
+    high: 18
+    unit: µmol/L
+    risk_level: HIGH
+  copper:
+    low: 11
+    high: 24
+    unit: µmol/L
+    risk_level: HIGH
+  selenium_reference:
+    low: 70
+    high: 150
+    unit: µg/L
+    risk_level: HIGH
+  iodine_urine:
+    low: 100
+    high: 199
+    unit: µg/L
+    risk_level: HIGH
+  tsh:
+    low: 0.4
+    high: 4.0
+    unit: mIU/L
+    risk_level: HIGH
+  free_t4:
+    low: 12
+    high: 22
+    unit: pmol/L
+    risk_level: HIGH
+  free_t3:
+    low: 3.1
+    high: 6.8
+    unit: pmol/L
+    risk_level: HIGH
+  anti_tpo:
+    low: null
+    high: 35
+    unit: IU/mL
+    risk_level: HIGH
+  anti_tg:
+    low: null
+    high: 115
+    unit: IU/mL
+    risk_level: HIGH
+  cortisol_serum:
+    low: 140
+    high: 690
+    unit: nmol/L
+    risk_level: HIGH
+  acth:
+    low: 10
+    high: 60
+    unit: pg/mL
+    risk_level: HIGH
+  prolactin:
+    male:
+      low: 80
+      high: 400
+      unit: ''
+      risk_level: MEDIUM
+    female:
+      low: 100
+      high: 500
+      unit: ''
+      risk_level: MEDIUM
+    unit: mIU/L
+    risk_level: HIGH
+  lh:
+    male:
+      low: 1.7
+      high: 8.6
+      unit: ''
+      risk_level: MEDIUM
+    female:
+      low: null
+      high: null
+      unit: ''
+      risk_level: MEDIUM
+    unit: IU/L
+    risk_level: HIGH
+  fsh:
+    male:
+      low: 1.5
+      high: 12.4
+      unit: ''
+      risk_level: MEDIUM
+    female:
+      low: null
+      high: null
+      unit: ''
+      risk_level: MEDIUM
+    unit: IU/L
+    risk_level: HIGH
+  estradiol:
+    male:
+      low: 40
+      high: 160
+      unit: ''
+      risk_level: MEDIUM
+    female:
+      low: null
+      high: null
+      unit: ''
+      risk_level: MEDIUM
+    unit: pmol/L
+    risk_level: HIGH
+  testosterone_total:
+    male:
+      low: 10
+      high: 35
+      unit: ''
+      risk_level: MEDIUM
+    female:
+      low: null
+      high: null
+      unit: ''
+      risk_level: MEDIUM
+    unit: nmol/L
+    risk_level: HIGH
+  shbg:
+    male:
+      low: 18
+      high: 54
+      unit: ''
+      risk_level: MEDIUM
+    female:
+      low: null
+      high: null
+      unit: ''
+      risk_level: MEDIUM
+    unit: nmol/L
+    risk_level: HIGH
+  dhea_s:
+    male:
+      low: 5
+      high: 15
+      unit: ''
+      risk_level: MEDIUM
+    female:
+      low: null
+      high: null
+      unit: ''
+      risk_level: MEDIUM
+    unit: µmol/L
+    risk_level: HIGH
+  free_androgen_index:
+    male:
+      low: 30
+      high: 150
+      unit: ''
+      risk_level: MEDIUM
+    female:
+      low: null
+      high: null
+      unit: ''
+      risk_level: MEDIUM
+    unit: '%'
+    risk_level: HIGH
+  immunoglobulin_a:
+    low: 0.7
+    high: 4.0
+    unit: g/L
+    risk_level: HIGH
+  immunoglobulin_g:
+    low: 7.0
+    high: 16.0
+    unit: g/L
+    risk_level: HIGH
+  immunoglobulin_m:
+    low: 0.4
+    high: 2.3
+    unit: g/L
+    risk_level: HIGH
+  total_ige:
+    low: null
+    high: 100
+    unit: IU/mL
+    risk_level: HIGH
+  urine_protein:
+    low: null
+    high: 150
+    unit: mg/day
+    risk_level: HIGH
+  urine_albumin_excretion:
+    low: null
+    high: 30
+    unit: mg/day
+    risk_level: HIGH
+  urine_creatinine:
+    male:
+      low: 8.8
+      high: 17.7
+      unit: ''
+      risk_level: MEDIUM
+    female:
+      low: 7.0
+      high: 15.9
+      unit: ''
+      risk_level: MEDIUM
+    unit: mmol/day
+    risk_level: HIGH
+  urine_specific_gravity:
+    low: 1.005
+    high: 1.03
+    unit: specific_gravity
+    risk_level: HIGH
+  urine_ph:
+    low: 5.0
+    high: 8.0
+    unit: pH
+    risk_level: HIGH
+  urine_erythrocytes:
+    low: null
+    high: 3
+    unit: cells/HPF
+    risk_level: HIGH
+  urine_leukocytes:
+    male:
+      low: null
+      high: 3
+      unit: ''
+      risk_level: MEDIUM
+    female:
+      low: null
+      high: 5
+      unit: ''
+      risk_level: MEDIUM
+    unit: cells/HPF
+    risk_level: HIGH
+  urine_glucose:
+    low: null
+    high: 0
+    unit: mmol/L
+    risk_level: HIGH
+  urine_ketones:
+    low: null
+    high: 0
+    unit: qualitative
+    risk_level: HIGH
+  urine_nitrites:
+    low: null
+    high: 0
+    unit: qualitative
+    risk_level: HIGH
+  troponin_i:
+    low: null
+    high: 40
+    unit: ng/L
+    risk_level: HIGH
+  troponin_t:
+    low: null
+    high: 14
+    unit: ng/L
+    risk_level: HIGH
+  ck_mb:
+    low: 0
+    high: 25
+    unit: U/L
+    risk_level: HIGH
+  ck_mb_index:
+    low: null
+    high: 2.5
+    unit: '%'
+    risk_level: HIGH
+  myoglobin:
+    male:
+      low: 17
+      high: 106
+      unit: ''
+      risk_level: MEDIUM
+    female:
+      low: 14
+      high: 66
+      unit: ''
+      risk_level: MEDIUM
+    unit: ng/mL
+    risk_level: HIGH
+  bnp:
+    low: null
+    high: 100
+    unit: pg/mL
+    risk_level: HIGH
+  nt_probnp:
+    low: null
+    high: 125
+    unit: pg/mL
+    risk_level: HIGH
+  d_dimer:
+    low: null
+    high: 0.5
+    unit: mg/L FEU
+    risk_level: HIGH
+  psa_total:
+    low: null
+    high: 2.5
+    unit: ng/mL
+    risk_level: HIGH
+  psa_free:
+    low: null
+    high: null
+    unit: ng/mL
+    risk_level: HIGH
+  psa_ratio:
+    low: 25
+    high: null
+    unit: '%'
+    risk_level: HIGH
+  cea:
+    low: null
+    high: 3
+    unit: ng/mL
+    risk_level: HIGH
+  ca19_9:
+    low: null
+    high: 37
+    unit: U/mL
+    risk_level: HIGH
+  ca125:
+    low: null
+    high: 35
+    unit: U/mL
+    risk_level: HIGH
+  ca153:
+    low: null
+    high: 30
+    unit: U/mL
+    risk_level: HIGH
+  he4:
+    low: null
+    high: 70
+    unit: pmol/L
+    risk_level: HIGH
+  scc_antigen:
+    low: null
+    high: 1.5
+    unit: ng/mL
+    risk_level: HIGH
+  cyfra_21_1:
+    low: null
+    high: 3.3
+    unit: ng/mL
+    risk_level: HIGH
+  nse:
+    low: null
+    high: 16.3
+    unit: ng/mL
+    risk_level: HIGH
+  chromogranin_a:
+    low: null
+    high: 100
+    unit: ng/mL
+    risk_level: HIGH
+  beta_hcg_tumor_marker:
+    low: null
+    high: 2
+    unit: IU/L
+    risk_level: HIGH
+  afp_tumor_marker:
+    low: null
+    high: 10
+    unit: ng/mL
+    risk_level: HIGH
+  ca72_4:
+    low: null
+    high: 6.9
+    unit: U/mL
+    risk_level: HIGH
+  ca50:
+    low: null
+    high: 20
+    unit: U/mL
+    risk_level: HIGH
+  blood_pressure_systolic:
+    low: null
+    high: 130
+    unit: mmHg
+    risk_level: HIGH
+  blood_pressure_diastolic:
+    low: null
+    high: 85
+    unit: mmHg
+    risk_level: HIGH
+  waist_circumference:
+    low: null
+    high: 102
+    unit: cm
+    risk_level: HIGH
+  bmi:
+    low: 18.5
+    high: 25.0
+    unit: kg/m2
+    risk_level: HIGH
+  urine_albumin:
+    low: null
+    high: 30
+    unit: mg/day
+    risk_level: HIGH
+  anti_hcv:
+    low: null
+    high: 1
+    unit: qualitative
+    risk_level: HIGH
+  hiv_rna:
+    low: null
+    high: 1000
+    unit: copies/mL
+    risk_level: CRITICAL
+  ebv_vca_igm:
+    low: null
+    high: 1
+    unit: qualitative
+    risk_level: HIGH
+  rpr_syphilis:
+    low: null
+    high: 1
+    unit: qualitative
+    risk_level: HIGH
+  tpha_syphilis:
+    low: null
+    high: 1
+    unit: qualitative
+    risk_level: HIGH
+  pancreatic_elastase:
+    low: 200
+    high: null
+    unit: µg/g
+    risk_level: HIGH
+  anca:
+    low: null
+    high: 1
+    unit: qualitative
+    risk_level: HIGH

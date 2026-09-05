@@ -1,0 +1,42 @@
+id: hypopituitarism
+conditions:
+- id: hypopituitarism_tsh
+  label: Tsh — отклонение от нормы
+  parameter: tsh
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 0.4
+- id: hypopituitarism_cortisol_serum
+  label: Cortisol serum — отклонение от нормы
+  parameter: cortisol_serum
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 140
+- id: hypopituitarism_testosterone_total
+  label: Testosterone total — отклонение от нормы
+  parameter: testosterone_total
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 10
+- id: hypopituitarism_estradiol
+  label: Estradiol — отклонение от нормы
+  parameter: estradiol
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 40
+- id: hypopituitarism_igf1
+  label: Igf1 — отклонение от нормы
+  parameter: igf1
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 100

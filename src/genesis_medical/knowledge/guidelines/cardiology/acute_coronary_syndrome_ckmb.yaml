@@ -1,0 +1,18 @@
+id: acute_coronary_syndrome_ckmb
+conditions:
+- id: acute_coronary_syndrome_ckmb_ck_mb
+  label: Ck mb — отклонение от нормы
+  parameter: ck_mb
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 25
+- id: acute_coronary_syndrome_ckmb_troponin_i
+  label: Troponin i — отклонение от нормы
+  parameter: troponin_i
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 40

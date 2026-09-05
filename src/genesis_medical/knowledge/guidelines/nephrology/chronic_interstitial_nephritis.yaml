@@ -1,0 +1,26 @@
+id: chronic_interstitial_nephritis
+conditions:
+- id: chronic_interstitial_nephritis_egfr
+  label: Egfr — отклонение от нормы
+  parameter: egfr
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 60
+- id: chronic_interstitial_nephritis_bicarbonate
+  label: Bicarbonate — отклонение от нормы
+  parameter: bicarbonate
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 22
+- id: chronic_interstitial_nephritis_sodium
+  label: Sodium — отклонение от нормы
+  parameter: sodium
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 145

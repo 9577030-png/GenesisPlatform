@@ -1,0 +1,26 @@
+id: infective_endocarditis_risk
+conditions:
+- id: infective_endocarditis_risk_crp
+  label: Crp — отклонение от нормы
+  parameter: crp
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 100
+- id: infective_endocarditis_risk_esr
+  label: Esr — отклонение от нормы
+  parameter: esr
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 40
+- id: infective_endocarditis_risk_procalcitonin
+  label: Procalcitonin — отклонение от нормы
+  parameter: procalcitonin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 0.5

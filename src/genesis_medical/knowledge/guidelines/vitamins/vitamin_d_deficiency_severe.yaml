@@ -1,0 +1,10 @@
+id: vitamin_d_deficiency_severe
+conditions:
+- id: vitamin_d_deficiency_severe
+  label: Vitamin d deficiency severe
+  parameter: vitamin_d
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 20

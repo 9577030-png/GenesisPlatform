@@ -1,0 +1,10 @@
+id: iodine_deficiency
+conditions:
+- id: iodine_deficiency
+  label: Iodine deficiency
+  parameter: iodine_urine
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 100

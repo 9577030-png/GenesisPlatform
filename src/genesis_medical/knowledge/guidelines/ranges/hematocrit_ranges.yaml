@@ -1,0 +1,45 @@
+id: hematocrit_ranges
+description: Гематокрит
+conditions:
+- id: hematocrit_low_male
+  label: Сниженный гематокрит (мужчины)
+  parameter: hematocrit
+  max: 40
+  gender: male
+  scoring: 5
+  risk: HIGH
+  recommendations:
+  - Оценить гемоглобин, эритроциты, MCV
+  - Исключить анемию
+  description: Гематокрит < 40% – снижение у мужчин.
+- id: hematocrit_high_male
+  label: Повышенный гематокрит (мужчины)
+  parameter: hematocrit
+  min: 52
+  gender: male
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Оценить эритроциты, исключить эритремию, гипоксию
+  description: Гематокрит ≥ 52% – повышение у мужчин.
+- id: hematocrit_low_female
+  label: Сниженный гематокрит (женщины)
+  parameter: hematocrit
+  max: 36
+  gender: female
+  scoring: 5
+  risk: HIGH
+  recommendations:
+  - Оценить гемоглобин, эритроциты, MCV
+  - Исключить анемию
+  description: Гематокрит < 36% – снижение у женщин.
+- id: hematocrit_high_female
+  label: Повышенный гематокрит (женщины)
+  parameter: hematocrit
+  min: 46
+  gender: female
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Оценить эритроциты, исключить эритремию, гипоксию
+  description: Гематокрит ≥ 46% – повышение у женщин.

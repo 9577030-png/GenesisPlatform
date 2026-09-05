@@ -1,0 +1,34 @@
+id: crohns_disease
+conditions:
+- id: crohns_disease_fecal_calprotectin
+  label: Fecal calprotectin — отклонение от нормы
+  parameter: fecal_calprotectin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 120
+- id: crohns_disease_crp
+  label: Crp — отклонение от нормы
+  parameter: crp
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 10
+- id: crohns_disease_albumin
+  label: Albumin — отклонение от нормы
+  parameter: albumin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 35
+- id: crohns_disease_ferritin
+  label: Ferritin — отклонение от нормы
+  parameter: ferritin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 30

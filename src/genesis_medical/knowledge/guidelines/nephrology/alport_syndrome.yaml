@@ -1,0 +1,26 @@
+id: alport_syndrome
+conditions:
+- id: alport_syndrome_urine_erythrocytes
+  label: Urine erythrocytes — отклонение от нормы
+  parameter: urine_erythrocytes
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 5
+- id: alport_syndrome_urine_protein
+  label: Urine protein — отклонение от нормы
+  parameter: urine_protein
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 150
+- id: alport_syndrome_egfr
+  label: Egfr — отклонение от нормы
+  parameter: egfr
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 60

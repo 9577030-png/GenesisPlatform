@@ -1,0 +1,26 @@
+id: chronic_pyelonephritis
+conditions:
+- id: chronic_pyelonephritis_egfr
+  label: Egfr — отклонение от нормы
+  parameter: egfr
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 60
+- id: chronic_pyelonephritis_urine_leukocytes
+  label: Urine leukocytes — отклонение от нормы
+  parameter: urine_leukocytes
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 5
+- id: chronic_pyelonephritis_creatinine
+  label: Creatinine — отклонение от нормы
+  parameter: creatinine
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 110

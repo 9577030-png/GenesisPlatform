@@ -1,0 +1,10 @@
+id: acute_myocardial_infarction_troponin_t
+conditions:
+- id: acute_myocardial_infarction_troponin_t
+  label: Acute myocardial infarction troponin t
+  parameter: troponin_t
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 100

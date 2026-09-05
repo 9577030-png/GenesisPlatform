@@ -1,0 +1,14 @@
+id: uric_acid_ranges
+description: Мочевая кислота
+conditions:
+- id: gout
+  label: Подагра (гиперурикемия)
+  parameter: uric_acid
+  min: 420
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - При остром приступе – НПВП или колхицин
+  - При хронической гиперурикемии – аллопуринол 100–300 мг/сут под контролем мочевой
+    кислоты
+  description: Мочевая кислота ≥ 420 мкмоль/л – гиперурикемия, риск подагры.

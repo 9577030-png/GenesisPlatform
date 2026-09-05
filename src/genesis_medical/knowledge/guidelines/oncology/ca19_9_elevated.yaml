@@ -1,0 +1,10 @@
+id: ca19_9_elevated
+conditions:
+- id: ca19_9_elevated
+  label: Ca19 9 elevated
+  parameter: ca19_9
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 37

@@ -1,0 +1,26 @@
+id: cholelithiasis
+conditions:
+- id: cholelithiasis_bilirubin_total
+  label: Bilirubin total — отклонение от нормы
+  parameter: bilirubin_total
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 21
+- id: cholelithiasis_alkaline_phosphatase
+  label: Alkaline phosphatase — отклонение от нормы
+  parameter: alkaline_phosphatase
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 130
+- id: cholelithiasis_ggt
+  label: Ggt — отклонение от нормы
+  parameter: ggt
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 60

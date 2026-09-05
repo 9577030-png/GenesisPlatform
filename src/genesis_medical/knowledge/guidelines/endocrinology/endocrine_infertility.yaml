@@ -1,0 +1,42 @@
+id: endocrine_infertility
+conditions:
+- id: endocrine_infertility_fsh
+  label: Fsh — отклонение от нормы
+  parameter: fsh
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 12.4
+- id: endocrine_infertility_lh
+  label: Lh — отклонение от нормы
+  parameter: lh
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 8.6
+- id: endocrine_infertility_estradiol
+  label: Estradiol — отклонение от нормы
+  parameter: estradiol
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 160
+- id: endocrine_infertility_testosterone_total
+  label: Testosterone total — отклонение от нормы
+  parameter: testosterone_total
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 35
+- id: endocrine_infertility_prolactin
+  label: Prolactin — отклонение от нормы
+  parameter: prolactin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 500

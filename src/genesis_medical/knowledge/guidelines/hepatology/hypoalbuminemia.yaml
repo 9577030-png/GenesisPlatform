@@ -1,0 +1,10 @@
+id: hypoalbuminemia
+conditions:
+- id: hypoalbuminemia
+  label: Hypoalbuminemia
+  parameter: albumin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 35

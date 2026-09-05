@@ -1,0 +1,10 @@
+id: lymphocytosis_children
+conditions:
+- id: lymphocytosis_children
+  label: Lymphocytosis children
+  parameter: lymphocytes_percent
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 45

@@ -1,0 +1,13 @@
+id: egfr_ranges
+description: Скорость клубочковой фильтрации (СКФ)
+conditions:
+- id: chronic_kidney_disease
+  label: Хроническая болезнь почек (СКФ < 60)
+  parameter: egfr
+  max: 60
+  scoring: 5
+  risk: HIGH
+  recommendations:
+  - Оценка протеинурии, контроль АД, назначение иАПФ/БРА
+  - Повторный контроль через 3 месяца
+  description: СКФ < 60 мл/мин/1.73м² – снижение функции почек.

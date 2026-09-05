@@ -1,0 +1,18 @@
+id: infectious_mononucleosis
+conditions:
+- id: infectious_mononucleosis_ebv_vca_igm
+  label: Ebv vca igm — отклонение от нормы
+  parameter: ebv_vca_igm
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 1
+- id: infectious_mononucleosis_lymphocytes_percent
+  label: Lymphocytes percent — отклонение от нормы
+  parameter: lymphocytes_percent
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 45

@@ -1,0 +1,47 @@
+id: ferritin_ranges
+description: Ферритин
+conditions:
+- id: ferritin_low_male
+  label: Сниженный ферритин (мужчины)
+  parameter: ferritin
+  max: 30
+  gender: male
+  scoring: 5
+  risk: HIGH
+  recommendations:
+  - Оценить гемоглобин, железо сыворотки, ОЖСС
+  - Пероральные препараты железа
+  description: Ферритин < 30 мкг/Л – снижение запасов железа у мужчин.
+- id: ferritin_low_female
+  label: Сниженный ферритин (женщины)
+  parameter: ferritin
+  max: 15
+  gender: female
+  scoring: 5
+  risk: HIGH
+  recommendations:
+  - Оценить гемоглобин, железо сыворотки, ОЖСС
+  - Пероральные препараты железа
+  description: Ферритин < 15 мкг/Л – снижение запасов железа у женщин.
+- id: ferritin_high_male
+  label: Повышенный ферритин (мужчины)
+  parameter: ferritin
+  min: 400
+  gender: male
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Исключить гемохроматоз, воспаление, заболевания печени
+  - Оценить насыщение трансферрина, печёночные пробы
+  description: Ферритин ≥ 400 мкг/Л – повышение у мужчин.
+- id: ferritin_high_female
+  label: Повышенный ферритин (женщины)
+  parameter: ferritin
+  min: 150
+  gender: female
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Исключить гемохроматоз, воспаление, заболевания печени
+  - Оценить насыщение трансферрина, печёночные пробы
+  description: Ферритин ≥ 150 мкг/Л – повышение у женщин.

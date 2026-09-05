@@ -1,0 +1,10 @@
+id: ca15_3_elevated
+conditions:
+- id: ca15_3_elevated
+  label: Ca15 3 elevated
+  parameter: ca153
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 30

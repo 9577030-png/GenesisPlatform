@@ -1,0 +1,45 @@
+id: serum_iron_ranges
+description: Железо сыворотки
+conditions:
+- id: serum_iron_low_male
+  label: Сниженное железо сыворотки (мужчины)
+  parameter: serum_iron
+  max: 11
+  gender: male
+  scoring: 5
+  risk: HIGH
+  recommendations:
+  - Оценить ферритин, ОЖСС, насыщение трансферрина
+  - Рассмотреть дефицит железа
+  description: Железо сыворотки < 11 мкмоль/л – снижение у мужчин.
+- id: serum_iron_low_female
+  label: Сниженное железо сыворотки (женщины)
+  parameter: serum_iron
+  max: 9
+  gender: female
+  scoring: 5
+  risk: HIGH
+  recommendations:
+  - Оценить ферритин, ОЖСС, насыщение трансферрина
+  - Рассмотреть дефицит железа
+  description: Железо сыворотки < 9 мкмоль/л – снижение у женщин.
+- id: serum_iron_high_male
+  label: Повышенное железо сыворотки (мужчины)
+  parameter: serum_iron
+  min: 30
+  gender: male
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Исключить гемохроматоз, гемолиз, передозировку железа
+  description: Железо сыворотки ≥ 30 мкмоль/л – повышение у мужчин.
+- id: serum_iron_high_female
+  label: Повышенное железо сыворотки (женщины)
+  parameter: serum_iron
+  min: 27
+  gender: female
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Исключить гемохроматоз, гемолиз, передозировку железа
+  description: Железо сыворотки ≥ 27 мкмоль/л – повышение у женщин.

@@ -1,0 +1,10 @@
+id: acth_high
+conditions:
+- id: acth_high
+  label: Acth high
+  parameter: acth
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 60

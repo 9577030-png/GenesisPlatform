@@ -1,0 +1,10 @@
+id: thrombocytopenia_moderate
+conditions:
+- id: thrombocytopenia_moderate
+  label: Thrombocytopenia moderate
+  parameter: platelets
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 50

@@ -1,0 +1,26 @@
+id: lithium_nephropathy
+conditions:
+- id: lithium_nephropathy_egfr
+  label: Egfr — отклонение от нормы
+  parameter: egfr
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 60
+- id: lithium_nephropathy_sodium
+  label: Sodium — отклонение от нормы
+  parameter: sodium
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 145
+- id: lithium_nephropathy_potassium
+  label: Potassium — отклонение от нормы
+  parameter: potassium
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 3.5

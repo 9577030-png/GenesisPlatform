@@ -1,0 +1,26 @@
+id: ankylosing_spondylitis
+conditions:
+- id: ankylosing_spondylitis_hla_b27
+  label: Hla b27 — отклонение от нормы
+  parameter: hla_b27
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 1
+- id: ankylosing_spondylitis_crp
+  label: Crp — отклонение от нормы
+  parameter: crp
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 5
+- id: ankylosing_spondylitis_esr
+  label: Esr — отклонение от нормы
+  parameter: esr
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 20

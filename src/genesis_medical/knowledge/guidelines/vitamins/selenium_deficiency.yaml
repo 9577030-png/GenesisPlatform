@@ -1,0 +1,10 @@
+id: selenium_deficiency
+conditions:
+- id: selenium_deficiency
+  label: Selenium deficiency
+  parameter: selenium_reference
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 70

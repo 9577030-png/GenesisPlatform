@@ -1,0 +1,25 @@
+id: ggt_ranges
+description: Гамма-глутамилтрансфераза (ГГТ)
+conditions:
+- id: ggt_high_male
+  label: Повышенная ГГТ (мужчины)
+  parameter: ggt
+  min: 71
+  gender: male
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Оценить АЛТ, АСТ, щелочную фосфатазу
+  - Исключить холестаз, алкогольную болезнь печени, лекарства
+  description: ГГТ ≥ 71 Ед/л – повышение у мужчин.
+- id: ggt_high_female
+  label: Повышенная ГГТ (женщины)
+  parameter: ggt
+  min: 42
+  gender: female
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Оценить АЛТ, АСТ, щелочную фосфатазу
+  - Исключить холестаз, алкогольную болезнь печени, лекарства
+  description: ГГТ ≥ 42 Ед/л – повышение у женщин.

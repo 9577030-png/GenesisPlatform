@@ -1,0 +1,26 @@
+id: cholestasis
+conditions:
+- id: cholestasis_alkaline_phosphatase
+  label: Alkaline phosphatase — отклонение от нормы
+  parameter: alkaline_phosphatase
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 200
+- id: cholestasis_ggt
+  label: Ggt — отклонение от нормы
+  parameter: ggt
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 120
+- id: cholestasis_bilirubin_direct
+  label: Bilirubin direct — отклонение от нормы
+  parameter: bilirubin_direct
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 10

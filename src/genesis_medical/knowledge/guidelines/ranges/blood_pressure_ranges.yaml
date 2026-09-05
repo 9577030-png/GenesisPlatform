@@ -1,0 +1,14 @@
+id: blood_pressure_ranges
+description: Артериальное давление (систолическое)
+conditions:
+- id: hypertension
+  label: Артериальная гипертензия
+  parameter: blood_pressure_systolic
+  min: 140
+  scoring: 5
+  risk: HIGH
+  recommendations:
+  - Измерение АД в динамике, суточное мониторирование
+  - Назначение антигипертензивной терапии (ингибиторы АПФ, БРА, антагонисты кальция,
+    диуретики)
+  description: Систолическое АД ≥ 140 мм рт. ст. – гипертензия.

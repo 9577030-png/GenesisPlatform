@@ -1,0 +1,24 @@
+id: tsh_ranges
+description: Уровень ТТГ
+conditions:
+- id: hypothyroidism
+  label: Гипотиреоз
+  parameter: tsh
+  min: 4.0
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Определение свободного Т4, антител к ТПО
+  - Назначение левотироксина при стойком повышении ТТГ (начальная доза 25–50 мкг/сут,
+    титрация под контролем ТТГ каждые 6–8 недель)
+  description: ТТГ ≥ 4.0 мМЕ/л – гипотиреоз.
+- id: hyperthyroidism
+  label: Гипертиреоз
+  parameter: tsh
+  max: 0.4
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Определение свободного Т4, Т3, антител к рецепторам ТТГ
+  - Назначение тиреостатиков (тиамазол) при подтверждении
+  description: ТТГ ≤ 0.4 мМЕ/л – гипертиреоз.

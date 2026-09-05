@@ -1,0 +1,10 @@
+id: albumin_low_children
+conditions:
+- id: albumin_low_children
+  label: Albumin low children
+  parameter: albumin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 35

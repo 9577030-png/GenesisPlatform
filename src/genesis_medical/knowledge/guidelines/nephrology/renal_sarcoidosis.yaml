@@ -1,0 +1,26 @@
+id: renal_sarcoidosis
+conditions:
+- id: renal_sarcoidosis_calcium_total
+  label: Calcium total — отклонение от нормы
+  parameter: calcium_total
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 2.55
+- id: renal_sarcoidosis_egfr
+  label: Egfr — отклонение от нормы
+  parameter: egfr
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 60
+- id: renal_sarcoidosis_alkaline_phosphatase
+  label: Alkaline phosphatase — отклонение от нормы
+  parameter: alkaline_phosphatase
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 130

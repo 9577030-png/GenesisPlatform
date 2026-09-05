@@ -1,0 +1,26 @@
+id: ulcerative_colitis
+conditions:
+- id: ulcerative_colitis_fecal_calprotectin
+  label: Fecal calprotectin — отклонение от нормы
+  parameter: fecal_calprotectin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 120
+- id: ulcerative_colitis_crp
+  label: Crp — отклонение от нормы
+  parameter: crp
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 10
+- id: ulcerative_colitis_albumin
+  label: Albumin — отклонение от нормы
+  parameter: albumin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 35

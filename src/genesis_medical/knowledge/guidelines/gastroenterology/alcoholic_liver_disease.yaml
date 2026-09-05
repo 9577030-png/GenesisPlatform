@@ -1,0 +1,34 @@
+id: alcoholic_liver_disease
+conditions:
+- id: alcoholic_liver_disease_ggt
+  label: Ggt — отклонение от нормы
+  parameter: ggt
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 80
+- id: alcoholic_liver_disease_ast
+  label: Ast — отклонение от нормы
+  parameter: ast
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 60
+- id: alcoholic_liver_disease_alt
+  label: Alt — отклонение от нормы
+  parameter: alt
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 40
+- id: alcoholic_liver_disease_ethanol_blood
+  label: Ethanol blood — отклонение от нормы
+  parameter: ethanol_blood
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 0.5

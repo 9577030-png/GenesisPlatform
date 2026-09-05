@@ -1,0 +1,26 @@
+id: systemic_inflammation
+conditions:
+- id: systemic_inflammation_crp
+  label: Crp — отклонение от нормы
+  parameter: crp
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 10
+- id: systemic_inflammation_wbc
+  label: Wbc — отклонение от нормы
+  parameter: wbc
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 11
+- id: systemic_inflammation_esr
+  label: Esr — отклонение от нормы
+  parameter: esr
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 30

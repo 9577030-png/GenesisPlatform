@@ -1,0 +1,18 @@
+id: cystinuria
+conditions:
+- id: cystinuria_urine_erythrocytes
+  label: Urine erythrocytes — отклонение от нормы
+  parameter: urine_erythrocytes
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 5
+- id: cystinuria_creatinine
+  label: Creatinine — отклонение от нормы
+  parameter: creatinine
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 110

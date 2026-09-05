@@ -1,0 +1,26 @@
+id: atheroembolic_kidney_disease
+conditions:
+- id: atheroembolic_kidney_disease_eosinophils_percent
+  label: Eosinophils percent — отклонение от нормы
+  parameter: eosinophils_percent
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 5
+- id: atheroembolic_kidney_disease_creatinine
+  label: Creatinine — отклонение от нормы
+  parameter: creatinine
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 150
+- id: atheroembolic_kidney_disease_egfr
+  label: Egfr — отклонение от нормы
+  parameter: egfr
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 60

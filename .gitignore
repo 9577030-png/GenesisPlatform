@@ -1,0 +1,31 @@
+__pycache__/
+.pytest_cache/
+*.pyc
+build/
+dist/
+*.egg-info/
+.venv/
+
+# Application caches / local state
+.coverage
+.mypy_cache/
+.ruff_cache/
+*.db
+# Python build/test artifacts
+build/
+dist/
+*.egg-info/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Local virtual environments
+.venv/
+venv/
+
+# Local package build staging
+artifacts/

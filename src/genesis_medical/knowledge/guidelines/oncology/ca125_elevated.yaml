@@ -1,0 +1,10 @@
+id: ca125_elevated
+conditions:
+- id: ca125_elevated
+  label: Ca125 elevated
+  parameter: ca125
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 35

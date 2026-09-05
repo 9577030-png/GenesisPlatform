@@ -1,0 +1,18 @@
+id: hypogonadism_male
+conditions:
+- id: hypogonadism_male_testosterone_total
+  label: Testosterone total — отклонение от нормы
+  parameter: testosterone_total
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 10
+- id: hypogonadism_male_lh
+  label: Lh — отклонение от нормы
+  parameter: lh
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 8.6

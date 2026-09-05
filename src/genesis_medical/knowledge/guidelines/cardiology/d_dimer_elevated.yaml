@@ -1,0 +1,10 @@
+id: d_dimer_elevated
+conditions:
+- id: d_dimer_elevated
+  label: D dimer elevated
+  parameter: d_dimer
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 0.5

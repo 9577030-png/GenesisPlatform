@@ -1,0 +1,10 @@
+id: acute_kidney_injury
+conditions:
+- id: acute_kidney_injury
+  label: Острое повреждение почек
+  parameter: creatinine
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 150

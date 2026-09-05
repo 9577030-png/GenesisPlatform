@@ -1,0 +1,3654 @@
+interpretations:
+  diabetes_mellitus_type_2:
+    id: diabetes_mellitus_type_2
+    label: Сахарный диабет 2 типа
+    category: Эндокринология
+    description: Хроническое метаболическое заболевание, характеризующееся гипергликемией вследствие инсулинорезистентности
+      и относительной инсулиновой недостаточности.
+    criteria:
+    - parameter: glucose
+      threshold: 7.0
+      unit: ммоль/л
+      condition: '>='
+      comment_template: 'Критерий выполнен. Уровень {value} ммоль/л превышает порог (≥ 7.0).
+
+        {additional}
+
+        '
+      additional_rules:
+      - condition: value < 11.1
+        text: Риск кетоацидоза минимален.
+      - condition: value >= 11.1
+        text: ВЫСОКИЙ РИСК КЕТОАЦИДОЗА! Требуется срочное обследование (кетоны мочи/крови).
+    - parameter: hba1c
+      threshold: 6.5
+      unit: '%'
+      condition: '>='
+      comment_template: 'Критерий выполнен. Уровень {value}% отражает среднюю гликемию за 2–3 месяца.
+
+        Целевой уровень для пациентов < 65 лет: < 7.0%.
+
+        {additional}
+
+        '
+      additional_rules:
+      - condition: value >= 9.0
+        text: ЗНАЧИТЕЛЬНОЕ ПОВЫШЕНИЕ. Требуется инсулинотерапия, монотерапия метформином неэффективна.
+    - parameter: glucose_random
+      threshold: 11.1
+      unit: ммоль/л
+      condition: '>='
+      comment_template: 'Случайный уровень глюкозы {value} ммоль/л превышает порог (≥ 11.1). Является
+        самостоятельным критерием диабета при наличии симптомов.
+
+        '
+      optional: true
+    - parameter: c_peptide
+      threshold_low: 0.8
+      unit: нг/мл
+      condition: '>= 0.8'
+      comment_template: 'Уровень С-пептида {value} нг/мл {interpretation}
+
+        '
+      additional_rules:
+      - condition: value < 0.8
+        text: Снижение указывает на абсолютную инсулиновую недостаточность, характерно для СД1 или LADA.
+      - condition: value >= 0.8
+        text: Сохранная секреция инсулина – характерно для СД2.
+    differentials:
+    - condition: age < 45 AND c_peptide < 0.8
+      text: Заподозрить LADA (латентный аутоиммунный диабет взрослых) или СД1 типа. Проверить антитела
+        к GAD, IA-2, ZnT8.
+    - condition: glucocorticoids_use == true
+      text: Вторичный стероидный диабет. Отмена или снижение дозы ГКС может привести к нормализации гликемии.
+    red_flags:
+    - condition: hba1c > 9.0
+      text: '**Высокий риск декомпенсации и осложнений.** Требуется немедленная коррекция терапии, рассмотреть
+        старт инсулина.'
+    - condition: glucose_fasting > 15.0
+      text: '**Угроза гиперосмолярного состояния.** Срочно проверить осмолярность, кетоны, электролиты.'
+    - condition: age > 65 AND hba1c < 6.5
+      text: Пожилой возраст + низкий HbA1c – возможны частые гипогликемии. Пересмотреть целевые уровни
+        (индивидуализация).
+    treatment_hints:
+    - step: Метформин 500 мг × 2 раза в день
+      note: Титровать до 2000 мг/сут при нормальной СКФ (> 30 мл/мин). Препарат выбора при СД2 и ожирении.
+    - step: Скрининг осложнений
+      note: 'Обязательно: микроальбуминурия, липидный профиль (ЛПНП), осмотр офтальмолога, консультация
+        невролога.'
+    - step: Обучение самоконтролю
+      note: 'Измерение глюкозы натощак и через 2 часа после еды. Цели: натощак 4.0–7.0, через 2 часа <
+        10.0.'
+    - step: Контроль HbA1c
+      note: Через 3 месяца после старта терапии, далее 1 раз в 3–6 месяцев.
+    references:
+    - ADA Standards of Medical Care in Diabetes 2025
+    - Алгоритмы специализированной медицинской помощи больным сахарным диабетом (2024)
+  iron_deficiency:
+    id: iron_deficiency
+    label: Железодефицитная анемия
+    category: Гематология
+    description: Анемия, обусловленная недостатком железа в организме, ведущая к нарушению синтеза гемоглобина.
+    criteria:
+    - parameter: hemoglobin
+      unit: г/Л
+      comment_template: 'Уровень {value} г/Л. Степень анемии: {severity}.
+
+        {additional}
+
+        '
+      severity_mapping:
+      - range: '>= 120'
+        label: норма (для женщин)
+      - range: 110-119
+        label: легкая
+      - range: 80-109
+        label: умеренная
+      - range: < 80
+        label: тяжелая
+      additional_rules:
+      - condition: gender == 'female' AND value < 120
+        text: 'Критерий анемии для женщин (ВОЗ: < 120 г/Л).'
+      - condition: gender == 'male' AND value < 130
+        text: 'Критерий анемии для мужчин (ВОЗ: < 130 г/Л).'
+    - parameter: ferritin
+      threshold: 15
+      unit: мкг/Л
+      condition: <
+      comment_template: 'Уровень ферритина {value} мкг/Л.
+
+        {interpretation}
+
+        '
+      additional_rules:
+      - condition: value < 15
+        text: Абсолютный дефицит железа в депо. Подтверждает этиологию ЖДА.
+      - condition: 15 <= value < 30
+        text: Снижение запасов железа (латентный дефицит). Возможна ЖДА при наличии снижения гемоглобина.
+      - condition: value >= 100
+        text: Ферритин повышен – исключает дефицит железа. Вероятна анемия хронического воспаления или
+          болезни накопления.
+    - parameter: mcv
+      threshold: 80
+      unit: фл
+      condition: <
+      comment_template: 'MCV {value} фл.
+
+        {interpretation}
+
+        '
+      additional_rules:
+      - condition: value < 80
+        text: Микроцитоз – характерен для ЖДА (и талассемии).
+      - condition: value >= 80
+        text: Нормоцитоз или макроцитоз – не характерен для ЖДА. Требуется пересмотр гипотезы (B12, фолаты,
+          ХЗП).
+      optional: true
+    differentials:
+    - condition: ferritin > 100 AND crp > 5
+      text: Анемия хронического воспаления (АХВ). Ферритин высокий, CRP повышен. Проверить трансферрин,
+        железо сыворотки.
+    - condition: mcv < 75 AND erythrocytes > 5.0
+      text: Талассемия (особенно малая). Исследовать гемоглобин A2 и F.
+    - condition: hemoglobin < 100 AND reticulocytes < 1%
+      text: Апластическая анемия или гипоплазия костного мозга. Провести стернальную пункцию.
+    red_flags:
+    - condition: gender == 'male' AND hemoglobin < 110
+      text: У мужчин анемия любой степени требует исключения скрытого кровотечения (ЖКТ). Провести колоноскопию,
+        ФГДС.
+    - condition: age > 50 AND hemoglobin < 100
+      text: У пациентов старше 50 лет – риск онкозаболеваний. Обязательно исключить колоректальный рак,
+        рак желудка.
+    - condition: ferritin < 15 AND hb < 80
+      text: Критическая анемия на фоне истощения запасов. Рассмотреть парентеральное введение железа (в/в),
+        а не пероральное.
+    treatment_hints:
+    - step: Пероральные препараты железа
+      note: Доза элементарного железа 100–200 мг/сут (например, железа сульфат 325 мг × 2–3 р/д). Добавить
+        витамин С 500 мг для улучшения всасывания.
+    - step: Контроль эффективности
+      note: Ретикулоциты через 7 дней – их подъём (>1%) подтверждает ответ на терапию. Hb контроль через
+        4 недели.
+    - step: Если нет ответа через 2 недели
+      note: 'Пересмотреть диагноз: возможна мальабсорбция (целиакия, атрофический гастрит), продолжающаяся
+        кровопотеря, или нарушение комплаенса.'
+    - step: Парентеральное железо
+      note: При непереносимости пероральных препаратов, тяжелой анемии (Hb < 70), ХБП – назначают в/в
+        железо (например, карбоксимальтозат).
+    references:
+    - WHO guideline on haemoglobin cutoffs to define anaemia (2024)
+    - Клинические рекомендации по железодефицитной анемии (Россия, 2023)
+  anemia_male:
+    id: anemia_male
+    label: Анемия (мужчины)
+    category: Гематология
+    description: Снижение уровня гемоглобина ниже 130 г/Л у мужчин (критерий ВОЗ).
+    criteria:
+    - parameter: hemoglobin
+      threshold: 130
+      unit: г/Л
+      condition: <
+      comment_template: Гемоглобин {value} г/Л ниже нормы для мужчин (< 130).
+    differentials:
+    - condition: ferritin < 30
+      text: Железодефицитная анемия – наиболее частая причина у мужчин. Требуется поиск источника кровопотери
+        (ЖКТ).
+    - condition: mcv > 100 AND vitamin_b12 < 200
+      text: Макроцитарная анемия – дефицит B12 или фолатов.
+    - condition: ferritin > 100 AND crp > 5
+      text: Анемия хронического воспаления.
+    red_flags:
+    - condition: hemoglobin < 110 AND age > 50
+      text: У мужчин старше 50 лет с анемией любой степени – обязательно исключить колоректальный рак.
+    treatment_hints:
+    - step: Уточнить этиологию
+      note: 'Обязательно: ферритин, B12, фолаты, CRP, анализ кала на скрытую кровь.'
+    - step: При дефиците железа
+      note: Препараты железа внутрь, при выраженной анемии – в/в.
+    - step: При дефиците B12/фолатов
+      note: Заместительная терапия в соответствии с уровнем.
+    references:
+    - WHO guideline on haemoglobin cutoffs (2024)
+  anemia_female:
+    id: anemia_female
+    label: Анемия (женщины)
+    category: Гематология
+    description: Снижение уровня гемоглобина ниже 120 г/Л у женщин (критерий ВОЗ).
+    criteria:
+    - parameter: hemoglobin
+      threshold: 120
+      unit: г/Л
+      condition: <
+      comment_template: Гемоглобин {value} г/Л ниже нормы для женщин (< 120).
+    differentials:
+    - condition: ferritin < 15 AND menstruation_heavy == true
+      text: Железодефицитная анемия на фоне меноррагий.
+    - condition: mcv > 100 AND vitamin_b12 < 200
+      text: Макроцитарная анемия – дефицит B12 или фолатов.
+    - condition: ferritin > 100 AND crp > 5
+      text: Анемия хронического воспаления.
+    red_flags:
+    - condition: hemoglobin < 100 AND age > 50
+      text: У женщин старше 50 лет с анемией – исключить гинекологическую патологию и опухоли ЖКТ.
+    treatment_hints:
+    - step: Уточнить этиологию
+      note: Ферритин, B12, фолаты, CRP, гинекологический осмотр.
+    - step: При дефиците железа
+      note: Препараты железа внутрь, при неэффективности – парентерально.
+    - step: При дефиците B12/фолатов
+      note: Заместительная терапия.
+    references:
+    - WHO guideline on haemoglobin cutoffs (2024)
+  hypothyroidism:
+    id: hypothyroidism
+    label: Гипотиреоз
+    category: Эндокринология
+    description: Синдром, обусловленный стойким дефицитом гормонов щитовидной железы.
+    criteria:
+    - parameter: tsh
+      threshold: 4.0
+      unit: мМЕ/л
+      condition: '>='
+      comment_template: Уровень ТТГ {value} мМЕ/л превышает норму (≥ 4.0).
+    - parameter: free_t4
+      threshold: 12
+      unit: пмоль/л
+      condition: <=
+      comment_template: Уровень свободного Т4 {value} пмоль/л ниже нормы (≤ 12).
+    treatment_hints:
+    - step: Левотироксин
+      note: Начальная доза 25–50 мкг/сут, титровать под контролем ТТГ каждые 6–8 недель.
+    references:
+    - Клинические рекомендации по гипотиреозу (2023)
+  hyperthyroidism:
+    id: hyperthyroidism
+    label: Гипертиреоз
+    category: Эндокринология
+    description: Синдром, обусловленный избытком гормонов щитовидной железы.
+    criteria:
+    - parameter: tsh
+      threshold: 0.4
+      unit: мМЕ/л
+      condition: <=
+      comment_template: Уровень ТТГ {value} мМЕ/л ниже нормы (≤ 0.4).
+    - parameter: free_t4
+      threshold: 22
+      unit: пмоль/л
+      condition: '>='
+      comment_template: Уровень свободного Т4 {value} пмоль/л превышает норму (≥ 22).
+    treatment_hints:
+    - step: Тиреостатики (тиамазол)
+      note: Начальная доза 30 мг/сут, затем коррекция под контролем ТТГ и свободного Т4.
+    references:
+    - Клинические рекомендации по гипертиреозу (2023)
+  vitamin_d_deficiency:
+    id: vitamin_d_deficiency
+    label: Дефицит витамина D
+    category: Эндокринология
+    description: Уровень 25(OH)D < 30 нг/мл.
+    criteria:
+    - parameter: vitamin_d_25oh
+      threshold: 30
+      unit: нг/мл
+      condition: <
+      comment_template: Уровень витамина D {value} нг/мл ниже нормы (≥ 30).
+    - parameter: vitamin_d_25oh
+      threshold: 20
+      unit: нг/мл
+      condition: <
+      comment_template: Выраженный дефицит ({value} нг/мл). Требуется интенсивная терапия.
+      optional: true
+    treatment_hints:
+    - step: Пероральный колекальциферол
+      note: При уровне < 30 нг/мл – 2000–5000 МЕ/сут в течение 2–3 месяцев, затем поддерживающая доза
+        800–2000 МЕ/сут.
+    references:
+    - Endocrine Society Clinical Practice Guideline on Vitamin D (2023)
+  hypertension:
+    id: hypertension
+    label: Артериальная гипертензия
+    category: Кардиология
+    description: Стойкое повышение артериального давления ≥ 140/90 мм рт. ст.
+    criteria:
+    - parameter: blood_pressure_systolic
+      threshold: 140
+      unit: мм рт. ст.
+      condition: '>='
+      comment_template: Систолическое АД {value} мм рт. ст. превышает порог (≥ 140).
+    - parameter: blood_pressure_diastolic
+      threshold: 90
+      unit: мм рт. ст.
+      condition: '>='
+      comment_template: Диастолическое АД {value} мм рт. ст. превышает порог (≥ 90).
+    treatment_hints:
+    - step: Немедикаментозная коррекция
+      note: Ограничение соли, снижение веса, физическая активность.
+    - step: Антигипертензивная терапия
+      note: Препараты выбора – ингибиторы АПФ, БРА, антагонисты кальция, диуретики.
+    references:
+    - ESC/ESH Guidelines for the management of arterial hypertension (2023)
+  hypercholesterolemia:
+    id: hypercholesterolemia
+    label: Гиперхолестеринемия (повышенный ЛПНП)
+    category: Липидный обмен
+    description: Уровень ЛПНП > 3.0 ммоль/л.
+    criteria:
+    - parameter: ldl_cholesterol
+      threshold: 3.0
+      unit: ммоль/л
+      condition: '>='
+      comment_template: Уровень ЛПНП {value} ммоль/л превышает целевой уровень (≥ 3.0).
+    - parameter: cholesterol_total
+      threshold: 5.0
+      unit: ммоль/л
+      condition: '>='
+      comment_template: Общий холестерин {value} ммоль/л превышает норму (≥ 5.0).
+      optional: true
+    treatment_hints:
+    - step: Статины
+      note: Назначить статин (аторвастатин 10–40 мг/сут, розувастатин 5–20 мг/сут) в зависимости от сердечно-сосудистого
+        риска.
+    references:
+    - ESC/EAS Guidelines for the management of dyslipidaemias (2023)
+  hypertriglyceridemia:
+    id: hypertriglyceridemia
+    label: Гипертриглицеридемия
+    category: Липидный обмен
+    description: Триглицериды > 1.7 ммоль/л.
+    criteria:
+    - parameter: triglycerides
+      threshold: 1.7
+      unit: ммоль/л
+      condition: '>='
+      comment_template: Уровень триглицеридов {value} ммоль/л превышает норму (≥ 1.7).
+    treatment_hints:
+    - step: Диета с ограничением простых углеводов
+      note: Снижение веса, отказ от алкоголя.
+    - step: Фибриты
+      note: При уровне > 2.3 ммоль/л – фенофибрат 145 мг/сут.
+    references:
+    - ESC/EAS Guidelines for the management of dyslipidaemias (2023)
+  low_hdl_male:
+    id: low_hdl_male
+    label: Низкий ХС ЛПВП (мужчины)
+    category: Липидный обмен
+    description: HDL < 1.0 ммоль/л у мужчин.
+    criteria:
+    - parameter: hdl_cholesterol
+      threshold: 1.0
+      unit: ммоль/л
+      condition: <
+      comment_template: Уровень ЛПВП {value} ммоль/л ниже нормы для мужчин (< 1.0).
+    treatment_hints:
+    - step: Модификация образа жизни
+      note: Физическая активность, отказ от курения, снижение веса.
+    - step: Медикаментозная терапия
+      note: При низком HDL и высоком риске – статины, ниацин (но эффект на HDL не является самоцелью).
+    references:
+    - ESC/EAS Guidelines for the management of dyslipidaemias (2023)
+  low_hdl_female:
+    id: low_hdl_female
+    label: Низкий ХС ЛПВП (женщины)
+    category: Липидный обмен
+    description: HDL < 1.2 ммоль/л у женщин.
+    criteria:
+    - parameter: hdl_cholesterol
+      threshold: 1.2
+      unit: ммоль/л
+      condition: <
+      comment_template: Уровень ЛПВП {value} ммоль/л ниже нормы для женщин (< 1.2).
+    treatment_hints:
+    - step: Модификация образа жизни
+      note: Физическая активность, отказ от курения, снижение веса.
+    - step: Медикаментозная терапия
+      note: При низком HDL и высоком риске – статины, ниацин (но эффект на HDL не является самоцелью).
+    references:
+    - ESC/EAS Guidelines for the management of dyslipidaemias (2023)
+  obesity:
+    id: obesity
+    label: Ожирение
+    category: Обмен веществ
+    description: ИМТ ≥ 30 кг/м².
+    criteria:
+    - parameter: bmi
+      threshold: 30
+      unit: кг/м²
+      condition: '>='
+      comment_template: ИМТ {value} кг/м² превышает порог (≥ 30).
+    treatment_hints:
+    - step: Модификация образа жизни
+      note: Диета с дефицитом калорий, физическая активность 150–300 мин/нед.
+    - step: Медикаментозная терапия
+      note: При ИМТ ≥ 30 или ≥ 27 с осложнениями – орлистат, агонисты GLP-1 (лираглутид, семаглутид).
+    references:
+    - Рекомендации по лечению ожирения (2023)
+  chronic_kidney_disease:
+    id: chronic_kidney_disease
+    label: Хроническая болезнь почек
+    category: Нефрология
+    description: СКФ < 60 мл/мин/1.73 м² или признаки повреждения почек ≥ 3 месяцев.
+    criteria:
+    - parameter: egfr
+      threshold: 60
+      unit: мл/мин/1.73 м²
+      condition: <
+      comment_template: СКФ {value} мл/мин/1.73 м² ниже нормы (≥ 60).
+    - parameter: creatinine
+      threshold: 115
+      unit: мкмоль/л
+      condition: '>'
+      comment_template: Креатинин {value} мкмоль/л повышен.
+      optional: true
+    treatment_hints:
+    - step: Ингибиторы АПФ/БРА
+      note: При протеинурии или гипертензии – препараты выбора.
+    - step: Контроль АД
+      note: Целевой уровень АД < 130/80 мм рт. ст.
+    references:
+    - KDIGO Clinical Practice Guideline for CKD (2024)
+  creatinine_high_male:
+    id: creatinine_high_male
+    label: Повышенный креатинин (мужчины)
+    category: Нефрология
+    description: Креатинин ≥ 115 мкмоль/л у мужчин – маркер снижения функции почек.
+    criteria:
+    - parameter: creatinine
+      threshold: 115
+      unit: мкмоль/л
+      condition: '>='
+      comment_template: Креатинин {value} мкмоль/л превышает норму для мужчин (≥ 115).
+    differentials:
+    - condition: egfr < 60
+      text: Снижение СКФ подтверждает хроническую болезнь почек.
+    - condition: urea > 8.3
+      text: Повышение мочевины вместе с креатинином указывает на преренальную азотемию или почечную недостаточность.
+    - condition: potassium > 5.1 OR sodium < 136
+      text: Электролитные нарушения часто сопутствуют почечной дисфункции.
+    red_flags:
+    - condition: creatinine > 200
+      text: Значительное повышение – риск острой почечной недостаточности. Срочно оценить диурез, электролиты,
+        провести УЗИ почек.
+    treatment_hints:
+    - step: Оценить функцию почек
+      note: Рассчитать СКФ, проверить диурез, исключить обструкцию.
+    - step: Коррекция факторов риска
+      note: Контроль АД, сахара, отказ от нефротоксичных препаратов (НПВП).
+    - step: При прогрессировании
+      note: Консультация нефролога для решения вопроса о заместительной терапии.
+    references:
+    - KDIGO 2024 Clinical Practice Guideline for CKD
+  creatinine_high_female:
+    id: creatinine_high_female
+    label: Повышенный креатинин (женщины)
+    category: Нефрология
+    description: Креатинин ≥ 97 мкмоль/л у женщин – маркер снижения функции почек.
+    criteria:
+    - parameter: creatinine
+      threshold: 97
+      unit: мкмоль/л
+      condition: '>='
+      comment_template: Креатинин {value} мкмоль/л превышает норму для женщин (≥ 97).
+    differentials:
+    - condition: egfr < 60
+      text: Снижение СКФ подтверждает хроническую болезнь почек.
+    - condition: urea > 8.3
+      text: Повышение мочевины вместе с креатинином указывает на преренальную азотемию или почечную недостаточность.
+    - condition: potassium > 5.1 OR sodium < 136
+      text: Электролитные нарушения часто сопутствуют почечной дисфункции.
+    red_flags:
+    - condition: creatinine > 180
+      text: Значительное повышение – риск острой почечной недостаточности. Срочно оценить диурез, электролиты,
+        провести УЗИ почек.
+    treatment_hints:
+    - step: Оценить функцию почек
+      note: Рассчитать СКФ, проверить диурез, исключить обструкцию.
+    - step: Коррекция факторов риска
+      note: Контроль АД, сахара, отказ от нефротоксичных препаратов (НПВП).
+    - step: При прогрессировании
+      note: Консультация нефролога для решения вопроса о заместительной терапии.
+    references:
+    - KDIGO 2024 Clinical Practice Guideline for CKD
+  alt_high_male:
+    id: alt_high_male
+    label: Повышенная АЛТ (мужчины)
+    category: Гепатология
+    description: АЛТ ≥ 45 Ед/л у мужчин – маркер повреждения гепатоцитов.
+    criteria:
+    - parameter: alt
+      threshold: 45
+      unit: Ед/л
+      condition: '>='
+      comment_template: АЛТ {value} Ед/л превышает норму для мужчин (≥ 45).
+    differentials:
+    - condition: ast >= 40 AND ast/alt > 1.5
+      text: Алкогольная болезнь печени.
+    - condition: ggt > 71 AND alt > 45
+      text: Холестаз или алкогольное поражение.
+    - condition: bmi >= 30 AND alt_high_male
+      text: Неалкогольная жировая болезнь печени (НАЖБП) – самая частая причина.
+    red_flags:
+    - condition: alt > 200
+      text: Острый гепатит – срочно исключить вирусные гепатиты, лекарственное поражение, ишемию печени.
+    treatment_hints:
+    - step: Оценка этиологии
+      note: Исключить вирусные гепатиты (HBV, HCV), алкоголь, лекарства, метаболический синдром.
+    - step: При НАЖБП
+      note: Снижение веса, диета, физическая активность. Рассмотреть витамин Е.
+    - step: Динамический контроль
+      note: Повтор АЛТ через 1–2 месяца после коррекции факторов.
+    references:
+    - Рекомендации по неалкогольной жировой болезни печени (2023)
+  alt_high_female:
+    id: alt_high_female
+    label: Повышенная АЛТ (женщины)
+    category: Гепатология
+    description: АЛТ ≥ 35 Ед/л у женщин – маркер повреждения гепатоцитов.
+    criteria:
+    - parameter: alt
+      threshold: 35
+      unit: Ед/л
+      condition: '>='
+      comment_template: АЛТ {value} Ед/л превышает норму для женщин (≥ 35).
+    differentials:
+    - condition: ast >= 32 AND ast/alt > 1.5
+      text: Алкогольная болезнь печени.
+    - condition: ggt > 42 AND alt > 35
+      text: Холестаз или алкогольное поражение.
+    - condition: bmi >= 30 AND alt_high_female
+      text: Неалкогольная жировая болезнь печени (НАЖБП) – самая частая причина.
+    red_flags:
+    - condition: alt > 150
+      text: Острый гепатит – срочно исключить вирусные гепатиты, лекарственное поражение, ишемию печени.
+    treatment_hints:
+    - step: Оценка этиологии
+      note: Исключить вирусные гепатиты (HBV, HCV), алкоголь, лекарства, метаболический синдром.
+    - step: При НАЖБП
+      note: Снижение веса, диета, физическая активность. Рассмотреть витамин Е.
+    - step: Динамический контроль
+      note: Повтор АЛТ через 1–2 месяца после коррекции факторов.
+    references:
+    - Рекомендации по неалкогольной жировой болезни печени (2023)
+  ast_high_male:
+    id: ast_high_male
+    label: Повышенная АСТ (мужчины)
+    category: Гепатология
+    description: АСТ ≥ 40 Ед/л у мужчин – маркер повреждения клеток печени, сердца или мышц.
+    criteria:
+    - parameter: ast
+      threshold: 40
+      unit: Ед/л
+      condition: '>='
+      comment_template: АСТ {value} Ед/л превышает норму для мужчин (≥ 40).
+    differentials:
+    - condition: ast/alt > 2 AND alt < 45
+      text: Алкогольная болезнь печени (характерно повышение АСТ > АЛТ).
+    - condition: ck_total > 200
+      text: Повреждение мышц (травма, рабдомиолиз, миопатия).
+    - condition: troponin_i > 40
+      text: Повреждение миокарда (инфаркт, миокардит).
+    red_flags:
+    - condition: ast > 500
+      text: Массивный цитолиз – срочно исключить острый гепатит, токсическое поражение, ишемию печени.
+    treatment_hints:
+    - step: Определить источник
+      note: Оценить ALT, CK, тропонин, клиническую картину.
+    - step: При поражении печени
+      note: Этиотропное лечение в зависимости от причины.
+    - step: При мышечном поражении
+      note: Исключить рабдомиолиз, отменить статины при подозрении.
+    references:
+    - Клинические рекомендации по гепатитам (2023)
+  ast_high_female:
+    id: ast_high_female
+    label: Повышенная АСТ (женщины)
+    category: Гепатология
+    description: АСТ ≥ 32 Ед/л у женщин – маркер повреждения клеток печени, сердца или мышц.
+    criteria:
+    - parameter: ast
+      threshold: 32
+      unit: Ед/л
+      condition: '>='
+      comment_template: АСТ {value} Ед/л превышает норму для женщин (≥ 32).
+    differentials:
+    - condition: ast/alt > 2 AND alt < 35
+      text: Алкогольная болезнь печени (характерно повышение АСТ > АЛТ).
+    - condition: ck_total > 200
+      text: Повреждение мышц (травма, рабдомиолиз, миопатия).
+    - condition: troponin_i > 40
+      text: Повреждение миокарда (инфаркт, миокардит).
+    red_flags:
+    - condition: ast > 400
+      text: Массивный цитолиз – срочно исключить острый гепатит, токсическое поражение, ишемию печени.
+    treatment_hints:
+    - step: Определить источник
+      note: Оценить ALT, CK, тропонин, клиническую картину.
+    - step: При поражении печени
+      note: Этиотропное лечение в зависимости от причины.
+    - step: При мышечном поражении
+      note: Исключить рабдомиолиз, отменить статины при подозрении.
+    references:
+    - Клинические рекомендации по гепатитам (2023)
+  ggt_high_male:
+    id: ggt_high_male
+    label: Повышенная ГГТ (мужчины)
+    category: Гепатология
+    description: ГГТ ≥ 71 Ед/л у мужчин – маркер холестаза и алкогольной нагрузки.
+    criteria:
+    - parameter: ggt
+      threshold: 71
+      unit: Ед/л
+      condition: '>='
+      comment_template: ГГТ {value} Ед/л превышает норму для мужчин (≥ 71).
+    differentials:
+    - condition: alt > 45 AND ast > 40
+      text: Паренхиматозное поражение печени.
+    - condition: alkaline_phosphatase > 130
+      text: Холестаз (внутри- или внепеченочный).
+    - condition: ggt > 100 AND alcohol_abuse == true
+      text: Алкогольная болезнь печени (ГГТ высокочувствителен к этанолу).
+    red_flags:
+    - condition: ggt > 200 AND bilirubin_total > 21
+      text: Выраженный холестаз – риск билиарного цирроза. Провести УЗИ органов брюшной полости.
+    treatment_hints:
+    - step: Уточнить причину
+      note: Исключить алкоголь, лекарства, заболевания желчевыводящих путей.
+    - step: При алкогольном генезе
+      note: Полный отказ от алкоголя, поддержка печени (фосфолипиды, витамины).
+    - step: При холестазе
+      note: Консультация гастроэнтеролога, УЗИ, возможно ЭРХПГ.
+    references:
+    - Рекомендации по алкогольной болезни печени (2023)
+  ggt_high_female:
+    id: ggt_high_female
+    label: Повышенная ГГТ (женщины)
+    category: Гепатология
+    description: ГГТ ≥ 42 Ед/л у женщин – маркер холестаза и алкогольной нагрузки.
+    criteria:
+    - parameter: ggt
+      threshold: 42
+      unit: Ед/л
+      condition: '>='
+      comment_template: ГГТ {value} Ед/л превышает норму для женщин (≥ 42).
+    differentials:
+    - condition: alt > 35 AND ast > 32
+      text: Паренхиматозное поражение печени.
+    - condition: alkaline_phosphatase > 130
+      text: Холестаз (внутри- или внепеченочный).
+    - condition: ggt > 80 AND alcohol_abuse == true
+      text: Алкогольная болезнь печени (ГГТ высокочувствителен к этанолу).
+    red_flags:
+    - condition: ggt > 150 AND bilirubin_total > 21
+      text: Выраженный холестаз – риск билиарного цирроза. Провести УЗИ органов брюшной полости.
+    treatment_hints:
+    - step: Уточнить причину
+      note: Исключить алкоголь, лекарства, заболевания желчевыводящих путей.
+    - step: При алкогольном генезе
+      note: Полный отказ от алкоголя, поддержка печени (фосфолипиды, витамины).
+    - step: При холестазе
+      note: Консультация гастроэнтеролога, УЗИ, возможно ЭРХПГ.
+    references:
+    - Рекомендации по алкогольной болезни печени (2023)
+  ferritin_low_male:
+    id: ferritin_low_male
+    label: Сниженный ферритин (мужчины)
+    category: Гематология
+    description: Ферритин < 30 мкг/Л у мужчин – истощение запасов железа.
+    criteria:
+    - parameter: ferritin
+      threshold: 30
+      unit: мкг/Л
+      condition: <
+      comment_template: Ферритин {value} мкг/Л ниже нормы для мужчин (< 30).
+    differentials:
+    - condition: hemoglobin < 130
+      text: Железодефицитная анемия – наиболее вероятна. Требуется поиск источника кровопотери.
+    - condition: serum_iron < 11
+      text: Снижение сывороточного железа подтверждает дефицит.
+    red_flags:
+    - condition: ferritin < 15 AND hemoglobin < 110
+      text: Критический дефицит железа – требуется немедленная коррекция, возможно парентерально.
+    treatment_hints:
+    - step: Назначить препараты железа
+      note: Доза элементарного железа 100–200 мг/сут.
+    - step: Поиск причины
+      note: Обследовать ЖКТ (колоноскопия, ФГДС), исключить кровопотерю.
+    - step: Контроль
+      note: Повтор ферритина через 3 месяца терапии.
+    references:
+    - WHO guideline on iron deficiency (2023)
+  ferritin_low_female:
+    id: ferritin_low_female
+    label: Сниженный ферритин (женщины)
+    category: Гематология
+    description: Ферритин < 15 мкг/Л у женщин – истощение запасов железа.
+    criteria:
+    - parameter: ferritin
+      threshold: 15
+      unit: мкг/Л
+      condition: <
+      comment_template: Ферритин {value} мкг/Л ниже нормы для женщин (< 15).
+    differentials:
+    - condition: hemoglobin < 120 AND menstruation_heavy == true
+      text: Железодефицитная анемия на фоне меноррагий.
+    - condition: serum_iron < 9
+      text: Снижение сывороточного железа подтверждает дефицит.
+    red_flags:
+    - condition: ferritin < 10 AND hemoglobin < 100
+      text: Критический дефицит железа – требуется немедленная коррекция, возможно парентерально.
+    treatment_hints:
+    - step: Назначить препараты железа
+      note: Доза элементарного железа 100–200 мг/сут.
+    - step: Поиск причины
+      note: Гинекологический осмотр, обследование ЖКТ при отсутствии менструальных кровопотерь.
+    - step: Контроль
+      note: Повтор ферритина через 3 месяца терапии.
+    references:
+    - WHO guideline on iron deficiency (2023)
+  ferritin_high_male:
+    id: ferritin_high_male
+    label: Повышенный ферритин (мужчины)
+    category: Гематология
+    description: Ферритин ≥ 400 мкг/Л у мужчин – маркер перегрузки железом или воспаления.
+    criteria:
+    - parameter: ferritin
+      threshold: 400
+      unit: мкг/Л
+      condition: '>='
+      comment_template: Ферритин {value} мкг/Л превышает норму для мужчин (≥ 400).
+    differentials:
+    - condition: transferrin_saturation > 45%
+      text: Гемохроматоз – генетическое заболевание с перегрузкой железом. Проверить HFE-мутации.
+    - condition: crp > 5 OR esr > 15
+      text: Воспаление (инфекция, аутоиммунное заболевание, злокачественное новообразование).
+    - condition: alt > 45 OR ast > 40
+      text: Повреждение печени (гепатит, НАЖБП, алкогольная болезнь).
+    red_flags:
+    - condition: ferritin > 1000 AND transferrin_saturation > 50%
+      text: Выраженная перегрузка железом – риск цирроза, диабета, кардиомиопатии. Срочная консультация
+        гематолога.
+    treatment_hints:
+    - step: Диагностика причины
+      note: Насыщение трансферрина, CRP, печеночные пробы, HFE-генотипирование.
+    - step: При гемохроматозе
+      note: Флеботомия (кровопускание) для снижения ферритина.
+    - step: При воспалении
+      note: Лечение основного заболевания.
+    references:
+    - EASL Clinical Practice Guidelines on haemochromatosis (2022)
+  ferritin_high_female:
+    id: ferritin_high_female
+    label: Повышенный ферритин (женщины)
+    category: Гематология
+    description: Ферритин ≥ 150 мкг/Л у женщин – маркер перегрузки железом или воспаления.
+    criteria:
+    - parameter: ferritin
+      threshold: 150
+      unit: мкг/Л
+      condition: '>='
+      comment_template: Ферритин {value} мкг/Л превышает норму для женщин (≥ 150).
+    differentials:
+    - condition: transferrin_saturation > 45%
+      text: Гемохроматоз – генетическое заболевание с перегрузкой железом. Проверить HFE-мутации.
+    - condition: crp > 5 OR esr > 20
+      text: Воспаление (инфекция, аутоиммунное заболевание, злокачественное новообразование).
+    - condition: alt > 35 OR ast > 32
+      text: Повреждение печени (гепатит, НАЖБП, алкогольная болезнь).
+    red_flags:
+    - condition: ferritin > 800 AND transferrin_saturation > 50%
+      text: Выраженная перегрузка железом – риск цирроза, диабета, кардиомиопатии. Срочная консультация
+        гематолога.
+    treatment_hints:
+    - step: Диагностика причины
+      note: Насыщение трансферрина, CRP, печеночные пробы, HFE-генотипирование.
+    - step: При гемохроматозе
+      note: Флеботомия (кровопускание) для снижения ферритина.
+    - step: При воспалении
+      note: Лечение основного заболевания.
+    references:
+    - EASL Clinical Practice Guidelines on haemochromatosis (2022)
+  serum_iron_low_male:
+    id: serum_iron_low_male
+    label: Сниженное железо сыворотки (мужчины)
+    category: Гематология
+    description: Железо сыворотки < 11 мкмоль/л у мужчин – маркер дефицита железа.
+    criteria:
+    - parameter: serum_iron
+      threshold: 11
+      unit: мкмоль/л
+      condition: <
+      comment_template: Железо сыворотки {value} мкмоль/л ниже нормы для мужчин (< 11).
+    differentials:
+    - condition: ferritin < 30
+      text: Дефицит железа – подтверждается низким ферритином.
+    - condition: tibc > 72
+      text: Повышение ОЖСС характерно для дефицита железа.
+    red_flags:
+    - condition: serum_iron < 5 AND hemoglobin < 100
+      text: Тяжёлый дефицит железа – требуется парентеральное введение.
+    treatment_hints:
+    - step: Назначить препараты железа
+      note: Доза элементарного железа 100–200 мг/сут.
+    - step: Поиск причины
+      note: Обследовать ЖКТ, исключить кровопотерю.
+    references:
+    - WHO guideline on iron deficiency (2023)
+  serum_iron_low_female:
+    id: serum_iron_low_female
+    label: Сниженное железо сыворотки (женщины)
+    category: Гематология
+    description: Железо сыворотки < 9 мкмоль/л у женщин – маркер дефицита железа.
+    criteria:
+    - parameter: serum_iron
+      threshold: 9
+      unit: мкмоль/л
+      condition: <
+      comment_template: Железо сыворотки {value} мкмоль/л ниже нормы для женщин (< 9).
+    differentials:
+    - condition: ferritin < 15
+      text: Дефицит железа – подтверждается низким ферритином.
+    - condition: tibc > 72
+      text: Повышение ОЖСС характерно для дефицита железа.
+    red_flags:
+    - condition: serum_iron < 4 AND hemoglobin < 90
+      text: Тяжёлый дефицит железа – требуется парентеральное введение.
+    treatment_hints:
+    - step: Назначить препараты железа
+      note: Доза элементарного железа 100–200 мг/сут.
+    - step: Поиск причины
+      note: Гинекологический осмотр, обследование ЖКТ при отсутствии менструальных кровопотерь.
+    references:
+    - WHO guideline on iron deficiency (2023)
+  serum_iron_high_male:
+    id: serum_iron_high_male
+    label: Повышенное железо сыворотки (мужчины)
+    category: Гематология
+    description: Железо сыворотки ≥ 30 мкмоль/л у мужчин – маркер перегрузки железом.
+    criteria:
+    - parameter: serum_iron
+      threshold: 30
+      unit: мкмоль/л
+      condition: '>='
+      comment_template: Железо сыворотки {value} мкмоль/л превышает норму для мужчин (≥ 30).
+    differentials:
+    - condition: ferritin > 400 AND transferrin_saturation > 45%
+      text: Гемохроматоз – подтвердить HFE-мутациями.
+    - condition: hemoglobin > 170 OR hematocrit > 52%
+      text: Эритремия (полицитемия) может приводить к повышению железа.
+    red_flags:
+    - condition: serum_iron > 40 AND ferritin > 1000
+      text: Тяжёлая перегрузка железом – риск органных осложнений.
+    treatment_hints:
+    - step: Диагностика причины
+      note: Насыщение трансферрина, ферритин, HFE-генотипирование.
+    - step: При гемохроматозе
+      note: Флеботомия для снижения железа.
+    references:
+    - EASL Clinical Practice Guidelines on haemochromatosis (2022)
+  serum_iron_high_female:
+    id: serum_iron_high_female
+    label: Повышенное железо сыворотки (женщины)
+    category: Гематология
+    description: Железо сыворотки ≥ 27 мкмоль/л у женщин – маркер перегрузки железом.
+    criteria:
+    - parameter: serum_iron
+      threshold: 27
+      unit: мкмоль/л
+      condition: '>='
+      comment_template: Железо сыворотки {value} мкмоль/л превышает норму для женщин (≥ 27).
+    differentials:
+    - condition: ferritin > 150 AND transferrin_saturation > 45%
+      text: Гемохроматоз – подтвердить HFE-мутациями.
+    - condition: hemoglobin > 150 OR hematocrit > 46%
+      text: Эритремия (полицитемия) может приводить к повышению железа.
+    red_flags:
+    - condition: serum_iron > 35 AND ferritin > 800
+      text: Тяжёлая перегрузка железом – риск органных осложнений.
+    treatment_hints:
+    - step: Диагностика причины
+      note: Насыщение трансферрина, ферритин, HFE-генотипирование.
+    - step: При гемохроматозе
+      note: Флеботомия для снижения железа.
+    references:
+    - EASL Clinical Practice Guidelines on haemochromatosis (2022)
+  rbc_low_male:
+    id: rbc_low_male
+    label: Сниженные эритроциты (мужчины)
+    category: Гематология
+    description: Эритроциты < 4.3 × 10¹²/Л у мужчин.
+    criteria:
+    - parameter: rbc
+      threshold: 4.3
+      unit: 10^12/L
+      condition: <
+      comment_template: Эритроциты {value} × 10¹²/Л ниже нормы для мужчин (< 4.3).
+    differentials:
+    - condition: hemoglobin < 130 AND mcv < 80
+      text: Микроцитарная анемия (дефицит железа, талассемия).
+    - condition: hemoglobin < 130 AND mcv > 100
+      text: Макроцитарная анемия (дефицит B12, фолатов).
+    treatment_hints:
+    - step: Уточнить этиологию
+      note: Оценить гемоглобин, MCV, ферритин, B12, фолаты.
+    - step: Коррекция согласно причине
+      note: Назначить препараты железа, B12 или фолатов при дефиците.
+    references:
+    - WHO guideline on anaemia (2024)
+  rbc_low_female:
+    id: rbc_low_female
+    label: Сниженные эритроциты (женщины)
+    category: Гематология
+    description: Эритроциты < 3.8 × 10¹²/Л у женщин.
+    criteria:
+    - parameter: rbc
+      threshold: 3.8
+      unit: 10^12/L
+      condition: <
+      comment_template: Эритроциты {value} × 10¹²/Л ниже нормы для женщин (< 3.8).
+    differentials:
+    - condition: hemoglobin < 120 AND mcv < 80
+      text: Микроцитарная анемия (дефицит железа, талассемия).
+    - condition: hemoglobin < 120 AND mcv > 100
+      text: Макроцитарная анемия (дефицит B12, фолатов).
+    treatment_hints:
+    - step: Уточнить этиологию
+      note: Оценить гемоглобин, MCV, ферритин, B12, фолаты.
+    - step: Коррекция согласно причине
+      note: Назначить препараты железа, B12 или фолатов при дефиците.
+    references:
+    - WHO guideline on anaemia (2024)
+  rbc_high_male:
+    id: rbc_high_male
+    label: Повышенные эритроциты (мужчины)
+    category: Гематология
+    description: Эритроциты ≥ 5.7 × 10¹²/Л у мужчин.
+    criteria:
+    - parameter: rbc
+      threshold: 5.7
+      unit: 10^12/L
+      condition: '>='
+      comment_template: Эритроциты {value} × 10¹²/Л превышают норму для мужчин (≥ 5.7).
+    differentials:
+    - condition: hematocrit > 52%
+      text: Полицитемия – исключить эритремию (истинная полицитемия) или вторичную (гипоксия, курение,
+        опухоли).
+    - condition: erythropoietin > 20
+      text: Вторичная полицитемия (гипоксия, почечная опухоль).
+    red_flags:
+    - condition: rbc > 6.0 AND platelets > 400 AND thrombocytosis
+      text: Миелопролиферативное заболевание – требуется консультация гематолога.
+    treatment_hints:
+    - step: Диагностика причины
+      note: Гематокрит, эритропоэтин, пульсоксиметрия, УЗИ почек.
+    - step: При эритремии
+      note: Кровопускания, гидроксимочевина для снижения риска тромбозов.
+    references:
+    - WHO classification of myeloproliferative neoplasms
+  rbc_high_female:
+    id: rbc_high_female
+    label: Повышенные эритроциты (женщины)
+    category: Гематология
+    description: Эритроциты ≥ 5.2 × 10¹²/Л у женщин.
+    criteria:
+    - parameter: rbc
+      threshold: 5.2
+      unit: 10^12/L
+      condition: '>='
+      comment_template: Эритроциты {value} × 10¹²/Л превышают норму для женщин (≥ 5.2).
+    differentials:
+    - condition: hematocrit > 46%
+      text: Полицитемия – исключить эритремию или вторичную полицитемию.
+    - condition: erythropoietin > 20
+      text: Вторичная полицитемия (гипоксия, почечная опухоль).
+    red_flags:
+    - condition: rbc > 5.5 AND platelets > 400
+      text: Миелопролиферативное заболевание – требуется консультация гематолога.
+    treatment_hints:
+    - step: Диагностика причины
+      note: Гематокрит, эритропоэтин, пульсоксиметрия, УЗИ почек.
+    - step: При эритремии
+      note: Кровопускания, гидроксимочевина для снижения риска тромбозов.
+    references:
+    - WHO classification of myeloproliferative neoplasms
+  hematocrit_low_male:
+    id: hematocrit_low_male
+    label: Сниженный гематокрит (мужчины)
+    category: Гематология
+    description: Гематокрит < 40% у мужчин.
+    criteria:
+    - parameter: hematocrit
+      threshold: 40
+      unit: '%'
+      condition: <
+      comment_template: Гематокрит {value}% ниже нормы для мужчин (< 40%).
+    differentials:
+    - condition: rbc < 4.3
+      text: Анемия – причина снижения гематокрита.
+    treatment_hints:
+    - step: Диагностика анемии
+      note: Оценить гемоглобин, эритроциты, MCV.
+    references:
+    - WHO guideline on anaemia (2024)
+  hematocrit_low_female:
+    id: hematocrit_low_female
+    label: Сниженный гематокрит (женщины)
+    category: Гематология
+    description: Гематокрит < 36% у женщин.
+    criteria:
+    - parameter: hematocrit
+      threshold: 36
+      unit: '%'
+      condition: <
+      comment_template: Гематокрит {value}% ниже нормы для женщин (< 36%).
+    differentials:
+    - condition: rbc < 3.8
+      text: Анемия – причина снижения гематокрита.
+    treatment_hints:
+    - step: Диагностика анемии
+      note: Оценить гемоглобин, эритроциты, MCV.
+    references:
+    - WHO guideline on anaemia (2024)
+  hematocrit_high_male:
+    id: hematocrit_high_male
+    label: Повышенный гематокрит (мужчины)
+    category: Гематология
+    description: Гематокрит ≥ 52% у мужчин.
+    criteria:
+    - parameter: hematocrit
+      threshold: 52
+      unit: '%'
+      condition: '>='
+      comment_template: Гематокрит {value}% превышает норму для мужчин (≥ 52%).
+    differentials:
+    - condition: rbc > 5.7
+      text: Полицитемия – риск тромбозов.
+    treatment_hints:
+    - step: Исключить эритремию
+      note: Проверить эритропоэтин, JAK2-мутацию.
+    references:
+    - WHO classification of myeloproliferative neoplasms
+  hematocrit_high_female:
+    id: hematocrit_high_female
+    label: Повышенный гематокрит (женщины)
+    category: Гематология
+    description: Гематокрит ≥ 46% у женщин.
+    criteria:
+    - parameter: hematocrit
+      threshold: 46
+      unit: '%'
+      condition: '>='
+      comment_template: Гематокрит {value}% превышает норму для женщин (≥ 46%).
+    differentials:
+    - condition: rbc > 5.2
+      text: Полицитемия – риск тромбозов.
+    treatment_hints:
+    - step: Исключить эритремию
+      note: Проверить эритропоэтин, JAK2-мутацию.
+    references:
+    - WHO classification of myeloproliferative neoplasms
+  esr_high_male:
+    id: esr_high_male
+    label: Повышенная СОЭ (мужчины)
+    category: Системное воспаление
+    description: СОЭ ≥ 15 мм/ч у мужчин – неспецифический маркер воспаления.
+    criteria:
+    - parameter: esr
+      threshold: 15
+      unit: мм/ч
+      condition: '>='
+      comment_template: СОЭ {value} мм/ч превышает норму для мужчин (≥ 15).
+    differentials:
+    - condition: crp > 5
+      text: Системное воспаление (инфекция, аутоиммунное заболевание, онкология).
+    - condition: age > 60 AND esr < 30
+      text: Небольшое повышение у пожилых может быть вариантом нормы.
+    red_flags:
+    - condition: esr > 100 AND age > 50
+      text: Высокая СОЭ – риск гигантоклеточного артериита, множественной миеломы, инфекционного эндокардита.
+    treatment_hints:
+    - step: Поиск причины
+      note: Оценить клиническую картину, CRP, общий анализ крови, протеинограмму.
+    - step: При инфекции
+      note: Антибиотики по чувствительности.
+    - step: При аутоиммунном процессе
+      note: Консультация ревматолога, назначение иммуносупрессивной терапии.
+    references:
+    - Рекомендации по интерпретации СОЭ (2023)
+  esr_high_female:
+    id: esr_high_female
+    label: Повышенная СОЭ (женщины)
+    category: Системное воспаление
+    description: СОЭ ≥ 20 мм/ч у женщин – неспецифический маркер воспаления.
+    criteria:
+    - parameter: esr
+      threshold: 20
+      unit: мм/ч
+      condition: '>='
+      comment_template: СОЭ {value} мм/ч превышает норму для женщин (≥ 20).
+    differentials:
+    - condition: crp > 5
+      text: Системное воспаление (инфекция, аутоиммунное заболевание, онкология).
+    - condition: age > 60 AND esr < 30
+      text: Небольшое повышение у пожилых может быть вариантом нормы.
+    red_flags:
+    - condition: esr > 100 AND age > 50
+      text: Высокая СОЭ – риск гигантоклеточного артериита, множественной миеломы, инфекционного эндокардита.
+    treatment_hints:
+    - step: Поиск причины
+      note: Оценить клиническую картину, CRP, общий анализ крови, протеинограмму.
+    - step: При инфекции
+      note: Антибиотики по чувствительности.
+    - step: При аутоиммунном процессе
+      note: Консультация ревматолога, назначение иммуносупрессивной терапии.
+    references:
+    - Рекомендации по интерпретации СОЭ (2023)
+  nonalcoholic_fatty_liver:
+    id: nonalcoholic_fatty_liver
+    label: Неалкогольная жировая болезнь печени
+    category: Гепатология
+    description: Повышение АЛТ/АСТ/ГГТ на фоне метаболического синдрома.
+    criteria:
+    - parameter: alt
+      threshold: 45
+      unit: Ед/л
+      condition: '>'
+      comment_template: АЛТ {value} Ед/л превышает норму (> 45 для мужчин, > 35 для женщин).
+    - parameter: ast
+      threshold: 40
+      unit: Ед/л
+      condition: '>'
+      comment_template: АСТ {value} Ед/л превышает норму (> 40).
+      optional: true
+    - parameter: ggt
+      threshold: 71
+      unit: Ед/л
+      condition: '>'
+      comment_template: ГГТ {value} Ед/л превышает норму (> 71).
+      optional: true
+    treatment_hints:
+    - step: Модификация образа жизни
+      note: Потеря веса (7–10%), диета с ограничением простых углеводов и насыщенных жиров.
+    - step: Витамин Е
+      note: При отсутствии диабета – 800 МЕ/сут может улучшить гистологию.
+    references:
+    - Рекомендации по неалкогольной жировой болезни печени (2023)
+  celiac_disease:
+    id: celiac_disease
+    label: Целиакия (подозрение)
+    category: Гастроэнтерология
+    description: Повышение антител к тканевой трансглютаминазе (anti‑tTG).
+    criteria:
+    - parameter: tga_iga
+      threshold: 10
+      unit: Ед/мл
+      condition: '>'
+      comment_template: Уровень антител к тканевой трансглютаминазе IgA {value} Ед/мл превышает норму
+        (> 10).
+    treatment_hints:
+    - step: Строгая аглютеновая диета
+      note: Пожизненное исключение глютенсодержащих продуктов.
+    - step: Обследование у гастроэнтеролога
+      note: Для подтверждения – биопсия двенадцатиперстной кишки.
+    references:
+    - Клинические рекомендации по целиакии (2023)
+  anemia_chronic_disease:
+    id: anemia_chronic_disease
+    label: Анемия хронического воспаления (подозрение)
+    category: Гематология
+    description: Низкий гемоглобин, ферритин > 100, повышенный CRP.
+    criteria:
+    - parameter: hemoglobin
+      threshold: 120
+      unit: г/Л
+      condition: <
+      comment_template: Гемоглобин {value} г/Л снижен.
+    - parameter: ferritin
+      threshold: 100
+      unit: мкг/Л
+      condition: '>'
+      comment_template: Ферритин {value} мкг/Л повышен (> 100), что характерно для воспаления.
+    - parameter: crp
+      threshold: 5
+      unit: мг/Л
+      condition: '>'
+      comment_template: CRP {value} мг/Л повышен (> 5).
+      optional: true
+    treatment_hints:
+    - step: Лечение основного заболевания
+      note: При инфекции – антибиотики, при аутоиммунном процессе – иммуносупрессия.
+    - step: Железо в/в (при дефиците)
+      note: Если ферритин < 100, но нет абсолютного дефицита, в/в железо может быть неэффективным.
+    references:
+    - Рекомендации по анемии хронического воспаления (2023)
+  b12_deficiency:
+    id: b12_deficiency
+    label: Дефицит витамина B12
+    category: Гематология
+    description: Уровень B12 < 200 пг/мл.
+    criteria:
+    - parameter: vitamin_b12
+      threshold: 200
+      unit: пг/мл
+      condition: <
+      comment_template: Уровень B12 {value} пг/мл ниже нормы (< 200).
+    treatment_hints:
+    - step: Пероральный цианокобаламин
+      note: 1000–2000 мкг/сут, при нарушении всасывания – в/м 1000 мкг/мес.
+    references:
+    - Рекомендации по дефициту B12 (2023)
+  folate_deficiency:
+    id: folate_deficiency
+    label: Дефицит фолиевой кислоты
+    category: Гематология
+    description: Фолат < 4 нг/мл.
+    criteria:
+    - parameter: folate
+      threshold: 4
+      unit: нг/мл
+      condition: <
+      comment_template: Уровень фолата {value} нг/мл ниже нормы (< 4).
+    treatment_hints:
+    - step: Фолиевая кислота
+      note: 1–5 мг/сут перорально.
+    references:
+    - Рекомендации по дефициту фолата (2023)
+  urinary_tract_infection:
+    id: urinary_tract_infection
+    label: Инфекция мочевыводящих путей (подозрение)
+    category: Инфекционные заболевания
+    description: Наличие лейкоцитурии, нитритов в моче, бактерий.
+    criteria:
+    - parameter: urine_leukocytes
+      threshold: 5
+      unit: кл/мкл
+      condition: '>'
+      comment_template: Лейкоциты в моче {value} кл/мкл повышены (> 5).
+    - parameter: urine_nitrites
+      threshold: 0
+      unit: качественно
+      condition: '>'
+      comment_template: Нитриты в моче положительны, что говорит о бактериурии.
+      optional: true
+    treatment_hints:
+    - step: Антибиотики
+      note: Препараты выбора – фосфомицин, нитрофурантоин, цефалоспорины (в зависимости от резистентности).
+    references:
+    - Клинические рекомендации по ИМВП (2023)
+  lower_respiratory_infection:
+    id: lower_respiratory_infection
+    label: Нижняя респираторная инфекция (подозрение)
+    category: Инфекционные заболевания
+    description: Повышение CRP, лейкоцитов, прокальцитонина на фоне симптомов.
+    criteria:
+    - parameter: crp
+      threshold: 10
+      unit: мг/Л
+      condition: '>'
+      comment_template: CRP {value} мг/Л повышен (> 10).
+    - parameter: procalcitonin
+      threshold: 0.5
+      unit: нг/мл
+      condition: '>'
+      comment_template: Прокальцитонин {value} нг/мл повышен, что говорит о бактериальной природе.
+      optional: true
+    treatment_hints:
+    - step: Антибиотикотерапия
+      note: При бактериальной инфекции – амоксициллин, макролиды, респираторные фторхинолоны.
+    references:
+    - Клинические рекомендации по пневмонии (2023)
+  systemic_inflammation:
+    id: systemic_inflammation
+    label: Системное воспаление
+    category: Инфекционные заболевания
+    description: Повышение CRP, СОЭ, лейкоцитов.
+    criteria:
+    - parameter: crp
+      threshold: 10
+      unit: мг/Л
+      condition: '>'
+      comment_template: CRP {value} мг/Л повышен (> 10).
+    - parameter: esr
+      threshold: 25
+      unit: мм/ч
+      condition: '>'
+      comment_template: СОЭ {value} мм/ч повышена (> 25).
+      optional: true
+    treatment_hints:
+    - step: Поиск причины
+      note: Исключить инфекцию, аутоиммунные процессы, злокачественные новообразования.
+    references:
+    - Рекомендации по интерпретации маркеров воспаления (2023)
+  gout:
+    id: gout
+    label: Подагра
+    category: Ревматология
+    description: Повышение мочевой кислоты > 420 мкмоль/л с клиническими проявлениями.
+    criteria:
+    - parameter: uric_acid
+      threshold: 420
+      unit: мкмоль/л
+      condition: '>='
+      comment_template: Уровень мочевой кислоты {value} мкмоль/л превышает норму (≥ 420).
+    treatment_hints:
+    - step: Нестероидные противовоспалительные
+      note: При остром приступе – НПВП или колхицин.
+    - step: Уратснижающая терапия
+      note: Аллопуринол 100–300 мг/сут под контролем мочевой кислоты.
+    references:
+    - EULAR recommendations for gout management (2022)
+  hypoglycemia:
+    id: hypoglycemia
+    label: Гипогликемия
+    category: Эндокринология
+    description: Уровень глюкозы ниже 3.9 ммоль/л.
+    criteria:
+    - parameter: glucose
+      threshold: 3.9
+      unit: ммоль/л
+      condition: <
+      comment_template: Уровень глюкозы {value} ммоль/л ниже нормы (< 3.9). Требуется срочная коррекция.
+    red_flags:
+    - condition: glucose < 3.0
+      text: Тяжёлая гипогликемия! Требуется немедленное введение глюкозы (в/в 40% раствор) или глюкагон.
+    - condition: glucose < 2.2 AND patient_age > 65
+      text: Пожилой возраст + тяжёлая гипогликемия – высокий риск неврологических осложнений.
+    treatment_hints:
+    - step: Приём быстрых углеводов (15–20 г глюкозы)
+      note: При лёгкой гипогликемии – сок, сладкий чай, глюкоза в таблетках.
+    - step: В/в введение 40% раствора глюкозы
+      note: При уровне глюкозы < 2.2 ммоль/л или при невозможности перорального приёма.
+    - step: Поиск причины
+      note: Исключить передозировку инсулина/препаратов сульфонилмочевины, инсулиному, надпочечниковую
+        недостаточность.
+    references:
+    - Рекомендации по гипогликемии (2023)
+  hyperkalemia:
+    id: hyperkalemia
+    label: Гиперкалиемия
+    category: Электролиты
+    description: Калий сыворотки ≥ 5.1 ммоль/л.
+    criteria:
+    - parameter: potassium
+      threshold: 5.1
+      unit: ммоль/л
+      condition: '>='
+      comment_template: Калий {value} ммоль/л превышает норму (≥ 5.1).
+    red_flags:
+    - condition: potassium > 6.0
+      text: 'Критическая гиперкалиемия! Риск остановки сердца. Требуется экстренное лечение: кальция глюконат,
+        инсулин + глюкоза, диуретики, гемодиализ.'
+    treatment_hints:
+    - step: Исключить гемолиз (ложное повышение)
+      note: Повторить анализ.
+    - step: При подтверждении
+      note: Отменить калийсберегающие диуретики, ингибиторы АПФ; назначить кальция глюконат (при изменениях
+        на ЭКГ), инсулин с глюкозой, петлевые диуретики.
+    references:
+    - KDIGO 2024 guidelines for electrolyte disorders
+  hypokalemia:
+    id: hypokalemia
+    label: Гипокалиемия
+    category: Электролиты
+    description: Калий сыворотки ≤ 3.5 ммоль/л.
+    criteria:
+    - parameter: potassium
+      threshold: 3.5
+      unit: ммоль/л
+      condition: <=
+      comment_template: Калий {value} ммоль/л ниже нормы (≤ 3.5).
+    red_flags:
+    - condition: potassium < 2.5
+      text: Тяжёлая гипокалиемия – риск паралича, аритмий. Требуется внутривенное восполнение.
+    treatment_hints:
+    - step: Коррекция диеты
+      note: Продукты, богатые калием (бананы, картофель, бобовые).
+    - step: Пероральные препараты калия
+      note: Калия хлорид 1–2 г/сут, при уровне < 3.0 – 3–4 г/сут.
+    - step: Поиск причины
+      note: Исключить приём диуретиков, гиперфункцию коры надпочечников, потерю через ЖКТ.
+    references:
+    - KDIGO 2024 guidelines for electrolyte disorders
+  hyponatremia:
+    id: hyponatremia
+    label: Гипонатриемия
+    category: Электролиты
+    description: Натрий ≤ 136 ммоль/л.
+    criteria:
+    - parameter: sodium
+      threshold: 136
+      unit: ммоль/л
+      condition: <=
+      comment_template: Натрий {value} ммоль/л ниже нормы (≤ 136).
+    red_flags:
+    - condition: sodium < 120
+      text: Тяжёлая гипонатриемия – риск отёка мозга. Требуется медленная коррекция гипертоническим раствором.
+    treatment_hints:
+    - step: Уточнить причину
+      note: СИАДГ, гиповолемия, сердечная недостаточность, приём диуретиков.
+    - step: При СИАДГ
+      note: Ограничение жидкости до 800–1000 мл/сут.
+    - step: При гиповолемии
+      note: Восполнение физиологическим раствором.
+    references:
+    - European guidelines on hyponatremia (2023)
+  hypernatremia:
+    id: hypernatremia
+    label: Гипернатриемия
+    category: Электролиты
+    description: Натрий ≥ 145 ммоль/л.
+    criteria:
+    - parameter: sodium
+      threshold: 145
+      unit: ммоль/л
+      condition: '>='
+      comment_template: Натрий {value} ммоль/л превышает норму (≥ 145).
+    red_flags:
+    - condition: sodium > 155
+      text: Тяжёлая гипернатриемия – риск нарушения сознания. Требуется медленное восполнение жидкости.
+    treatment_hints:
+    - step: Восполнение жидкости
+      note: Перорально или в/в (5% глюкоза или 0.45% NaCl).
+    - step: Поиск причины
+      note: Дегидратация, несахарный диабет, приём диуретиков.
+    references:
+    - European guidelines on hypernatremia (2023)
+  hypercalcemia:
+    id: hypercalcemia
+    label: Гиперкальциемия
+    category: Эндокринология
+    description: Кальций ≥ 2.55 ммоль/л.
+    criteria:
+    - parameter: calcium_total
+      threshold: 2.55
+      unit: ммоль/л
+      condition: '>='
+      comment_template: Кальций {value} ммоль/л превышает норму (≥ 2.55).
+    red_flags:
+    - condition: calcium_total > 3.0
+      text: Гиперкальциемический криз – требуется гидратация, диуретики, кальцитонин, бисфосфонаты.
+    treatment_hints:
+    - step: Исключить гиперпаратиреоз и злокачественные новообразования
+      note: Проверить ПТГ, кальций суточной мочи, онкомаркеры.
+    - step: При уровне 2.55–3.0
+      note: Гидратация, диета с ограничением кальция.
+    references:
+    - Клинические рекомендации по гиперкальциемии (2023)
+  hypocalcemia:
+    id: hypocalcemia
+    label: Гипокальциемия
+    category: Эндокринология
+    description: Кальций ≤ 2.15 ммоль/л.
+    criteria:
+    - parameter: calcium_total
+      threshold: 2.15
+      unit: ммоль/л
+      condition: <=
+      comment_template: Кальций {value} ммоль/л ниже нормы (≤ 2.15).
+    red_flags:
+    - condition: calcium_total < 1.8
+      text: Тяжёлая гипокальциемия – риск тетании, судорог. Требуется внутривенное введение кальция глюконата.
+    treatment_hints:
+    - step: Проверить альбумин, витамин D, ПТГ
+      note: Для дифференцировки причины (гипопаратиреоз, дефицит витамина D, почечная недостаточность).
+    - step: Коррекция
+      note: Препараты кальция внутрь или в/в, витамин D при дефиците.
+    references:
+    - Клинические рекомендации по гипокальциемии (2023)
+  severe_hyperglycemia:
+    id: severe_hyperglycemia
+    label: Тяжёлая гипергликемия
+    category: Эндокринология
+    description: Глюкоза крови ≥ 11.1 ммоль/л – высокий риск кетоацидоза и гиперосмолярного состояния.
+    criteria:
+    - parameter: glucose
+      threshold: 11.1
+      unit: ммоль/л
+      condition: '>='
+      comment_template: Уровень глюкозы {value} ммоль/л превышает порог тяжёлой гипергликемии (≥ 11.1).
+    - parameter: hba1c
+      threshold: 9.0
+      unit: '%'
+      condition: '>='
+      comment_template: HbA1c {value}% превышает 9%, что указывает на хроническую декомпенсацию.
+      optional: true
+    red_flags:
+    - condition: glucose >= 16.7
+      text: '**Угроза гиперосмолярной комы.** Срочно проверить осмолярность, кетоны, электролиты, газовый
+        состав крови.'
+    - condition: glucose >= 13.9 AND ketone_bodies > 0
+      text: '**Риск диабетического кетоацидоза.** Требуется экстренная госпитализация, инфузионная терапия,
+        инсулин.'
+    treatment_hints:
+    - step: Инсулинотерапия
+      note: Короткий инсулин в/в или п/к, титрация под контролем гликемии каждые 1–2 часа.
+    - step: Восполнение жидкости
+      note: Физиологический раствор 0.9% NaCl в/в, контроль электролитов (особенно калия).
+    - step: Мониторинг
+      note: Ежечасный контроль глюкозы, кетонов, электролитов, осмолярности.
+    references:
+    - ADA Standards of Medical Care in Diabetes 2025
+  prediabetes:
+    id: prediabetes
+    label: Предиабет
+    category: Эндокринология
+    description: Глюкоза натощак 5.6–6.9 ммоль/л или HbA1c 5.7–6.4% – высокий риск развития СД2.
+    criteria:
+    - parameter: glucose
+      threshold: 5.6
+      unit: ммоль/л
+      condition: '>='
+      comment_template: Глюкоза натощак {value} ммоль/л в диапазоне предиабета (5.6–6.9).
+    - parameter: hba1c
+      threshold: 5.7
+      unit: '%'
+      condition: '>='
+      comment_template: HbA1c {value}% в диапазоне предиабета (5.7–6.4%).
+      optional: true
+    treatment_hints:
+    - step: Модификация образа жизни
+      note: Снижение массы тела на 5–7%, увеличение физической активности (150 мин/нед).
+    - step: Диета
+      note: Ограничение простых углеводов, насыщенных жиров, увеличение клетчатки.
+    - step: Медикаментозная профилактика
+      note: При высоком риске – метформин 850 мг × 2 р/д.
+    references:
+    - ADA Standards of Medical Care in Diabetes 2025
+  acute_kidney_injury:
+    id: acute_kidney_injury
+    label: Острое повреждение почек
+    category: Нефрология
+    description: Внезапное снижение функции почек – повышение креатинина, снижение диуреза, электролитные
+      нарушения.
+    criteria:
+    - parameter: creatinine
+      threshold: 1.5
+      unit: мкмоль/л
+      condition: '>= baseline * 1.5'
+      comment_template: Креатинин повысился в {value} раз от исходного (критерий ОПП).
+    - parameter: egfr
+      threshold: 60
+      unit: мл/мин/1.73м²
+      condition: <
+      comment_template: СКФ {value} мл/мин/1.73м² снижена (< 60).
+    red_flags:
+    - condition: creatinine > baseline * 3
+      text: Тяжёлое ОПП (стадия 3) – требуется заместительная почечная терапия.
+    - condition: potassium > 6.0
+      text: Гиперкалиемия – риск аритмий. Срочная коррекция.
+    treatment_hints:
+    - step: Оценка гемодинамики и волемического статуса
+      note: Исключить гиповолемию, обструкцию мочевых путей, вазоконстрикцию (НПВП, иАПФ).
+    - step: Коррекция электролитов
+      note: Гиперкалиемия – кальция глюконат, инсулин+глюкоза, диуретики, при необходимости диализ.
+    - step: Мониторинг диуреза
+      note: Ежечасно, катетеризация мочевого пузыря при олигурии.
+    - step: Нефропротекция
+      note: Отмена нефротоксичных препаратов, поддержание перфузии почек.
+    references:
+    - KDIGO Clinical Practice Guideline for Acute Kidney Injury (2024)
+  metabolic_syndrome:
+    id: metabolic_syndrome
+    label: Метаболический синдром
+    category: Липидный обмен
+    description: Сочетание ожирения, гипергликемии, дислипидемии и артериальной гипертензии.
+    criteria:
+    - parameter: waist_circumference
+      threshold: 94
+      unit: см
+      condition: '>='
+      comment_template: Окружность талии {value} см превышает порог (≥ 94 у мужчин, ≥ 80 у женщин).
+    - parameter: triglycerides
+      threshold: 1.7
+      unit: ммоль/л
+      condition: '>='
+      comment_template: Триглицериды {value} ммоль/л повышены (≥ 1.7).
+    - parameter: hdl_cholesterol
+      threshold: 1.0
+      unit: ммоль/л
+      condition: <
+      comment_template: ЛПВП {value} ммоль/л снижен (< 1.0 у мужчин, < 1.3 у женщин).
+    - parameter: blood_pressure_systolic
+      threshold: 130
+      unit: мм рт. ст.
+      condition: '>='
+      comment_template: САД {value} мм рт. ст. ≥ 130.
+    - parameter: glucose
+      threshold: 5.6
+      unit: ммоль/л
+      condition: '>='
+      comment_template: Глюкоза натощак {value} ммоль/л ≥ 5.6.
+    treatment_hints:
+    - step: Комплексный подход
+      note: Снижение веса (7–10%), диета, физическая активность 150–300 мин/нед.
+    - step: Медикаментозная коррекция
+      note: Статины при дислипидемии, антигипертензивная терапия, метформин при предиабете.
+    references:
+    - IDF Consensus on Metabolic Syndrome (2023)
+  primary_hyperparathyroidism:
+    id: primary_hyperparathyroidism
+    label: Первичный гиперпаратиреоз (предположительно)
+    category: Эндокринология
+    description: Сочетание гиперкальциемии и дефицита витамина D может указывать на первичный гиперпаратиреоз.
+    criteria:
+    - parameter: calcium_total
+      threshold: 2.55
+      unit: ммоль/л
+      condition: '>='
+      comment_template: Кальций {value} ммоль/л повышен (≥ 2.55).
+    - parameter: vitamin_d_25oh
+      threshold: 30
+      unit: нг/мл
+      condition: <
+      comment_template: Витамин D {value} нг/мл снижен (< 30).
+    differentials:
+    - condition: pth > 6.9 AND calcium_ionized > 1.33
+      text: Подтверждает первичный гиперпаратиреоз. Необходимо провести УЗИ паращитовидных желёз.
+    - condition: creatinine_high_male OR creatinine_high_female
+      text: Исключить вторичный гиперпаратиреоз на фоне ХБП.
+    red_flags:
+    - condition: calcium_total > 3.0 AND pth > 10
+      text: Гиперкальциемический криз – требует экстренного лечения, возможно хирургического вмешательства.
+    treatment_hints:
+    - step: Консультация эндокринолога
+      note: Определение PTH, кальций суточной мочи, УЗИ паращитовидных желёз.
+    - step: При подтверждении
+      note: Показано хирургическое удаление аденомы паращитовидной железы.
+    - step: Медикаментозная терапия
+      note: При невозможности операции – цинакальцет, бисфосфонаты.
+    references:
+    - Endocrine Society Guidelines on Primary Hyperparathyroidism (2022)
+  septic_syndrome:
+    id: septic_syndrome
+    label: Септический синдром
+    category: Инфекционные заболевания
+    description: Сочетание системного воспаления и подозрения на сепсис.
+    criteria:
+    - parameter: crp
+      threshold: 50
+      unit: мг/Л
+      condition: '>'
+      comment_template: CRP {value} мг/Л значительно повышен (> 50).
+    - parameter: procalcitonin
+      threshold: 0.5
+      unit: нг/мл
+      condition: '>'
+      comment_template: Прокальцитонин {value} нг/мл повышен (> 0.5).
+      optional: true
+    red_flags:
+    - condition: lactate > 2.0
+      text: Гиперлактатемия указывает на септический шок. Срочная госпитализация в ОРИТ.
+    - condition: systolic_bp < 90 OR diastolic_bp < 60
+      text: Гипотензия – признак шока. Немедленная инфузионная терапия и вазопрессоры.
+    treatment_hints:
+    - step: Госпитализация в ОРИТ
+      note: Контроль гемодинамики, антибиотикотерапия, посев крови.
+    - step: Антибиотики
+      note: Эмпирическая терапия широкого спектра после взятия посевов.
+    - step: Инфузионная терапия
+      note: Кристаллоиды 30 мл/кг, при нестабильности – вазопрессоры (норадреналин).
+    references:
+    - Surviving Sepsis Campaign Guidelines (2024)
+  hepatorenal_syndrome:
+    id: hepatorenal_syndrome
+    label: Гепаторенальный синдром (предположительно)
+    category: Нефрология
+    description: Сочетание острого повреждения почек и острого гепатита.
+    criteria:
+    - parameter: creatinine
+      threshold: 1.5
+      unit: мкмоль/л
+      condition: '>= baseline * 1.5'
+      comment_template: Креатинин повысился в {value} раз от исходного.
+    - parameter: alt
+      threshold: 45
+      unit: Ед/л
+      condition: '>'
+      comment_template: АЛТ {value} Ед/л повышена (> 45).
+    differentials:
+    - condition: acute_hepatitis == true AND acute_kidney_injury == true
+      text: Гепаторенальный синдром – исключить преренальную азотемию, обструкцию мочевыводящих путей.
+    red_flags:
+    - condition: creatinine > 2.0 AND bilirubin_total > 50
+      text: Тяжёлая печёночно-почечная недостаточность – требует заместительной терапии.
+    treatment_hints:
+    - step: Оценка функции почек и печени
+      note: УЗИ органов брюшной полости, консультация гепатолога и нефролога.
+    - step: Терапия
+      note: Восполнение ОЦК (альбумин), при прогрессировании – диализ.
+    references:
+    - KDIGO 2024 Guidelines for AKI in cirrhosis
+  metabolic_bone_disease:
+    id: metabolic_bone_disease
+    label: Метаболическое заболевание костей (дефицит витамина D + гиперкальциемия)
+    category: Ревматология
+    description: Сочетание дефицита витамина D и гиперкальциемии.
+    criteria:
+    - parameter: vitamin_d_25oh
+      threshold: 30
+      unit: нг/мл
+      condition: <
+      comment_template: Витамин D {value} нг/мл снижен (< 30).
+    - parameter: calcium_total
+      threshold: 2.55
+      unit: ммоль/л
+      condition: '>='
+      comment_template: Кальций {value} ммоль/л повышен (≥ 2.55).
+    differentials:
+    - condition: alkaline_phosphatase > 130
+      text: Повышенная ЩФ указывает на костную перестройку.
+    - condition: pth > 6.9
+      text: Исключить первичный гиперпаратиреоз.
+    red_flags:
+    - condition: calcium_total > 3.0 AND alkaline_phosphatase > 300
+      text: Агрессивное метаболическое заболевание костей – риск переломов.
+    treatment_hints:
+    - step: Исследование костного метаболизма
+      note: DEXA-сканирование, маркеры костного ремоделирования.
+    - step: Коррекция витамина D
+      note: Колекальциферол 2000–5000 МЕ/сут под контролем кальция.
+    - step: При гиперкальциемии
+      note: Ограничение кальция в диете, гидратация, при необходимости – бисфосфонаты.
+    references:
+    - Рекомендации по остеопорозу (2023)
+  acute_hepatitis:
+    id: acute_hepatitis
+    label: Острый гепатит
+    category: Гепатология
+    description: Значительное повышение АЛТ/АСТ (>100 Ед/л) и/или билирубина (>34 мкмоль/л), характерное
+      для острого повреждения печени.
+    criteria:
+    - parameter: alt
+      threshold: 100
+      unit: Ед/л
+      condition: '>='
+      comment_template: АЛТ {value} Ед/л. Значительное повышение, характерно для острого гепатоцеллюлярного
+        повреждения.
+    - parameter: ast
+      threshold: 100
+      unit: Ед/л
+      condition: '>='
+      comment_template: АСТ {value} Ед/л.
+    - parameter: bilirubin_total
+      threshold: 34
+      unit: мкмоль/л
+      condition: '>='
+      comment_template: Билирубин общий {value} мкмоль/л, соответствует клинически заметной желтухе.
+    differentials:
+    - condition: ''
+      text: Вирусные гепатиты (A, B, C, E), лекарственное поражение печени (DILI), алкогольный гепатит,
+        аутоиммунный гепатит, ишемический гепатит («шоковая печень»).
+    red_flags:
+    - condition: bilirubin_total > 200
+      text: Резкое нарастание билирубина. Дополнительно клинически оценить коагулопатию (МНО) и признаки
+        энцефалопатии — их сочетание с острым гепатитом указывает на острую печёночную недостаточность
+        и требует экстренной госпитализации, по возможности в центр с возможностью трансплантации.
+    treatment_hints:
+    - step: Серологическая панель вирусных гепатитов
+      note: Anti-HAV IgM, HBsAg, anti-HBc IgM, anti-HCV.
+    - step: Собрать анамнез лекарств и алкоголя
+      note: DILI и алкогольный гепатит — частые причины, легко пропустить без прицельного опроса.
+    - step: Коагулограмма (МНО)
+      note: Ключевой маркер тяжести и показание для экстренного направления при удлинении.
+    references:
+    - AASLD Practice Guidance on acute liver injury
+    - EASL Clinical Practice Guidelines
+  cholestasis:
+    id: cholestasis
+    label: Холестаз
+    category: Гепатология
+    description: Повышение щелочной фосфатазы, ГГТ и прямого билирубина, характерное для нарушения оттока
+      желчи.
+    criteria:
+    - parameter: alkaline_phosphatase
+      threshold: 200
+      unit: Ед/л
+      condition: '>='
+      comment_template: Щелочная фосфатаза {value} Ед/л.
+    - parameter: ggt
+      threshold: 120
+      unit: Ед/л
+      condition: '>='
+      comment_template: ГГТ {value} Ед/л, подтверждает печёночное происхождение повышенной ЩФ.
+    - parameter: bilirubin_direct
+      threshold: 10
+      unit: мкмоль/л
+      condition: '>='
+      comment_template: Прямой билирубин {value} мкмоль/л.
+    differentials:
+    - condition: ''
+      text: Обструкция желчных путей (камни, стриктура, опухоль головки поджелудочной железы), первичный
+        билиарный холангит, первичный склерозирующий холангит, лекарственно-индуцированный холестаз, внутрипечёночный
+        холестаз беременных.
+    red_flags:
+    - condition: bilirubin_direct > 50
+      text: Значительно повышенный прямой билирубин. Клинически проверить триаду Шарко (лихорадка + боль
+        в правом подреберье + желтуха) — при её наличии подозревать острый восходящий холангит, экстренное
+        состояние.
+    treatment_hints:
+    - step: УЗИ брюшной полости в первую очередь
+      note: Ищем расширение внутри-/внепечёночных желчных протоков — разделяет механическую и немеханическую
+        причину холестаза.
+    - step: При подозрении на обструкцию — МРХПГ
+      note: Неинвазивная визуализация желчных путей перед решением об ЭРХПГ.
+    - step: Антимитохондриальные антитела
+      note: При отсутствии обструкции и подозрении на первичный билиарный холангит.
+    references:
+    - EASL Clinical Practice Guidelines on cholestatic liver disease
+  hypoalbuminemia:
+    id: hypoalbuminemia
+    label: Гипоальбуминемия
+    category: Гепатология
+    description: Альбумин сыворотки < 35 г/л.
+    criteria:
+    - parameter: albumin
+      threshold: 35
+      unit: г/л
+      condition: <=
+      comment_template: Альбумин {value} г/л, ниже нормы.
+    differentials:
+    - condition: ''
+      text: Нарушение синтеза (цирроз, печёночная недостаточность), потеря белка (нефротический синдром,
+        энтеропатия с потерей белка, ожоги), хроническое воспаление/острофазовая реакция, недостаточность
+        питания, разведение при гипергидратации.
+    red_flags:
+    - condition: albumin < 20
+      text: Выраженная гипоальбуминемия — риск анасарки и повышенной восприимчивости к инфекциям, особенно
+        при наличии отёков/асцита.
+    treatment_hints:
+    - step: СРБ
+      note: Разделяет воспалительную причину (альбумин как отрицательный острофазовый белок) от истощения/потери.
+    - step: Соотношение белок/креатинин в моче
+      note: Исключить протеинурию как причину потери белка.
+    - step: Оценка функции печени и нутритивного статуса
+      note: Альбумин — не чистый нутритивный маркер, интерпретировать с осторожностью при остром воспалении.
+    references:
+    - ESPEN guidelines on nutritional assessment
+  osteomalacia:
+    id: osteomalacia
+    label: Остеомаляция
+    category: Остеология
+    description: Сочетание дефицита витамина D, гипофосфатемии, гипокальциемии и повышенной щелочной фосфатазы
+      — картина нарушения минерализации костной ткани у взрослых.
+    criteria:
+    - parameter: vitamin_d
+      threshold: 20
+      unit: нг/мл
+      condition: <=
+      comment_template: Витамин D {value} нг/мл — дефицит.
+    - parameter: phosphate
+      threshold: 0.8
+      unit: ммоль/л
+      condition: <=
+      comment_template: Фосфат {value} ммоль/л — снижен.
+    - parameter: calcium_total
+      threshold: 2.15
+      unit: ммоль/л
+      condition: <=
+      comment_template: Кальций общий {value} ммоль/л — снижен.
+    - parameter: alkaline_phosphatase
+      threshold: 130
+      unit: Ед/л
+      condition: '>='
+      comment_template: Щелочная фосфатаза {value} Ед/л — повышена, типично при активной остеомаляции.
+    differentials:
+    - condition: ''
+      text: Дефицит витамина D (наиболее частая причина), синдромы мальабсорбции, ХБП (нарушение активации
+        витамина D), наследственные гипофосфатемические синдромы, длительный приём антиконвульсантов.
+    red_flags:
+    - condition: calcium_total < 1.9
+      text: Выраженная гипокальциемия — риск тетании (парестезии, судороги). Также клинически оценить
+        наличие патологических переломов.
+    treatment_hints:
+    - step: ПТГ
+      note: Оценить наличие вторичного гиперпаратиреоза, типичного при дефиците витамина D.
+    - step: Денситометрия (DXA)
+      note: Помогает отличить от остеопороза, хотя это разные по механизму состояния.
+    - step: Рентген
+      note: Искать зоны Лоозера (псевдопереломы) — характерный, хоть и не всегда присутствующий признак.
+    references:
+    - Endocrine Society Clinical Practice Guideline for Vitamin D deficiency
+  osteoporosis:
+    id: osteoporosis
+    label: Остеопороз (вторичный, по лабораторным маркерам)
+    category: Остеология
+    description: 'Лабораторная картина (дефицит витамина D, сниженный кальций, повышенный ПТГ), которая
+      может сопровождать вторичный остеопороз. Важно: диагноз остеопороза клинически ставится по денситометрии
+      (DXA, T-score ≤ -2.5), а не по одним лабораторным маркерам — эта находка указывает на вероятную
+      метаболическую причину, а не подтверждает диагноз сама по себе.'
+    criteria:
+    - parameter: vitamin_d
+      threshold: 20
+      unit: нг/мл
+      condition: <=
+      comment_template: Витамин D {value} нг/мл — дефицит, частый вторичный фактор снижения костной массы.
+    - parameter: calcium_total
+      threshold: 2.15
+      unit: ммоль/л
+      condition: <=
+      comment_template: Кальций общий {value} ммоль/л — снижен.
+    - parameter: pth
+      threshold: 6.9
+      unit: пмоль/л
+      condition: '>='
+      comment_template: ПТГ {value} пмоль/л — повышен, возможен вторичный или первичный гиперпаратиреоз.
+    differentials:
+    - condition: ''
+      text: Первичный остеопороз (постменопаузальный, сенильный) vs вторичный (гиперпаратиреоз, гипертиреоз,
+        длительная терапия глюкокортикоидами, гипогонадизм).
+    red_flags:
+    - condition: pth > 15
+      text: 'Значительно повышенный ПТГ — вероятен первичный гиперпаратиреоз как причина, а не первичный
+        остеопороз. Также: перелом при минимальной травме — красный флаг для немедленного начала лечения,
+        независимо от результата денситометрии (это не выражается лабораторным параметром, оценивается
+        клинически).'
+    treatment_hints:
+    - step: Денситометрия (DXA)
+      note: Золотой стандарт диагностики, эти лабораторные маркеры её не заменяют.
+    - step: FRAX
+      note: Калькулятор 10-летнего риска перелома для решения о начале терапии.
+    - step: Скрининг вторичных причин
+      note: ТТГ, тестостерон у мужчин, при повышенном ПТГ — исключить первичный гиперпаратиреоз.
+    references:
+    - Клинические рекомендации по диагностике и лечению остеопороза
+  paget_disease:
+    id: paget_disease
+    label: Болезнь Педжета костей (предположительно)
+    category: Остеология
+    description: Изолированное значительное повышение щелочной фосфатазы при отсутствии других признаков
+      поражения печени — типичная лабораторная находка при болезни Педжета костей.
+    criteria:
+    - parameter: alkaline_phosphatase
+      threshold: 200
+      unit: Ед/л
+      condition: '>='
+      comment_template: Щелочная фосфатаза {value} Ед/л. Если печёночные пробы (АЛТ/АСТ/ГГТ) в норме —
+        повышение, вероятно, костного происхождения.
+    differentials:
+    - condition: ''
+      text: Болезнь Педжета костей, метастатическое поражение костей, гиперпаратиреоз, заболевания печени
+        (дифференцировать источник ЩФ по изоферментам или ГГТ).
+    red_flags:
+    - condition: alkaline_phosphatase > 500
+      text: Очень высокий уровень ЩФ, ассоциирован с более активным/распространённым процессом. Быстро
+        нарастающая боль в поражённой кости (клинический признак, не лабораторный) — редкое, но серьёзное
+        подозрение на саркоматозную трансформацию, требует срочного обследования.
+    treatment_hints:
+    - step: ГГТ или изоферменты ЩФ
+      note: Подтвердить костное, а не печёночное происхождение повышенной ЩФ.
+    - step: Рентген поражённой области
+      note: Характерные изменения структуры кости.
+    - step: Сцинтиграфия скелета
+      note: Оценка распространённости поражения костей.
+    references:
+    - Клинические рекомендации по метаболическим заболеваниям костей
+  ankylosing_spondylitis:
+    id: ankylosing_spondylitis
+    label: Анкилозирующий спондилит
+    category: Ревматология
+    description: Сочетание положительного HLA-B27 с повышенными маркерами воспаления (СРБ, СОЭ) — характерно
+      для серонегативной спондилоартропатии с поражением осевого скелета. HLA-B27 сам по себе не диагностичен
+      (встречается у части здоровой популяции) — интерпретировать только вместе с клинической картиной
+      воспалительной боли в спине.
+    criteria:
+    - parameter: hla_b27
+      threshold: 1
+      unit: ''
+      condition: '>='
+      comment_template: HLA-B27 положителен. Диагностическую ценность имеет только вместе с клинической
+        картиной воспалительной боли в спине (начало < 45 лет, улучшение при движении, ночная боль).
+    - parameter: crp
+      threshold: 5
+      unit: мг/л
+      condition: '>='
+      comment_template: СРБ {value} мг/л — повышен.
+    - parameter: esr
+      threshold: 20
+      unit: мм/ч
+      condition: '>='
+      comment_template: СОЭ {value} мм/ч — повышена.
+    differentials:
+    - condition: ''
+      text: Механическая боль в пояснице, другие серонегативные спондилоартропатии (псориатический артрит,
+        реактивный артрит, энтеропатический артрит при ВЗК), у пожилых — диффузный идиопатический скелетный
+        гиперостоз (DISH).
+    red_flags:
+    - condition: esr >= 60
+      text: Высокая активность воспаления. Клинически проверить наличие острого переднего увеита (боль,
+        покраснение глаза, светобоязнь) — частое внескелетное проявление, требует срочной офтальмологической
+        консультации.
+    treatment_hints:
+    - step: МРТ или рентген крестцово-подвздошных суставов
+      note: Сакроилеит — ключевой диагностический признак, лабораторные маркеры его не заменяют.
+    - step: Направление к ревматологу при воспалительном характере боли
+      note: Начало < 45 лет, длительность > 3 мес, улучшение при движении и НПВП — критерии воспалительной
+        боли в спине.
+    references:
+    - ASAS/EULAR recommendations for axial spondyloarthritis
+  rheumatoid_arthritis:
+    id: rheumatoid_arthritis
+    label: Ревматоидный артрит
+    category: Ревматология
+    description: Повышенные ревматоидный фактор и/или антитела к циклическому цитруллинированному пептиду
+      (анти-ЦЦП) вместе с маркерами воспаления — характерно для ревматоидного артрита.
+    criteria:
+    - parameter: rheumatoid_factor
+      threshold: 14
+      unit: МЕ/мл
+      condition: '>='
+      comment_template: Ревматоидный фактор {value} МЕ/мл — повышен. Менее специфичен, чем анти-ЦЦП, может
+        быть положительным при других состояниях (инфекции, другие аутоиммунные заболевания, у части здоровых
+        лиц).
+    - parameter: anti_ccp
+      threshold: 17
+      unit: Ед/мл
+      condition: '>='
+      comment_template: Анти-ЦЦП {value} Ед/мл — повышены, более специфичный маркер РА, чем ревматоидный
+        фактор.
+    - parameter: crp
+      threshold: 5
+      unit: мг/л
+      condition: '>='
+      comment_template: СРБ {value} мг/л — повышен.
+    - parameter: esr
+      threshold: 20
+      unit: мм/ч
+      condition: '>='
+      comment_template: СОЭ {value} мм/ч — повышена.
+    differentials:
+    - condition: ''
+      text: Другие воспалительные артропатии (псориатический артрит, СКВ с артритом), вирусные артриты
+        (парвовирус B19, гепатит C), полимиалгия ревматика у пожилых.
+    red_flags:
+    - condition: anti_ccp > 50
+      text: Значительно повышенный титр анти-ЦЦП ассоциирован с более агрессивным, эрозивным течением
+        заболевания. Раннее направление к ревматологу критично — существует «окно возможностей» в первые
+        недели-месяцы для предотвращения необратимого повреждения суставов.
+    treatment_hints:
+    - step: Рентген кистей и стоп
+      note: Оценка эрозивных изменений на момент постановки диагноза как база для дальнейшего наблюдения.
+    - step: Раннее начало БПВП (метотрексат)
+      note: Решается ревматологом; задержка начала терапии ухудшает долгосрочный прогноз.
+    references:
+    - EULAR recommendations for the management of rheumatoid arthritis
+  systemic_lupus:
+    id: systemic_lupus
+    label: Системная красная волчанка
+    category: Ревматология
+    description: Положительный ANA-скрининг в сочетании с повышенными анти-дсДНК, сниженным комплементом
+      (C3/C4) и/или признаками поражения почек (протеинурия, гематурия) — характерно для СКВ.
+    criteria:
+    - parameter: ana_screening
+      threshold: 1
+      unit: ''
+      condition: '>='
+      comment_template: ANA-скрининг положителен. Высокочувствителен, но не специфичен — положителен также
+        при других аутоиммунных заболеваниях, инфекциях, и у части здоровых лиц.
+    - parameter: anti_ds_dna
+      threshold: 10
+      unit: МЕ/мл
+      condition: '>='
+      comment_template: Анти-дсДНК {value} МЕ/мл — повышены, значительно более специфичны для СКВ, чем
+        общий ANA, коррелируют с активностью заболевания и риском нефрита.
+    - parameter: complement_c3
+      threshold: 0.75
+      unit: г/л
+      condition: <=
+      comment_template: Комплемент C3 {value} г/л — снижен, характерно для активного заболевания.
+    - parameter: complement_c4
+      threshold: 0.1
+      unit: г/л
+      condition: <=
+      comment_template: Комплемент C4 {value} г/л — снижен.
+    - parameter: urine_protein
+      threshold: 150
+      unit: мг/сут
+      condition: '>='
+      comment_template: Белок в моче {value} мг/сут — протеинурия, требует исключения волчаночного нефрита.
+    - parameter: urine_erythrocytes
+      threshold: 5
+      unit: в п/зр
+      condition: '>='
+      comment_template: Эритроциты в моче {value} в поле зрения — гематурия.
+    differentials:
+    - condition: ''
+      text: Другие ревматологические заболевания (смешанное заболевание соединительной ткани, синдром
+        Шёгрена), лекарственно-индуцированная волчанка, инфекции (могут давать ложноположительный ANA),
+        фибромиалгия (может сопутствовать и усложнять клиническую картину).
+    red_flags:
+    - condition: urine_protein >= 150 and urine_erythrocytes >= 5
+      text: Протеинурия и гематурия одновременно — подозрение на волчаночный нефрит. Требует срочной нефрологической
+        оценки и обсуждения биопсии почки для определения класса нефрита, что напрямую влияет на выбор
+        терапии.
+    treatment_hints:
+    - step: Мониторинг анти-дсДНК и комплемента C3/C4 в динамике
+      note: Снижение комплемента вместе с ростом анти-дсДНК коррелирует с обострением заболевания.
+    - step: Биопсия почки при подозрении на нефрит
+      note: Классификация класса волчаночного нефрита определяет тактику иммуносупрессивной терапии.
+    references:
+    - EULAR recommendations for the management of SLE
+    - KDIGO Clinical Practice Guideline on Glomerular Diseases (lupus nephritis)
+  vasculitis:
+    id: vasculitis
+    label: Системный васкулит (предположительно)
+    category: Ревматология
+    description: Сочетание признаков поражения почек (протеинурия, гематурия) с повышенными маркерами
+      воспаления. Паттерн неспецифичен — пересекается с волчаночным нефритом и другими гломерулопатиями;
+      ключевой отличающий тест — антинейтрофильные цитоплазматические антитела (ANCA), который не входит
+      в набор параметров этого правила и должен быть заказан отдельно при клиническом подозрении.
+    criteria:
+    - parameter: urine_protein
+      threshold: 150
+      unit: мг/сут
+      condition: '>='
+      comment_template: Белок в моче {value} мг/сут — протеинурия.
+    - parameter: urine_erythrocytes
+      threshold: 5
+      unit: в п/зр
+      condition: '>='
+      comment_template: Эритроциты в моче {value} в поле зрения — гематурия.
+    - parameter: crp
+      threshold: 5
+      unit: мг/л
+      condition: '>='
+      comment_template: СРБ {value} мг/л — повышен.
+    - parameter: esr
+      threshold: 20
+      unit: мм/ч
+      condition: '>='
+      comment_template: СОЭ {value} мм/ч — повышена.
+    differentials:
+    - condition: ''
+      text: АНЦА-ассоциированные васкулиты (гранулематоз с полиангиитом, микроскопический полиангиит),
+        системная красная волчанка с нефритом, постинфекционный гломерулонефрит, IgA-нефропатия.
+    red_flags:
+    - condition: urine_protein >= 150 and urine_erythrocytes >= 5 and crp >= 30
+      text: Протеинурия и гематурия вместе с выраженным воспалением — подозрение на быстропрогрессирующий
+        гломерулонефрит. Требует срочной нефрологической консультации, промедление может привести к необратимой
+        потере функции почек.
+    treatment_hints:
+    - step: ANCA (антитела к протеиназе-3 и миелопероксидазе)
+      note: Ключевой тест для подтверждения/исключения АНЦА-ассоциированного васкулита, не входит в текущий
+        набор параметров правила.
+    - step: Креатинин и СКФ
+      note: Оценка тяжести поражения почек на момент выявления.
+    - step: Биопсия поражённого органа
+      note: Обычно почки — для гистологического подтверждения и определения тактики иммуносупрессии.
+    references:
+    - KDIGO Clinical Practice Guideline on Glomerular Diseases
+    - EULAR recommendations for ANCA-associated vasculitis
+  acute_pancreatitis:
+    id: acute_pancreatitis
+    label: Острый панкреатит
+    category: Гастроэнтерология
+    description: Значительное повышение амилазы и/или липазы (диагностически значимо — превышение верхней
+      границы нормы в 3 раза и более), характерное для острого панкреатита.
+    criteria:
+    - parameter: amylase
+      threshold: 300
+      unit: Ед/л
+      condition: '>='
+      comment_template: Амилаза {value} Ед/л. Менее специфична, чем липаза — может быть повышена при паротите,
+        почечной недостаточности, кишечной непроходимости.
+    - parameter: lipase
+      threshold: 200
+      unit: Ед/л
+      condition: '>='
+      comment_template: Липаза {value} Ед/л — более специфичный маркер панкреатита, чем амилаза.
+    differentials:
+    - condition: ''
+      text: Желчнокаменный панкреатит (наиболее частая причина), алкогольный панкреатит, гипертриглицеридемический
+        панкреатит, лекарственно-индуцированный, посттравматический/постЭРХПГ.
+    red_flags:
+    - condition: lipase > 600
+      text: Значительно повышенная липаза — оценить тяжесть по шкале (Ranson, APACHE II или BISAP). Тяжёлый
+        острый панкреатит может приводить к полиорганной недостаточности и требует наблюдения в условиях,
+        готовых к интенсивной терапии.
+    treatment_hints:
+    - step: УЗИ брюшной полости в первую очередь
+      note: Поиск желчных камней как наиболее частой устранимой причины.
+    - step: КТ с контрастом при тяжёлом течении или отсутствии улучшения через 48-72ч
+      note: Оценка панкреонекроза и осложнений.
+    references:
+    - IAP/APA evidence-based guidelines for acute pancreatitis
+    - Revised Atlanta classification 2012
+  alcoholic_liver_disease:
+    id: alcoholic_liver_disease
+    label: Алкогольная болезнь печени
+    category: Гастроэнтерология
+    description: Паттерн АСТ выше АЛТ (соотношение АСТ/АЛТ обычно > 2) с повышенной ГГТ на фоне подтверждённого
+      употребления алкоголя — характерно для алкогольного поражения печени.
+    criteria:
+    - parameter: ggt
+      threshold: 80
+      unit: Ед/л
+      condition: '>='
+      comment_template: ГГТ {value} Ед/л — повышена, чувствительный, но не специфичный маркер алкогольного
+        поражения печени.
+    - parameter: ast
+      threshold: 60
+      unit: Ед/л
+      condition: '>='
+      comment_template: АСТ {value} Ед/л.
+    - parameter: alt
+      threshold: 40
+      unit: Ед/л
+      condition: '>='
+      comment_template: АЛТ {value} Ед/л. Соотношение АСТ/АЛТ > 2 характерно для алкогольной этиологии
+        — при вирусных гепатитах и НАЖБП обычно наоборот, АЛТ выше АСТ.
+    - parameter: ethanol_blood
+      threshold: 0.5
+      unit: ‰
+      condition: '>='
+      comment_template: Этанол в крови {value}‰ — подтверждает недавнее употребление алкоголя.
+    differentials:
+    - condition: ''
+      text: Неалкогольная жировая болезнь печени (НАЖБП), вирусные гепатиты, лекарственное поражение печени,
+        гемохроматоз, дефицит альфа-1-антитрипсина.
+    red_flags:
+    - condition: ast > 200
+      text: Значительно повышенная АСТ на фоне алкогольного анамнеза — оценить клинически тяжесть алкогольного
+        гепатита (шкала Мэддрея с учётом билирубина и МНО), тяжёлые формы могут требовать кортикостероидной
+        терапии.
+    treatment_hints:
+    - step: Полное прекращение употребления алкоголя
+      note: Единственное вмешательство с доказанным влиянием на долгосрочный прогноз.
+    - step: УЗИ печени
+      note: Оценка стеатоза, признаков фиброза/цирроза.
+    references:
+    - 'AASLD Practice Guidance: Alcohol-Associated Liver Disease'
+  cholelithiasis:
+    id: cholelithiasis
+    label: Желчнокаменная болезнь (возможный холедохолитиаз)
+    category: Гастроэнтерология
+    description: Умеренный холестатический лабораторный паттерн, который может указывать на камень в общем
+      желчном протоке (холедохолитиаз) или иную обструкцию — при неосложнённой желчнокаменной болезни
+      (камни только в желчном пузыре) лабораторные показатели часто остаются в норме.
+    criteria:
+    - parameter: bilirubin_total
+      threshold: 21
+      unit: мкмоль/л
+      condition: '>='
+      comment_template: Билирубин общий {value} мкмоль/л — умеренно повышен.
+    - parameter: alkaline_phosphatase
+      threshold: 130
+      unit: Ед/л
+      condition: '>='
+      comment_template: Щелочная фосфатаза {value} Ед/л — повышена.
+    - parameter: ggt
+      threshold: 60
+      unit: Ед/л
+      condition: '>='
+      comment_template: ГГТ {value} Ед/л — повышена, подтверждает печёночное происхождение.
+    differentials:
+    - condition: ''
+      text: Холедохолитиаз (камень в общем желчном протоке — даёт эту лабораторную картину), острый холецистит,
+        стриктура желчных путей, опухоль головки поджелудочной железы или желчных путей.
+    red_flags:
+    - condition: bilirubin_total > 50
+      text: Значительно повышенный билирубин. Клинически проверить триаду Шарко (лихорадка + боль в правом
+        подреберье + желтуха) — подозрение на восходящий холангит, экстренное состояние.
+    treatment_hints:
+    - step: УЗИ брюшной полости — метод первой линии
+      note: Оценка камней в желчном пузыре и расширения протоков.
+    - step: МРХПГ при подозрении на холедохолитиаз
+      note: Неинвазивная альтернатива перед решением об ЭРХПГ.
+    references:
+    - ESGE/EASL Clinical Practice Guidelines on the management of gallstones
+  chronic_pancreatitis:
+    id: chronic_pancreatitis
+    label: Хронический панкреатит (экзокринная недостаточность)
+    category: Гастроэнтерология
+    description: Сниженная фекальная эластаза-1 указывает на экзокринную недостаточность поджелудочной
+      железы, часто вследствие хронического панкреатита.
+    criteria:
+    - parameter: pancreatic_elastase
+      threshold: 200
+      unit: мкг/г
+      condition: <=
+      comment_template: Фекальная эластаза-1 {value} мкг/г — снижена, признак экзокринной недостаточности
+        поджелудочной железы.
+    differentials:
+    - condition: ''
+      text: Хронический панкреатит (алкогольный, наследственный, аутоиммунный), муковисцидоз (у молодых
+        пациентов), рак поджелудочной железы, состояние после резекции поджелудочной железы.
+    red_flags:
+    - condition: pancreatic_elastase < 100
+      text: Тяжёлая экзокринная недостаточность. При отсутствии предшествующего анамнеза панкреатита,
+        особенно у пациентов старшего возраста с необъяснимой потерей веса — важно исключить рак поджелудочной
+        железы.
+    treatment_hints:
+    - step: КТ или МРТ поджелудочной железы
+      note: 'Оценка структурных изменений: кальцификаты, атрофия паренхимы, расширение главного протока.'
+    - step: Заместительная ферментная терапия при подтверждённой недостаточности
+      note: Дозируется по клиническому ответу и стеаторее.
+    references:
+    - United European Gastroenterology evidence-based guidelines for chronic pancreatitis
+  crohns_disease:
+    id: crohns_disease
+    label: Болезнь Крона
+    category: Гастроэнтерология
+    description: Повышенный фекальный кальпротектин вместе с системным воспалением (СРБ) и признаками
+      хронической потери/мальабсорбции (сниженные альбумин, ферритин) — характерно для активного воспалительного
+      заболевания кишечника, в частности болезни Крона (может поражать любой отдел ЖКТ, часто сегментарно).
+    criteria:
+    - parameter: fecal_calprotectin
+      threshold: 120
+      unit: мкг/г
+      condition: '>='
+      comment_template: Фекальный кальпротектин {value} мкг/г — повышен, маркер кишечного воспаления.
+    - parameter: crp
+      threshold: 10
+      unit: мг/л
+      condition: '>='
+      comment_template: СРБ {value} мг/л — повышен.
+    - parameter: albumin
+      threshold: 35
+      unit: г/л
+      condition: <=
+      comment_template: Альбумин {value} г/л — снижен, признак хронического воспаления и/или мальабсорбции.
+    - parameter: ferritin
+      threshold: 30
+      unit: мкг/л
+      condition: <=
+      comment_template: Ферритин {value} мкг/л — снижен, возможен сопутствующий дефицит железа.
+    differentials:
+    - condition: ''
+      text: Язвенный колит (непрерывное поражение только толстой кишки, в отличие от сегментарного поражения
+        при Крона), инфекционный колит, ишемический колит, целиакия (может давать похожую картину мальабсорбции).
+    red_flags:
+    - condition: fecal_calprotectin > 500 and albumin < 30
+      text: Высокий кальпротектин вместе с выраженной гипоальбуминемией — признак тяжёлого активного воспаления
+        с нутритивным истощением, повышен риск осложнений (стриктуры, свищи, абсцессы).
+    treatment_hints:
+    - step: Колоноскопия с биопсией — золотой стандарт
+      note: Подтверждение диагноза, определение локализации и протяжённости поражения. Кальпротектин полезен
+        для мониторинга активности, не заменяет эндоскопию при первичной диагностике.
+    - step: Исключить инфекционную причину перед иммуносупрессией
+      note: Посев кала, токсин C. difficile.
+    references:
+    - ECCO Guidelines on the diagnosis and management of Crohn's disease
+  ulcerative_colitis:
+    id: ulcerative_colitis
+    label: Язвенный колит
+    category: Гастроэнтерология
+    description: Повышенный фекальный кальпротектин вместе с системным воспалением (СРБ) и сниженным альбумином
+      — характерно для активного язвенного колита (непрерывное поражение слизистой толстой кишки, начинается
+      от прямой кишки).
+    criteria:
+    - parameter: fecal_calprotectin
+      threshold: 120
+      unit: мкг/г
+      condition: '>='
+      comment_template: Фекальный кальпротектин {value} мкг/г — повышен.
+    - parameter: crp
+      threshold: 10
+      unit: мг/л
+      condition: '>='
+      comment_template: СРБ {value} мг/л — повышен.
+    - parameter: albumin
+      threshold: 35
+      unit: г/л
+      condition: <=
+      comment_template: Альбумин {value} г/л — снижен.
+    differentials:
+    - condition: ''
+      text: Болезнь Крона (сегментарное поражение, может затрагивать любой отдел ЖКТ, часто с образованием
+        свищей — в отличие от непрерывного колитического поражения при НЯК), инфекционный колит, ишемический
+        колит.
+    red_flags:
+    - condition: fecal_calprotectin > 500 and crp > 50
+      text: Признаки тяжёлой атаки. При остром тяжёлом течении есть риск токсического мегаколона — жизнеугрожающего
+        осложнения, требующего экстренной оценки.
+    treatment_hints:
+    - step: Колоноскопия с биопсией
+      note: Подтверждение диагноза и оценка протяжённости поражения.
+    - step: При тяжёлой атаке — критерии Truelove-Witts и госпитализация
+      note: Внутривенная терапия, исключить C. difficile перед эскалацией иммуносупрессии.
+    references:
+    - ECCO Guidelines for the management of ulcerative colitis
+  inflammatory_bowel_disease:
+    id: inflammatory_bowel_disease
+    label: Воспалительное заболевание кишечника (неуточнённое)
+    category: Гастроэнтерология
+    description: 'Обобщённый лабораторный паттерн кишечного воспаления (кальпротектин, альбумин, ферритин).
+      Важно: в этой базе есть более специфичные правила `crohns_disease` и `ulcerative_colitis` с частично
+      пересекающимися критериями — на практике диагноз ставится как одна из этих двух конкретных форм
+      (или неклассифицируемый колит), а не как самостоятельная третья единица. Используйте это правило
+      как сигнал «есть кишечное воспаление, нужна дифференциация», а не как отдельный диагноз.'
+    criteria:
+    - parameter: calprotectin
+      threshold: 100
+      unit: мкг/г
+      condition: '>='
+      comment_template: Кальпротектин {value} мкг/г — повышен, маркер кишечного воспаления.
+    - parameter: albumin
+      threshold: 35
+      unit: г/л
+      condition: <=
+      comment_template: Альбумин {value} г/л — снижен.
+    - parameter: ferritin
+      threshold: 30
+      unit: мкг/л
+      condition: <=
+      comment_template: Ферритин {value} мкг/л — снижен.
+    differentials:
+    - condition: ''
+      text: Болезнь Крона, язвенный колит, неклассифицируемый колит, инфекционный колит (исключить в первую
+        очередь при остром начале, особенно после антибиотикотерапии или путешествий).
+    red_flags:
+    - condition: calprotectin > 500
+      text: Высокий кальпротектин — признак тяжёлого активного воспаления, требует своевременной эндоскопической
+        оценки для классификации и определения тактики.
+    treatment_hints:
+    - step: Колоноскопия с биопсией
+      note: Необходима для точной классификации (болезнь Крона vs язвенный колит) — от этого зависит тактика
+        лечения.
+    - step: Исключить инфекционную причину
+      note: Посев кала, токсин C. difficile — до начала иммуносупрессивной терапии.
+    references:
+    - ECCO consensus guidelines on inflammatory bowel disease
+  copper_deficiency:
+    id: copper_deficiency
+    label: Дефицит меди
+    category: Витамины и микроэлементы
+    description: Медь сыворотки ниже нормы.
+    criteria:
+    - parameter: copper
+      threshold: 11
+      unit: мкмоль/л
+      condition: <=
+      comment_template: Медь {value} мкмоль/л — снижена.
+    differentials:
+    - condition: ''
+      text: Недостаточное питание (в т.ч. парентеральное без добавок), синдромы мальабсорбции (после бариатрической
+        хирургии, целиакия), избыточный приём цинка (конкурентно снижает всасывание меди), редко — болезнь
+        Менкеса (наследственная, у детей).
+    red_flags:
+    - condition: copper < 5
+      text: Выраженный дефицит. В сочетании с неврологическими симптомами (миелопатия, атаксия) дефицит
+        меди может имитировать картину, сходную с B12-дефицитом (подострая комбинированная дегенерация)
+        — важно не пропустить как потенциально обратимую причину.
+    treatment_hints:
+    - step: Уточнить анамнез приёма цинксодержащих добавок
+      note: Избыточный цинк — частая устранимая причина.
+    - step: При бариатрических операциях в анамнезе — целенаправленный скрининг микроэлементов
+      note: Медь, цинк, витамины A/D/E/B12 часто дефицитны совместно.
+    references:
+    - Общие рекомендации по нутритивной поддержке (ESPEN)
+  copper_elevated:
+    id: copper_elevated
+    label: Повышенная медь сыворотки
+    category: Витамины и микроэлементы
+    description: Медь сыворотки выше нормы. Интерпретировать вместе с церулоплазмином — большая часть
+      меди циркулирует связанной с ним.
+    criteria:
+    - parameter: copper
+      threshold: 24
+      unit: мкмоль/л
+      condition: '>='
+      comment_template: Медь {value} мкмоль/л — повышена.
+    differentials:
+    - condition: ''
+      text: Холестатические заболевания печени, беременность/приём эстрогенов (физиологическое повышение
+        церулоплазмина), острая фаза воспаления (медь — острофазовый белок). При болезни Вильсона медь
+        сыворотки чаще снижена, а несвязанная (свободная) медь повышена — изолированное повышение общей
+        меди этому диагнозу не противоречит, но и не подтверждает его напрямую.
+    red_flags:
+    - condition: copper > 30
+      text: Значительно повышенная медь на фоне признаков поражения печени — требует исключения болезни
+        Вильсона (церулоплазмин, суточная экскреция меди с мочой).
+    treatment_hints:
+    - step: Церулоплазмин
+      note: Необходим для корректной интерпретации уровня меди.
+    - step: Суточная моча на медь при подозрении на болезнь Вильсона
+      note: Особенно у молодых пациентов с необъяснимым поражением печени.
+    references:
+    - 'EASL Clinical Practice Guidelines: Wilson''s disease'
+  folate_deficiency_severe:
+    id: folate_deficiency_severe
+    label: Тяжёлый дефицит фолиевой кислоты
+    category: Витамины и микроэлементы
+    description: Значительное снижение фолата сыворотки.
+    criteria:
+    - parameter: folate
+      threshold: 4.0
+      unit: нг/мл
+      condition: <=
+      comment_template: Фолат {value} нг/мл — значительно снижен.
+    differentials:
+    - condition: ''
+      text: Недостаточное питание, синдромы мальабсорбции (целиакия, ВЗК), повышенная потребность (беременность,
+        гемолитическая анемия), приём антифолатных препаратов (метотрексат, отдельные противосудорожные),
+        хронический алкоголизм.
+    red_flags:
+    - condition: folate < 2
+      text: Выраженный дефицит. Обязательно проверить B12 параллельно — восполнение только фолиевой кислоты
+        при недиагностированном дефиците B12 может улучшить показатели крови, но не остановит прогрессирование
+        неврологических осложнений B12-дефицита.
+    treatment_hints:
+    - step: Проверить витамин B12 в этом же заборе
+      note: Изолированная коррекция фолата при сопутствующем недиагностированном дефиците B12 клинически
+        опасна.
+    - step: У женщин детородного возраста — оценить в контексте планирования беременности
+      note: Профилактика дефектов нервной трубки плода.
+    references:
+    - Общие рекомендации по диагностике мегалобластных анемий
+  iodine_deficiency:
+    id: iodine_deficiency
+    label: Дефицит йода
+    category: Витамины и микроэлементы
+    description: Йод в разовой порции мочи ниже порога ВОЗ для популяционной оценки достаточности потребления
+      йода.
+    criteria:
+    - parameter: iodine_urine
+      threshold: 100
+      unit: мкг/л
+      condition: <=
+      comment_template: Йод в моче {value} мкг/л — ниже порога достаточности по критериям ВОЗ.
+    differentials:
+    - condition: ''
+      text: Недостаточное потребление йода с пищей, диета без йодированной соли, проживание в регионах
+        с йододефицитными почвами.
+    red_flags:
+    - condition: iodine_urine < 50
+      text: Выраженный дефицит. Особенно значим у беременных — йод критичен для нейроразвития плода.
+    treatment_hints:
+    - step: Учитывать высокую суточную вариабельность
+      note: Разовый анализ мочи плохо отражает индивидуальный статус — надёжен для популяционного скрининга,
+        для индивидуальной оценки предпочтительны повторные измерения.
+    references:
+    - WHO/UNICEF/ICCIDD guidelines for iodine deficiency
+  iodine_excess:
+    id: iodine_excess
+    label: Избыток йода
+    category: Витамины и микроэлементы
+    description: Йод в моче выше порога ВОЗ, указывающего на избыточное потребление.
+    criteria:
+    - parameter: iodine_urine
+      threshold: 300
+      unit: мкг/л
+      condition: '>='
+      comment_template: Йод в моче {value} мкг/л — избыточное потребление.
+    differentials:
+    - condition: ''
+      text: Избыточное потребление йода (морские водоросли, йодсодержащие добавки), недавнее контрастирование
+        йодсодержащим контрастом, приём амиодарона.
+    red_flags:
+    - condition: iodine_urine > 500
+      text: Избыток йода может индуцировать как гипертиреоз (феномен Йода-Базедова), так и гипотиреоз
+        (эффект Вольфа-Чайкова), особенно на фоне уже существующей патологии щитовидной железы — оценить
+        функцию щитовидной железы.
+    treatment_hints:
+    - step: ТТГ и свободный Т4
+      note: Оценка функции щитовидной железы.
+    - step: Уточнить недавние контрастные исследования или приём амиодарона
+      note: Частые устранимые причины.
+    references:
+    - WHO guidance on iodine status assessment
+  selenium_deficiency:
+    id: selenium_deficiency
+    label: Дефицит селена
+    category: Витамины и микроэлементы
+    description: Селен сыворотки ниже нормы.
+    criteria:
+    - parameter: selenium_reference
+      threshold: 70
+      unit: мкг/л
+      condition: <=
+      comment_template: Селен {value} мкг/л — снижен.
+    differentials:
+    - condition: ''
+      text: Недостаточное питание (регионы с низким содержанием селена в почве), длительное парентеральное
+        питание без добавок, синдромы мальабсорбции.
+    red_flags:
+    - condition: selenium_reference < 40
+      text: Тяжёлый дефицит ассоциирован с кардиомиопатией (болезнь Кешана) и артропатией (болезнь Кашина-Бека)
+        — не пропустить при необъяснимой кардиомиопатии у пациентов из групп риска (длительное парентеральное
+        питание, эндемичные регионы).
+    treatment_hints:
+    - step: Оценить нутритивный статус в целом
+      note: Дефициты микроэлементов часто сочетаются.
+    references:
+    - Общие рекомендации по нутритивной поддержке
+  vitamin_a_deficiency:
+    id: vitamin_a_deficiency
+    label: Дефицит витамина A
+    category: Витамины и микроэлементы
+    description: Ретинол сыворотки ниже нормы.
+    criteria:
+    - parameter: vitamin_a
+      threshold: 1.0
+      unit: мкмоль/л
+      condition: <=
+      comment_template: Ретинол {value} мкмоль/л — снижен.
+    differentials:
+    - condition: ''
+      text: Недостаточное питание, синдромы мальабсорбции жиров (муковисцидоз, целиакия, холестатические
+        заболевания печени — витамин A жирорастворимый), хронические заболевания печени.
+    red_flags:
+    - condition: vitamin_a < 0.7
+      text: Риск ночной слепоты и ксерофтальмии. При наличии зрительных симптомов — срочная офтальмологическая
+        оценка и восполнение, без лечения возможно необратимое повреждение роговицы.
+    treatment_hints:
+    - step: Оценить статус остальных жирорастворимых витаминов (D, E, K)
+      note: При мальабсорбции жиров дефициты часто сочетаются.
+    references:
+    - 'WHO guideline: Vitamin A supplementation'
+  vitamin_b12_deficiency_severe:
+    id: vitamin_b12_deficiency_severe
+    label: Тяжёлый дефицит витамина B12
+    category: Витамины и микроэлементы
+    description: Значительное снижение витамина B12.
+    criteria:
+    - parameter: vitamin_b12
+      threshold: 200
+      unit: пг/мл
+      condition: <=
+      comment_template: B12 {value} пг/мл — значительно снижен.
+    differentials:
+    - condition: ''
+      text: Пернициозная анемия (аутоиммунный гастрит, антитела к внутреннему фактору), синдромы мальабсорбции
+        (после резекции желудка/подвздошной кишки, целиакия), строгая веганская диета без добавок, длительный
+        приём метформина.
+    red_flags:
+    - condition: vitamin_b12 < 150
+      text: 'Неврологические симптомы (парестезии, нарушение походки, когнитивные нарушения) на фоне тяжёлого
+        дефицита — подострая комбинированная дегенерация спинного мозга, требует безотлагательного начала
+        заместительной терапии: неврологические изменения могут стать необратимыми при промедлении.'
+    treatment_hints:
+    - step: Антитела к внутреннему фактору и париетальным клеткам
+      note: При подозрении на пернициозную анемию.
+    - step: Метилмалоновая кислота и гомоцистеин
+      note: Более чувствительные функциональные маркеры при пограничных значениях B12.
+    references:
+    - British Society for Haematology guidelines for the diagnosis of B12 deficiency
+  vitamin_d_deficiency_severe:
+    id: vitamin_d_deficiency_severe
+    label: Тяжёлый дефицит витамина D
+    category: Витамины и микроэлементы
+    description: Значительное снижение витамина D.
+    criteria:
+    - parameter: vitamin_d
+      threshold: 20
+      unit: нг/мл
+      condition: <=
+      comment_template: Витамин D {value} нг/мл — значительно снижен.
+    differentials:
+    - condition: ''
+      text: Недостаточная инсоляция, недостаточное питание, синдромы мальабсорбции жиров, ХБП (нарушение
+        активации витамина D), ожирение (депонирование в жировой ткани снижает биодоступность).
+    red_flags:
+    - condition: vitamin_d < 10
+      text: Крайне выраженный дефицит — риск гипокальциемии и тетании, у детей риск рахита, у взрослых
+        остеомаляции (см. также правило `osteomalacia` в этой базе).
+    treatment_hints:
+    - step: Кальций, фосфат, ПТГ
+      note: При выраженном дефиците — оценить признаки вторичного гиперпаратиреоза и нарушения минерализации
+        костей.
+    references:
+    - Endocrine Society Clinical Practice Guideline for Vitamin D deficiency
+  vitamin_e_deficiency:
+    id: vitamin_e_deficiency
+    label: Дефицит витамина E
+    category: Витамины и микроэлементы
+    description: Токоферол сыворотки ниже нормы.
+    criteria:
+    - parameter: vitamin_e
+      threshold: 5.5
+      unit: мг/л
+      condition: <=
+      comment_template: Витамин E {value} мг/л — снижен.
+    differentials:
+    - condition: ''
+      text: Синдромы мальабсорбции жиров (муковисцидоз, холестаз, абеталипопротеинемия), редко — изолированный
+        наследственный дефицит (атаксия с изолированным дефицитом витамина E).
+    red_flags:
+    - condition: vitamin_e < 3
+      text: Длительный дефицит может проявляться атаксией, периферической нейропатией, снижением проприоцепции
+        — потенциально предотвратимая причина неврологической дисфункции.
+    treatment_hints:
+    - step: Оценить статус остальных жирорастворимых витаминов при подозрении на мальабсорбцию
+      note: Дефициты A, D, E, K часто сочетаются.
+    references:
+    - Общие рекомендации по диагностике жирорастворимых дефицитов
+  zinc_deficiency:
+    id: zinc_deficiency
+    label: Дефицит цинка
+    category: Витамины и микроэлементы
+    description: Цинк сыворотки ниже нормы.
+    criteria:
+    - parameter: zinc
+      threshold: 10
+      unit: мкмоль/л
+      condition: <=
+      comment_template: Цинк {value} мкмоль/л — снижен.
+    differentials:
+    - condition: ''
+      text: Недостаточное питание, синдромы мальабсорбции, повышенные потери (хроническая диарея, ожоги,
+        нефротический синдром), редко — акродерматит энтеропатический (наследственный).
+    red_flags:
+    - condition: zinc < 7
+      text: Сочетание с кожными поражениями (периорифициальный/акральный дерматит) и диареей — классическая
+        триада тяжёлого дефицита цинка.
+    treatment_hints:
+    - step: Оценить нутритивный статус
+      note: У пациентов на длительном парентеральном питании — целенаправленный контроль микроэлементов.
+    - step: Учитывать взаимодействие с медью
+      note: Избыточная заместительная терапия цинком может индуцировать вторичный дефицit меди.
+    references:
+    - Общие рекомендации по нутритивной поддержке
+  bacterial_infection_risk:
+    id: bacterial_infection_risk
+    label: Признаки вероятной бактериальной инфекции
+    category: Инфекционные заболевания
+    description: Сочетание повышенного СРБ, лейкоцитоза и нейтрофилёза — неспецифичный, но характерный
+      паттерн для бактериальной инфекции. Эти маркеры также повышаются при травме, хирургии, стрессе,
+      обострении некоторых аутоиммунных заболеваний.
+    criteria:
+    - parameter: crp
+      threshold: 10
+      unit: мг/л
+      condition: '>='
+      comment_template: СРБ {value} мг/л — повышен.
+    - parameter: wbc
+      threshold: 11
+      unit: ×10⁹/л
+      condition: '>='
+      comment_template: Лейкоциты {value} ×10⁹/л — повышены.
+    - parameter: neutrophils_percent
+      threshold: 70
+      unit: '%'
+      condition: '>='
+      comment_template: Нейтрофилы {value}% — повышены, сдвиг в сторону нейтрофилии типичен для бактериальной
+        инфекции.
+    differentials:
+    - condition: ''
+      text: Бактериальная инфекция любой локализации. Также — травма, послеоперационный период, стресс-реакция,
+        обострение аутоиммунного заболевания.
+    red_flags:
+    - condition: crp > 100 and wbc > 20
+      text: Все маркеры значительно повышены — при наличии лихорадки или признаков органной дисфункции
+        расширить обследование на предмет сепсиса (см. правило `sepsis`).
+    treatment_hints:
+    - step: Искать очаг инфекции
+      note: Анамнез, осмотр, визуализация по клинической картине.
+    - step: Прокальцитонин
+      note: Более специфичен для бактериальной этиологии, чем СРБ/лейкоциты.
+    references:
+    - IDSA guidelines on the use of inflammatory biomarkers
+  hepatitis_b_active:
+    id: hepatitis_b_active
+    label: Активный гепатит B
+    category: Инфекционные заболевания
+    description: Положительный HBsAg с определяемой вирусной нагрузкой (HBV DNA) и повышенной АЛТ — признаки
+      активной репликации вируса гепатита B.
+    criteria:
+    - parameter: hbsag
+      threshold: 1
+      unit: ''
+      condition: '>='
+      comment_template: HBsAg положителен.
+    - parameter: hbv_dna
+      threshold: 2000
+      unit: МЕ/мл
+      condition: '>='
+      comment_template: HBV DNA {value} МЕ/мл — определяется активная репликация.
+    - parameter: alt
+      threshold: 40
+      unit: Ед/л
+      condition: '>='
+      comment_template: АЛТ {value} Ед/л — повышена.
+    differentials:
+    - condition: ''
+      text: Острый гепатит B, обострение хронического гепатита B. При высокой вирусной нагрузке с непропорционально
+        высокой АЛТ — проверить коинфекцию дельта-вирусом (HDV).
+    red_flags:
+    - condition: hbv_dna > 20000
+      text: Высокая вирусная нагрузка. В сочетании с признаками печёночной недостаточности (см. правило
+        `acute_hepatitis`) — срочное направление к гепатологу.
+    treatment_hints:
+    - step: HBeAg/anti-HBe
+      note: Оценка фазы инфекции.
+    - step: Эластография (фиброскан)
+      note: Оценка стадии фиброза.
+    - step: Скрининг гепатоцеллюлярной карциномы
+      note: АФП + УЗИ при циррозе или длительном носительстве.
+    references:
+    - EASL Clinical Practice Guidelines on the management of hepatitis B
+  hepatitis_c_active:
+    id: hepatitis_c_active
+    label: Активный гепатит C
+    category: Инфекционные заболевания
+    description: Положительные anti-HCV и определяемая HCV RNA — признак активной репликации вируса (в
+      отличие от перенесённой инфекции, при которой anti-HCV положителен, но РНК не определяется).
+    criteria:
+    - parameter: anti_hcv
+      threshold: 1
+      unit: ''
+      condition: '>='
+      comment_template: Anti-HCV положителен.
+    - parameter: hcv_rna
+      threshold: 0
+      unit: МЕ/мл
+      condition: '>'
+      comment_template: HCV RNA определяется — подтверждает активную репликацию, а не только перенесённый
+        контакт с вирусом.
+    - parameter: alt
+      threshold: 40
+      unit: Ед/л
+      condition: '>='
+      comment_template: АЛТ {value} Ед/л — повышена.
+    differentials:
+    - condition: ''
+      text: Активная репликация HCV любого генотипа. Отличать от спонтанно разрешившейся инфекции (anti-HCV+
+        без определяемой РНК).
+    red_flags:
+    - condition: alt > 100
+      text: Значительно повышенная АЛТ — оценить стадию фиброза/цирроза до начала терапии.
+    treatment_hints:
+    - step: Эластография
+      note: Оценка стадии фиброза.
+    - step: Направление на противовирусную терапию
+      note: Современный стандарт — лечить всех пациентов с подтверждённой виремией, не дожидаясь прогрессирования.
+    references:
+    - AASLD/IDSA HCV Guidance
+  hiv_infection:
+    id: hiv_infection
+    label: ВИЧ-инфекция
+    category: Инфекционные заболевания
+    description: Определяемая РНК ВИЧ в плазме.
+    criteria:
+    - parameter: hiv_rna
+      threshold: 1000
+      unit: копий/мл
+      condition: '>='
+      comment_template: РНК ВИЧ {value} копий/мл.
+    differentials:
+    - condition: ''
+      text: Острая ВИЧ-инфекция (высокая вирусная нагрузка на раннем этапе, возможно «серологическое окно»
+        с отрицательными антителами), хроническая нелеченная ВИЧ-инфекция, вирусологическая неудача терапии
+        у пациентов уже на АРТ.
+    red_flags:
+    - condition: hiv_rna > 100000
+      text: Очень высокая вирусная нагрузка. При сочетании с лихорадкой, сыпью, лимфаденопатией — заподозрить
+        острую ретровирусную инфекцию, важно для профилактики передачи и раннего начала терапии.
+    treatment_hints:
+    - step: Подтверждающий тест антиген/антитела 4-го поколения
+      note: Для верификации первичного скрининга.
+    - step: Количество CD4
+      note: Оценка иммунного статуса, определяет необходимость профилактики оппортунистических инфекций.
+    - step: Немедленное начало антиретровирусной терапии
+      note: Современный стандарт — независимо от исходного уровня CD4.
+    references:
+    - DHHS Guidelines for the Use of Antiretroviral Agents in Adults and Adolescents with HIV
+  infectious_mononucleosis:
+    id: infectious_mononucleosis
+    label: Инфекционный мононуклеоз
+    category: Инфекционные заболевания
+    description: Положительные IgM к капсидному антигену ВЭБ (EBV VCA IgM) вместе с лимфоцитозом — характерно
+      для острого инфекционного мононуклеоза.
+    criteria:
+    - parameter: ebv_vca_igm
+      threshold: 1
+      unit: ''
+      condition: '>='
+      comment_template: EBV VCA IgM положителен.
+    - parameter: lymphocytes_percent
+      threshold: 45
+      unit: '%'
+      condition: '>='
+      comment_template: Лимфоциты {value}% — лимфоцитоз.
+    differentials:
+    - condition: ''
+      text: Инфекционный мононуклеоз (ВЭБ), ЦМВ-мононуклеозоподобный синдром, острая ВИЧ-инфекция (может
+        имитировать мононуклеоз), стрептококковый тонзиллофарингит — важно дифференцировать, так как ампициллин/амоксициллин
+        при мононуклеозе часто вызывает характерную сыпь.
+    red_flags:
+    - condition: lymphocytes_percent > 60
+      text: 'Выраженный лимфоцитоз, коррелирует с более тяжёлым течением. Клинически проверить спленомегалию
+        — риск разрыва селезёнки, обычная рекомендация: ограничение контактных видов спорта на 3-4 недели
+        от начала болезни.'
+    treatment_hints:
+    - step: Осмотр на спленомегалию перед разрешением физической активности
+      note: Клиническая, не лабораторная оценка.
+    - step: Избегать ампициллина/амоксициллина при подозрении на мононуклеоз
+      note: Частая причина ошибочного диагноза «аллергии на пенициллины».
+    references:
+    - Общие рекомендации по диагностике инфекционного мононуклеоза
+  postoperative_inflammation:
+    id: postoperative_inflammation
+    label: Послеоперационное воспаление
+    category: Инфекционные заболевания
+    description: 'Повышение СРБ, СОЭ и лейкоцитов после операции. Важно: умеренное повышение этих маркеров
+      ожидаемо в первые 2-3 дня после любого вмешательства как физиологическая реакция на хирургическую
+      травму — тревожный признак не сам факт повышения, а его чрезмерность или нарастание в динамике вместо
+      ожидаемого снижения.'
+    criteria:
+    - parameter: crp
+      threshold: 100
+      unit: мг/л
+      condition: '>='
+      comment_template: СРБ {value} мг/л.
+    - parameter: esr
+      threshold: 30
+      unit: мм/ч
+      condition: '>='
+      comment_template: СОЭ {value} мм/ч.
+    - parameter: wbc
+      threshold: 11
+      unit: ×10⁹/л
+      condition: '>='
+      comment_template: Лейкоциты {value} ×10⁹/л.
+    differentials:
+    - condition: ''
+      text: Ожидаемая физиологическая послеоперационная реакция, хирургическая инфекция области вмешательства,
+        системное осложнение (сепсис, тромбоэмболия с воспалительным компонентом).
+    red_flags:
+    - condition: crp > 200
+      text: Значительное повышение. Нарастание СРБ после 3-4 дня вместо ожидаемого снижения — характерный
+        признак развивающегося инфекционного осложнения, требует целенаправленного поиска очага (рана,
+        катетеры, лёгкие, мочевыводящие пути).
+    treatment_hints:
+    - step: Оценивать в динамике, не по одному значению
+      note: Тренд важнее абсолютной цифры в раннем послеоперационном периоде.
+    - step: Осмотр операционной раны
+      note: Первый шаг при подозрении на инфекцию области хирургического вмешательства.
+    references:
+    - Общие рекомендации по ведению послеоперационного периода
+  procalcitonin_bacterial:
+    id: procalcitonin_bacterial
+    label: Прокальцитонин, признак вероятной бактериальной инфекции
+    category: Инфекционные заболевания
+    description: Повышенный прокальцитонин — более специфичный маркер бактериальной инфекции, чем СРБ,
+      обычно остаётся низким при вирусных инфекциях и неинфекционном воспалении.
+    criteria:
+    - parameter: procalcitonin
+      threshold: 0.5
+      unit: нг/мл
+      condition: '>='
+      comment_template: Прокальцитонин {value} нг/мл — повышен.
+    differentials:
+    - condition: ''
+      text: Бактериальная инфекция (локальная или системная). Также может быть ложноповышен при тяжёлой
+        травме, обширных ожогах, некоторых видах шока без инфекции, редко — при медуллярном раке щитовидной
+        железы.
+    red_flags:
+    - condition: procalcitonin > 2
+      text: Значительное повышение коррелирует с тяжестью бактериальной инфекции, используется для стратификации
+        риска сепсиса.
+    treatment_hints:
+    - step: Отслеживать в динамике
+      note: Снижение прокальцитонина поддерживает решение о деэскалации/отмене антибиотиков (procalcitonin-guided
+        therapy).
+    references:
+    - Рекомендации по применению прокальцитонин-ориентированной терапии
+  sepsis:
+    id: sepsis
+    label: Сепсис
+    category: Инфекционные заболевания
+    description: Сочетание повышенного прокальцитонина, значительно повышенного СРБ и выраженного лейкоцитоза
+      — картина, характерная для сепсиса. В этой базе есть комбинированный диагноз `septic_syndrome` (см.
+      `clinical_logic.yaml`), который объединяет это правило с `systemic_inflammation` при их одновременном
+      срабатывании.
+    criteria:
+    - parameter: procalcitonin
+      threshold: 0.5
+      unit: нг/мл
+      condition: '>='
+      comment_template: Прокальцитонин {value} нг/мл — повышен.
+    - parameter: crp
+      threshold: 50
+      unit: мг/л
+      condition: '>='
+      comment_template: СРБ {value} мг/л — значительно повышен.
+    - parameter: wbc
+      threshold: 15
+      unit: ×10⁹/л
+      condition: '>='
+      comment_template: Лейкоциты {value} ×10⁹/л — выраженный лейкоцитоз.
+    differentials:
+    - condition: ''
+      text: 'Сепсис любой этиологии (чаще грамотрицательные бактерии, но может быть грибковым/вирусным).
+        Отличать от синдрома системного воспалительного ответа (SIRS) без инфекции — травма, панкреатит,
+        ожоги: тактика в этих случаях иная.'
+    red_flags:
+    - condition: procalcitonin > 2 and wbc > 20
+      text: В сочетании с гипотензией и/или признаками органной дисфункции — критерии септического шока.
+        Требует немедленной госпитализации в ОРИТ и начала антибиотикотерапии в течение часа («hour-1
+        bundle»).
+    treatment_hints:
+    - step: Посев крови до начала антибиотикотерапии
+      note: Если это не задерживает начало лечения.
+    - step: Лактат
+      note: Маркер тканевой гипоперфузии.
+    - step: Эмпирическая антибиотикотерапия широкого спектра немедленно
+      note: С последующей деэскалацией по результатам посевов.
+    references:
+    - 'Surviving Sepsis Campaign: International Guidelines 2021'
+  syphilis_active:
+    id: syphilis_active
+    label: Активный сифилис (серологически)
+    category: Инфекционные заболевания
+    description: Одновременно положительные нетрепонемный (RPR) и трепонемный (TPHA) тесты — характерно
+      для активной или недавно леченной инфекции. RPR также используется для мониторинга ответа на лечение
+      (титр должен снижаться).
+    criteria:
+    - parameter: rpr_syphilis
+      threshold: 1
+      unit: ''
+      condition: '>='
+      comment_template: RPR положителен.
+    - parameter: tpha_syphilis
+      threshold: 1
+      unit: ''
+      condition: '>='
+      comment_template: TPHA положителен. TPHA более специфичен, чем RPR, и обычно остаётся положительным
+        пожизненно даже после успешного лечения.
+    differentials:
+    - condition: ''
+      text: Активный сифилис на любой стадии. Изолированно положительный RPR без TPHA может быть ложноположительным
+        (беременность, аутоиммунные заболевания, некоторые другие инфекции).
+    red_flags:
+    - condition: ''
+      text: При наличии неврологических симптомов (независимо от титра RPR/TPHA) — клинически заподозрить
+        нейросифилис, требует люмбальной пункции с исследованием ликвора.
+    treatment_hints:
+    - step: Количественный титр RPR
+      note: Для оценки активности и последующего мониторинга ответа на терапию.
+    - step: Тестирование на ВИЧ и другие ИППП
+      note: Частое сочетание с сифилисом.
+    - step: Уведомление и лечение партнёров
+      note: Стандарт ведения ИППП.
+    references:
+    - CDC Sexually Transmitted Infections Treatment Guidelines
+  viral_infection_suspect:
+    id: viral_infection_suspect
+    label: Подозрение на вирусную инфекцию
+    category: Инфекционные заболевания
+    description: Лимфоцитоз с умеренно повышенным СРБ (в отличие от более выраженного повышения при бактериальной
+      инфекции) — неспецифичный паттерн, характерный для вирусных инфекций. В этой базе есть более специфичное
+      правило `infectious_mononucleosis` для частного случая ВЭБ-инфекции с соответствующей серологией.
+    criteria:
+    - parameter: lymphocytes_percent
+      threshold: 45
+      unit: '%'
+      condition: '>='
+      comment_template: Лимфоциты {value}% — лимфоцитоз.
+    - parameter: crp
+      threshold: 5
+      unit: мг/л
+      condition: '>='
+      comment_template: СРБ {value} мг/л — умеренно повышен.
+    differentials:
+    - condition: ''
+      text: Любая вирусная инфекция (ОРВИ, грипп, инфекционный мононуклеоз — см. отдельное правило, острая
+        ВИЧ-инфекция). У пожилых пациентов с изолированным лимфоцитозом без острой клиники — держать в
+        уме хронические гематологические причины (например хронический лимфолейкоз).
+    red_flags:
+    - condition: lymphocytes_percent > 70
+      text: Выраженный лимфоцитоз. При отсутствии острой инфекционной клиники, особенно у пожилых пациентов
+        — рассмотреть необходимость исключения гематологической патологии.
+    treatment_hints:
+    - step: Оценить клиническую картину (острое начало, лихорадка, катаральные симптомы)
+      note: Ключевой фактор дифференциации от хронических гематологических причин лимфоцитоза.
+    references:
+    - Общие рекомендации по дифференциальной диагностике лимфоцитоза
+  basophilia:
+    id: basophilia
+    label: Базофилия
+    category: Гематология
+    description: Повышенная доля базофилов в лейкоцитарной формуле.
+    criteria:
+    - parameter: basophils_percent
+      threshold: 1
+      unit: '%'
+      condition: '>='
+      comment_template: Базофилы {value}% — повышены.
+    differentials:
+    - condition: ''
+      text: Аллергические реакции, гипотиреоз, хронические воспалительные состояния. При стойкой значительной
+        базофилии — исключить миелопролиферативное заболевание (хронический миелолейкоз, истинная полицитемия).
+    red_flags:
+    - condition: basophils_percent > 3
+      text: Значительная базофилия — при отсутствии явной аллергической/эндокринной причины показано исключение
+        миелопролиферативного заболевания.
+    treatment_hints:
+    - step: Общий анализ крови с ручным подсчётом лейкоцитарной формулы
+      note: Автоматические анализаторы могут неточно подсчитывать базофилы при их малом числе.
+    references:
+    - Общие рекомендации по интерпретации лейкоцитарной формулы
+  eosinophilia:
+    id: eosinophilia
+    label: Эозинофилия
+    category: Гематология
+    description: Повышенная доля эозинофилов в лейкоцитарной формуле.
+    criteria:
+    - parameter: eosinophils_percent
+      threshold: 5
+      unit: '%'
+      condition: '>='
+      comment_template: Эозинофилы {value}% — повышены.
+    differentials:
+    - condition: ''
+      text: Паразитарные инвазии, аллергия/атопия (астма, атопический дерматит), лекарственная реакция,
+        эозинофильные заболевания (эозинофильный эзофагит, гранулематоз с полиангиитом и эозинофилией
+        — синдром Черджа-Стросс).
+    red_flags:
+    - condition: eosinophils_percent > 20
+      text: Выраженная эозинофилия — рассмотреть гиперэозинофильный синдром, требует расширенного обследования
+        на предмет поражения органов-мишеней (сердце, лёгкие).
+    treatment_hints:
+    - step: Анализ кала на яйца гельминтов
+      note: Особенно при соответствующем эпидемиологическом анамнезе.
+    - step: Уточнить лекарственный анамнез
+      note: Частая причина — лекарственная реакция.
+    references:
+    - Общие рекомендации по диагностике эозинофилии
+  hemolytic_anemia:
+    id: hemolytic_anemia
+    label: Гемолитическая анемия (лабораторные признаки гемолиза)
+    category: Гематология
+    description: Повышенные ЛДГ и непрямой билирубин — классические лабораторные маркеры гемолиза.
+    criteria:
+    - parameter: ldh
+      threshold: 250
+      unit: Ед/л
+      condition: '>='
+      comment_template: ЛДГ {value} Ед/л — повышена.
+    - parameter: indirect_bilirubin
+      threshold: 17
+      unit: мкмоль/л
+      condition: '>='
+      comment_template: Непрямой билирубин {value} мкмоль/л — повышен.
+    differentials:
+    - condition: ''
+      text: Аутоиммунная гемолитическая анемия, наследственный сфероцитоз, дефицит Г6ФД, микроангиопатическая
+        гемолитическая анемия (тромботическая тромбоцитопеническая пурпура, гемолитико-уремический синдром
+        — экстренные состояния), механический гемолиз (протезированный клапан сердца).
+    red_flags:
+    - condition: ldh > 1000
+      text: Значительно повышенная ЛДГ. В сочетании с тромбоцитопенией и шистоцитами в мазке крови — исключить
+        микроангиопатическую гемолитическую анемию (ТТП/ГУС), экстренное состояние, требующее немедленной
+        консультации гематолога.
+    treatment_hints:
+    - step: Прямая проба Кумбса
+      note: Разделяет иммунный и неиммунный гемолиз.
+    - step: Мазок периферической крови
+      note: Шистоциты — признак микроангиопатического гемолиза, сфероциты — наследственного сфероцитоза/аутоиммунного
+        гемолиза.
+    - step: Гаптоглобин
+      note: Снижен при внутрисосудистом гемолизе, дополняет картину.
+    references:
+    - Общие рекомендации по диагностике гемолитических анемий
+  ldh_elevated_severe:
+    id: ldh_elevated_severe
+    label: Значительно повышенная ЛДГ
+    category: Гематология
+    description: Изолированное значительное повышение ЛДГ — неспецифичный маркер клеточного повреждения/распада.
+    criteria:
+    - parameter: ldh
+      threshold: 250
+      unit: Ед/л
+      condition: '>='
+      comment_template: ЛДГ {value} Ед/л — повышена.
+    differentials:
+    - condition: ''
+      text: Гемолиз, некроз тканей (инфаркт миокарда, инфаркт лёгкого), лимфопролиферативные заболевания
+        (особенно агрессивные лимфомы — ЛДГ коррелирует с опухолевой массой), повреждение мышц (рабдомиолиз),
+        заболевания печени.
+    red_flags:
+    - condition: ldh > 1000
+      text: Очень высокая ЛДГ без явной причины — у пациентов с лимфаденопатией или В-симптомами (лихорадка,
+        ночная потливость, похудание) рассмотреть лимфопролиферативное заболевание.
+    treatment_hints:
+    - step: Клинический контекст определяет направление поиска
+      note: ЛДГ сама по себе крайне неспецифична — интерпретировать вместе с анамнезом и другими находками.
+    references:
+    - Общие рекомендации по интерпретации ЛДГ
+  leukemoid_reaction:
+    id: leukemoid_reaction
+    label: Лейкемоидная реакция
+    category: Гематология
+    description: Крайне высокий лейкоцитоз реактивного (не лейкозного) происхождения.
+    criteria:
+    - parameter: wbc
+      threshold: 50
+      unit: ×10⁹/л
+      condition: '>='
+      comment_template: Лейкоциты {value} ×10⁹/л — крайне высокие, требуют дифференциации от лейкоза.
+    differentials:
+    - condition: ''
+      text: Тяжёлая бактериальная инфекция, сепсис, выраженная воспалительная реакция. Требует исключения
+        хронического миелолейкоза и других миелопролиферативных заболеваний.
+    red_flags:
+    - condition: wbc > 100
+      text: Крайне выраженный лейкоцитоз — обязательна дифференциация от острого/хронического лейкоза
+        (мазок крови на бластные клетки, при необходимости — консультация гематолога).
+    treatment_hints:
+    - step: Мазок периферической крови с подсчётом формулы
+      note: Лейкемоидная реакция обычно даёт сдвиг влево без значимого числа бластов, в отличие от лейкоза.
+    - step: Искать очаг тяжёлой инфекции
+      note: Наиболее частая причина.
+    references:
+    - Общие рекомендации по дифференциальной диагностике выраженного лейкоцитоза
+  leukocytosis_extreme:
+    id: leukocytosis_extreme
+    label: Выраженный лейкоцитоз
+    category: Гематология
+    description: Значительно повышенные лейкоциты.
+    criteria:
+    - parameter: wbc
+      threshold: 25
+      unit: ×10⁹/л
+      condition: '>='
+      comment_template: Лейкоциты {value} ×10⁹/л — значительно повышены.
+    differentials:
+    - condition: ''
+      text: Тяжёлая инфекция/сепсис, выраженная воспалительная реакция, приём кортикостероидов, миелопролиферативные
+        заболевания. При очень высоких значениях — см. также `leukemoid_reaction`.
+    red_flags:
+    - condition: wbc > 50
+      text: Приближается к диапазону лейкемоидной реакции — см. соответствующее правило для дифференциации
+        от лейкоза.
+    treatment_hints:
+    - step: Лейкоцитарная формула
+      note: Определить, за счёт какой фракции лейкоцитоз (нейтрофилы, лимфоциты и т.д.) для направленного
+        поиска причины.
+    references:
+    - Общие рекомендации по интерпретации лейкоцитоза
+  leukocytosis_moderate:
+    id: leukocytosis_moderate
+    label: Умеренный лейкоцитоз
+    category: Гематология
+    description: Умеренно повышенные лейкоциты.
+    criteria:
+    - parameter: wbc
+      threshold: 11
+      unit: ×10⁹/л
+      condition: '>='
+      comment_template: Лейкоциты {value} ×10⁹/л — умеренно повышены.
+    differentials:
+    - condition: ''
+      text: Инфекция (бактериальная чаще, чем вирусная), воспаление, стресс-реакция, курение, приём кортикостероидов,
+        беременность (физиологическое умеренное повышение).
+    red_flags:
+    - condition: wbc > 20
+      text: Значительный лейкоцитоз для «умеренной» категории — см. `leukocytosis_extreme`.
+    treatment_hints:
+    - step: Оценить клинический контекст
+      note: Умеренный лейкоцитоз часто физиологичен (стресс, курение) — не всегда требует дообследования
+        при отсутствии клинических симптомов.
+    references:
+    - Общие рекомендации по интерпретации лейкоцитоза
+  leukopenia:
+    id: leukopenia
+    label: Лейкопения
+    category: Гематология
+    description: Сниженное общее число лейкоцитов.
+    criteria:
+    - parameter: wbc
+      threshold: 4.0
+      unit: ×10⁹/л
+      condition: <=
+      comment_template: Лейкоциты {value} ×10⁹/л — снижены.
+    differentials:
+    - condition: ''
+      text: Вирусные инфекции, приём некоторых лекарств (химиотерапия, отдельные антибиотики, антипсихотики),
+        аутоиммунные заболевания (СКВ), апластическая анемия, инфильтрация костного мозга.
+    red_flags:
+    - condition: wbc < 2.0
+      text: Выраженная лейкопения — повышенный риск инфекций, особенно если преимущественно за счёт нейтрофилов
+        (см. `neutropenia`).
+    treatment_hints:
+    - step: Лейкоцитарная формула
+      note: Определить, какая фракция снижена (нейтропения несёт наибольший инфекционный риск).
+    references:
+    - Общие рекомендации по диагностике цитопений
+  lymphocytosis_extreme:
+    id: lymphocytosis_extreme
+    label: Выраженный лимфоцитоз
+    category: Гематология
+    description: Значительно повышенная доля лимфоцитов.
+    criteria:
+    - parameter: lymphocytes_percent
+      threshold: 45
+      unit: '%'
+      condition: '>='
+      comment_template: Лимфоциты {value}% — значительно повышены.
+    differentials:
+    - condition: ''
+      text: Вирусные инфекции (см. `viral_infection_suspect`, `infectious_mononucleosis`), коклюш у детей.
+        У пожилых пациентов с изолированным стойким лимфоцитозом без острой инфекционной клиники — рассмотреть
+        хронический лимфолейкоз.
+    red_flags:
+    - condition: lymphocytes_percent > 70
+      text: Очень выраженный лимфоцитоз. При отсутствии острой инфекционной картины, особенно у пожилых
+        — обследование на предмет лимфопролиферативного заболевания.
+    treatment_hints:
+    - step: Клиническая картина решает направление поиска
+      note: Острое начало с лихорадкой — инфекция; стойкий бессимптомный лимфоцитоз у пожилых — гематологическое
+        обследование.
+    references:
+    - Общие рекомендации по дифференциальной диагностике лимфоцитоза
+  lymphopenia:
+    id: lymphopenia
+    label: Лимфопения
+    category: Гематология
+    description: Сниженная доля лимфоцитов.
+    criteria:
+    - parameter: lymphocytes_percent
+      threshold: 20
+      unit: '%'
+      condition: <=
+      comment_template: Лимфоциты {value}% — снижены.
+    differentials:
+    - condition: ''
+      text: Острые вирусные инфекции (в т.ч. ВИЧ), приём кортикостероидов, аутоиммунные заболевания, лимфома,
+        острый стресс/тяжёлое заболевание (реактивная лимфопения).
+    red_flags:
+    - condition: lymphocytes_percent < 10
+      text: Выраженная лимфопения — при соответствующих факторах риска рассмотреть ВИЧ-инфекцию, также
+        повышен риск оппортунистических инфекций.
+    treatment_hints:
+    - step: Оценить клинический контекст и факторы риска
+      note: Приём кортикостероидов и острое тяжёлое заболевание — самые частые причины.
+    references:
+    - Общие рекомендации по диагностике лимфопении
+  macrocytic_anemia:
+    id: macrocytic_anemia
+    label: Макроцитарная анемия
+    category: Гематология
+    description: Повышенный средний объём эритроцита (MCV) — характерно для макроцитарной анемии.
+    criteria:
+    - parameter: mcv
+      threshold: 100
+      unit: фл
+      condition: '>='
+      comment_template: MCV {value} фл — повышен.
+    differentials:
+    - condition: ''
+      text: Дефицит витамина B12 (см. `vitamin_b12_deficiency_severe`), дефицит фолиевой кислоты (см.
+        `folate_deficiency_severe`), заболевания печени, гипотиреоз, миелодиспластический синдром, хронический
+        алкоголизм.
+    red_flags:
+    - condition: mcv > 120
+      text: Выраженная макроцитоз — при отсутствии дефицита B12/фолата и заболеваний печени/щитовидной
+        железы рассмотреть миелодиспластический синдром, особенно у пожилых пациентов.
+    treatment_hints:
+    - step: Витамин B12 и фолиевая кислота
+      note: Наиболее частые устранимые причины.
+    - step: ТТГ, печёночные пробы
+      note: Исключить гипотиреоз и заболевания печени.
+    references:
+    - Общие рекомендации по диагностике макроцитарных анемий
+  monocytosis:
+    id: monocytosis
+    label: Моноцитоз
+    category: Гематология
+    description: Повышенная доля моноцитов.
+    criteria:
+    - parameter: monocytes_percent
+      threshold: 10
+      unit: '%'
+      condition: '>='
+      comment_template: Моноциты {value}% — повышены.
+    differentials:
+    - condition: ''
+      text: Хронические инфекции (туберкулёз, инфекционный эндокардит), воспалительные заболевания (ВЗК,
+        ревматоидный артрит), период выздоровления после острой инфекции. Стойкий моноцитоз — рассмотреть
+        хронический миеломоноцитарный лейкоз, особенно у пожилых.
+    red_flags:
+    - condition: monocytes_percent > 20
+      text: Выраженный моноцитоз — при отсутствии явной инфекционной/воспалительной причины у пожилых
+        пациентов рассмотреть миелодиспластическое/миелопролиферативное заболевание.
+    treatment_hints:
+    - step: Искать очаг хронической инфекции или воспаления
+      note: Наиболее частые причины.
+    references:
+    - Общие рекомендации по дифференциальной диагностике моноцитоза
+  neutropenia:
+    id: neutropenia
+    label: Нейтропения
+    category: Гематология
+    description: Сниженная доля нейтрофилов — основной фактор риска бактериальных и грибковых инфекций
+      среди цитопений.
+    criteria:
+    - parameter: neutrophils_percent
+      threshold: 40
+      unit: '%'
+      condition: <=
+      comment_template: Нейтрофилы {value}% — снижены.
+    differentials:
+    - condition: ''
+      text: Вирусные инфекции, приём лекарств (химиотерапия, некоторые антибиотики, антитиреоидные препараты,
+        клозапин), аутоиммунная нейтропения, апластическая анемия, инфильтрация костного мозга.
+    red_flags:
+    - condition: neutrophils_percent < 20
+      text: Выраженная нейтропения. При лихорадке на фоне выраженной нейтропении (фебрильная нейтропения)
+        — неотложное состояние, требует немедленной эмпирической антибиотикотерапии широкого спектра.
+    treatment_hints:
+    - step: Абсолютное число нейтрофилов (АЧН)
+      note: Клинически значимее процентной доли для оценки риска инфекции.
+    - step: При лихорадке — немедленная оценка на фебрильную нейтропению
+      note: Не откладывать эмпирическую антибиотикотерапию в ожидании результатов посевов.
+    references:
+    - Общие рекомендации по ведению фебрильной нейтропении (IDSA/NCCN)
+  neutrophilia:
+    id: neutrophilia
+    label: Нейтрофилия
+    category: Гематология
+    description: Повышенная доля нейтрофилов.
+    criteria:
+    - parameter: neutrophils_percent
+      threshold: 70
+      unit: '%'
+      condition: '>='
+      comment_template: Нейтрофилы {value}% — повышены.
+    differentials:
+    - condition: ''
+      text: Бактериальная инфекция, острое воспаление, стресс-реакция, приём кортикостероидов, курение,
+        миелопролиферативные заболевания при стойком повышении без явной причины.
+    red_flags:
+    - condition: neutrophils_percent > 90
+      text: Выраженная нейтрофилия — в сочетании с другими признаками инфекции см. `bacterial_infection_risk`,
+        `sepsis`.
+    treatment_hints:
+    - step: Оценить клинический контекст
+      note: Наиболее частая причина — бактериальная инфекция или острое воспаление.
+    references:
+    - Общие рекомендации по интерпретации лейкоцитарной формулы
+  pancytopenia:
+    id: pancytopenia
+    label: Панцитопения
+    category: Гематология
+    description: Одновременное снижение всех трёх клеточных линий крови (эритроцитов/гемоглобина, лейкоцитов,
+      тромбоцитов) — требует срочной оценки, спектр причин широк и включает жизнеугрожающие состояния.
+    criteria:
+    - parameter: hemoglobin
+      threshold: 100
+      unit: г/Л
+      condition: <=
+      comment_template: Гемоглобин {value} г/Л — снижен.
+    - parameter: wbc
+      threshold: 4.0
+      unit: ×10⁹/л
+      condition: <=
+      comment_template: Лейкоциты {value} ×10⁹/л — снижены.
+    - parameter: platelets
+      threshold: 100
+      unit: ×10⁹/л
+      condition: <=
+      comment_template: Тромбоциты {value} ×10⁹/л — снижены.
+    differentials:
+    - condition: ''
+      text: Апластическая анемия, инфильтрация костного мозга (острый лейкоз, метастазы солидных опухолей,
+        миелофиброз), тяжёлый дефицит B12/фолиевой кислоты, гиперспленизм, миелодиспластический синдром,
+        некоторые вирусные инфекции (парвовирус B19), лекарственная токсичность.
+    red_flags:
+    - condition: hemoglobin <= 70 and platelets <= 20
+      text: Тяжёлая панцитопения с критически низкими гемоглобином и тромбоцитами — риск сердечно-сосудистой
+        декомпенсации и спонтанного кровотечения одновременно, требует срочной госпитализации и консультации
+        гематолога.
+    treatment_hints:
+    - step: Мазок периферической крови
+      note: Поиск бластных клеток, аномальных форм.
+    - step: Направление к гематологу для биопсии костного мозга
+      note: Ключевое исследование для определения причины панцитопении.
+    references:
+    - Общие рекомендации по диагностическому поиску при панцитопении
+  polycythemia:
+    id: polycythemia
+    label: Полицитемия / эритроцитоз
+    category: Гематология
+    description: Повышенный гемоглобин.
+    criteria:
+    - parameter: hemoglobin
+      threshold: 170
+      unit: г/Л
+      condition: '>='
+      comment_template: Гемоглобин {value} г/Л — повышен.
+    differentials:
+    - condition: ''
+      text: Истинная полицитемия (миелопролиферативное заболевание), вторичный эритроцитоз (хроническая
+        гипоксия — ХОБЛ, апноэ сна, проживание на высокогорье, курение; опухоли, продуцирующие эритропоэтин),
+        относительный эритроцитоз (дегидратация, гемоконцентрация).
+    red_flags:
+    - condition: hemoglobin > 200
+      text: Значительно повышенный гемоглобин — повышенный риск тромбоза, требует оценки на предмет истинной
+        полицитемии (мутация JAK2) и своевременного начала терапии.
+    treatment_hints:
+    - step: Оценить статус гидратации
+      note: Исключить относительный (ложный) эритроцитоз перед расширенным обследованием.
+    - step: Мутация JAK2, эритропоэтин сыворотки
+      note: При подозрении на истинную полицитемию — низкий эритропоэтин при высоком гемоглобине указывает
+        на первичный процесс.
+    references:
+    - Общие рекомендации по диагностике полицитемии (WHO classification of myeloproliferative neoplasms)
+  thrombocytopenia_critical:
+    id: thrombocytopenia_critical
+    label: Критическая тромбоцитопения
+    category: Гематология
+    description: Критически низкие тромбоциты — высокий риск спонтанного кровотечения.
+    criteria:
+    - parameter: platelets
+      threshold: 20
+      unit: ×10⁹/л
+      condition: <=
+      comment_template: Тромбоциты {value} ×10⁹/л — критически снижены.
+    differentials:
+    - condition: ''
+      text: Иммунная тромбоцитопения (ИТП), апластическая анемия, острый лейкоз, ДВС-синдром, тромботическая
+        тромбоцитопеническая пурпура (ТТП — экстренное состояние), лекарственно-индуцированная тромбоцитопения
+        (в т.ч. гепарин-индуцированная).
+    red_flags:
+    - condition: platelets <= 10
+      text: Крайне высокий риск спонтанного, в том числе внутричерепного кровотечения. Требует немедленной
+        консультации гематолога и, как правило, госпитализации.
+    treatment_hints:
+    - step: Мазок периферической крови немедленно
+      note: Исключить псевдотромбоцитопению (агглютинация в пробирке с ЭДТА) и искать шистоциты (ТТП/ДВС).
+    - step: Оценить клинические признаки кровотечения
+      note: Петехии, экхимозы, кровоточивость слизистых.
+    references:
+    - Общие рекомендации по ведению тяжёлой тромбоцитопении
+  thrombocytopenia_severe:
+    id: thrombocytopenia_severe
+    label: Тяжёлая тромбоцитопения
+    category: Гематология
+    description: Значительно сниженные тромбоциты.
+    criteria:
+    - parameter: platelets
+      threshold: 50
+      unit: ×10⁹/л
+      condition: <=
+      comment_template: Тромбоциты {value} ×10⁹/л — значительно снижены.
+    differentials:
+    - condition: ''
+      text: Иммунная тромбоцитопения, лекарственно-индуцированная тромбоцитопения, гиперспленизм, инфильтрация
+        костного мозга, вирусные инфекции.
+    red_flags:
+    - condition: platelets <= 20
+      text: Приближается к критическому диапазону — см. `thrombocytopenia_critical`.
+    treatment_hints:
+    - step: Мазок периферической крови
+      note: Исключить псевдотромбоцитопению и оценить морфологию других клеточных линий.
+    references:
+    - Общие рекомендации по диагностике тромбоцитопении
+  thrombocytosis:
+    id: thrombocytosis
+    label: Тромбоцитоз
+    category: Гематология
+    description: Повышенные тромбоциты.
+    criteria:
+    - parameter: platelets
+      threshold: 400
+      unit: ×10⁹/л
+      condition: '>='
+      comment_template: Тромбоциты {value} ×10⁹/л — повышены.
+    differentials:
+    - condition: ''
+      text: Реактивный тромбоцитоз (наиболее частый — воспаление, инфекция, железодефицитная анемия, состояние
+        после спленэктомии, кровопотеря) значительно чаще эссенциальной тромбоцитемии (миелопролиферативное
+        заболевание).
+    red_flags:
+    - condition: platelets >= 1000
+      text: Выраженный тромбоцитоз — см. `thrombocytosis_extreme`.
+    treatment_hints:
+    - step: Искать реактивную причину в первую очередь
+      note: СРБ, ферритин, недавние операции/кровопотеря — реактивный тромбоцитоз встречается значительно
+        чаще первичного.
+    references:
+    - Общие рекомендации по диагностике тромбоцитоза
+  thrombocytosis_extreme:
+    id: thrombocytosis_extreme
+    label: Выраженный тромбоцитоз
+    category: Гематология
+    description: Значительно повышенные тромбоциты — при таких значениях повышается вероятность первичного
+      (клонального) процесса.
+    criteria:
+    - parameter: platelets
+      threshold: 1000
+      unit: ×10⁹/л
+      condition: '>='
+      comment_template: Тромбоциты {value} ×10⁹/л — значительно повышены.
+    differentials:
+    - condition: ''
+      text: Эссенциальная тромбоцитемия и другие миелопролиферативные заболевания становятся более вероятны
+        при таком уровне, хотя реактивные причины (см. `thrombocytosis`) полностью не исключаются.
+    red_flags:
+    - condition: platelets >= 1500
+      text: Крайне высокий тромбоцитоз — парадоксально может сопровождаться как повышенным риском тромбоза,
+        так и риском кровотечения (приобретённая болезнь Виллебранда при экстремальном тромбоцитозе).
+        Показана консультация гематолога.
+    treatment_hints:
+    - step: Мутация JAK2/CALR/MPL
+      note: При подозрении на эссенциальную тромбоцитемию.
+    references:
+    - WHO classification of myeloproliferative neoplasms
+  venous_thromboembolism:
+    id: venous_thromboembolism
+    label: Подозрение на венозную тромбоэмболию (по D-димеру)
+    category: Гематология
+    description: Повышенный D-димер. Высокочувствительный, но низкоспецифичный маркер — используется в
+      первую очередь для исключения тромбоза при низкой клинической вероятности, а не для подтверждения
+      диагноза.
+    criteria:
+    - parameter: d_dimer
+      threshold: 0.5
+      unit: мкг/мл
+      condition: '>='
+      comment_template: D-димер {value} мкг/мл — повышен.
+    differentials:
+    - condition: ''
+      text: Тромбоз глубоких вен, тромбоэмболия лёгочной артерии. Также повышается при беременности, после
+        операций, при воспалении, злокачественных новообразованиях, у пожилых пациентов — специфичность
+        падает с возрастом.
+    red_flags:
+    - condition: d_dimer > 5
+      text: Значительно повышенный D-димер при соответствующей клинической картине (боль/отёк конечности,
+        одышка, боль в груди) — требует срочной визуализации (УЗИ вен, КТ-ангиография лёгочной артерии).
+    treatment_hints:
+    - step: Оценить клиническую вероятность (шкала Уэллса)
+      note: Отрицательный D-димер при низкой клинической вероятности эффективно исключает ТГВ/ТЭЛА. Положительный
+        результат при любой вероятности требует визуализации, а не служит подтверждением диагноза.
+    references:
+    - ESC Guidelines for the diagnosis and management of acute pulmonary embolism

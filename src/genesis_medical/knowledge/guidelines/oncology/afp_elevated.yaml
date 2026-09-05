@@ -1,0 +1,10 @@
+id: afp_elevated
+conditions:
+- id: afp_elevated
+  label: Afp elevated
+  parameter: afp_tumor_marker
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 10

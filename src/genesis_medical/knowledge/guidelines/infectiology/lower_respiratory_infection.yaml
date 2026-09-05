@@ -1,0 +1,26 @@
+id: lower_respiratory_infection
+conditions:
+- id: lower_respiratory_infection_crp
+  label: Crp — отклонение от нормы
+  parameter: crp
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 50
+- id: lower_respiratory_infection_wbc
+  label: Wbc — отклонение от нормы
+  parameter: wbc
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 11
+- id: lower_respiratory_infection_procalcitonin
+  label: Procalcitonin — отклонение от нормы
+  parameter: procalcitonin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 0.5

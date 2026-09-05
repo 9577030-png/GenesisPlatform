@@ -1,0 +1,10 @@
+id: high_value_review
+version: "1"
+priority: 10
+conditions:
+  - fact: amount
+    operator: ">"
+    value: 10000
+result:
+  action: review
+  reason: high_value_transaction

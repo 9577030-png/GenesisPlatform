@@ -1,0 +1,18 @@
+id: adrenal_insufficiency
+conditions:
+- id: adrenal_insufficiency_cortisol_serum
+  label: Cortisol serum — отклонение от нормы
+  parameter: cortisol_serum
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 140
+- id: adrenal_insufficiency_acth
+  label: Acth — отклонение от нормы
+  parameter: acth
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 10

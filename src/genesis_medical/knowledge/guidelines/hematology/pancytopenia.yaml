@@ -1,0 +1,26 @@
+id: pancytopenia
+conditions:
+- id: pancytopenia_hemoglobin
+  label: Hemoglobin — отклонение от нормы
+  parameter: hemoglobin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 100
+- id: pancytopenia_wbc
+  label: Wbc — отклонение от нормы
+  parameter: wbc
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 4.0
+- id: pancytopenia_platelets
+  label: Platelets — отклонение от нормы
+  parameter: platelets
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 100

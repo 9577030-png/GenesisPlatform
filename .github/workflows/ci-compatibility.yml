@@ -1,0 +1,111 @@
+name: Genesis Package Compatibility
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/genesis_core/**"
+      - "packages/genesis-core/**"
+      - "scripts/check_import_cycles.py"
+      - "scripts/check_api_bump.py"
+      - ".github/workflows/ci-compatibility.yml"
+  pull_request:
+    paths:
+      - "src/genesis_core/**"
+      - "packages/genesis-core/**"
+      - "scripts/check_import_cycles.py"
+      - "scripts/check_api_bump.py"
+      - ".github/workflows/ci-compatibility.yml"
+
+jobs:
+  build-wheels:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install build tooling
+        run: python -m pip install --upgrade pip build
+      - name: Build all wheels
+        run: |
+          mkdir -p dist-wheels
+          python -m build ./packages/genesis-core --wheel --outdir dist-wheels
+          python -m build ./packages/genesis-medical --wheel --outdir dist-wheels
+          python -m build ./packages/genesis-construction --wheel --outdir dist-wheels
+          python -m build ./packages/genesis-banking --wheel --outdir dist-wheels
+      - uses: actions/upload-artifact@v4
+        with:
+          name: genesis-wheels
+          path: dist-wheels/*.whl
+
+  compatibility:
+    needs: build-wheels
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: core
+            packages: core
+            domains: ""
+          - name: core-medical
+            packages: core medical
+            domains: medical
+          - name: core-construction
+            packages: core construction
+            domains: construction
+          - name: core-banking
+            packages: core banking
+            domains: banking
+          - name: core-medical-construction
+            packages: core medical construction
+            domains: medical construction
+          - name: core-medical-banking
+            packages: core medical banking
+            domains: medical banking
+          - name: core-construction-banking
+            packages: core construction banking
+            domains: construction banking
+          - name: all-domains
+            packages: core medical construction banking
+            domains: medical construction banking
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: actions/download-artifact@v4
+        with:
+          name: genesis-wheels
+          path: dist-wheels
+      - name: Install declared third-party dependencies
+        run: python -m pip install PyYAML pydantic
+      - name: Install selected Genesis wheels
+        shell: bash
+        env:
+          PACKAGE_SET: ${{ matrix.packages }}
+        run: |
+          for pkg in $PACKAGE_SET; do
+            python -m pip install --no-deps dist-wheels/genesis_${pkg//-/_}-*.whl
+          done
+      - name: Verify selected domains
+        shell: bash
+        env:
+          DOMAIN_SET: ${{ matrix.domains }}
+        run: |
+          python - <<'PY'
+          import os
+          from genesis_core import list_domains, load_domain
+
+          expected = os.environ["DOMAIN_SET"].split()
+          names = list_domains()
+          assert names == tuple(sorted(expected)), (names, expected)
+          for name in expected:
+              descriptor = load_domain(name)
+              assert descriptor.name == name
+              loader = descriptor.get_rule_loader()
+              rule_set = loader.load()
+              assert len(rule_set.rules) > 0
+          print("COMPATIBILITY MATRIX: OK")
+          PY

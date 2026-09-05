@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "genesis-banking"
+version = "0.1.0"
+readme = "README.md"
+description = "Banking domain module for the Genesis platform"
+requires-python = ">=3.11"
+dependencies = ["genesis-core>=0.3,<0.4", "PyYAML>=6.0"]
+
+[tool.setuptools]
+package-dir = {"" = "../../src"}
+
+[tool.setuptools.packages.find]
+where = ["../../src"]
+include = ["genesis_banking*"]
+
+[tool.setuptools.package-data]
+"genesis_banking" = ["knowledge/**/*.yaml"]
+
+[project.entry-points."genesis.domains"]
+banking = "genesis_banking:get_domain_descriptor"

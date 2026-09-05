@@ -1,0 +1,10 @@
+id: cyfra_21_1_elevated
+conditions:
+- id: cyfra_21_1_elevated
+  label: Cyfra 21 1 elevated
+  parameter: cyfra_21_1
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 3.3

@@ -1,0 +1,10 @@
+id: lymphopenia
+conditions:
+- id: lymphopenia
+  label: Lymphopenia
+  parameter: lymphocytes_percent
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 20

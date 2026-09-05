@@ -1,0 +1,34 @@
+id: subacute_thyroiditis
+conditions:
+- id: subacute_thyroiditis_esr
+  label: Esr — отклонение от нормы
+  parameter: esr
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 30
+- id: subacute_thyroiditis_crp
+  label: Crp — отклонение от нормы
+  parameter: crp
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 10
+- id: subacute_thyroiditis_tsh
+  label: Tsh — отклонение от нормы
+  parameter: tsh
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 0.4
+- id: subacute_thyroiditis_free_t4
+  label: Free t4 — отклонение от нормы
+  parameter: free_t4
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 22

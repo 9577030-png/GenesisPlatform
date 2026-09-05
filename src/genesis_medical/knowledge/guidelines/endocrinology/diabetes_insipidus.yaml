@@ -1,0 +1,18 @@
+id: diabetes_insipidus
+conditions:
+- id: diabetes_insipidus_sodium
+  label: Sodium — отклонение от нормы
+  parameter: sodium
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 145
+- id: diabetes_insipidus_osmolality_serum
+  label: Osmolality serum — отклонение от нормы
+  parameter: osmolality_serum
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 295

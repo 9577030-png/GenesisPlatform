@@ -1,0 +1,18 @@
+id: iron_deficiency_children
+conditions:
+- id: iron_deficiency_children_ferritin
+  label: Ferritin — отклонение от нормы
+  parameter: ferritin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 12
+- id: iron_deficiency_children_hemoglobin
+  label: Hemoglobin — отклонение от нормы
+  parameter: hemoglobin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 110

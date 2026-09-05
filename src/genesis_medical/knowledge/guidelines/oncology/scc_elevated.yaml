@@ -1,0 +1,10 @@
+id: scc_elevated
+conditions:
+- id: scc_elevated
+  label: Scc elevated
+  parameter: scc_antigen
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 1.5

@@ -1,0 +1,10 @@
+id: dilated_cardiomyopathy_marker
+conditions:
+- id: dilated_cardiomyopathy_marker
+  label: Dilated cardiomyopathy marker
+  parameter: nt_probnp
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 1000

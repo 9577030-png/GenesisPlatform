@@ -1,0 +1,26 @@
+id: gynecomastia
+conditions:
+- id: gynecomastia_estradiol
+  label: Estradiol — отклонение от нормы
+  parameter: estradiol
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 160
+- id: gynecomastia_prolactin
+  label: Prolactin — отклонение от нормы
+  parameter: prolactin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 500
+- id: gynecomastia_testosterone_total
+  label: Testosterone total — отклонение от нормы
+  parameter: testosterone_total
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 10

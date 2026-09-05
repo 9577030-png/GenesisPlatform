@@ -1,0 +1,26 @@
+id: postoperative_inflammation
+conditions:
+- id: postoperative_inflammation_crp
+  label: Crp — отклонение от нормы
+  parameter: crp
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 100
+- id: postoperative_inflammation_esr
+  label: Esr — отклонение от нормы
+  parameter: esr
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 30
+- id: postoperative_inflammation_wbc
+  label: Wbc — отклонение от нормы
+  parameter: wbc
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 11

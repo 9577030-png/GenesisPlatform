@@ -1,0 +1,10 @@
+id: copper_deficiency
+conditions:
+- id: copper_deficiency
+  label: Copper deficiency
+  parameter: copper
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 11

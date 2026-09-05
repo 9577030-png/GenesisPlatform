@@ -1,0 +1,26 @@
+id: lupus_nephritis
+conditions:
+- id: lupus_nephritis_urine_protein
+  label: Urine protein — отклонение от нормы
+  parameter: urine_protein
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 150
+- id: lupus_nephritis_urine_erythrocytes
+  label: Urine erythrocytes — отклонение от нормы
+  parameter: urine_erythrocytes
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 5
+- id: lupus_nephritis_immunoglobulin_g
+  label: Immunoglobulin g — отклонение от нормы
+  parameter: immunoglobulin_g
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 16.0

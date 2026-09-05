@@ -1,0 +1,10 @@
+id: b12_deficiency
+conditions:
+- id: b12_deficiency
+  label: Дефицит витамина B12
+  parameter: vitamin_b12
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 200

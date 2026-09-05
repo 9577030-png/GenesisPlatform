@@ -1,0 +1,18 @@
+id: atherogenic_index_high
+conditions:
+- id: atherogenic_index_high_cholesterol_total
+  label: Cholesterol total — отклонение от нормы
+  parameter: cholesterol_total
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 5.0
+- id: atherogenic_index_high_hdl
+  label: Hdl — отклонение от нормы
+  parameter: hdl
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 1.0

@@ -1,0 +1,50 @@
+id: systemic_lupus
+conditions:
+- id: systemic_lupus_ana_screening
+  label: Ana screening — отклонение от нормы
+  parameter: ana_screening
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 1
+- id: systemic_lupus_anti_ds_dna
+  label: Anti ds dna — отклонение от нормы
+  parameter: anti_ds_dna
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 10
+- id: systemic_lupus_complement_c3
+  label: Complement c3 — отклонение от нормы
+  parameter: complement_c3
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 0.75
+- id: systemic_lupus_complement_c4
+  label: Complement c4 — отклонение от нормы
+  parameter: complement_c4
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 0.1
+- id: systemic_lupus_urine_protein
+  label: Urine protein — отклонение от нормы
+  parameter: urine_protein
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 150
+- id: systemic_lupus_urine_erythrocytes
+  label: Urine erythrocytes — отклонение от нормы
+  parameter: urine_erythrocytes
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 5

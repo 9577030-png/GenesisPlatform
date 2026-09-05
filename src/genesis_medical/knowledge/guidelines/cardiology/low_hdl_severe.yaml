@@ -1,0 +1,10 @@
+id: low_hdl_severe
+conditions:
+- id: low_hdl_severe
+  label: Low hdl severe
+  parameter: hdl_cholesterol
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 0.8

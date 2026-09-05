@@ -1,0 +1,25 @@
+id: hdl_ranges
+description: ХС ЛПВП
+conditions:
+- id: low_hdl_male
+  label: Низкий ХС ЛПВП (мужчины)
+  parameter: hdl_cholesterol
+  max: 1.0
+  gender: male
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Физическая активность, отказ от курения, снижение веса
+  - При низком HDL и высоком риске – статины, ниацин
+  description: ЛПВП < 1.0 ммоль/л – низкий уровень у мужчин.
+- id: low_hdl_female
+  label: Низкий ХС ЛПВП (женщины)
+  parameter: hdl_cholesterol
+  max: 1.2
+  gender: female
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Физическая активность, отказ от курения, снижение веса
+  - При низком HDL и высоком риске – статины, ниацин
+  description: ЛПВП < 1.2 ммоль/л – низкий уровень у женщин.

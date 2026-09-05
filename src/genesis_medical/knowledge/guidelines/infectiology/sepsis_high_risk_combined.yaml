@@ -1,0 +1,26 @@
+id: sepsis_high_risk_combined
+conditions:
+- id: sepsis_high_risk_combined_procalcitonin
+  label: Procalcitonin — отклонение от нормы
+  parameter: procalcitonin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 0.5
+- id: sepsis_high_risk_combined_crp
+  label: Crp — отклонение от нормы
+  parameter: crp
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 50
+- id: sepsis_high_risk_combined_wbc
+  label: Wbc — отклонение от нормы
+  parameter: wbc
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 15

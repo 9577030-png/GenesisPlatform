@@ -1,0 +1,26 @@
+id: inflammatory_bowel_disease
+conditions:
+- id: inflammatory_bowel_disease_calprotectin
+  label: Calprotectin — отклонение от нормы
+  parameter: calprotectin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 100
+- id: inflammatory_bowel_disease_albumin
+  label: Albumin — отклонение от нормы
+  parameter: albumin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 35
+- id: inflammatory_bowel_disease_ferritin
+  label: Ferritin — отклонение от нормы
+  parameter: ferritin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 30

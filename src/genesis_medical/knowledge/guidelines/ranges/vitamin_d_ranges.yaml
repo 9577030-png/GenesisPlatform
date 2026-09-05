@@ -1,0 +1,13 @@
+id: vitamin_d_ranges
+description: Уровень витамина D (25(OH)D)
+conditions:
+- id: vitamin_d_deficiency
+  label: Дефицит витамина D
+  parameter: vitamin_d_25oh
+  max: 30
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - 'Коррекция уровня витамина D: пероральный колекальциферол 2000–5000 МЕ/сут в течение
+    2–3 месяцев, затем поддерживающая доза 800–2000 МЕ/сут'
+  description: 25(OH)D < 30 нг/мл – дефицит.

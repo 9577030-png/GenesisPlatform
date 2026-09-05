@@ -1,0 +1,10 @@
+id: venous_thromboembolism
+conditions:
+- id: venous_thromboembolism
+  label: Venous thromboembolism
+  parameter: d_dimer
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 0.5

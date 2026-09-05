@@ -1,0 +1,26 @@
+id: renal_vein_thrombosis
+conditions:
+- id: renal_vein_thrombosis_urine_erythrocytes
+  label: Urine erythrocytes — отклонение от нормы
+  parameter: urine_erythrocytes
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 5
+- id: renal_vein_thrombosis_creatinine
+  label: Creatinine — отклонение от нормы
+  parameter: creatinine
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 150
+- id: renal_vein_thrombosis_d_dimer
+  label: D dimer — отклонение от нормы
+  parameter: d_dimer
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 0.5

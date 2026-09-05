@@ -1,0 +1,10 @@
+id: bnp_elevated
+conditions:
+- id: bnp_elevated
+  label: Bnp elevated
+  parameter: bnp
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 100

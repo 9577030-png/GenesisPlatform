@@ -1,0 +1,10 @@
+id: leukocytosis_extreme
+conditions:
+- id: leukocytosis_extreme
+  label: Leukocytosis extreme
+  parameter: wbc
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 25

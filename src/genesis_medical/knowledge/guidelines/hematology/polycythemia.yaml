@@ -1,0 +1,10 @@
+id: polycythemia
+conditions:
+- id: polycythemia
+  label: Polycythemia
+  parameter: hemoglobin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 170

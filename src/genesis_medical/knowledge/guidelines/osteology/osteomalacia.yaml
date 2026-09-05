@@ -1,0 +1,34 @@
+id: osteomalacia
+conditions:
+- id: osteomalacia_vitamin_d
+  label: Vitamin d — отклонение от нормы
+  parameter: vitamin_d
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 20
+- id: osteomalacia_phosphate
+  label: Phosphate — отклонение от нормы
+  parameter: phosphate
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 0.8
+- id: osteomalacia_calcium_total
+  label: Calcium total — отклонение от нормы
+  parameter: calcium_total
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 2.15
+- id: osteomalacia_alkaline_phosphatase
+  label: Alkaline phosphatase — отклонение от нормы
+  parameter: alkaline_phosphatase
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 130

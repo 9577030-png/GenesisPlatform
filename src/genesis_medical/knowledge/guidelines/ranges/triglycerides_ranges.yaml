@@ -1,0 +1,13 @@
+id: triglycerides_ranges
+description: Уровень триглицеридов
+conditions:
+- id: hypertriglyceridemia
+  label: Гипертриглицеридемия
+  parameter: triglycerides
+  min: 1.7
+  scoring: 5
+  risk: HIGH
+  recommendations:
+  - Диета с ограничением простых углеводов и алкоголя
+  - При уровне > 2.3 ммоль/л – рассмотреть фибраты (фенофибрат 145 мг/сут)
+  description: Триглицериды ≥ 1.7 ммоль/л – фактор риска панкреатита и атеросклероза.

@@ -1,0 +1,18 @@
+id: pulmonary_embolism_high_risk
+conditions:
+- id: pulmonary_embolism_high_risk_d_dimer
+  label: D dimer — отклонение от нормы
+  parameter: d_dimer
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 2.0
+- id: pulmonary_embolism_high_risk_troponin_i
+  label: Troponin i — отклонение от нормы
+  parameter: troponin_i
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 40

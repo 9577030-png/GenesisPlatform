@@ -1,0 +1,10 @@
+id: folate_deficiency_severe
+conditions:
+- id: folate_deficiency_severe
+  label: Folate deficiency severe
+  parameter: folate
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 4.0

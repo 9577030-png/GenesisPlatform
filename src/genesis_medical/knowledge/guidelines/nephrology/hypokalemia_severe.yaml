@@ -1,0 +1,10 @@
+id: hypokalemia_severe
+conditions:
+- id: hypokalemia_severe
+  label: Hypokalemia severe
+  parameter: potassium
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 2.5

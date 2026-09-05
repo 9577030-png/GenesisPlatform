@@ -1,0 +1,10 @@
+id: hyperkalemia_critical
+conditions:
+- id: hyperkalemia_critical
+  label: Hyperkalemia critical
+  parameter: potassium
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 6.5

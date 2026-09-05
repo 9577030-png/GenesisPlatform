@@ -1,0 +1,25 @@
+id: ast_ranges
+description: Аспартатаминотрансфераза (АСТ)
+conditions:
+- id: ast_high_male
+  label: Повышенная АСТ (мужчины)
+  parameter: ast
+  min: 40
+  gender: male
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Оценить АЛТ, ГГТ, щелочную фосфатазу, билирубин
+  - Исключить поражение печени, мышц, сердца
+  description: АСТ ≥ 40 Ед/л – повышение у мужчин.
+- id: ast_high_female
+  label: Повышенная АСТ (женщины)
+  parameter: ast
+  min: 32
+  gender: female
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Оценить АЛТ, ГГТ, щелочную фосфатазу, билирубин
+  - Исключить поражение печени, мышц, сердца
+  description: АСТ ≥ 32 Ед/л – повышение у женщин.

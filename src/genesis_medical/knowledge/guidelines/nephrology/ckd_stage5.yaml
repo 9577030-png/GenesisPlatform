@@ -1,0 +1,26 @@
+id: ckd_stage5
+conditions:
+- id: ckd_stage5_egfr
+  label: Egfr — отклонение от нормы
+  parameter: egfr
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 14
+- id: ckd_stage5_creatinine
+  label: Creatinine — отклонение от нормы
+  parameter: creatinine
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 500
+- id: ckd_stage5_urea
+  label: Urea — отклонение от нормы
+  parameter: urea
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 30

@@ -1,0 +1,16 @@
+id: high_value_foreign_currency
+version: "1"
+priority: 20
+conflicts_with:
+  - standard_processing
+conditions:
+  - fact: amount
+    operator: ">"
+    value: 10000
+  - fact: currency
+    operator: not_in
+    value:
+      - EUR
+result:
+  action: enhanced_review
+  reason: high_value_non_eur_transaction

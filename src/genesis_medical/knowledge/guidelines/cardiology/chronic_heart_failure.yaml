@@ -1,0 +1,18 @@
+id: chronic_heart_failure
+conditions:
+- id: chronic_heart_failure_bnp
+  label: Bnp — отклонение от нормы
+  parameter: bnp
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 100
+- id: chronic_heart_failure_nt_probnp
+  label: Nt probnp — отклонение от нормы
+  parameter: nt_probnp
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 125

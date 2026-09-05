@@ -1,0 +1,18 @@
+id: syphilis_active
+conditions:
+- id: syphilis_active_rpr_syphilis
+  label: Rpr syphilis — отклонение от нормы
+  parameter: rpr_syphilis
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 1
+- id: syphilis_active_tpha_syphilis
+  label: Tpha syphilis — отклонение от нормы
+  parameter: tpha_syphilis
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 1

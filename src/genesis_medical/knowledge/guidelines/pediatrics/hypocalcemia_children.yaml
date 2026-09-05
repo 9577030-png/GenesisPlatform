@@ -1,0 +1,10 @@
+id: hypocalcemia_children
+conditions:
+- id: hypocalcemia_children
+  label: Hypocalcemia children
+  parameter: calcium_total
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 2.15

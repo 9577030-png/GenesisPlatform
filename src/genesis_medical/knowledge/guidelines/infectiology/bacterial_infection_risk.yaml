@@ -1,0 +1,26 @@
+id: bacterial_infection_risk
+conditions:
+- id: bacterial_infection_risk_crp
+  label: Crp — отклонение от нормы
+  parameter: crp
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 10
+- id: bacterial_infection_risk_wbc
+  label: Wbc — отклонение от нормы
+  parameter: wbc
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 11
+- id: bacterial_infection_risk_neutrophils_percent
+  label: Neutrophils percent — отклонение от нормы
+  parameter: neutrophils_percent
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 70

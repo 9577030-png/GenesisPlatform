@@ -1,0 +1,21 @@
+id: diabetic_nephropathy
+description: "Сочетание микроальбуминурии, снижения СКФ и длительного течения сахарного диабета указывает на диабетическую нефропатию."
+condition: any
+scoring:
+  urine_albumin: 5
+  egfr: 4
+  glucose: 3
+  hba1c: 3
+override_thresholds:
+  urine_albumin:
+    high: 30
+    risk_level: HIGH
+  egfr:
+    low: 60
+    risk_level: HIGH
+  glucose:
+    high: 7.0
+    risk_level: HIGH
+  hba1c:
+    high: 7.0
+    risk_level: HIGH

@@ -1,0 +1,368 @@
+# clinical_logic.yaml
+# Настройки логики постобработки
+
+probability_threshold:
+  default: 0.3
+  sepsis: 0.2
+  ckd_stage5: 0.3
+
+# ========== НОВЫЕ СЕКЦИИ ДЛЯ МАППИНГОВ ==========
+diagnosis_labels:
+  diabetes_mellitus_type_2: "Сахарный диабет 2 типа"
+  severe_hyperglycemia: "Тяжёлая гипергликемия"
+  hypoglycemia: "Гипогликемия"
+  prediabetes: "Предиабет"
+  hypercholesterolemia: "Гиперхолестеринемия"
+  hypertriglyceridemia: "Гипертриглицеридемия"
+  low_hdl: "Низкий ХС ЛПВП"
+  hypertension: "Артериальная гипертензия"
+  obesity: "Ожирение"
+  vitamin_d_deficiency: "Дефицит витамина D"
+  hypothyroidism: "Гипотиреоз"
+  hyperthyroidism: "Гипертиреоз"
+  iron_deficiency: "Железодефицитная анемия"
+  gout: "Подагра"
+  hyperkalemia: "Гиперкалиемия"
+  hypokalemia: "Гипокалиемия"
+  hyponatremia: "Гипонатриемия"
+  hypernatremia: "Гипернатриемия"
+  hypercalcemia: "Гиперкальциемия"
+  hypocalcemia: "Гипокальциемия"
+  chronic_kidney_disease: "Хроническая болезнь почек"
+  anemia_male: "Анемия (мужчины)"
+  anemia_female: "Анемия (женщины)"
+  acute_kidney_injury: "Острое повреждение почек"
+  nonalcoholic_fatty_liver: "Неалкогольная жировая болезнь печени"
+  celiac_disease: "Целиакия"
+  anemia_chronic_disease: "Анемия хронического воспаления"
+  b12_deficiency: "Дефицит витамина B12"
+  folate_deficiency: "Дефицит фолиевой кислоты"
+  urinary_tract_infection: "Инфекция мочевыводящих путей"
+  lower_respiratory_infection: "Нижняя респираторная инфекция"
+  systemic_inflammation: "Системное воспаление"
+  metabolic_syndrome: "Метаболический синдром"
+  creatinine_high_male: "Повышенный креатинин (мужчины)"
+  creatinine_high_female: "Повышенный креатинин (женщины)"
+  alt_high_male: "Повышенная АЛТ (мужчины)"
+  alt_high_female: "Повышенная АЛТ (женщины)"
+  ast_high_male: "Повышенная АСТ (мужчины)"
+  ast_high_female: "Повышенная АСТ (женщины)"
+  ggt_high_male: "Повышенная ГГТ (мужчины)"
+  ggt_high_female: "Повышенная ГГТ (женщины)"
+  low_hdl_male: "Низкий ХС ЛПВП (мужчины)"
+  low_hdl_female: "Низкий ХС ЛПВП (женщины)"
+  ferritin_low_male: "Сниженный ферритин (мужчины)"
+  ferritin_low_female: "Сниженный ферритин (женщины)"
+  ferritin_high_male: "Повышенный ферритин (мужчины)"
+  ferritin_high_female: "Повышенный ферритин (женщины)"
+  serum_iron_low_male: "Сниженное железо сыворотки (мужчины)"
+  serum_iron_low_female: "Сниженное железо сыворотки (женщины)"
+  serum_iron_high_male: "Повышенное железо сыворотки (мужчины)"
+  serum_iron_high_female: "Повышенное железо сыворотки (женщины)"
+  rbc_low_male: "Сниженные эритроциты (мужчины)"
+  rbc_high_male: "Повышенные эритроциты (мужчины)"
+  rbc_low_female: "Сниженные эритроциты (женщины)"
+  rbc_high_female: "Повышенные эритроциты (женщины)"
+  hematocrit_low_male: "Сниженный гематокрит (мужчины)"
+  hematocrit_high_male: "Повышенный гематокрит (мужчины)"
+  hematocrit_low_female: "Сниженный гематокрит (женщины)"
+  hematocrit_high_female: "Повышенный гематокрит (женщины)"
+  esr_high_male: "Повышенная СОЭ (мужчины)"
+  esr_high_female: "Повышенная СОЭ (женщины)"
+
+system_groups:
+  Эндокринная система:
+    - vitamin_d_deficiency
+    - hypercalcemia
+    - hypocalcemia
+    - prediabetes
+    - hyperglycemia
+    - diabetes_mellitus_type_2
+    - hypothyroidism
+    - hyperthyroidism
+    - thyroid
+    - pcos
+    - glucagonoma
+    - somatostatinoma
+    - hypoglycemia
+    - severe_hyperglycemia
+  Почки и мочевыводящие пути:
+    - ckd_stage3
+    - ckd_stage4
+    - ckd_stage5
+    - acute_kidney_injury
+    - chronic_kidney_disease
+    - urinary_tract_infection
+    - creatinine_high_male
+    - creatinine_high_female
+  Печень и желчевыводящие пути:
+    - acute_hepatitis
+    - nonalcoholic_fatty_liver
+    - cholestasis
+    - hypoalbuminemia
+    - alt_high_male
+    - alt_high_female
+    - ast_high_male
+    - ast_high_female
+    - ggt_high_male
+    - ggt_high_female
+  Системное воспаление и инфекция:
+    - systemic_inflammation
+    - sepsis
+    - lower_respiratory_infection
+    - esr_high_male
+    - esr_high_female
+  Гематология:
+    - iron_deficiency
+    - b12_deficiency
+    - folate_deficiency
+    - macrocytic_anemia
+    - hemolytic_anemia
+    - anemia_chronic_disease
+    - anemia_male
+    - anemia_female
+    - ferritin_low_male
+    - ferritin_low_female
+    - ferritin_high_male
+    - ferritin_high_female
+    - serum_iron_low_male
+    - serum_iron_low_female
+    - serum_iron_high_male
+    - serum_iron_high_female
+    - rbc_low_male
+    - rbc_high_male
+    - rbc_low_female
+    - rbc_high_female
+    - hematocrit_low_male
+    - hematocrit_high_male
+    - hematocrit_low_female
+    - hematocrit_high_female
+  Липидный обмен и сердце:
+    - metabolic_syndrome
+    - hypertriglyceridemia
+    - low_hdl
+    - hypercholesterolemia
+    - hypertension
+    - low_hdl_male
+    - low_hdl_female
+  Кости:
+    - osteoporosis
+    - gout
+    - hyperuricemia
+  Обмен веществ:
+    - obesity
+  Электролиты:
+    - hyperkalemia
+    - hypokalemia
+    - hyponatremia
+    - hypernatremia
+
+allowed_primary:
+  - diabetes_mellitus_type_2
+  - severe_hyperglycemia
+  - hypoglycemia
+  - prediabetes
+  - hypercholesterolemia
+  - hypertriglyceridemia
+  - low_hdl
+  - hypertension
+  - obesity
+  - vitamin_d_deficiency
+  - hypothyroidism
+  - hyperthyroidism
+  - iron_deficiency
+  - gout
+  - hyperkalemia
+  - hypokalemia
+  - hyponatremia
+  - hypernatremia
+  - hypercalcemia
+  - hypocalcemia
+  - chronic_kidney_disease
+  - anemia_male
+  - anemia_female
+  - acute_kidney_injury
+  - nonalcoholic_fatty_liver
+  - celiac_disease
+  - anemia_chronic_disease
+  - b12_deficiency
+  - folate_deficiency
+  - urinary_tract_infection
+  - lower_respiratory_infection
+  - systemic_inflammation
+  - metabolic_syndrome
+  - creatinine_high_male
+  - creatinine_high_female
+  - alt_high_male
+  - alt_high_female
+  - ast_high_male
+  - ast_high_female
+  - ggt_high_male
+  - ggt_high_female
+  - low_hdl_male
+  - low_hdl_female
+  - ferritin_low_male
+  - ferritin_low_female
+  - ferritin_high_male
+  - ferritin_high_female
+  - serum_iron_low_male
+  - serum_iron_low_female
+  - serum_iron_high_male
+  - serum_iron_high_female
+  - rbc_low_male
+  - rbc_high_male
+  - rbc_low_female
+  - rbc_high_female
+  - hematocrit_low_male
+  - hematocrit_high_male
+  - hematocrit_low_female
+  - hematocrit_high_female
+  - esr_high_male
+  - esr_high_female
+
+# ===== ОСТАЛЬНЫЕ СЕКЦИИ (без изменений) =====
+groups:
+  kidney_disease:
+    - ckd_stage3
+    - ckd_stage4
+    - ckd_stage5
+    - acute_kidney_injury
+    - chronic_kidney_disease
+  diabetes:
+    - prediabetes
+    - hyperglycemia
+    - diabetes_mellitus_type_2
+  liver_disease:
+    - acute_hepatitis
+    - nonalcoholic_fatty_liver
+    - cholestasis
+  inflammation:
+    - systemic_inflammation
+    - sepsis
+  anemia:
+    - iron_deficiency
+    - b12_deficiency
+    - folate_deficiency
+    - macrocytic_anemia
+    - hemolytic_anemia
+    - anemia_chronic_disease
+  thyroid:
+    - hypothyroidism
+    - hyperthyroidism
+    - thyroid
+
+priority:
+  kidney_disease:
+    - ckd_stage5
+    - ckd_stage4
+    - ckd_stage3
+    - acute_kidney_injury
+    - chronic_kidney_disease
+  diabetes:
+    - diabetes_mellitus_type_2
+    - hyperglycemia
+    - prediabetes
+  liver_disease:
+    - acute_hepatitis
+    - nonalcoholic_fatty_liver
+    - cholestasis
+  inflammation:
+    - sepsis
+    - systemic_inflammation
+  anemia:
+    - iron_deficiency
+    - anemia_chronic_disease
+    - hemolytic_anemia
+    - macrocytic_anemia
+    - b12_deficiency
+    - folate_deficiency
+  thyroid:
+    - hyperthyroidism
+    - hypothyroidism
+    - thyroid
+
+exclusions:
+  - if: ckd_stage5
+    then:
+      - ckd_stage4
+      - ckd_stage3
+      - chronic_kidney_disease
+  - if: diabetes_mellitus_type_2
+    then:
+      - prediabetes
+      - hyperglycemia
+  - if: iron_deficiency
+    then:
+      - anemia_chronic_disease
+      - b12_deficiency
+      - folate_deficiency
+      - macrocytic_anemia
+      - hemolytic_anemia
+  - if: sepsis
+    then:
+      - systemic_inflammation
+  - if: hypothyroidism
+    then:
+      - thyroid
+  - if: hyperthyroidism
+    then:
+      - thyroid
+  - if: gout
+    then:
+      - hyperuricemia
+
+combinations:
+  - id: primary_hyperparathyroidism
+    label: "Первичный гиперпаратиреоз (предположительно)"
+    conditions:
+      - hypercalcemia
+      - vitamin_d_deficiency
+    probability_factor: 0.8
+    recommendation: "Консультация эндокринолога, определение PTH, кальций суточной мочи, УЗИ паращитовидных желёз"
+    urgency: high
+    doctor_specialty: Endocrinologist
+    additional_tests:
+      - PTH
+      - Calcium 24h urine
+      - Parathyroid ultrasound
+
+  - id: septic_syndrome
+    label: "Септический синдром"
+    conditions:
+      - sepsis
+      - systemic_inflammation
+    probability_factor: 1.0
+    recommendation: "Госпитализация в ОРИТ, контроль гемодинамики, антибиотикотерапия, посев крови"
+    urgency: critical
+    doctor_specialty: Intensive Care Specialist
+    additional_tests:
+      - Blood culture
+      - Lactate
+      - Blood gas analysis
+
+  - id: hepatorenal_syndrome
+    label: "Гепаторенальный синдром (предположительно)"
+    conditions:
+      - acute_kidney_injury
+      - acute_hepatitis
+    probability_factor: 0.6
+    recommendation: "Оценка функции почек и печени, УЗИ органов брюшной полости, консультация гепатолога и нефролога"
+    urgency: high
+    doctor_specialty: Hepatologist
+    additional_tests:
+      - Renal ultrasound
+      - Liver ultrasound
+      - Urine sodium
+
+  - id: metabolic_bone_disease
+    label: "Метаболическое заболевание костей (дефицит витамина D + гиперкальциемия)"
+    conditions:
+      - vitamin_d_deficiency
+      - hypercalcemia
+    probability_factor: 0.7
+    recommendation: "Исследование костного метаболизма, DEXA-сканирование, консультация эндокринолога"
+    urgency: moderate
+    doctor_specialty: Rheumatologist
+    additional_tests:
+      - DEXA scan
+      - Bone turnover markers

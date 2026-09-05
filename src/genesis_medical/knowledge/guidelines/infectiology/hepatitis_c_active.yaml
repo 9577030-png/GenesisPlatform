@@ -1,0 +1,26 @@
+id: hepatitis_c_active
+conditions:
+- id: hepatitis_c_active_anti_hcv
+  label: Anti hcv — отклонение от нормы
+  parameter: anti_hcv
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 1
+- id: hepatitis_c_active_hcv_rna
+  label: Hcv rna — отклонение от нормы
+  parameter: hcv_rna
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 0
+- id: hepatitis_c_active_alt
+  label: Alt — отклонение от нормы
+  parameter: alt
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 40

@@ -1,0 +1,10 @@
+id: hypokalemia
+conditions:
+- id: hypokalemia
+  label: Гипокалиемия
+  parameter: potassium
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 3.5

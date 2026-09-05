@@ -1,0 +1,10 @@
+id: hypernatremia
+conditions:
+- id: hypernatremia
+  label: Гипернатриемия
+  parameter: sodium
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 145

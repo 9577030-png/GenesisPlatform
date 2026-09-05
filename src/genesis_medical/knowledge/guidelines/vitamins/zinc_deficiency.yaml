@@ -1,0 +1,10 @@
+id: zinc_deficiency
+conditions:
+- id: zinc_deficiency
+  label: Zinc deficiency
+  parameter: zinc
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 10

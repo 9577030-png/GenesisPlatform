@@ -1,0 +1,18 @@
+id: uti_children
+conditions:
+- id: uti_children_urine_leukocytes
+  label: Urine leukocytes — отклонение от нормы
+  parameter: urine_leukocytes
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 5
+- id: uti_children_urine_nitrites
+  label: Urine nitrites — отклонение от нормы
+  parameter: urine_nitrites
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 0

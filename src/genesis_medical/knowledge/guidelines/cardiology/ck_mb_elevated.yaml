@@ -1,0 +1,10 @@
+id: ck_mb_elevated
+conditions:
+- id: ck_mb_elevated
+  label: Ck mb elevated
+  parameter: ck_mb
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 25

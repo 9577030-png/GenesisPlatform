@@ -1,0 +1,18 @@
+id: hyperandrogenism_female
+conditions:
+- id: hyperandrogenism_female_testosterone_total
+  label: Testosterone total — отклонение от нормы
+  parameter: testosterone_total
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 2.0
+- id: hyperandrogenism_female_dhea_s
+  label: Dhea s — отклонение от нормы
+  parameter: dhea_s
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 15

@@ -1,0 +1,18 @@
+id: membranous_nephropathy
+conditions:
+- id: membranous_nephropathy_urine_protein
+  label: Urine protein — отклонение от нормы
+  parameter: urine_protein
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 3500
+- id: membranous_nephropathy_albumin
+  label: Albumin — отклонение от нормы
+  parameter: albumin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 30

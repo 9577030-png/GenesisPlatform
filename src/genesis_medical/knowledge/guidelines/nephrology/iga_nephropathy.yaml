@@ -1,0 +1,26 @@
+id: iga_nephropathy
+conditions:
+- id: iga_nephropathy_urine_erythrocytes
+  label: Urine erythrocytes — отклонение от нормы
+  parameter: urine_erythrocytes
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 3
+- id: iga_nephropathy_urine_protein
+  label: Urine protein — отклонение от нормы
+  parameter: urine_protein
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 150
+- id: iga_nephropathy_immunoglobulin_a
+  label: Immunoglobulin a — отклонение от нормы
+  parameter: immunoglobulin_a
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 4.0

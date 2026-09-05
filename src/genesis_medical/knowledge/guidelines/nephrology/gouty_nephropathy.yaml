@@ -1,0 +1,26 @@
+id: gouty_nephropathy
+conditions:
+- id: gouty_nephropathy_uric_acid
+  label: Uric acid — отклонение от нормы
+  parameter: uric_acid
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 420
+- id: gouty_nephropathy_egfr
+  label: Egfr — отклонение от нормы
+  parameter: egfr
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 60
+- id: gouty_nephropathy_creatinine
+  label: Creatinine — отклонение от нормы
+  parameter: creatinine
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 110

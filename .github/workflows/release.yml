@@ -1,0 +1,94 @@
+name: Genesis Release
+
+on:
+  push:
+    tags:
+      - "genesis-core-v*"
+      - "genesis-medical-v*"
+      - "genesis-construction-v*"
+      - "genesis-banking-v*"
+
+jobs:
+  publish-core:
+    if: startsWith(github.ref_name, 'genesis-core-v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Build core
+        run: |
+          python -m pip install --upgrade pip build twine
+          python -m build ./packages/genesis-core --outdir dist/genesis-core
+      - name: Publish core
+        if: ${{ secrets.PYPI_API_TOKEN != '' }}
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: twine upload dist/genesis-core/*
+
+  publish-medical:
+    if: startsWith(github.ref_name, 'genesis-medical-v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Build medical
+        run: |
+          python -m pip install --upgrade pip build twine
+          python -m build ./packages/genesis-medical --outdir dist/genesis-medical
+      - name: Publish medical
+        if: ${{ secrets.PYPI_API_TOKEN != '' }}
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: twine upload dist/genesis-medical/*
+
+  publish-construction:
+    if: startsWith(github.ref_name, 'genesis-construction-v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Build construction
+        run: |
+          python -m pip install --upgrade pip build twine
+          python -m build ./packages/genesis-construction --outdir dist/genesis-construction
+      - name: Publish construction
+        if: ${{ secrets.PYPI_API_TOKEN != '' }}
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: twine upload dist/genesis-construction/*
+  publish-banking:
+    if: startsWith(github.ref_name, 'genesis-banking-v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Build banking
+        run: |
+          python -m pip install --upgrade pip build twine
+          python -m build ./packages/genesis-banking --outdir dist/genesis-banking
+      - name: Publish banking
+        if: ${{ secrets.PYPI_API_TOKEN != '' }}
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: twine upload dist/genesis-banking/*
+

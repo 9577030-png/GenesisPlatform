@@ -1,0 +1,10 @@
+id: thrombocytosis
+conditions:
+- id: thrombocytosis
+  label: Thrombocytosis
+  parameter: platelets
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 400

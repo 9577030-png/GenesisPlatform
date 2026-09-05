@@ -1,0 +1,23 @@
+id: calcium_ranges
+description: Кальций общий
+conditions:
+- id: hypercalcemia
+  label: Гиперкальциемия
+  parameter: calcium_total
+  min: 2.55
+  scoring: 5
+  risk: HIGH
+  recommendations:
+  - Исключить гиперпаратиреоз, злокачественные новообразования
+  - При уровне > 3.0 – гидратация, диуретики, кальцитонин
+  description: Кальций ≥ 2.55 ммоль/л – гиперкальциемия.
+- id: hypocalcemia
+  label: Гипокальциемия
+  parameter: calcium_total
+  max: 2.15
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Проверить уровень альбумина, витамина D, ПТГ
+  - Коррекция препаратами кальция и витамина D
+  description: Кальций ≤ 2.15 ммоль/л – гипокальциемия.

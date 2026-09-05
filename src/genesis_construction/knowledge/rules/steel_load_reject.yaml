@@ -1,0 +1,11 @@
+id: steel_load_reject
+version: 1
+priority: 5
+conflicts_with: [steel_load_check]
+conditions:
+  - fact: applied_load_kn
+    operator: ">"
+    value: 100
+result:
+  status: review
+  message: applied load exceeds the demonstration capacity

@@ -1,0 +1,18 @@
+id: acute_kidney_injury_stage3
+conditions:
+- id: acute_kidney_injury_stage3_creatinine
+  label: Creatinine — отклонение от нормы
+  parameter: creatinine
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 350
+- id: acute_kidney_injury_stage3_egfr
+  label: Egfr — отклонение от нормы
+  parameter: egfr
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 15

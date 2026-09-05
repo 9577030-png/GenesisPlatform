@@ -1,0 +1,10 @@
+id: concrete_load_check
+version: 1
+priority: 10
+conditions:
+  - fact: concrete_strength_mpa
+    operator: ">="
+    value: 25
+result:
+  status: acceptable
+  message: concrete strength meets the demonstration threshold

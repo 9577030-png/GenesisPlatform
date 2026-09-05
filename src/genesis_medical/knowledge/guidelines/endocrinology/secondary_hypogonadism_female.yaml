@@ -1,0 +1,34 @@
+id: secondary_hypogonadism_female
+conditions:
+- id: secondary_hypogonadism_female_estradiol
+  label: Estradiol — отклонение от нормы
+  parameter: estradiol
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 40
+- id: secondary_hypogonadism_female_fsh
+  label: Fsh — отклонение от нормы
+  parameter: fsh
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 1.5
+- id: secondary_hypogonadism_female_lh
+  label: Lh — отклонение от нормы
+  parameter: lh
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 1.7
+- id: secondary_hypogonadism_female_prolactin
+  label: Prolactin — отклонение от нормы
+  parameter: prolactin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 500

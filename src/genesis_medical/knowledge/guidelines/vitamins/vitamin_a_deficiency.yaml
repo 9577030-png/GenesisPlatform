@@ -1,0 +1,10 @@
+id: vitamin_a_deficiency
+conditions:
+- id: vitamin_a_deficiency
+  label: Vitamin a deficiency
+  parameter: vitamin_a
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 1.0

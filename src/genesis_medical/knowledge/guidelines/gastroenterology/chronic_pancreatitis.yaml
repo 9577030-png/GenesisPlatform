@@ -1,0 +1,10 @@
+id: chronic_pancreatitis
+conditions:
+- id: chronic_pancreatitis
+  label: Chronic pancreatitis
+  parameter: pancreatic_elastase
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 200

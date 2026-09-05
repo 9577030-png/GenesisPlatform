@@ -1,0 +1,39 @@
+name: Genesis Quality Gates
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - name: Install project and quality tooling
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-dev.txt
+          python -m pip install PyYAML pydantic
+          python -m pip install -e ./packages/genesis-core
+          python -m pip install -e ./packages/genesis-medical
+          python -m pip install -e ./packages/genesis-construction
+          python -m pip install -e ./packages/genesis-banking
+      - name: Ruff
+        run: ruff check src tests scripts apps
+      - name: Mypy strict
+        run: mypy --strict src
+      - name: Import cycle check
+        run: python scripts/check_import_cycles.py
+      - name: Test suite
+        run: pytest -q
+      - name: Verify domain generator
+        run: pytest -q tests/unit/test_domain_template.py
+      - name: Dependency audit
+        run: pip-audit

@@ -1,0 +1,18 @@
+id: acromegaly
+conditions:
+- id: acromegaly_igf1
+  label: Igf1 — отклонение от нормы
+  parameter: igf1
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 250
+- id: acromegaly_growth_hormone
+  label: Growth hormone — отклонение от нормы
+  parameter: growth_hormone
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 5

@@ -1,0 +1,10 @@
+id: leukocytosis_moderate
+conditions:
+- id: leukocytosis_moderate
+  label: Leukocytosis moderate
+  parameter: wbc
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 11

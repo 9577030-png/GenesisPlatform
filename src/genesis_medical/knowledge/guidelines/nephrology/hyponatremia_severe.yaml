@@ -1,0 +1,10 @@
+id: hyponatremia_severe
+conditions:
+- id: hyponatremia_severe
+  label: Hyponatremia severe
+  parameter: sodium
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 120

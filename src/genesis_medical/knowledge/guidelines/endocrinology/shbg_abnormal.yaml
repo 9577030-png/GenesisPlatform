@@ -1,0 +1,10 @@
+id: shbg_abnormal
+conditions:
+- id: shbg_abnormal
+  label: Shbg abnormal
+  parameter: shbg
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 54

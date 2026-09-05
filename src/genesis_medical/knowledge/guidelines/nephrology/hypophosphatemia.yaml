@@ -1,0 +1,10 @@
+id: hypophosphatemia
+conditions:
+- id: hypophosphatemia
+  label: Hypophosphatemia
+  parameter: phosphate
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 0.8

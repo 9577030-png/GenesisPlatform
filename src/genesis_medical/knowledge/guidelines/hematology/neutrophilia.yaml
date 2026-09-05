@@ -1,0 +1,10 @@
+id: neutrophilia
+conditions:
+- id: neutrophilia
+  label: Neutrophilia
+  parameter: neutrophils_percent
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 70

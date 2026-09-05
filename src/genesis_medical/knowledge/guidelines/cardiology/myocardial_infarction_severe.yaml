@@ -1,0 +1,10 @@
+id: myocardial_infarction_severe
+conditions:
+- id: myocardial_infarction_severe
+  label: Myocardial infarction severe
+  parameter: troponin_i
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 200

@@ -1,0 +1,10 @@
+id: he4_elevated
+conditions:
+- id: he4_elevated
+  label: He4 elevated
+  parameter: he4
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 70

@@ -1,0 +1,25 @@
+id: esr_ranges
+description: Скорость оседания эритроцитов (СОЭ)
+conditions:
+- id: esr_high_male
+  label: Повышенная СОЭ (мужчины)
+  parameter: esr
+  min: 15
+  gender: male
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Оценить CRP, клиническую картину
+  - Исключить воспаление, инфекцию, онкологию
+  description: СОЭ ≥ 15 мм/ч – повышение у мужчин.
+- id: esr_high_female
+  label: Повышенная СОЭ (женщины)
+  parameter: esr
+  min: 20
+  gender: female
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Оценить CRP, клиническую картину
+  - Исключить воспаление, инфекцию, онкологию
+  description: СОЭ ≥ 20 мм/ч – повышение у женщин.

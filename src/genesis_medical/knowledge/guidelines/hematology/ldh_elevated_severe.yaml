@@ -1,0 +1,10 @@
+id: ldh_elevated_severe
+conditions:
+- id: ldh_elevated_severe
+  label: Ldh elevated severe
+  parameter: ldh
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 250

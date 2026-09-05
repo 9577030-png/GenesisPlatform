@@ -1,0 +1,10 @@
+id: lymphocytosis_extreme
+conditions:
+- id: lymphocytosis_extreme
+  label: Lymphocytosis extreme
+  parameter: lymphocytes_percent
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 45

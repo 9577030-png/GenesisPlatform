@@ -1,0 +1,10 @@
+id: hyponatremia_children
+conditions:
+- id: hyponatremia_children
+  label: Hyponatremia children
+  parameter: sodium
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 136

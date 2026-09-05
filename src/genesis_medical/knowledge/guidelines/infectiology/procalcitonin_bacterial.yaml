@@ -1,0 +1,11 @@
+id: procalcitonin_bacterial
+conditions:
+- id: procalcitonin_bacterial
+  label: Procalcitonin bacterial
+  parameter: procalcitonin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Рекомендована антибиотикотерапия
+  - Консультация инфекциониста
+  min: 0.5

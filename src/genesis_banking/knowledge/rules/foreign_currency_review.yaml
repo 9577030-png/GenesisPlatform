@@ -1,0 +1,11 @@
+id: foreign_currency_review
+version: "1"
+priority: 5
+conditions:
+  - fact: currency
+    operator: not_in
+    value:
+      - EUR
+result:
+  action: review
+  reason: non_eur_currency

@@ -1,0 +1,23 @@
+id: potassium_ranges
+description: Калий сыворотки
+conditions:
+- id: hyperkalemia
+  label: Гиперкалиемия
+  parameter: potassium
+  min: 5.1
+  scoring: 5
+  risk: HIGH
+  recommendations:
+  - Исключить гемолиз, пересмотреть лекарства (ингибиторы АПФ, калийсберегающие диуретики)
+  - При уровне > 6.0 – неотложная терапия (кальция глюконат, инсулин с глюкозой, диуретики)
+  description: Калий ≥ 5.1 ммоль/л – гиперкалиемия.
+- id: hypokalemia
+  label: Гипокалиемия
+  parameter: potassium
+  max: 3.5
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Коррекция диеты (богатые калием продукты), отмена диуретиков, восполнение калия
+    перорально (калий хлорид)
+  description: Калий ≤ 3.5 ммоль/л – гипокалиемия.

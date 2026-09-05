@@ -1,0 +1,10 @@
+id: myoglobin_elevated
+conditions:
+- id: myoglobin_elevated
+  label: Myoglobin elevated
+  parameter: myoglobin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 106

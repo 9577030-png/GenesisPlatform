@@ -1,0 +1,10 @@
+id: thrombocytopenia_severe
+conditions:
+- id: thrombocytopenia_severe
+  label: Thrombocytopenia severe
+  parameter: platelets
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 50

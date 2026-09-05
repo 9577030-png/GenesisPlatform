@@ -1,0 +1,10 @@
+id: iodine_excess
+conditions:
+- id: iodine_excess
+  label: Iodine excess
+  parameter: iodine_urine
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 300

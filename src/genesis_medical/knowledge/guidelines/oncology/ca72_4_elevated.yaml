@@ -1,0 +1,10 @@
+id: ca72_4_elevated
+conditions:
+- id: ca72_4_elevated
+  label: Ca72 4 elevated
+  parameter: ca72_4
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 6.9

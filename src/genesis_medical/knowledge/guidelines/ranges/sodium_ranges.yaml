@@ -1,0 +1,23 @@
+id: sodium_ranges
+description: Натрий сыворотки
+conditions:
+- id: hyponatremia
+  label: Гипонатриемия
+  parameter: sodium
+  max: 136
+  scoring: 5
+  risk: HIGH
+  recommendations:
+  - Уточнить причину (СИАДГ, гиповолемия, сердечная недостаточность), ограничение
+    жидкости при СИАДГ
+  description: Натрий ≤ 136 ммоль/л – гипонатриемия.
+- id: hypernatremia
+  label: Гипернатриемия
+  parameter: sodium
+  min: 145
+  scoring: 5
+  risk: HIGH
+  recommendations:
+  - Восполнение жидкости (перорально или в/в), поиск причины (дегидратация, несахарный
+    диабет)
+  description: Натрий ≥ 145 ммоль/л – гипернатриемия.

@@ -1,0 +1,1407 @@
+aliases:
+  acth:
+    - acth
+    - ACTH
+    - Acth
+    - адренокортикотропный гормон
+    - Адренокортикотропный гормон
+  afp_tumor_marker:
+    - afp_tumor_marker
+    - Afp_tumor_marker
+    - альфа-фетопротеин опухолевый
+    - Альфа-фетопротеин опухолевый
+    - AFP
+  albumin:
+    - albumin
+    - Albumin
+    - альбумин
+    - Альбумин
+  aldolase:
+    - aldolase
+    - Aldolase
+    - альдолаза
+    - Альдолаза
+  alkaline_phosphatase:
+    - alkaline_phosphatase
+    - Alkaline_phosphatase
+    - щелочная фосфатаза
+    - Щелочная фосфатаза
+    - alkaline phosphatase
+    - ALP
+    - ЩФ
+  alkaline_phosphatase_liver:
+    - alkaline_phosphatase_liver
+    - Alkaline_phosphatase_liver
+    - щелочная фосфатаза (печеночный профиль)
+    - Alkaline_phosphatase_liver
+  alpha_1_antitrypsin:
+    - alpha_1_antitrypsin
+    - Alpha_1_antitrypsin
+    - альфа-1-антитрипсин
+    - Альфа-1-антитрипсин
+    - alpha 1 antitrypsin
+  alpha_fetoprotein:
+    - alpha_fetoprotein
+    - Alpha_fetoprotein
+    - альфа-фетопротеин (онкомаркер)
+    - Альфа-фетопротеин (онкомаркер)
+  alt:
+    - alt
+    - ALT
+    - Alt
+    - аланинаминотрансфераза
+    - Аланинаминотрансфераза
+    - АЛТ
+    - алт
+  ammonia:
+    - ammonia
+    - Ammonia
+    - аммиак
+    - Аммиак
+  ana_screening:
+    - ana_screening
+    - Ana_screening
+    - антинуклеарные антитела ANA
+    - Антинуклеарные антитела ANA
+    - ANA
+  anti_ccp:
+    - anti_ccp
+    - Anti_ccp
+    - антитела к циклическому цитруллинированному пептиду
+    - Антитела к циклическому цитруллинированному пептиду
+  anti_ds_dna:
+    - anti_ds_dna
+    - Anti_ds_dna
+    - антитела к двуспиральной ДНК
+    - Антитела к двуспиральной ДНК
+  anti_hbc_total:
+    - anti_hbc_total
+    - Anti_hbc_total
+    - anti-HBc total
+    - антитела anti-HBc total
+    - Anti_Hbc_total
+  anti_hbe:
+    - anti_hbe
+    - Anti_hbe
+    - anti-HBe
+    - Anti-HBe
+  anti_hbs:
+    - anti_hbs
+    - Anti_hbs
+    - anti-HBs
+    - антитела anti-HBs
+    - Anti-HBs
+  anti_hcv:
+    - anti_hcv
+    - Anti_hcv
+    - антитела к вирусу гепатита C
+    - anti-HCV
+    - Anti-HCV
+  anti_tg:
+    - anti_tg
+    - Anti_tg
+    - антитела к тиреоглобулину
+    - Антитела к тиреоглобулину
+    - anti TG
+  anti_tpo:
+    - anti_tpo
+    - Anti_tpo
+    - антитела к тиреопероксидазе
+    - Антитела к тиреопероксидазе
+    - anti TPO
+  apoe_genotype:
+    - apoe_genotype
+    - Apoe_genotype
+    - APOE генотип
+    - APOE genotype
+  apolipoprotein_a1:
+    - apolipoprotein_a1
+    - Apolipoprotein_a1
+    - аполипопротеин A1
+    - Аполипопротеин A1
+    - apolipoprotein a1
+  apolipoprotein_b:
+    - apolipoprotein_b
+    - Apolipoprotein_b
+    - аполипопротеин B
+    - Аполипопротеин B
+    - apolipoprotein b
+  arsenic_urine:
+    - arsenic_urine
+    - Arsenic_urine
+    - мышьяк в моче
+    - Мышьяк в моче
+    - arsenic urine
+  ast:
+    - ast
+    - AST
+    - Ast
+    - аспартатаминотрансфераза
+    - Аспартатаминотрансфераза
+    - АСТ
+    - аст
+  atherogenic_index:
+    - atherogenic_index
+    - Atherogenic_index
+    - индекс атерогенности
+    - Индекс атерогенности
+    - atherogenic index
+  base_excess:
+    - base_excess
+    - Base_excess
+    - избыток оснований
+    - Избыток оснований
+    - base excess
+  basophils_percent:
+    - basophils_percent
+    - Basophils_percent
+    - базофилы
+    - Базофилы
+    - basophils percent
+  beta2_microglobulin:
+    - beta2_microglobulin
+    - Beta2_microglobulin
+    - β2-микроглобулин
+    - Beta2_microglobulin
+    - beta2 microglobulin
+  beta_hcg_tumor_marker:
+    - beta_hcg_tumor_marker
+    - Beta_hcg_tumor_marker
+    - β-ХГЧ как опухолевый маркер
+    - beta-hCG
+    - Beta_HCG
+  beta_hydroxybutyrate:
+    - beta_hydroxybutyrate
+    - Beta_hydroxybutyrate
+    - бета-гидроксибутират
+    - Бета-гидроксибутират
+    - beta-hydroxybutyrate
+  bicarbonate:
+    - bicarbonate
+    - Bicarbonate
+    - бикарбонат
+    - Бикарбонат
+  bile_acids:
+    - bile_acids
+    - Bile_acids
+    - желчные кислоты
+    - Желчные кислоты
+  bilirubin_direct:
+    - bilirubin_direct
+    - Bilirubin_direct
+    - билирубин прямой
+    - Билирубин прямой
+    - direct bilirubin
+    - bilirubin direct
+  bilirubin_indirect:
+    - bilirubin_indirect
+    - Bilirubin_indirect
+    - билирубин непрямой
+    - Билирубин непрямой
+    - indirect bilirubin
+    - bilirubin indirect
+  bilirubin_total:
+    - bilirubin_total
+    - Bilirubin_total
+    - билирубин общий
+    - Билирубин общий
+    - total bilirubin
+    - bilirubin total
+  blood_pressure_diastolic:
+    - blood_pressure_diastolic
+    - Blood pressure diastolic
+    - diastolic blood pressure
+    - ДАД
+    - диастолическое АД
+    - diastolic
+  blood_pressure_systolic:
+    - blood_pressure_systolic
+    - Blood pressure systolic
+    - systolic blood pressure
+    - САД
+    - систолическое АД
+    - systolic
+  bmi:
+    - bmi
+    - BMI
+    - индекс массы тела
+    - ИМТ
+    - body mass index
+  bnp:
+    - bnp
+    - BNP
+    - Bnp
+    - мозговой натрийуретический пептид
+    - Мозговой натрийуретический пептид
+  brca1:
+    - brca1
+    - BRCA1
+    - Brca1
+  brca2:
+    - brca2
+    - BRCA2
+    - Brca2
+  c_peptide:
+    - c_peptide
+    - C_peptide
+    - c-пептид
+    - C-пептид
+    - c peptide
+  ca125:
+    - ca125
+    - Ca125
+    - CA 125
+    - ca 125
+  ca153:
+    - ca153
+    - Ca153
+    - CA 15-3
+    - ca 15-3
+  ca19_9:
+    - ca19_9
+    - Ca19_9
+    - CA 19-9
+    - ca 19-9
+  ca50:
+    - ca50
+    - Ca50
+    - CA 50
+    - ca 50
+  ca72_4:
+    - ca72_4
+    - Ca72_4
+    - CA 72-4
+    - ca 72-4
+  cadmium_blood:
+    - cadmium_blood
+    - Cadmium_blood
+    - кадмий в крови
+    - Кадмий в крови
+    - cadmium blood
+  calcium_ionized:
+    - calcium_ionized
+    - Calcium_ionized
+    - кальций ионизированный
+    - Кальций ионизированный
+    - calcium ionized
+  calcium_total:
+    - calcium_total
+    - Calcium_total
+    - кальций общий
+    - Кальций общий
+    - calcium total
+  carbamazepine:
+    - carbamazepine
+    - Carbamazepine
+    - карбамазепин
+    - Карбамазепин
+  cea:
+    - cea
+    - CEA
+    - Cea
+    - раково-эмбриональный антиген
+    - Раково-эмбриональный антиген
+  ceruloplasmin:
+    - ceruloplasmin
+    - Ceruloplasmin
+    - церулоплазмин
+    - Церулоплазмин
+  chloride:
+    - chloride
+    - Chloride
+    - хлориды
+    - Хлориды
+  cholesterol_total:
+    - cholesterol_total
+    - Cholesterol_total
+    - холестерин общий
+    - Холестерин общий
+    - cholesterol total
+  cholesterol_total_extended:
+    - cholesterol_total_extended
+    - Cholesterol_total_extended
+    - общий холестерин (расширенная оценка)
+    - Cholesterol_total_extended
+  chromogranin_a:
+    - chromogranin_a
+    - Chromogranin_a
+    - хромогранин A
+    - Хромогранин A
+    - chromogranin A
+  child_pugh_score:
+    - child_pugh_score
+    - Child_pugh_score
+    - шкала Child-Pugh
+    - Шкала Child-Pugh
+  ck_mb:
+    - ck_mb
+    - Ck_mb
+    - креатинкиназа MB
+    - Креатинкиназа MB
+    - CK-MB
+  ck_mb_index:
+    - ck_mb_index
+    - Ck_mb_index
+    - индекс CK-MB
+    - Индекс CK-MB
+    - CK-MB index
+  ck_total:
+    - ck_total
+    - Ck_total
+    - креатинкиназа общая
+    - Креатинкиназа общая
+    - CK
+  cmv_igg:
+    - cmv_igg
+    - Cmv_igg
+    - CMV IgG
+    - CMV_IgG
+  cmv_igm:
+    - cmv_igm
+    - Cmv_igm
+    - CMV IgM
+    - CMV_IgM
+  complement_c3:
+    - complement_c3
+    - Complement_c3
+    - компонент комплемента C3
+    - Компонент комплемента C3
+  complement_c4:
+    - complement_c4
+    - Complement_c4
+    - компонент комплемента C4
+    - Компонент комплемента C4
+  copper:
+    - copper
+    - Copper
+    - медь
+    - Медь
+  cortisol_serum:
+    - cortisol_serum
+    - Cortisol_serum
+    - кортизол
+    - Кортизол
+    - cortisol serum
+  creatinine:
+    - creatinine
+    - Creatinine
+    - креатинин
+    - Креатинин
+    - Cr
+    - cr
+  crp:
+    - crp
+    - CRP
+    - Crp
+    - с-реактивный белок
+    - С-реактивный белок
+  cyfra_21_1:
+    - cyfra_21_1
+    - Cyfra_21_1
+    - CYFRA 21-1
+    - cyfra 21-1
+  cyp2c19:
+    - cyp2c19
+    - Cyp2c19
+    - CYP2C19
+  cyp2d6:
+    - cyp2d6
+    - Cyp2d6
+    - CYP2D6
+  cystatin_c:
+    - cystatin_c
+    - Cystatin_c
+    - цистатин C
+    - Цистатин C
+  d_dimer:
+    - d_dimer
+    - D_dimer
+    - D-димер
+    - d-димер
+    - D-dimer
+  de_ritis_ratio:
+    - de_ritis_ratio
+    - De_ritis_ratio
+    - коэффициент де Ритиса AST/ALT
+    - De_Ritis_ratio
+  dhea_s:
+    - dhea_s
+    - Dhea_s
+    - дгэа-сульфат
+    - ДГЭА-сульфат
+    - DHEA-S
+  digoxin:
+    - digoxin
+    - Digoxin
+    - дигоксин
+    - Дигоксин
+  direct_coombs_test:
+    - direct_coombs_test
+    - Direct_coombs_test
+    - прямая проба Кумбса
+    - Прямая проба Кумбса
+  ebv_vca_igg:
+    - ebv_vca_igg
+    - Ebv_vca_igg
+    - EBV VCA IgG
+    - EBV_VCA_IgG
+  ebv_vca_igm:
+    - ebv_vca_igm
+    - Ebv_vca_igm
+    - EBV VCA IgM
+    - EBV_VCA_IgM
+  egfr:
+    - egfr
+    - Egfr
+    - расчетная скорость клубочковой фильтрации
+    - Расчетная скорость клубочковой фильтрации
+    - eGFR
+    - СКФ
+  ena_panel:
+    - ena_panel
+    - Ena_panel
+    - ENA-панель антител
+    - ENA_panel
+  eosinophils_percent:
+    - eosinophils_percent
+    - Eosinophils_percent
+    - эозинофилы
+    - Эозинофилы
+    - eosinophils percent
+  esr:
+    - esr
+    - ESR
+    - Esr
+    - скорость оседания эритроцитов
+    - Скорость оседания эритроцитов
+  estradiol:
+    - estradiol
+    - Estradiol
+    - эстрадиол
+    - Эстрадиол
+  ethanol_blood:
+    - ethanol_blood
+    - Ethanol_blood
+    - этанол в крови
+    - Этанол в крови
+    - ethanol blood
+  ethylene_glycol:
+    - ethylene_glycol
+    - Ethylene_glycol
+    - этиленгликоль
+    - Этиленгликоль
+    - ethylene glycol
+  factor_v_leiden:
+    - factor_v_leiden
+    - Factor_v_leiden
+    - Factor V Leiden
+  fecal_calprotectin:
+    - fecal_calprotectin
+    - Fecal_calprotectin
+    - фекальный кальпротектин
+    - Фекальный кальпротектин
+  fecal_lactoferrin:
+    - fecal_lactoferrin
+    - Fecal_lactoferrin
+    - фекальный лактоферрин
+    - Фекальный лактоферрин
+  fecal_occult_blood:
+    - fecal_occult_blood
+    - Fecal_occult_blood
+    - скрытая кровь в кале
+    - Скрытая кровь в кале
+  ferritin:
+    - ferritin
+    - Ferritin
+    - ферритин
+    - Ферритин
+  fibrosis_index_fib4:
+    - fibrosis_index_fib4
+    - Fibrosis_index_fib4
+    - индекс фиброза FIB-4
+    - Индекс фиброза FIB-4
+  folate:
+    - folate
+    - Folate
+    - фолиевая кислота
+    - Фолиевая кислота
+  free_androgen_index:
+    - free_androgen_index
+    - Free_androgen_index
+    - индекс свободных андрогенов
+    - Индекс свободных андрогенов
+    - free androgen index
+  free_fatty_acids:
+    - free_fatty_acids
+    - Free_fatty_acids
+    - свободные жирные кислоты
+    - Свободные жирные кислоты
+    - free fatty acids
+  free_light_chain_kappa:
+    - free_light_chain_kappa
+    - Free_light_chain_kappa
+    - свободные легкие цепи каппа
+    - Свободные легкие цепи каппа
+  free_light_chain_lambda:
+    - free_light_chain_lambda
+    - Free_light_chain_lambda
+    - свободные легкие цепи лямбда
+    - Свободные легкие цепи лямбда
+  free_light_chain_ratio:
+    - free_light_chain_ratio
+    - Free_light_chain_ratio
+    - соотношение свободных цепей κ/λ
+    - Соотношение свободных цепей κ/λ
+  free_t3:
+    - free_t3
+    - Free_t3
+    - свободный трийодтиронин
+    - Свободный трийодтиронин
+    - free T3
+  free_t4:
+    - free_t4
+    - Free_t4
+    - свободный тироксин
+    - Свободный тироксин
+    - T4
+    - t4
+    - free T4
+    - T   # <-- добавлено
+  fructosamine:
+    - fructosamine
+    - Fructosamine
+    - фруктозамин
+    - Фруктозамин
+  fsh:
+    - fsh
+    - FSH
+    - Fsh
+    - фолликулостимулирующий гормон
+    - Фолликулостимулирующий гормон
+  gamma_glutamyl_transferase:
+    - gamma_glutamyl_transferase
+    - Gamma_glutamyl_transferase
+    - гамма-глутамилтрансфераза (альтернатива)
+    - Gamma_glutamyl_transferase
+  ggt:
+    - ggt
+    - GGT
+    - Ggt
+    - гамма-глутамилтрансфераза
+    - Гамма-глутамилтрансфераза
+  glucose:
+    - glucose
+    - Glucose
+    - глюкоза
+    - Глюкоза
+    - glu
+    - Glu
+    - сахар
+    - Сахар
+    - глюкоза натощак
+    - Глюкоза натощак
+  glycemic_variability:
+    - glycemic_variability
+    - Glycemic_variability
+    - вариабельность гликемии
+    - Вариабельность гликемии
+    - glycemic variability
+  haptoglobin:
+    - haptoglobin
+    - Haptoglobin
+    - гаптоглобин
+    - Гаптоглобин
+  hba1c:
+    - hba1c
+    - Hba1c
+    - гликированный гемоглобин
+    - Гликированный гемоглобин
+    - HbA1c
+  hbeag:
+    - hbeag
+    - HBeAg
+    - Hbeag
+  hbsag:
+    - hbsag
+    - HBsAg
+    - Hbsag
+    - HBsAg (поверхностный антиген вируса гепатита B)
+  hbv_dna:
+    - hbv_dna
+    - Hbv_dna
+    - ДНК вируса гепатита B
+    - HBV DNA
+  hcv_rna:
+    - hcv_rna
+    - Hcv_rna
+    - РНК вируса гепатита C
+    - HCV RNA
+  hdl_cholesterol:
+    - hdl_cholesterol
+    - Hdl_cholesterol
+    - липопротеины высокой плотности
+    - Липопротеины высокой плотности
+    - HDL
+    - hdl
+    - ЛПВП
+    - лпвп
+  hdl_cholesterol_extended:
+    - hdl_cholesterol_extended
+    - Hdl_cholesterol_extended
+    - HDL-холестерин (расширенная оценка)
+    - Hdl_cholesterol_extended
+  he4:
+    - he4
+    - He4
+    - HE4
+  hematocrit:
+    - hematocrit
+    - Hematocrit
+    - hct
+    - Hct
+    - гематокрит
+    - Гематокрит
+  hemoglobin:
+    - hemoglobin
+    - Hemoglobin
+    - hb
+    - Hb
+    - hgb
+    - HGB
+    - гемоглобин
+    - Гемоглобин
+  hepcidin:
+    - hepcidin
+    - Hepcidin
+    - гепсидин
+    - Гепсидин
+  hfe_hemochromatosis:
+    - hfe_hemochromatosis
+    - Hfe_hemochromatosis
+    - HFE гемохроматоз
+    - HFE_hemochromatosis
+  hiv_ag_ab:
+    - hiv_ag_ab
+    - Hiv_ag_ab
+    - ВИЧ Ag/Ab комбинированный тест
+    - HIV_Ag_Ab
+  hiv_rna:
+    - hiv_rna
+    - Hiv_rna
+    - РНК ВИЧ
+    - HIV RNA
+  hla_b27:
+    - hla_b27
+    - Hla_b27
+    - HLA-B27
+  hla_dq2:
+    - hla_dq2
+    - Hla_dq2
+    - HLA-DQ2
+  hla_dq8:
+    - hla_dq8
+    - Hla_dq8
+    - HLA-DQ8
+  homa_ir:
+    - homa_ir
+    - Homa_ir
+    - индекс инсулинорезистентности HOMA-IR
+    - Индекс инсулинорезистентности HOMA-IR
+    - homa ir
+  homocysteine:
+    - homocysteine
+    - Homocysteine
+    - гомоцистеин
+    - Гомоцистеин
+  hs_crp:
+    - hs_crp
+    - Hs_crp
+    - высокочувствительный CRP
+    - Высокочувствительный CRP
+    - hs crp
+  hs_troponin_delta:
+    - hs_troponin_delta
+    - Hs_troponin_delta
+    - динамика высокочувствительного тропонина
+    - Hs_troponin_delta
+  hypochromic_erythrocytes:
+    - hypochromic_erythrocytes
+    - Hypochromic_erythrocytes
+    - гипохромные эритроциты
+    - Гипохромные эритроциты
+    - hypochromic erythrocytes
+  il6:
+    - il6
+    - Il6
+    - интерлейкин-6
+    - Интерлейкин-6
+  immunoglobulin_a:
+    - immunoglobulin_a
+    - Immunoglobulin_a
+    - иммуноглобулин A
+    - Иммуноглобулин A
+    - IgA
+  immunoglobulin_g:
+    - immunoglobulin_g
+    - Immunoglobulin_g
+    - иммуноглобулин G
+    - Иммуноглобулин G
+    - IgG
+  immunoglobulin_m:
+    - immunoglobulin_m
+    - Immunoglobulin_m
+    - иммуноглобулин M
+    - Иммуноглобулин M
+    - IgM
+  indirect_coombs_test:
+    - indirect_coombs_test
+    - Indirect_coombs_test
+    - непрямая проба Кумбса
+    - Непрямая проба Кумбса
+  insulin:
+    - insulin
+    - Insulin
+    - инсулин
+    - Инсулин
+  iodine_urine:
+    - iodine_urine
+    - Iodine_urine
+    - йод в моче
+    - Йод в моче
+    - iodine urine
+  ketone_bodies:
+    - ketone_bodies
+    - Ketone_bodies
+    - кетоновые тела
+    - Кетоновые тела
+    - ketone bodies
+  lactate:
+    - lactate
+    - Lactate
+    - лактат
+    - Лактат
+  lactate_venous:
+    - lactate_venous
+    - Lactate_venous
+    - лактат венозной крови
+    - Лактат венозной крови
+    - lactate venous
+  ldh:
+    - ldh
+    - LDH
+    - Ldh
+    - лактатдегидрогеназа
+    - Лактатдегидрогеназа
+  ldl_cholesterol:
+    - ldl_cholesterol
+    - Ldl_cholesterol
+    - липопротеины низкой плотности
+    - Липопротеины низкой плотности
+    - LDL
+    - ldl
+    - ЛПНП
+    - лпнп
+  ldl_cholesterol_extended:
+    - ldl_cholesterol_extended
+    - Ldl_cholesterol_extended
+    - LDL-холестерин (расширенные цели)
+    - Ldl_cholesterol_extended
+  lead_blood:
+    - lead_blood
+    - Lead_blood
+    - свинец в крови
+    - Свинец в крови
+    - lead blood
+  lh:
+    - lh
+    - LH
+    - Lh
+    - лютеинизирующий гормон
+    - Лютеинизирующий гормон
+  lipoprotein_a:
+    - lipoprotein_a
+    - Lipoprotein_a
+    - липопротеин(a)
+    - Липопротеин(a)
+    - lipoprotein a
+  lipoprotein_a_cardiovascular:
+    - lipoprotein_a_cardiovascular
+    - Lipoprotein_a_cardiovascular
+    - липопротеин(a) сердечно-сосудистый риск
+    - Lipoprotein_a_cardiovascular
+  lithium:
+    - lithium
+    - Lithium
+    - литий
+    - Литий
+  lymphocytes_percent:
+    - lymphocytes_percent
+    - Lymphocytes_percent
+    - лимфоциты
+    - Лимфоциты
+    - lymphocytes percent
+  magnesium:
+    - magnesium
+    - Magnesium
+    - магний
+    - Магний
+  mch:
+    - mch
+    - MCH
+    - Mch
+    - среднее содержание гемоглобина в эритроците
+    - Среднее содержание гемоглобина в эритроците
+  mchc:
+    - mchc
+    - MCHC
+    - Mchc
+    - средняя концентрация гемоглобина
+    - Средняя концентрация гемоглобина
+  mcv:
+    - mcv
+    - MCV
+    - Mcv
+    - средний объем эритроцита
+    - Средний объем эритроцита
+  mercury_blood:
+    - mercury_blood
+    - Mercury_blood
+    - ртуть в крови
+    - Ртуть в крови
+    - mercury blood
+  methanol:
+    - methanol
+    - Methanol
+    - метанол
+    - Метанол
+  methylmalonic_acid:
+    - methylmalonic_acid
+    - Methylmalonic_acid
+    - метилмалоновая кислота
+    - Метилмалоновая кислота
+    - methylmalonic acid
+  monocytes_percent:
+    - monocytes_percent
+    - Monocytes_percent
+    - моноциты
+    - Моноциты
+    - monocytes percent
+  mthfr_a1298c:
+    - mthfr_a1298c
+    - Mthfr_a1298c
+    - MTHFR A1298C
+  mthfr_c677t:
+    - mthfr_c677t
+    - Mthfr_c677t
+    - MTHFR C677T
+  myoglobin:
+    - myoglobin
+    - Myoglobin
+    - миоглобин
+    - Миоглобин
+  neutrophils_percent:
+    - neutrophils_percent
+    - Neutrophils_percent
+    - нейтрофилы
+    - Нейтрофилы
+    - neutrophils percent
+  ngal:
+    - ngal
+    - NGAL
+    - Ngal
+    - липокалин, ассоциированный с нейтрофильной желатиназой
+    - NGAL
+  non_hdl_cholesterol:
+    - non_hdl_cholesterol
+    - Non_hdl_cholesterol
+    - не-ЛПВП холестерин
+    - Не-ЛПВП холестерин
+    - non hdl cholesterol
+  nse:
+    - nse
+    - NSE
+    - Nse
+    - нейрон-специфическая энолаза
+    - Нейрон-специфическая энолаза
+  nt_probnp:
+    - nt_probnp
+    - Nt_probnp
+    - NT-proBNP
+    - nt-probnp
+  nudt15:
+    - nudt15
+    - NUDT15
+    - Nudt15
+  oral_glucose_tolerance_test_2h:
+    - oral_glucose_tolerance_test_2h
+    - Oral_glucose_tolerance_test_2h
+    - глюкоза через 2 часа после нагрузки
+    - Глюкоза через 2 часа после нагрузки
+  oral_glucose_tolerance_test_fasting:
+    - oral_glucose_tolerance_test_fasting
+    - Oral_glucose_tolerance_test_fasting
+    - глюкоза натощак при ОГТТ
+    - Глюкоза натощак при ОГТТ
+  osmolar_gap:
+    - osmolar_gap
+    - Osmolar_gap
+    - осмолярный промежуток
+    - Осмолярный промежуток
+    - osmolar gap
+  osmolality_serum:
+    - osmolality_serum
+    - Osmolality_serum
+    - осмолярность сыворотки
+    - Осмолярность сыворотки
+    - osmolality serum
+  pancreatic_elastase:
+    - pancreatic_elastase
+    - Pancreatic_elastase
+    - панкреатическая эластаза-1
+    - Панкреатическая эластаза-1
+  paracetamol:
+    - paracetamol
+    - Paracetamol
+    - парацетамол
+    - Парацетамол
+  pco2:
+    - pco2
+    - Pco2
+    - парциальное давление CO2
+    - Парциальное давление CO2
+  ph_blood:
+    - ph_blood
+    - Ph_blood
+    - pH крови
+    - blood pH
+  phosphate:
+    - phosphate
+    - Phosphate
+    - фосфор неорганический
+    - Фосфор неорганический
+  platelets:
+    - platelets
+    - Platelets
+    - PLT
+    - plt
+    - тромбоциты
+    - Тромбоциты
+  po2:
+    - po2
+    - Po2
+    - парциальное давление кислорода
+    - Парциальное давление кислорода
+  potassium:
+    - potassium
+    - Potassium
+    - калий
+    - Калий
+  prealbumin:
+    - prealbumin
+    - Prealbumin
+    - преальбумин
+    - Преальбумин
+  procalcitonin:
+    - procalcitonin
+    - Procalcitonin
+    - прокальцитонин
+    - Прокальцитонин
+  prolactin:
+    - prolactin
+    - Prolactin
+    - пролактин
+    - Пролактин
+  protein_electrophoresis_alpha1:
+    - protein_electrophoresis_alpha1
+    - Protein_electrophoresis_alpha1
+    - альфа-1-глобулины
+    - Альфа-1-глобулины
+  protein_electrophoresis_alpha2:
+    - protein_electrophoresis_alpha2
+    - Protein_electrophoresis_alpha2
+    - альфа-2-глобулины
+    - Альфа-2-глобулины
+  protein_electrophoresis_albumin:
+    - protein_electrophoresis_albumin
+    - Protein_electrophoresis_albumin
+    - альбумин электрофореза белков
+    - Альбумин электрофореза белков
+  protein_electrophoresis_beta:
+    - protein_electrophoresis_beta
+    - Protein_electrophoresis_beta
+    - бета-глобулины
+    - Бета-глобулины
+  protein_electrophoresis_gamma:
+    - protein_electrophoresis_gamma
+    - Protein_electrophoresis_gamma
+    - гамма-глобулины
+    - Гамма-глобулины
+  prothrombin_g20210a:
+    - prothrombin_g20210a
+    - Prothrombin_g20210a
+    - Prothrombin G20210A
+  pseudocholinesterase:
+    - pseudocholinesterase
+    - Pseudocholinesterase
+    - холинэстераза
+    - Холинэстераза
+  psa_free:
+    - psa_free
+    - Psa_free
+    - свободный ПСА
+    - Свободный ПСА
+    - free PSA
+  psa_ratio:
+    - psa_ratio
+    - Psa_ratio
+    - соотношение свободный ПСА/общий ПСА
+    - Соотношение свободный ПСА/общий ПСА
+    - PSA ratio
+  psa_total:
+    - psa_total
+    - Psa_total
+    - ПСА общий
+    - пса общий
+    - PSA total
+  rbc:
+    - rbc
+    - RBC
+    - эритроциты
+    - Эритроциты
+    - erythrocytes
+    - Erythrocytes
+  reticulocyte_hemoglobin:
+    - reticulocyte_hemoglobin
+    - Reticulocyte_hemoglobin
+    - гемоглобин ретикулоцитов
+    - Гемоглобин ретикулоцитов
+    - reticulocyte hemoglobin
+  rheumatoid_factor:
+    - rheumatoid_factor
+    - Rheumatoid_factor
+    - ревматоидный фактор
+    - Ревматоидный фактор
+  rom_a_index:
+    - rom_a_index
+    - Rom_a_index
+    - ROMA индекс
+    - roma индекс
+  rpr_syphilis:
+    - rpr_syphilis
+    - Rpr_syphilis
+    - RPR тест на сифилис
+    - RPR
+  saa:
+    - saa
+    - Saa
+    - сывороточный амилоид A
+    - Сывороточный амилоид A
+  salicylates:
+    - salicylates
+    - Salicylates
+    - салицилаты
+    - Салицилаты
+  sars_cov_2_antibodies:
+    - sars_cov_2_antibodies
+    - Sars_cov_2_antibodies
+    - антитела SARS-CoV-2
+    - SARS_CoV_2_antibodies
+  scc_antigen:
+    - scc_antigen
+    - Scc_antigen
+    - антиген плоскоклеточной карциномы
+    - Антиген плоскоклеточной карциномы
+    - SCC antigen
+  score2_risk:
+    - score2_risk
+    - Score2_risk
+    - SCORE2 риск
+    - SCORE2_risk
+  selenium_reference:
+    - selenium_reference
+    - Selenium_reference
+    - селен
+    - Селен
+    - selenium reference
+  serum_iron:
+    - serum_iron
+    - Serum_iron
+    - железо сыворотки
+    - Железо сыворотки
+    - serum iron
+    - железо
+    - Железо
+    - iron
+  shbg:
+    - shbg
+    - SHBG
+    - Shbg
+    - глобулин, связывающий половые гормоны
+    - Глобулин, связывающий половые гормоны
+  sodium:
+    - sodium
+    - Sodium
+    - натрий
+    - Натрий
+  soluble_transferrin_receptor:
+    - soluble_transferrin_receptor
+    - Soluble_transferrin_receptor
+    - растворимый рецептор трансферрина
+    - Растворимый рецептор трансферрина
+    - soluble transferrin receptor
+  specific_ige:
+    - specific_ige
+    - Specific_ige
+    - специфический IgE
+    - Специфический IgE
+    - specific IgE
+  testosterone_total:
+    - testosterone_total
+    - Testosterone_total
+    - тестостерон общий
+    - Тестостерон общий
+    - testosterone total
+  theophylline:
+    - theophylline
+    - Theophylline
+    - теофиллин
+    - Теофиллин
+  tibc:
+    - tibc
+    - TIBC
+    - Tibc
+    - общая железосвязывающая способность сыворотки
+    - Общая железосвязывающая способность сыворотки
+  tnfa:
+    - tnfa
+    - Tnfa
+    - фактор некроза опухоли альфа
+    - Фактор некроза опухоли альфа
+  total_ige:
+    - total_ige
+    - Total_ige
+    - общий IgE
+    - Общий IgE
+    - total IgE
+  total_ige_extended:
+    - total_ige_extended
+    - Total_ige_extended
+    - общий IgE расширенный
+    - Общий IgE расширенный
+    - total ige extended
+  total_protein:
+    - total_protein
+    - Total_protein
+    - общий белок
+    - Общий белок
+    - total protein
+  toxoplasma_igg:
+    - toxoplasma_igg
+    - Toxoplasma_igg
+    - Toxoplasma gondii IgG
+    - Toxoplasma_IgG
+  toxoplasma_igm:
+    - toxoplasma_igm
+    - Toxoplasma_igm
+    - Toxoplasma gondii IgM
+    - Toxoplasma_IgM
+  tpha_syphilis:
+    - tpha_syphilis
+    - Tpha_syphilis
+    - TPHA/TPPA антитела к Treponema pallidum
+    - TPHA
+  tpmt:
+    - tpmt
+    - TPMT
+    - Tpmt
+  transferrin:
+    - transferrin
+    - Transferrin
+    - трансферрин
+    - Трансферрин
+  transferrin_reference:
+    - transferrin_reference
+    - Transferrin_reference
+    - трансферрин (референс)
+    - transferrin reference
+  transferrin_saturation:
+    - transferrin_saturation
+    - Transferrin_saturation
+    - насыщение трансферрина железом
+    - Насыщение трансферрина железом
+    - transferrin saturation
+  triglycerides:
+    - triglycerides
+    - Triglycerides
+    - триглицериды
+    - Триглицериды
+  triglycerides_extended:
+    - triglycerides_extended
+    - Triglycerides_extended
+    - триглицериды (расширенные категории)
+    - Triglycerides_extended
+  troponin_i:
+    - troponin_i
+    - Troponin_i
+    - тропонин I
+    - Тропонин I
+    - troponin I
+  troponin_t:
+    - troponin_t
+    - Troponin_t
+    - тропонин T
+    - Тропонин T
+    - troponin T
+  tsh:
+    - tsh
+    - TSH
+    - Tsh
+    - тиреотропный гормон
+    - Тиреотропный гормон
+    - ТТГ
+    - ттг
+  uibc:
+    - uibc
+    - Uibc
+    - ненасыщенная железосвязывающая способность
+    - Ненасыщенная железосвязывающая способность
+  urea:
+    - urea
+    - Urea
+    - мочевина
+    - Мочевина
+  uric_acid:
+    - uric_acid
+    - Uric_acid
+    - мочевая кислота
+    - Мочевая кислота
+    - uric acid
+  urine_albumin:
+    - urine_albumin
+    - urine albumin
+    - альбумин мочи
+    - urine_albumin_excretion
+  urine_albumin_excretion:
+    - urine_albumin_excretion
+    - Urine_albumin_excretion
+    - экскреция альбумина с мочой
+    - Экскреция альбумина с мочой
+    - urine albumin excretion
+  urine_creatinine:
+    - urine_creatinine
+    - Urine_creatinine
+    - креатинин мочи
+    - Креатинин мочи
+    - urine creatinine
+  urine_erythrocytes:
+    - urine_erythrocytes
+    - Urine_erythrocytes
+    - эритроциты в моче
+    - Эритроциты в моче
+    - urine erythrocytes
+  urine_glucose:
+    - urine_glucose
+    - Urine_glucose
+    - глюкоза мочи
+    - Глюкоза мочи
+    - urine glucose
+  urine_ketones:
+    - urine_ketones
+    - Urine_ketones
+    - кетоны в моче
+    - Кетоны в моче
+    - urine ketones
+  urine_leukocytes:
+    - urine_leukocytes
+    - Urine_leukocytes
+    - лейкоциты в моче
+    - Лейкоциты в моче
+    - urine leukocytes
+  urine_nitrites:
+    - urine_nitrites
+    - Urine_nitrites
+    - нитриты в моче
+    - Нитриты в моче
+    - urine nitrites
+  urine_ph:
+    - urine_ph
+    - Urine_ph
+    - pH мочи
+    - urine pH
+  urine_protein:
+    - urine_protein
+    - Urine_protein
+    - белок мочи
+    - Белок мочи
+    - urine protein
+  urine_specific_gravity:
+    - urine_specific_gravity
+    - Urine_specific_gravity
+    - относительная плотность мочи
+    - Относительная плотность мочи
+    - urine specific gravity
+  valproic_acid:
+    - valproic_acid
+    - Valproic_acid
+    - вальпроевая кислота
+    - Вальпроевая кислота
+    - valproic acid
+  vitamin_a:
+    - vitamin_a
+    - Vitamin_a
+    - витамин A (ретинол)
+    - Витамин A (ретинол)
+    - vitamin a
+  vitamin_b1:
+    - vitamin_b1
+    - Vitamin_b1
+    - витамин B1 (тиамин)
+    - Витамин B1 (тиамин)
+    - vitamin b1
+  vitamin_b12:
+    - vitamin_b12
+    - Vitamin_b12
+    - витамин B12
+    - Витамин B12
+    - vitamin b12
+    - B12
+  vitamin_b6:
+    - vitamin_b6
+    - Vitamin_b6
+    - витамин B6
+    - Витамин B6
+    - vitamin b6
+  vitamin_d_25oh:
+    - vitamin_d_25oh
+    - Vitamin_d_25oh
+    - 25(OH) витамин D
+    - витамин D
+    - Vitamin D
+    - 25OHD
+    - D
+    - D 25 OH
+  vitamin_e:
+    - vitamin_e
+    - Vitamin_e
+    - витамин E (альфа-токоферол)
+    - Витамин E (альфа-токоферол)
+    - vitamin e
+  vitamin_k:
+    - vitamin_k
+    - Vitamin_k
+    - витамин K
+    - Витамин K
+    - vitamin k
+  wbc:
+    - wbc
+    - WBC
+    - лейкоциты
+    - Лейкоциты
+    - leukocytes
+    - Leukocytes
+    - white blood cells
+  zinc:
+    - zinc
+    - Zinc
+    - цинк
+    - Цинк

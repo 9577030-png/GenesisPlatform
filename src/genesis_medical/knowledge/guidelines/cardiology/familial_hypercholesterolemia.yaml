@@ -1,0 +1,18 @@
+id: familial_hypercholesterolemia
+conditions:
+- id: familial_hypercholesterolemia_cholesterol_total
+  label: Cholesterol total — отклонение от нормы
+  parameter: cholesterol_total
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 6.2
+- id: familial_hypercholesterolemia_ldl_cholesterol
+  label: Ldl cholesterol — отклонение от нормы
+  parameter: ldl_cholesterol
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 4.0

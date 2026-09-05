@@ -1,0 +1,10 @@
+id: leukemoid_reaction
+conditions:
+- id: leukemoid_reaction
+  label: Leukemoid reaction
+  parameter: wbc
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 50

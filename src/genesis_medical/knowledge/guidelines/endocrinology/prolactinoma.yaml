@@ -1,0 +1,10 @@
+id: prolactinoma
+conditions:
+- id: prolactinoma
+  label: Prolactinoma
+  parameter: prolactin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 200

@@ -1,0 +1,10 @@
+id: hiv_infection
+conditions:
+- id: hiv_infection
+  label: Hiv infection
+  parameter: hiv_rna
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 1000

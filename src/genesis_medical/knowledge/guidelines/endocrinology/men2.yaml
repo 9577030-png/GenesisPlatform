@@ -1,0 +1,18 @@
+id: men2
+conditions:
+- id: men2_calcitonin
+  label: Calcitonin — отклонение от нормы
+  parameter: calcitonin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 10
+- id: men2_metanephrines
+  label: Metanephrines — отклонение от нормы
+  parameter: metanephrines
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 0.5

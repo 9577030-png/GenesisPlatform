@@ -1,0 +1,10 @@
+id: hypercalcemia_children
+conditions:
+- id: hypercalcemia_children
+  label: Hypercalcemia children
+  parameter: calcium_total
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 2.55

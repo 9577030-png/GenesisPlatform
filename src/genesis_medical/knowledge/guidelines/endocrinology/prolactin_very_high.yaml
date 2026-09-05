@@ -1,0 +1,10 @@
+id: prolactin_very_high
+conditions:
+- id: prolactin_very_high
+  label: Prolactin very high
+  parameter: prolactin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 1000

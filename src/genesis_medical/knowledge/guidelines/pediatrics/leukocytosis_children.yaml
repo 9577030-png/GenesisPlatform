@@ -1,0 +1,10 @@
+id: leukocytosis_children
+conditions:
+- id: leukocytosis_children
+  label: Leukocytosis children
+  parameter: wbc
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 12

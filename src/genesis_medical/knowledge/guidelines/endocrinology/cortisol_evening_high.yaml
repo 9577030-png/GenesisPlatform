@@ -1,0 +1,10 @@
+id: cortisol_evening_high
+conditions:
+- id: cortisol_evening_high
+  label: Cortisol evening high
+  parameter: cortisol_serum
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 250

@@ -1,0 +1,21 @@
+id: diabetes_mellitus_type_2
+description: Сахарный диабет 2 типа (глюкоза ≥ 7.0 и/или HbA1c ≥ 6.5%)
+conditions:
+- id: diabetes_glucose
+  label: Гипергликемия (глюкоза ≥ 7.0)
+  parameter: glucose
+  min: 7.0
+  scoring: 7
+  risk: HIGH
+  recommendations:
+  - Повторить анализ натощак
+  - Проверить HbA1c
+- id: diabetes_hba1c
+  label: Повышенный HbA1c (≥ 6.5%)
+  parameter: hba1c
+  min: 6.5
+  scoring: 8
+  risk: HIGH
+  recommendations:
+  - Подтвердить диагноз повторным анализом
+  - Назначить консультацию эндокринолога

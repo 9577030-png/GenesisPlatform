@@ -1,0 +1,26 @@
+id: renal_artery_stenosis
+conditions:
+- id: renal_artery_stenosis_blood_pressure_systolic
+  label: Blood pressure systolic — отклонение от нормы
+  parameter: blood_pressure_systolic
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 160
+- id: renal_artery_stenosis_egfr
+  label: Egfr — отклонение от нормы
+  parameter: egfr
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 60
+- id: renal_artery_stenosis_creatinine
+  label: Creatinine — отклонение от нормы
+  parameter: creatinine
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 110

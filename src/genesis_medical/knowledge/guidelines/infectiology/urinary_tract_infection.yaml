@@ -1,0 +1,18 @@
+id: urinary_tract_infection
+conditions:
+- id: urinary_tract_infection_urine_leukocytes
+  label: Urine leukocytes — отклонение от нормы
+  parameter: urine_leukocytes
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 5
+- id: urinary_tract_infection_urine_protein
+  label: Urine protein — отклонение от нормы
+  parameter: urine_protein
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 150

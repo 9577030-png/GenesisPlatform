@@ -1,0 +1,18 @@
+id: acute_pancreatitis
+conditions:
+- id: acute_pancreatitis_amylase
+  label: Amylase — отклонение от нормы
+  parameter: amylase
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 300
+- id: acute_pancreatitis_lipase
+  label: Lipase — отклонение от нормы
+  parameter: lipase
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 200

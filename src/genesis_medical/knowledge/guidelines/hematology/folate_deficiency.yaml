@@ -1,0 +1,10 @@
+id: folate_deficiency
+conditions:
+- id: folate_deficiency
+  label: Дефицит фолиевой кислоты
+  parameter: folate
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 4.0

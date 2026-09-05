@@ -1,0 +1,45 @@
+id: glucose_ranges
+description: Диапазоны уровня глюкозы
+conditions:
+- id: hypoglycemia
+  label: Гипогликемия
+  parameter: glucose
+  max: 3.9
+  scoring: 5
+  risk: HIGH
+  recommendations:
+  - При уровне глюкозы < 3.9 ммоль/л требуется немедленное обследование
+  - Исключить передозировку сахароснижающих препаратов, инсулиному, надпочечниковую
+    недостаточность
+  description: Уровень глюкозы ниже нормы (< 3.9 ммоль/л).
+- id: prediabetes
+  label: Предиабет (нарушенная гликемия натощак)
+  parameter: glucose
+  min: 5.6
+  max: 6.9
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация эндокринолога, пероральный глюкозотолерантный тест
+  - 'Коррекция образа жизни: диета, физическая активность'
+  description: Уровень глюкозы 5.6–6.9 ммоль/л – предиабет.
+- id: diabetes_mellitus_type_2
+  label: Сахарный диабет 2 типа
+  parameter: glucose
+  min: 7.0
+  scoring: 10
+  risk: HIGH
+  recommendations:
+  - Консультация эндокринолога, контроль HbA1c, липидного профиля
+  - Назначение метформина при отсутствии противопоказаний
+  description: Уровень глюкозы ≥ 7.0 ммоль/л – диабет.
+- id: severe_hyperglycemia
+  label: Тяжёлая гипергликемия
+  parameter: glucose
+  min: 11.1
+  scoring: 15
+  risk: CRITICAL
+  recommendations:
+  - Срочная консультация эндокринолога, исключить кетоацидоз
+  - Контроль кетонов в крови/моче
+  description: Уровень глюкозы ≥ 11.1 ммоль/л – риск кетоацидоза.

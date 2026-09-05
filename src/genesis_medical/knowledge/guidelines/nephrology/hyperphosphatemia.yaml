@@ -1,0 +1,10 @@
+id: hyperphosphatemia
+conditions:
+- id: hyperphosphatemia
+  label: Hyperphosphatemia
+  parameter: phosphate
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 1.5

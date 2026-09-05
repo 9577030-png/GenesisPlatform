@@ -1,0 +1,248 @@
+recommendations:
+  diabetes_mellitus_type2:
+    doctor_specialty: Endocrinologist
+    urgency: high
+    additional_tests:
+      - Oral glucose tolerance test
+      - Fasting insulin
+      - C-peptide
+  prediabetes:
+    doctor_specialty: Endocrinologist
+    urgency: moderate
+    additional_tests:
+      - Oral glucose tolerance test
+      - Lifestyle modification counseling
+  hypothyroidism:
+    doctor_specialty: Endocrinologist
+    urgency: moderate
+    additional_tests:
+      - Free T4
+      - Thyroid antibodies
+  hyperthyroidism:
+    doctor_specialty: Endocrinologist
+    urgency: moderate
+    additional_tests:
+      - T3
+      - Thyroid receptor antibodies
+  metabolic_syndrome:
+    doctor_specialty: Cardiologist
+    urgency: moderate
+    additional_tests:
+      - Lipid profile
+      - Blood pressure monitoring
+      - Waist circumference measurement
+  hypercholesterolemia:
+    doctor_specialty: Cardiologist
+    urgency: moderate
+    additional_tests:
+      - Lipid profile (fasting)
+      - Apolipoprotein B
+  hyperkalemia:
+    doctor_specialty: Nephrologist
+    urgency: severe
+    additional_tests:
+      - ECG
+      - Renal function
+  hypokalemia:
+    doctor_specialty: Nephrologist
+    urgency: moderate
+    additional_tests:
+      - Renal function
+      - Blood gas analysis
+  hypernatremia:
+    doctor_specialty: Nephrologist
+    urgency: moderate
+    additional_tests:
+      - Serum osmolality
+      - Urine sodium
+  hyponatremia:
+    doctor_specialty: Nephrologist
+    urgency: moderate
+    additional_tests:
+      - Serum osmolality
+      - Urine sodium
+  iron_deficiency:
+    doctor_specialty: Hematologist
+    urgency: moderate
+    additional_tests:
+      - Iron
+      - TIBC
+  b12_deficiency:
+    doctor_specialty: Hematologist
+    urgency: moderate
+    additional_tests:
+      - B12
+      - Folate
+  folate_deficiency:
+    doctor_specialty: Hematologist
+    urgency: moderate
+    additional_tests:
+      - Folate
+      - B12
+  gout:
+    doctor_specialty: Rheumatologist
+    urgency: moderate
+    additional_tests:
+      - Joint fluid analysis
+      - Uric acid 24h urine
+  osteoporosis:
+    doctor_specialty: Rheumatologist
+    urgency: moderate
+    additional_tests:
+      - DEXA scan
+      - Bone turnover markers
+  chronic_kidney_disease:
+    doctor_specialty: Nephrologist
+    urgency: high
+    additional_tests:
+      - Urine albumin/creatinine ratio
+      - Renal ultrasound
+  acute_hepatitis:
+    doctor_specialty: Hepatologist
+    urgency: high
+    additional_tests:
+      - Viral hepatitis markers
+      - Liver ultrasound
+  cholestasis:
+    doctor_specialty: Hepatologist
+    urgency: moderate
+    additional_tests:
+      - Liver ultrasound
+      - Anti-mitochondrial antibodies
+  nonalcoholic_fatty_liver:
+    doctor_specialty: Hepatologist
+    urgency: moderate
+    additional_tests:
+      - Liver elastography
+      - Lipid profile
+  acute_kidney_injury:
+    doctor_specialty: Nephrologist
+    urgency: high
+    additional_tests:
+      - Urinalysis
+      - Renal ultrasound
+  acute_pancreatitis:
+    doctor_specialty: Gastroenterologist
+    urgency: high
+    additional_tests:
+      - Abdominal CT
+      - Triglycerides
+  inflammatory_bowel_disease:
+    doctor_specialty: Gastroenterologist
+    urgency: moderate
+    additional_tests:
+      - Colonoscopy with biopsy
+      - Fecal calprotectin
+  celiac_disease:
+    doctor_specialty: Gastroenterologist
+    urgency: moderate
+    additional_tests:
+      - Endoscopy with duodenal biopsy
+      - HLA-DQ2/DQ8 typing
+  macrocytic_anemia:
+    doctor_specialty: Hematologist
+    urgency: moderate
+    additional_tests:
+      - B12
+      - Folate
+      - Reticulocyte count
+  thyroid:
+    doctor_specialty: Endocrinologist
+    urgency: moderate
+    additional_tests:
+      - Thyroid ultrasound
+      - Thyroid antibodies
+    anemia_chronic_disease:
+    doctor_specialty: Hematologist
+    urgency: moderate
+    additional_tests:
+      - Transferrin saturation
+      - Soluble transferrin receptor
+      - CRP (to differentiate from iron deficiency)
+  hemolytic_anemia:
+    doctor_specialty: Hematologist
+    urgency: high
+    additional_tests:
+      - Direct Coombs test
+      - Reticulocyte count
+      - Haptoglobin
+      - LDH
+  systemic_inflammation:
+    doctor_specialty: Infectious Disease Specialist
+    urgency: moderate
+    additional_tests:
+      - Blood culture
+      - Procalcitonin
+  sepsis:
+    doctor_specialty: Intensive Care Specialist
+    urgency: critical
+    additional_tests:
+      - Blood culture
+      - Lactate
+      - Blood gas analysis
+  urinary_tract_infection:
+    doctor_specialty: Nephrologist
+    urgency: moderate
+    additional_tests:
+      - Urine culture
+      - Renal ultrasound
+  ckd_stage3:
+    doctor_specialty: Nephrologist
+    urgency: moderate
+    additional_tests:
+      - Urine albumin/creatinine ratio
+      - Renal ultrasound
+      - Blood pressure control
+  ckd_stage4:
+    doctor_specialty: Nephrologist
+    urgency: high
+    additional_tests:
+      - Complete metabolic panel
+      - Parathyroid hormone
+      - Renal ultrasound
+  ckd_stage5:
+    doctor_specialty: Nephrologist
+    urgency: critical
+    additional_tests:
+      - Dialysis planning
+      - Vascular access assessment
+  hypertriglyceridemia:
+    doctor_specialty: Cardiologist
+    urgency: moderate
+    additional_tests:
+      - Lipid profile (fasting)
+      - Apolipoprotein B
+  low_hdl:
+    doctor_specialty: Cardiologist
+    urgency: moderate
+    additional_tests:
+      - Lipid profile (fasting)
+      - Lipoprotein(a)
+  vitamin_d_deficiency:
+    doctor_specialty: General Practitioner
+    urgency: moderate
+    additional_tests:
+      - Calcium
+      - PTH
+      - Alkaline phosphatase
+  hypercalcemia:
+    doctor_specialty: Endocrinologist
+    urgency: high
+    additional_tests:
+      - PTH
+      - Vitamin D
+      - Calcium 24h urine
+  hypocalcemia:
+    doctor_specialty: Endocrinologist
+    urgency: moderate
+    additional_tests:
+      - PTH
+      - Vitamin D
+      - Magnesium
+  hypoalbuminemia:
+    doctor_specialty: Hepatologist
+    urgency: moderate
+    additional_tests:
+      - Liver function tests
+      - Coagulation studies
+      - Nutritional assessment    

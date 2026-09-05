@@ -1,0 +1,26 @@
+id: men1
+conditions:
+- id: men1_calcium_total
+  label: Calcium total — отклонение от нормы
+  parameter: calcium_total
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 2.55
+- id: men1_prolactin
+  label: Prolactin — отклонение от нормы
+  parameter: prolactin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 500
+- id: men1_insulin
+  label: Insulin — отклонение от нормы
+  parameter: insulin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 25

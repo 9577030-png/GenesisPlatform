@@ -1,0 +1,40 @@
+name: Genesis Medical CI
+
+on:
+  push:
+    paths:
+      - "src/genesis_medical/**"
+      - "packages/genesis-medical/**"
+      - "tests/unit/genesis_medical/**"
+      - "tests/integration/test_genesis_medical_*.py"
+      - ".github/workflows/ci-medical.yml"
+  pull_request:
+    paths:
+      - "src/genesis_medical/**"
+      - "packages/genesis-medical/**"
+      - "tests/unit/genesis_medical/**"
+      - "tests/integration/test_genesis_medical_*.py"
+      - ".github/workflows/ci-medical.yml"
+
+jobs:
+  medical:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - name: Install Core and Medical
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m pip install -e ./packages/genesis-core
+          python -m pip install -e ./packages/genesis-medical
+      - name: Test Medical
+        run: |
+          pytest -q tests/unit/genesis_medical tests/integration/test_genesis_medical_contracts.py tests/integration/test_genesis_medical_parser_errors.py tests/integration/test_genesis_medical_parser_rules.py tests/integration/test_genesis_medical_yaml_recommendations.py tests/integration/test_genesis_medical_yaml_thresholds.py
+      - name: Verify Medical domain descriptor
+        run: python -c "from genesis_medical import get_domain_descriptor; d=get_domain_descriptor(); assert d.name == 'medical'; d.get_rule_loader()"
+      - name: Build Medical wheel
+        run: python -m build ./packages/genesis-medical --outdir dist/genesis-medical

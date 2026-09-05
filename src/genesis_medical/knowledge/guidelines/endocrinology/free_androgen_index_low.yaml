@@ -1,0 +1,10 @@
+id: free_androgen_index_low
+conditions:
+- id: free_androgen_index_low
+  label: Free androgen index low
+  parameter: free_androgen_index
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 30

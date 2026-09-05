@@ -1,0 +1,25 @@
+id: creatinine_ranges
+description: Креатинин сыворотки
+conditions:
+- id: creatinine_high_male
+  label: Повышенный креатинин (мужчины)
+  parameter: creatinine
+  min: 115
+  gender: male
+  scoring: 5
+  risk: HIGH
+  recommendations:
+  - Оценить СКФ, мочевину, электролиты
+  - Исключить острое повреждение почек, обезвоживание
+  description: Креатинин ≥ 115 мкмоль/л – повышение у мужчин.
+- id: creatinine_high_female
+  label: Повышенный креатинин (женщины)
+  parameter: creatinine
+  min: 97
+  gender: female
+  scoring: 5
+  risk: HIGH
+  recommendations:
+  - Оценить СКФ, мочевину, электролиты
+  - Исключить острое повреждение почек, обезвоживание
+  description: Креатинин ≥ 97 мкмоль/л – повышение у женщин.

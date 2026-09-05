@@ -1,0 +1,10 @@
+id: paget_disease
+conditions:
+- id: paget_disease
+  label: Paget disease
+  parameter: alkaline_phosphatase
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 200

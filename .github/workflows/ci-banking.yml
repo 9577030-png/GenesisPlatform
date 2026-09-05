@@ -1,0 +1,42 @@
+name: Genesis Banking CI
+
+on:
+  push:
+    paths:
+      - "src/genesis_banking/**"
+      - "packages/genesis-banking/**"
+      - "tests/unit/genesis_banking/**"
+      - "tests/integration/test_domain_isolation_all_domains.py"
+      - "docs/banking-proof.md"
+      - ".github/workflows/ci-banking.yml"
+  pull_request:
+    paths:
+      - "src/genesis_banking/**"
+      - "packages/genesis-banking/**"
+      - "tests/unit/genesis_banking/**"
+      - "tests/integration/test_domain_isolation_all_domains.py"
+      - "docs/banking-proof.md"
+      - ".github/workflows/ci-banking.yml"
+
+jobs:
+  banking:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install Core
+        run: python -m pip install -e ./packages/genesis-core
+      - name: Install Banking
+        run: python -m pip install -e ./packages/genesis-banking
+      - name: Test Banking
+        run: pytest -q tests/unit/genesis_banking tests/integration/test_domain_isolation_all_domains.py
+      - name: Enforce unchanged Core
+        run: python scripts/check_banking_core_unchanged.py
+      - name: Build Banking wheel
+        run: python -m pip wheel --no-deps --no-build-isolation --wheel-dir dist ./packages/genesis-banking

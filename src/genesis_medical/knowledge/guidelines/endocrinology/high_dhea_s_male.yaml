@@ -1,0 +1,10 @@
+id: high_dhea_s_male
+conditions:
+- id: high_dhea_s_male
+  label: High dhea s male
+  parameter: dhea_s
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 15

@@ -1,0 +1,26 @@
+id: osteoporosis
+conditions:
+- id: osteoporosis_vitamin_d
+  label: Vitamin d — отклонение от нормы
+  parameter: vitamin_d
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 20
+- id: osteoporosis_calcium_total
+  label: Calcium total — отклонение от нормы
+  parameter: calcium_total
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 2.15
+- id: osteoporosis_pth
+  label: Pth — отклонение от нормы
+  parameter: pth
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 6.9

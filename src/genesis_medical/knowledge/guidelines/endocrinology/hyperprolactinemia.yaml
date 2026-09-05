@@ -1,0 +1,10 @@
+id: hyperprolactinemia
+conditions:
+- id: hyperprolactinemia
+  label: Hyperprolactinemia
+  parameter: prolactin
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 500

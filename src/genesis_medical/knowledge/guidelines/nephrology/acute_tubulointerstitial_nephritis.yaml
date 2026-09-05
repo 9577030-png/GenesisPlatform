@@ -1,0 +1,26 @@
+id: acute_tubulointerstitial_nephritis
+conditions:
+- id: acute_tubulointerstitial_nephritis_urine_leukocytes
+  label: Urine leukocytes — отклонение от нормы
+  parameter: urine_leukocytes
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 10
+- id: acute_tubulointerstitial_nephritis_creatinine
+  label: Creatinine — отклонение от нормы
+  parameter: creatinine
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 150
+- id: acute_tubulointerstitial_nephritis_eosinophils_percent
+  label: Eosinophils percent — отклонение от нормы
+  parameter: eosinophils_percent
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 5

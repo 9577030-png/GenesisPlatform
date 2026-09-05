@@ -1,0 +1,10 @@
+id: thrombocytopenia_critical
+conditions:
+- id: thrombocytopenia_critical
+  label: Thrombocytopenia critical
+  parameter: platelets
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 20

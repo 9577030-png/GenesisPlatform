@@ -1,0 +1,45 @@
+id: rbc_ranges
+description: Эритроциты
+conditions:
+- id: rbc_low_male
+  label: Сниженные эритроциты (мужчины)
+  parameter: rbc
+  max: 4.3
+  gender: male
+  scoring: 5
+  risk: HIGH
+  recommendations:
+  - Оценить гемоглобин, MCV, ферритин, B12, фолаты
+  - Исключить анемию
+  description: Эритроциты < 4.3 × 10¹²/Л – снижение у мужчин.
+- id: rbc_high_male
+  label: Повышенные эритроциты (мужчины)
+  parameter: rbc
+  min: 5.7
+  gender: male
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Оценить гематокрит, исключить эритремию, гипоксию
+  description: Эритроциты ≥ 5.7 × 10¹²/Л – повышение у мужчин.
+- id: rbc_low_female
+  label: Сниженные эритроциты (женщины)
+  parameter: rbc
+  max: 3.8
+  gender: female
+  scoring: 5
+  risk: HIGH
+  recommendations:
+  - Оценить гемоглобин, MCV, ферритин, B12, фолаты
+  - Исключить анемию
+  description: Эритроциты < 3.8 × 10¹²/Л – снижение у женщин.
+- id: rbc_high_female
+  label: Повышенные эритроциты (женщины)
+  parameter: rbc
+  min: 5.2
+  gender: female
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Оценить гематокрит, исключить эритремию, гипоксию
+  description: Эритроциты ≥ 5.2 × 10¹²/Л – повышение у женщин.

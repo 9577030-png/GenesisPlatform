@@ -1,0 +1,18 @@
+id: cushing_syndrome
+conditions:
+- id: cushing_syndrome_cortisol_serum
+  label: Cortisol serum — отклонение от нормы
+  parameter: cortisol_serum
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 690
+- id: cushing_syndrome_acth
+  label: Acth — отклонение от нормы
+  parameter: acth
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 60

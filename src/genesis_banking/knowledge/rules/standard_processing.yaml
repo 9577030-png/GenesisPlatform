@@ -1,0 +1,12 @@
+id: standard_processing
+version: "1"
+priority: 1
+conflicts_with:
+  - high_value_foreign_currency
+conditions:
+  - fact: amount
+    operator: "<="
+    value: 10000
+result:
+  action: standard_processing
+  reason: illustrative_default

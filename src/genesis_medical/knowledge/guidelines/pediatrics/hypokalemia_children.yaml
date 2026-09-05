@@ -1,0 +1,10 @@
+id: hypokalemia_children
+conditions:
+- id: hypokalemia_children
+  label: Hypokalemia children
+  parameter: potassium
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 3.5

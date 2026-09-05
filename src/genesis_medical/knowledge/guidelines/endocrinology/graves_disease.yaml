@@ -1,0 +1,18 @@
+id: graves_disease
+conditions:
+- id: graves_disease_tsh
+  label: Tsh — отклонение от нормы
+  parameter: tsh
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  max: 0.4
+- id: graves_disease_free_t4
+  label: Free t4 — отклонение от нормы
+  parameter: free_t4
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 22

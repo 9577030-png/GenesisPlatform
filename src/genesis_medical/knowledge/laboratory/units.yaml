@@ -1,0 +1,187 @@
+units:
+  "g/L":
+    base: "g/L"
+    factor: 1.0
+  "g/dL":
+    base: "g/L"
+    factor: 10.0
+  "fL":
+    base: "fL"
+    factor: 1.0
+  "ug/L":
+    base: "ug/L"
+    factor: 1.0
+  "mmol/L":
+    base: "mmol/L"
+    factor: 1.0
+  "mEq/L":
+    base: "mmol/L"
+    factor: 1.0
+  "mU/L":
+    base: "mU/L"
+    factor: 1.0
+  "pmol/L":
+    base: "pmol/L"
+    factor: 1.0
+  "mg/dL":
+    base: "mmol/L"
+    factor: 0.0555
+  "%":
+    base: "%"
+    factor: 1.0
+  "ng/mL":
+    base: "ng/mL"
+    factor: 1.0
+  "nmol/L":
+    base: "nmol/L"
+    factor: 1.0
+  "umol/L":
+    base: "umol/L"
+    factor: 1.0
+  "pg/mL":
+    base: "pg/mL"
+    factor: 1.0
+  "cm":
+    base: "cm"
+    factor: 1.0
+  "kg/m2":
+    base: "kg/m2"
+    factor: 1.0
+  "mmHg":
+    base: "mmHg"
+    factor: 1.0
+  "U/L":
+    base: "U/L"
+    factor: 1.0
+  "IU/L":
+    base: "U/L"
+    factor: 1.0
+  "ug/g":
+    base: "ug/g"
+    factor: 1.0
+  "U/mL":
+    base: "U/mL"
+    factor: 1.0
+  "mg/L":
+    base: "mg/L"
+    factor: 1.0
+  "IU/mL":
+    base: "IU/mL"
+    factor: 1.0
+  "mIU/L":
+    base: "mIU/L"
+    factor: 1.0
+  "ng/L":
+    base: "ng/L"
+    factor: 1.0
+  "µg/L":
+    base: "µg/L"
+    factor: 1.0
+  "µmol/L":
+    base: "µmol/L"
+    factor: 1.0
+  "10^9/L":
+    base: "10^9/L"
+    factor: 1.0
+  "10^12/L":
+    base: "10^12/L"
+    factor: 1.0
+  "g/day":
+    base: "g/day"
+    factor: 1.0
+  "mg/day":
+    base: "mg/day"
+    factor: 1.0
+  "mm/h":
+    base: "mm/h"
+    factor: 1.0
+  "ratio":
+    base: "ratio"
+    factor: 1.0
+  "index":
+    base: "index"
+    factor: 1.0
+  "kUA/L":
+    base: "kUA/L"
+    factor: 1.0
+  "mOsm/kg":
+    base: "mOsm/kg"
+    factor: 1.0
+  "pH":
+    base: "pH"
+    factor: 1.0
+  "copies/mL":
+    base: "copies/mL"
+    factor: 1.0
+  "qualitative":
+    base: "qualitative"
+    factor: 1.0
+  "genotype":
+    base: "genotype"
+    factor: 1.0
+  "specific_gravity":
+    base: "specific_gravity"
+    factor: 1.0
+  "FEU":
+    base: "FEU"
+    factor: 1.0
+  "cells/HPF":
+    base: "cells/HPF"
+    factor: 1.0
+  "µg/g":
+    base: "µg/g"
+    factor: 1.0
+  "mg/dL":
+    base: "mmol/L"
+    factor: 0.0555
+  "mIU/mL":
+    base: "mIU/mL"
+    factor: 1.0
+  "µIU/mL":
+    base: "µIU/mL"
+    factor: 1.0
+  "pg/mL":
+    base: "pg/mL"
+    factor: 1.0
+  "ng/mL":
+    base: "ng/mL"
+    factor: 1.0
+  "µg/dL":
+    base: "µg/dL"
+    factor: 1.0
+  "µg/L":
+    base: "µg/L"
+    factor: 1.0
+  "nmol/L":
+    base: "nmol/L"
+    factor: 1.0
+  "µmol/L":
+    base: "µmol/L"
+    factor: 1.0
+  "pmol/L":
+    base: "pmol/L"
+    factor: 1.0
+  "nmol/L":
+    base: "nmol/L"
+    factor: 1.0
+  "mL/min/1.73m2":
+    base: "mL/min/1.73m2"
+    factor: 1.0
+  "mOsm/kg":
+    base: "mOsm/kg"
+    factor: 1.0
+  "titer":
+    base: "titer"
+    factor: 1.0
+  "genetic_variant":
+    base: "genetic_variant"
+    factor: 1.0
+  "activity/genotype":
+    base: "activity/genotype"
+    factor: 1.0
+  "score":
+    base: "score"
+    factor: 1.0
+  "%":
+    base: "%"
+    factor: 1.0

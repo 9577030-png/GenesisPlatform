@@ -1,0 +1,25 @@
+id: hemoglobin_ranges
+description: Уровень гемоглобина (взрослые)
+conditions:
+- id: anemia_male
+  label: Анемия (мужчины)
+  parameter: hemoglobin
+  max: 130
+  gender: male
+  scoring: 5
+  risk: HIGH
+  recommendations:
+  - Оценить MCV, ферритин, витамин B12, фолаты
+  - Поиск причины (кровопотеря, дефицит, воспаление)
+  description: Гемоглобин < 130 г/Л – анемия у мужчин (критерий ВОЗ).
+- id: anemia_female
+  label: Анемия (женщины)
+  parameter: hemoglobin
+  max: 120
+  gender: female
+  scoring: 5
+  risk: HIGH
+  recommendations:
+  - Оценить MCV, ферритин, витамин B12, фолаты
+  - Поиск причины (кровопотеря, дефицит, воспаление)
+  description: Гемоглобин < 120 г/Л – анемия у женщин (критерий ВОЗ).

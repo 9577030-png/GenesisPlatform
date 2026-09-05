@@ -1,0 +1,10 @@
+id: beta_hcg_tumor_marker_elevated
+conditions:
+- id: beta_hcg_tumor_marker_elevated
+  label: Beta hcg tumor marker elevated
+  parameter: beta_hcg_tumor_marker
+  scoring: 5
+  risk: MEDIUM
+  recommendations:
+  - Консультация профильного специалиста
+  min: 5
