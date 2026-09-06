@@ -8,87 +8,185 @@ on:
       - "genesis-construction-v*"
       - "genesis-banking-v*"
 
+permissions:
+  contents: read
+
 jobs:
   publish-core:
     if: startsWith(github.ref_name, 'genesis-core-v')
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.13"
+
+      - name: Check PyPI token
+        env:
+          PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+        run: |
+          if [ -z "$PYPI_API_TOKEN" ]; then
+            echo "PYPI_API_TOKEN is not configured"
+            exit 1
+          fi
+
       - name: Build core
         run: |
           python -m pip install --upgrade pip build twine
           python -m build ./packages/genesis-core --outdir dist/genesis-core
-      - name: Publish core
-        if: ${{ secrets.PYPI_API_TOKEN != '' }}
+
+      - name: Publish core to PyPI
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        run: twine upload dist/genesis-core/*
+        run: |
+          twine upload dist/genesis-core/*
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Genesis Core ${{ github.ref_name }}
+          generate_release_notes: true
+          files: dist/genesis-core/*
+
 
   publish-medical:
     if: startsWith(github.ref_name, 'genesis-medical-v')
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.13"
+
+      - name: Check PyPI token
+        env:
+          PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+        run: |
+          if [ -z "$PYPI_API_TOKEN" ]; then
+            echo "PYPI_API_TOKEN is not configured"
+            exit 1
+          fi
+
       - name: Build medical
         run: |
           python -m pip install --upgrade pip build twine
           python -m build ./packages/genesis-medical --outdir dist/genesis-medical
-      - name: Publish medical
-        if: ${{ secrets.PYPI_API_TOKEN != '' }}
+
+      - name: Publish medical to PyPI
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        run: twine upload dist/genesis-medical/*
+        run: |
+          twine upload dist/genesis-medical/*
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Genesis Medical ${{ github.ref_name }}
+          generate_release_notes: true
+          files: dist/genesis-medical/*
+
 
   publish-construction:
     if: startsWith(github.ref_name, 'genesis-construction-v')
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.13"
+
+      - name: Check PyPI token
+        env:
+          PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+        run: |
+          if [ -z "$PYPI_API_TOKEN" ]; then
+            echo "PYPI_API_TOKEN is not configured"
+            exit 1
+          fi
+
       - name: Build construction
         run: |
           python -m pip install --upgrade pip build twine
           python -m build ./packages/genesis-construction --outdir dist/genesis-construction
-      - name: Publish construction
-        if: ${{ secrets.PYPI_API_TOKEN != '' }}
+
+      - name: Publish construction to PyPI
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        run: twine upload dist/genesis-construction/*
+        run: |
+          twine upload dist/genesis-construction/*
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Genesis Construction ${{ github.ref_name }}
+          generate_release_notes: true
+          files: dist/genesis-construction/*
+
+
   publish-banking:
     if: startsWith(github.ref_name, 'genesis-banking-v')
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.13"
+
+      - name: Check PyPI token
+        env:
+          PYPI_API_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+        run: |
+          if [ -z "$PYPI_API_TOKEN" ]; then
+            echo "PYPI_API_TOKEN is not configured"
+            exit 1
+          fi
+
       - name: Build banking
         run: |
           python -m pip install --upgrade pip build twine
           python -m build ./packages/genesis-banking --outdir dist/genesis-banking
-      - name: Publish banking
-        if: ${{ secrets.PYPI_API_TOKEN != '' }}
+
+      - name: Publish banking to PyPI
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        run: twine upload dist/genesis-banking/*
+        run: |
+          twine upload dist/genesis-banking/*
 
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v3
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Genesis Banking ${{ github.ref_name }}
+          generate_release_notes: true
+          files: dist/genesis-banking/*
