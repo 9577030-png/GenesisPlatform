@@ -49,4 +49,4 @@ jobs:
         run: python -c "from genesis_medical import get_domain_descriptor; d=get_domain_descriptor(); assert d.name == 'medical'; d.get_rule_loader()"
 
       - name: Build Medical wheel
-        run: python -m build ./packages/genesis-medical --outdir dist/genesis-medical
+        run: python -m build ./packages/genesis-medical --wheel --outdir dist/genesis-medical

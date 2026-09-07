@@ -46,4 +46,4 @@ jobs:
         run: python -c "from genesis_construction import get_domain_descriptor; d=get_domain_descriptor(); assert d.name == 'construction'; d.get_rule_loader()"
 
       - name: Build Construction wheel
-        run: python -m build ./packages/genesis-construction --outdir dist/genesis-construction
+        run: python -m build ./packages/genesis-construction --wheel --outdir dist/genesis-construction
