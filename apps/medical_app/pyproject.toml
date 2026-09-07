@@ -7,7 +7,7 @@ dependencies = [
     "genesis-medical>=0.3,<0.4",
     "fastapi",
     "streamlit",
-    "sqlalchemy",
+    "sqlalchemy==2.0.52",
     "redis",
     "passlib[bcrypt]",
 ]
