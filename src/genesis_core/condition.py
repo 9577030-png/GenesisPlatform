@@ -3,7 +3,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
-
 SUPPORTED_OPERATORS = frozenset(
     {
         "==",
@@ -42,6 +41,4 @@ class Condition:
             raise ValueError("Condition fact cannot be empty")
 
         if self.operator not in SUPPORTED_OPERATORS:
-            raise ValueError(
-                f"Unsupported operator: {self.operator!r}"
-            )
+            raise ValueError(f"Unsupported operator: {self.operator!r}")

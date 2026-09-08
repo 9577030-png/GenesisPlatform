@@ -33,11 +33,7 @@ class ConditionFindingMapper:
 
         probability = min(scoring / 10.0, 1.0)
 
-        risk = (
-            RiskLevel.HIGH
-            if probability > 0.5
-            else RiskLevel.NORMAL
-        )
+        risk = RiskLevel.HIGH if probability > 0.5 else RiskLevel.NORMAL
 
         configured_risk = condition.get("risk")
 

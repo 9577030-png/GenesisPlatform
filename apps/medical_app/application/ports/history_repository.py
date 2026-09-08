@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
-from typing import Optional
+
 from genesis_medical.domain.entities.report import AnalysisReport
+
 
 class HistoryRepository(ABC):
     @abstractmethod
@@ -8,5 +9,5 @@ class HistoryRepository(ABC):
         pass
 
     @abstractmethod
-    def load(self, patient_id: str) -> Optional[AnalysisReport]:
+    def load(self, patient_id: str) -> AnalysisReport | None:
         pass

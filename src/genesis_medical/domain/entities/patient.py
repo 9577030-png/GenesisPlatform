@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
-from typing import List, Optional
-from genesis_medical.domain.value_objects.gender import Gender
+
 from genesis_medical.domain.exceptions import InvalidPatientDataError
+from genesis_medical.domain.value_objects.gender import Gender
 
 
 @dataclass(frozen=True)
@@ -9,8 +9,8 @@ class PatientProfile:
     id: str
     gender: Gender
     age: int
-    complaints: List[str] = field(default_factory=list)
-    medications: List[str] = field(default_factory=list)
+    complaints: list[str] = field(default_factory=list)
+    medications: list[str] = field(default_factory=list)
 
     def __post_init__(self):
         """Р’Р°Р»РёРґР°С†РёСЏ РґР°РЅРЅС‹С… РїР°С†РёРµРЅС‚Р°."""

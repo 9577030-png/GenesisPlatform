@@ -26,18 +26,13 @@ class RuleCompiler:
         result: list[CompiledRule] = []
 
         for condition in rule_version.conditions:
-            if (
-                patient_gender is not None
-                and not MedicalConditionAdapter.is_applicable(
-                    condition,
-                    patient_gender,
-                )
+            if patient_gender is not None and not MedicalConditionAdapter.is_applicable(
+                condition,
+                patient_gender,
             ):
                 continue
 
-            conditions = RuleCompiler._convert_condition(
-                condition
-            )
+            conditions = RuleCompiler._convert_condition(condition)
 
             rule_id = condition.get(
                 "id",
@@ -50,12 +45,8 @@ class RuleCompiler:
                 result=rule_version.actions,
                 version=str(rule_version.version_id),
                 priority=int(rule_version.priority),
-                conflicts_with=tuple(
-                    rule_version.conflicts_with
-                ),
-                supports=tuple(
-                    rule_version.supports
-                ),
+                conflicts_with=tuple(rule_version.conflicts_with),
+                supports=tuple(rule_version.supports),
             )
 
             result.append(
@@ -82,11 +73,6 @@ class RuleCompiler:
             )
 
         if "parameter" in condition:
-            return MedicalConditionAdapter.to_conditions(
-                condition
-            )
+            return MedicalConditionAdapter.to_conditions(condition)
 
-        raise ValueError(
-            "Unsupported condition format: "
-            "expected either 'fact' or 'parameter'"
-        )
+        raise ValueError("Unsupported condition format: expected either 'fact' or 'parameter'")

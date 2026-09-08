@@ -1,9 +1,9 @@
-from genesis_core import DefaultRuleLoader, Fact, RuleEngine
 from genesis_construction import (
     ConstructionRuleParser,
     ConstructionRuleResolver,
     YamlConstructionRuleSource,
 )
+from genesis_core import DefaultRuleLoader, Fact, RuleEngine
 
 
 def test_construction_pipeline_uses_core_contracts(tmp_path):

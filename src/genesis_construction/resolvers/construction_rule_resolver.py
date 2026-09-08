@@ -21,8 +21,7 @@ class ConstructionRuleResolver(RuleResolver):
         kept: list[RuleEvaluation] = []
         for item in matched:
             if any(
-                item.rule_id in existing.conflicts_with
-                or existing.rule_id in item.conflicts_with
+                item.rule_id in existing.conflicts_with or existing.rule_id in item.conflicts_with
                 for existing in kept
             ):
                 continue

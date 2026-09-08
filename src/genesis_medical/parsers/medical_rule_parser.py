@@ -2,9 +2,8 @@ from __future__ import annotations
 
 from typing import Any
 
-from genesis_core import Condition, Rule
+from genesis_core import Rule
 from genesis_core.contracts import RuleParser
-
 from genesis_medical.adapters.medical_condition_adapter import MedicalConditionAdapter
 from genesis_medical.domain.rule_version import RuleVersion
 

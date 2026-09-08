@@ -1,6 +1,6 @@
-from importlib.metadata import EntryPoint
 import sys
 import types
+from importlib.metadata import EntryPoint
 
 import pytest
 
@@ -42,7 +42,6 @@ def test_discover_entry_points_reads_registered_entry_points(monkeypatch):
 
 
 def test_list_domains_returns_registered_names(monkeypatch):
-    descriptor = make_descriptor("medical")
     points = (
         EntryPoint("construction", "x:y", "genesis.domains"),
         EntryPoint("medical", "x:y", "genesis.domains"),

@@ -19,10 +19,7 @@ def list_domains() -> tuple[str, ...]:
 
 def discover_domains() -> tuple[DomainDescriptor, ...]:
     """Discover and load descriptors for all installed Genesis domains."""
-    return tuple(
-        _load_descriptor(entry_point)
-        for entry_point in discover_entry_points()
-    )
+    return tuple(_load_descriptor(entry_point) for entry_point in discover_entry_points())
 
 
 def load_domain(name: str) -> DomainDescriptor:
@@ -47,8 +44,7 @@ def _load_descriptor(entry_point: EntryPoint) -> DomainDescriptor:
 
     if not isinstance(descriptor, DomainDescriptor):
         raise TypeError(
-            f"Genesis domain entry point {entry_point.name!r} "
-            "must return DomainDescriptor"
+            f"Genesis domain entry point {entry_point.name!r} must return DomainDescriptor"
         )
 
     return descriptor

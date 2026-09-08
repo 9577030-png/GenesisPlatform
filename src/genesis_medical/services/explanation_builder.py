@@ -11,9 +11,7 @@ def build_explanation(findings: Sequence[ClinicalFinding]) -> str:
         return "No significant findings."
 
     parts = [
-        f"- {finding.title} "
-        f"(probability {finding.probability:.0%}, "
-        f"risk {finding.risk.label})"
+        f"- {finding.title} (probability {finding.probability:.0%}, risk {finding.risk.label})"
         for finding in findings
     ]
     return "Findings:\n" + "\n".join(parts)

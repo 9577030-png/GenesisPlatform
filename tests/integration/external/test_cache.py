@@ -1,27 +1,32 @@
+# ruff: noqa: E402
 import pytest
-pytest.importorskip('redis', reason="optional external dependency not installed")
+
+pytest.importorskip("redis", reason="optional external dependency not installed")
 pytestmark = pytest.mark.external
-pytest.importorskip('redis', reason="optional external dependency not installed")
+pytest.importorskip("redis", reason="optional external dependency not installed")
 from unittest.mock import MagicMock
-from genesis_medical.domain.entities.patient import PatientProfile
+
+from medical_app.application.ports.history_repository import HistoryRepository
+from medical_app.application.ports.parser_interface import ParserInterface
+from medical_app.application.ports.renderer_interface import RendererInterface
+from medical_app.application.ports.rule_repository import RuleRepository
+from medical_app.application.services.analysis_pipeline import AnalysisPipeline
+from medical_app.application.services.inference_engine import InferenceEngine
+from medical_app.infrastructure.cache.redis_cache import RedisCache
+from medical_app.infrastructure.repositories.audit_repository import AuditRepository
+
 from genesis_medical.domain.entities.parameter import Parameter
-from genesis_medical.domain.entities.finding import ClinicalFinding
+from genesis_medical.domain.entities.patient import PatientProfile
 from genesis_medical.domain.entities.report import AnalysisReport
 from genesis_medical.domain.value_objects.gender import Gender
 from genesis_medical.domain.value_objects.unit import Unit
-from genesis_medical.domain.value_objects.risk_level import RiskLevel
-from medical_app.infrastructure.cache.redis_cache import RedisCache
-from medical_app.infrastructure.repositories.audit_repository import AuditRepository
-from medical_app.application.ports.rule_repository import RuleRepository
-from genesis_medical.services import PhysiologicalValidator
-from medical_app.application.services.inference_engine import InferenceEngine
-from genesis_medical.services import ActionMapper
-from genesis_medical.services import ReportBuilder
-from genesis_medical.services import PostProcessor
-from medical_app.application.services.analysis_pipeline import AnalysisPipeline
-from medical_app.application.ports.parser_interface import ParserInterface
-from medical_app.application.ports.history_repository import HistoryRepository
-from medical_app.application.ports.renderer_interface import RendererInterface
+from genesis_medical.services import (
+    ActionMapper,
+    PhysiologicalValidator,
+    PostProcessor,
+    ReportBuilder,
+)
+
 
 @pytest.mark.integration
 def test_cache_hit_does_not_raise_name_error():
@@ -46,9 +51,20 @@ def test_cache_hit_does_not_raise_name_error():
     # РњРѕРєР°РµРј РєСЌС€ вЂ“ РІРѕР·РІСЂР°С‰Р°РµРј Р·Р°РєСЌС€РёСЂРѕРІР°РЅРЅС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚
     cache = MagicMock(spec=RedisCache)
     cache.get.return_value = {
-        "findings": [{"id": "F1", "title": "Test", "probability": 0.9, "risk": 3, "evidence": [], "description": ""}],
-        "actions": [{"doctor_specialty": "Hematologist", "urgency": "moderate", "additional_tests": []}],
-        "explanation": "Cached explanation"
+        "findings": [
+            {
+                "id": "F1",
+                "title": "Test",
+                "probability": 0.9,
+                "risk": 3,
+                "evidence": [],
+                "description": "",
+            }
+        ],
+        "actions": [
+            {"doctor_specialty": "Hematologist", "urgency": "moderate", "additional_tests": []}
+        ],
+        "explanation": "Cached explanation",
     }
 
     audit_repo = MagicMock(spec=AuditRepository)
@@ -67,7 +83,7 @@ def test_cache_hit_does_not_raise_name_error():
         cache=cache,
         audit_repo=audit_repo,
         rule_repo=rule_repo,
-        validator=validator
+        validator=validator,
     )
 
     patient = PatientProfile(id="P1", gender=Gender.MALE, age=30)

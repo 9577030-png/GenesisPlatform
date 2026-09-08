@@ -1,15 +1,16 @@
-import pytest
+from datetime import UTC, datetime
 from unittest.mock import Mock
-from datetime import datetime, UTC
 
-from genesis_medical.domain.entities.patient import PatientProfile
-from genesis_medical.domain.entities.parameter import Parameter
-from genesis_medical.domain.value_objects.unit import Unit
-from genesis_medical.domain.value_objects.risk_level import RiskLevel
-from genesis_medical.domain.value_objects.gender import Gender
+import pytest
 from medical_app.application.ports.rule_repository import RuleRepository
-from genesis_medical.domain.rule_version import RuleVersion, RulePriority
 from medical_app.application.services.inference_engine import InferenceEngine
+
+from genesis_medical.domain.entities.parameter import Parameter
+from genesis_medical.domain.entities.patient import PatientProfile
+from genesis_medical.domain.rule_version import RulePriority, RuleVersion
+from genesis_medical.domain.value_objects.gender import Gender
+from genesis_medical.domain.value_objects.risk_level import RiskLevel
+from genesis_medical.domain.value_objects.unit import Unit
 
 
 @pytest.fixture
@@ -56,9 +57,7 @@ def test_inference_engine(rule_repo_mock):
         age=30,
     )
 
-    parameters = [
-        Parameter("Hb", 100, Unit("g/L"))
-    ]
+    parameters = [Parameter("Hb", 100, Unit("g/L"))]
 
     engine = InferenceEngine(
         rule_repo_mock,
@@ -86,6 +85,3 @@ def make_engine():
         Mock(),
         Mock(),
     )
-
-
-

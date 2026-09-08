@@ -23,19 +23,14 @@ def make_rule(
     conflicts_with=None,
     condition_ids=None,
 ) -> RuleVersion:
-    conditions = [
-        {"id": condition_id}
-        for condition_id in (condition_ids or [])
-    ]
+    conditions = [{"id": condition_id} for condition_id in (condition_ids or [])]
 
     return RuleVersion(
         rule_id=rule_id,
         name=rule_id,
         conditions=conditions,
         actions=[],
-        created_at=__import__("datetime").datetime.now(
-            __import__("datetime").UTC
-        ),
+        created_at=__import__("datetime").datetime.now(__import__("datetime").UTC),
         created_by="test",
         priority=priority,
         conflicts_with=conflicts_with or [],
@@ -299,4 +294,4 @@ def test_explicit_finding_rule_mapping_is_used():
 
     assert [finding.id for finding in result] == [
         "finding_a",
-    ]    
+    ]

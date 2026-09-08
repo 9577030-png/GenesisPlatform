@@ -2,10 +2,9 @@ from datetime import UTC, datetime
 
 import pytest
 
-from genesis_medical.adapters.rule_compiler import RuleCompiler
-from genesis_core import Rule
-from genesis_medical.domain.rule_version import RulePriority, RuleVersion
 from genesis_medical.adapters.compiled_rule import CompiledRule
+from genesis_medical.adapters.rule_compiler import RuleCompiler
+from genesis_medical.domain.rule_version import RulePriority, RuleVersion
 from genesis_medical.domain.value_objects.gender import Gender
 
 
@@ -49,10 +48,7 @@ def test_rule_version_is_compiled_to_multiple_rules():
     assert isinstance(compiled_rules, tuple)
     assert len(compiled_rules) == 2
 
-    assert all(
-        isinstance(item, CompiledRule)
-        for item in compiled_rules
-    )
+    assert all(isinstance(item, CompiledRule) for item in compiled_rules)
 
     assert compiled_rules[0].rule.id == "temperature_high"
     assert compiled_rules[1].rule.id == "pressure_high"
@@ -63,19 +59,11 @@ def test_rule_version_is_compiled_to_multiple_rules():
     assert compiled_rules[0].rule.version == "1"
     assert compiled_rules[1].rule.version == "1"
 
-    assert compiled_rules[0].rule.conflicts_with == (
-        "safe_environment",
-    )
-    assert compiled_rules[1].rule.conflicts_with == (
-        "safe_environment",
-    )
+    assert compiled_rules[0].rule.conflicts_with == ("safe_environment",)
+    assert compiled_rules[1].rule.conflicts_with == ("safe_environment",)
 
-    assert compiled_rules[0].rule.supports == (
-        "danger_warning",
-    )
-    assert compiled_rules[1].rule.supports == (
-        "danger_warning",
-    )
+    assert compiled_rules[0].rule.supports == ("danger_warning",)
+    assert compiled_rules[1].rule.supports == ("danger_warning",)
 
 
 def test_each_condition_becomes_independent_rule():
@@ -122,6 +110,7 @@ def test_min_and_max_stay_inside_one_rule():
 
     assert compiled.rule.id == "glucose_range"
     assert len(compiled.rule.conditions) == 2
+
 
 def test_generic_condition_is_supported():
     rule_version = RuleVersion(
@@ -179,16 +168,13 @@ def test_compiled_rule_keeps_source_context():
 
     compiled = RuleCompiler.compile(rule_version)
 
-    assert all(
-        isinstance(item, CompiledRule)
-        for item in compiled
-    )
+    assert all(isinstance(item, CompiledRule) for item in compiled)
 
     assert compiled[0].condition is rule_version.conditions[0]
     assert compiled[0].rule_version is rule_version
 
     assert compiled[0].rule.id == "temperature_high"
-    assert compiled[1].rule.id == "pressure_high"  
+    assert compiled[1].rule.id == "pressure_high"
 
 
 def test_gender_specific_condition_is_compiled_for_matching_gender():
@@ -253,4 +239,3 @@ def test_gender_specific_conditions_can_be_compiled_for_female():
 
     assert len(compiled) == 1
     assert compiled[0].rule.id == "anemia_female"
-

@@ -17,7 +17,7 @@ class PhysiologicalValidator:
             with resource.open("r", encoding="utf-8") as handle:
                 data = yaml.safe_load(handle) or {}
         else:
-            with open(config_path, "r", encoding="utf-8") as handle:
+            with open(config_path, encoding="utf-8") as handle:
                 data = yaml.safe_load(handle) or {}
         self.ranges = data.get("physiological_ranges", {})
 

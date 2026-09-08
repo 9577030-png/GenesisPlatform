@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from importlib.resources import files
-from typing import Set
 
 import yaml
 
@@ -10,7 +9,7 @@ class ClinicalInterpretationMapper:
     """Identify medical rules with enriched interpretation metadata."""
 
     def __init__(self) -> None:
-        self._enriched_ids: Set[str] = set()
+        self._enriched_ids: set[str] = set()
         resource = files("genesis_medical").joinpath(
             "knowledge", "configs", "clinical_interpretations.yaml"
         )
@@ -21,5 +20,5 @@ class ClinicalInterpretationMapper:
     def is_enriched(self, rule_id: str) -> bool:
         return rule_id in self._enriched_ids
 
-    def get_enriched_ids(self) -> Set[str]:
+    def get_enriched_ids(self) -> set[str]:
         return set(self._enriched_ids)

@@ -1,7 +1,9 @@
 import pytest
-from genesis_medical.sources.yaml_recommendation_loader import YamlRecommendationLoader
+
 from genesis_medical.domain.entities.recommendation import Recommendation
 from genesis_medical.domain.value_objects.severity import Severity
+from genesis_medical.sources.yaml_recommendation_loader import YamlRecommendationLoader
+
 
 @pytest.mark.integration
 def test_load_recommendations():
@@ -53,6 +55,7 @@ def test_load_recommendations():
     rec_unknown = loader.get_recommendation("unknown")
     assert rec_unknown is None
 
+
 @pytest.mark.integration
 def test_recommendation_loader_parses_all():
     loader = YamlRecommendationLoader()
@@ -81,7 +84,7 @@ def test_recommendation_loader_parses_all():
         "celiac_disease",
         "gout",
         "osteoporosis",
-        "folate_deficiency"
+        "folate_deficiency",
     ]
     for expected_id in expected_ids:
         assert loader.get_recommendation(expected_id) is not None

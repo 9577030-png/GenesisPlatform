@@ -1,15 +1,15 @@
 from dataclasses import dataclass
-from typing import Optional
-from genesis_medical.domain.value_objects.unit import Unit
-from genesis_medical.domain.value_objects.risk_level import RiskLevel
+
 from genesis_medical.domain.exceptions import ConfigurationError
+from genesis_medical.domain.value_objects.risk_level import RiskLevel
+from genesis_medical.domain.value_objects.unit import Unit
 
 
 @dataclass(frozen=True)
 class Threshold:
     parameter_name: str
-    low: Optional[float]
-    high: Optional[float]
+    low: float | None
+    high: float | None
     unit: Unit
     risk_level: RiskLevel
 

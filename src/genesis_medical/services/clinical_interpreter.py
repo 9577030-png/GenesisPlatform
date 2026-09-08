@@ -1,9 +1,11 @@
-import yaml
 import ast
 import operator
-from pathlib import Path
 from importlib.resources import files
-from typing import Dict, Any, List, Optional
+from pathlib import Path
+from typing import Any
+
+import yaml
+
 from genesis_medical.domain.entities.parameter import Parameter
 from genesis_medical.domain.entities.patient import PatientProfile
 from genesis_medical.models.clinical_insights import (
@@ -14,6 +16,7 @@ from genesis_medical.models.clinical_insights import (
     TreatmentHint,
 )
 from genesis_medical.sources.medical_reference_loader import MedicalReferenceLoader
+
 
 class ClinicalInterpreter:
     def __init__(self, config_path: str | None = None):
@@ -29,31 +32,35 @@ class ClinicalInterpreter:
             with resource.open("r", encoding="utf-8") as f:
                 self.config = yaml.safe_load(f) or {}
         else:
-            with open(self.config_path, "r", encoding="utf-8") as f:
+            with open(self.config_path, encoding="utf-8") as f:
                 self.config = yaml.safe_load(f) or {}
         self.interpretations = self.config.get("interpretations", {})
 
-    def interpret(self, diagnoses: List[Dict[str, Any]], parameters: List[Parameter], patient: PatientProfile) -> Dict[str, ClinicalInsights]:
-        print("\n" + "="*60)
+    def interpret(
+        self, diagnoses: list[dict[str, Any]], parameters: list[Parameter], patient: PatientProfile
+    ) -> dict[str, ClinicalInsights]:
+        print("\n" + "=" * 60)
         print("🟢 ВЫЗВАН НОВЫЙ ИНТЕРПРЕТАТОР (ClinicalInterpreter)")
         print(f"Получено диагнозов: {len(diagnoses)}")
         print(f"Получено параметров: {len(parameters)}")
-        print("="*60 + "\n")
+        print("=" * 60 + "\n")
 
         param_dict = {p.name: p.value for p in parameters}
         patient_info = {
-            'gender': patient.gender.value if hasattr(patient.gender, 'value') else str(patient.gender),
-            'age': patient.age,
+            "gender": patient.gender.value
+            if hasattr(patient.gender, "value")
+            else str(patient.gender),
+            "age": patient.age,
         }
 
         result = {}
         for diag in diagnoses:
-            diag_id = diag.get('id')
+            diag_id = diag.get("id")
             if not diag_id:
                 print(f"⚠️ Диагноз без ID: {diag}")
                 continue
             # Извлекаем базовое имя (после последнего "/")
-            base_name = diag_id.split('/')[-1]
+            base_name = diag_id.split("/")[-1]
             if base_name not in self.interpretations:
                 print(f"⚠️ Диагноз {diag_id} (базовое имя {base_name}) не найден в интерпретациях")
                 continue
@@ -65,114 +72,128 @@ class ClinicalInterpreter:
         print(f"📦 Итого инсайтов: {len(result)}")
         return result
 
-    def _build_insights(self, diag_config: Dict[str, Any], diag: Dict[str, Any], param_dict: Dict[str, float], patient_info: Dict[str, Any]) -> ClinicalInsights:
+    def _build_insights(
+        self,
+        diag_config: dict[str, Any],
+        diag: dict[str, Any],
+        param_dict: dict[str, float],
+        patient_info: dict[str, Any],
+    ) -> ClinicalInsights:
         insights = ClinicalInsights(
-            diagnosis_id=diag.get('id', ''),
-            label=diag_config.get('label', diag.get('label', '')),
-            category=diag_config.get('category', ''),
-            description=diag_config.get('description', diag.get('description')),
-            references=diag_config.get('references'),
+            diagnosis_id=diag.get("id", ""),
+            label=diag_config.get("label", diag.get("label", "")),
+            category=diag_config.get("category", ""),
+            description=diag_config.get("description", diag.get("description")),
+            references=diag_config.get("references"),
         )
 
-        for crit in diag_config.get('criteria', []):
-            param_name = crit.get('parameter')
+        for crit in diag_config.get("criteria", []):
+            param_name = crit.get("parameter")
             if not param_name:
                 continue
             value = param_dict.get(param_name)
-            is_optional = crit.get('optional', False)
+            is_optional = crit.get("optional", False)
             if value is None and is_optional:
                 continue
             comment = self._generate_comment(crit, value, patient_info)
             evaluation = CriterionEvaluation(
                 parameter=param_name,
                 value=value,
-                unit=crit.get('unit', ''),
-                threshold=crit.get('threshold') or crit.get('threshold_low'),
-                condition=crit.get('condition'),
+                unit=crit.get("unit", ""),
+                threshold=crit.get("threshold") or crit.get("threshold_low"),
+                condition=crit.get("condition"),
                 comment=comment,
             )
             insights.criteria.append(evaluation)
 
-        for diff in diag_config.get('differentials', []):
-            condition = diff.get('condition', '')
+        for diff in diag_config.get("differentials", []):
+            condition = diff.get("condition", "")
             if self._check_condition(condition, param_dict, patient_info):
                 insights.differentials.append(
-                    DifferentialSuggestion(condition=condition, text=diff.get('text', ''))
+                    DifferentialSuggestion(condition=condition, text=diff.get("text", ""))
                 )
 
-        for rf in diag_config.get('red_flags', []):
-            condition = rf.get('condition', '')
+        for rf in diag_config.get("red_flags", []):
+            condition = rf.get("condition", "")
             if self._check_condition(condition, param_dict, patient_info):
-                insights.red_flags.append(
-                    RedFlag(condition=condition, text=rf.get('text', ''))
-                )
+                insights.red_flags.append(RedFlag(condition=condition, text=rf.get("text", "")))
 
-        for hint in diag_config.get('treatment_hints', []):
+        for hint in diag_config.get("treatment_hints", []):
             insights.treatment_hints.append(
-                TreatmentHint(step=hint.get('step', ''), note=hint.get('note', ''))
+                TreatmentHint(step=hint.get("step", ""), note=hint.get("note", ""))
             )
 
         return insights
 
-    def _generate_comment(self, crit_config: Dict[str, Any], value: Optional[float], patient_info: Dict[str, Any]) -> str:
-        template = crit_config.get('comment_template', '')
+    def _generate_comment(
+        self, crit_config: dict[str, Any], value: float | None, patient_info: dict[str, Any]
+    ) -> str:
+        template = crit_config.get("comment_template", "")
         if not template:
-            return ''
+            return ""
 
-        param_name = crit_config.get('parameter')
-        gender = patient_info.get('gender', 'male')
-        age = patient_info.get('age', 30)
-        ref_info = self.reference_loader.get_interpretation(param_name, value, gender, age) if param_name else {}
+        param_name = crit_config.get("parameter")
+        gender = patient_info.get("gender", "male")
+        age = patient_info.get("age", 30)
+        ref_info = (
+            self.reference_loader.get_interpretation(param_name, value, gender, age)
+            if param_name
+            else {}
+        )
 
         context = {
-            'value': value if value is not None else 'не указан',
-            'gender': gender,
-            'age': age,
-            'unit': crit_config.get('unit', ref_info.get('unit', '')),
-            'threshold': crit_config.get('threshold') or crit_config.get('threshold_low'),
-            'severity': self._determine_severity(value, crit_config.get('severity_mapping', [])),
-            'additional': '',
-            'interpretation': ref_info.get('text', ''),
-            'ref_min': ref_info.get('min'),
-            'ref_max': ref_info.get('max'),
+            "value": value if value is not None else "не указан",
+            "gender": gender,
+            "age": age,
+            "unit": crit_config.get("unit", ref_info.get("unit", "")),
+            "threshold": crit_config.get("threshold") or crit_config.get("threshold_low"),
+            "severity": self._determine_severity(value, crit_config.get("severity_mapping", [])),
+            "additional": "",
+            "interpretation": ref_info.get("text", ""),
+            "ref_min": ref_info.get("min"),
+            "ref_max": ref_info.get("max"),
         }
-        if context['ref_min'] is not None and context['ref_max'] is not None:
-            context['additional'] += f" Референсный интервал: {context['ref_min']}–{context['ref_max']} {context['unit']}. "
+        if context["ref_min"] is not None and context["ref_max"] is not None:
+            context["additional"] += (
+                f" Референсный интервал: {context['ref_min']}–{context['ref_max']} {context['unit']}. "
+            )
 
         comment = template.format(**context)
 
-        for rule in crit_config.get('additional_rules', []):
-            condition = rule.get('condition', '')
-            if self._check_condition(condition, {crit_config['parameter']: value}, patient_info):
-                comment += ' ' + rule.get('text', '')
+        for rule in crit_config.get("additional_rules", []):
+            condition = rule.get("condition", "")
+            if self._check_condition(condition, {crit_config["parameter"]: value}, patient_info):
+                comment += " " + rule.get("text", "")
 
         return comment
 
-    def _determine_severity(self, value: Optional[float], mapping: List[Dict]) -> str:
+    def _determine_severity(self, value: float | None, mapping: list[dict]) -> str:
         if value is None:
-            return 'не определено'
+            return "не определено"
         for item in mapping:
-            range_str = item.get('range', '')
+            range_str = item.get("range", "")
             try:
-                if '>=' in range_str:
-                    threshold = float(range_str.split('>=')[1].strip())
+                if ">=" in range_str:
+                    threshold = float(range_str.split(">=")[1].strip())
                     if value >= threshold:
-                        return item.get('label', '')
-                elif '-' in range_str:
-                    parts = range_str.split('-')
+                        return item.get("label", "")
+                elif "-" in range_str:
+                    parts = range_str.split("-")
                     low = float(parts[0].strip())
                     high = float(parts[1].strip())
                     if low <= value <= high:
-                        return item.get('label', '')
-                elif '<' in range_str:
-                    threshold = float(range_str.split('<')[1].strip())
+                        return item.get("label", "")
+                elif "<" in range_str:
+                    threshold = float(range_str.split("<")[1].strip())
                     if value < threshold:
-                        return item.get('label', '')
-            except:
+                        return item.get("label", "")
+            except Exception:
                 continue
-        return 'не классифицировано'
+        return "не классифицировано"
 
-    def _check_condition(self, condition: str, param_dict: Dict[str, float], patient_info: Dict[str, Any]) -> bool:
+    def _check_condition(
+        self, condition: str, param_dict: dict[str, float], patient_info: dict[str, Any]
+    ) -> bool:
         if not condition:
             return True
 
@@ -216,7 +237,11 @@ class ClinicalInterpreter:
                 return operators[op_type](left, right)
             elif isinstance(node, ast.Compare):
                 left = _eval_node(node.left)
-                for op, comp in zip(node.ops, node.comparators):
+                for op, comp in zip(
+                    node.ops,
+                    node.comparators,
+                    strict=True,
+                ):
                     right = _eval_node(comp)
                     op_type = type(op)
                     if op_type not in operators:
@@ -245,7 +270,7 @@ class ClinicalInterpreter:
                 raise ValueError(f"Unsupported AST node: {type(node).__name__}")
 
         try:
-            parsed = ast.parse(condition, mode='eval')
+            parsed = ast.parse(condition, mode="eval")
             return bool(_eval_node(parsed.body))
         except Exception:
             return False

@@ -1,14 +1,10 @@
 from pathlib import Path
 
-from genesis_core import Fact, RuleEngine
-from genesis_medical.adapters.rule_compiler import RuleCompiler
-from genesis_medical.domain.rule_version import RuleVersion
+from genesis_core import Rule, RuleEngine
+from genesis_medical.domain.rule_version import RulePriority, RuleVersion
 from genesis_medical.parsers import MedicalRuleParser
-from genesis_medical.sources import YamlMedicalRuleSource
-from genesis_medical.domain.value_objects.gender import Gender
-from genesis_medical.domain.rule_version import RulePriority
 from genesis_medical.resolvers import MedicalRuleResolver
-from genesis_core import Rule
+from genesis_medical.sources import YamlMedicalRuleSource
 
 
 def test_medical_parser_returns_core_rule():
@@ -21,7 +17,9 @@ def test_medical_parser_returns_core_rule():
         created_by="test",
         priority=RulePriority.HIGH,
     )
-    rule = MedicalRuleParser().parse({"rule_version": rule_version, "condition": rule_version.conditions[0]})
+    rule = MedicalRuleParser().parse(
+        {"rule_version": rule_version, "condition": rule_version.conditions[0]}
+    )
     assert rule.id == "anemia_low"
     assert rule.conditions[0].fact == "hemoglobin"
     assert rule.conditions[0].operator == "<="

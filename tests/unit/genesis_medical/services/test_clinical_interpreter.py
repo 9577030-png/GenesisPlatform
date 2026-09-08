@@ -6,9 +6,7 @@ from genesis_medical.services import ClinicalInterpreter
 
 
 def test_clinical_interpreter_loads_bundled_knowledge() -> None:
-    interpreter = ClinicalInterpreter(
-        ""
-    )
+    interpreter = ClinicalInterpreter("")
     interpreter.interpretations = {
         "demo": {
             "label": "Demo",

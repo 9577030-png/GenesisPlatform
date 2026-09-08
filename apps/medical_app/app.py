@@ -1,9 +1,8 @@
-﻿import logging
+import logging
 
 import uvicorn
 
 from medical_app.config import settings
-
 
 logging.basicConfig(level=logging.DEBUG)
 

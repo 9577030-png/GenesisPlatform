@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from importlib.resources import files
-from typing import Optional
 
 import yaml
 
@@ -22,14 +21,18 @@ class YamlRecommendationLoader:
         )
 
     def _load(self) -> dict:
-        resource = open(self.config_path, "r", encoding="utf-8") if self.config_path else self._default_resource().open("r", encoding="utf-8")
+        resource = (
+            open(self.config_path, encoding="utf-8")
+            if self.config_path
+            else self._default_resource().open("r", encoding="utf-8")
+        )
         try:
             data = yaml.safe_load(resource) or {}
         finally:
             resource.close()
         return data.get("recommendations", {})
 
-    def get_recommendation(self, finding_id: str) -> Optional[Recommendation]:
+    def get_recommendation(self, finding_id: str) -> Recommendation | None:
         if self._recommendations is None:
             self._recommendations = self._load()
         data = self._recommendations.get(finding_id)

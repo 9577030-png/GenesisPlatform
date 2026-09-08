@@ -21,12 +21,8 @@ class Rule:
     version: str = "1"
     priority: int = 0
 
-    conflicts_with: tuple[str, ...] = field(
-        default_factory=tuple
-    )
-    supports: tuple[str, ...] = field(
-        default_factory=tuple
-    )
+    conflicts_with: tuple[str, ...] = field(default_factory=tuple)
+    supports: tuple[str, ...] = field(default_factory=tuple)
 
     def __post_init__(self) -> None:
         if not isinstance(self.id, str):
@@ -36,17 +32,10 @@ class Rule:
             raise ValueError("Rule id cannot be empty")
 
         if not isinstance(self.conditions, tuple):
-            raise TypeError(
-                "Rule conditions must be a tuple"
-            )
+            raise TypeError("Rule conditions must be a tuple")
 
-        if any(
-            not isinstance(condition, Condition)
-            for condition in self.conditions
-        ):
-            raise TypeError(
-                "Rule conditions must contain only Condition objects"
-            )
+        if any(not isinstance(condition, Condition) for condition in self.conditions):
+            raise TypeError("Rule conditions must contain only Condition objects")
 
     @property
     def condition_count(self) -> int:

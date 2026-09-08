@@ -357,7 +357,8 @@ def test_duplicate_fact_names_are_rejected(
                 Fact("value", 10),
                 Fact("value", 20),
             ),
-        ) 
+        )
+
 
 def test_between_rejects_invalid_number_of_bounds(
     evaluator: Evaluator,
@@ -399,6 +400,7 @@ def test_between_rejects_non_iterable(
             rule,
             (Fact("value", 10),),
         )
+
 
 def test_in_rejects_non_membership_value(
     evaluator: Evaluator,
@@ -458,6 +460,7 @@ def test_numeric_comparison_type_error_is_not_silenced(
             rule,
             (Fact("value", "not-a-number"),),
         )
+
 
 def test_equal_supports_different_python_types(
     evaluator: Evaluator,
@@ -533,16 +536,3 @@ def test_between_is_inclusive(
         rule,
         (Fact("value", 21),),
     ).matched
-
-
-
-
-
-
-
-
-
-
-
-
-

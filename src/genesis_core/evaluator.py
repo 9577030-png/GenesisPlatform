@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from typing import Any, Iterable
+from collections.abc import Iterable
+from typing import Any
 
 from .condition import Condition
 from .evaluation import Evidence, RuleEvaluation
@@ -29,10 +30,7 @@ class Evaluator:
             for condition in rule.conditions
         )
 
-        matched = all(
-            item.matched
-            for item in evidence
-        )
+        matched = all(item.matched for item in evidence)
 
         return RuleEvaluation(
             rule_id=rule.id,
@@ -53,9 +51,7 @@ class Evaluator:
 
         for fact in facts:
             if fact.name in fact_map:
-                raise ValueError(
-                    f"Duplicate fact name: {fact.name!r}"
-                )
+                raise ValueError(f"Duplicate fact name: {fact.name!r}")
 
             fact_map[fact.name] = fact.value
 
@@ -119,32 +115,22 @@ class Evaluator:
             try:
                 return actual in expected
             except TypeError:
-                raise TypeError(
-                    "'in' expects a membership-compatible value"
-                ) from None
+                raise TypeError("'in' expects a membership-compatible value") from None
 
         if operator == "not_in":
             try:
                 return actual not in expected
             except TypeError:
-                raise TypeError(
-                    "'not_in' expects a membership-compatible value"
-                ) from None
+                raise TypeError("'not_in' expects a membership-compatible value") from None
 
         if operator == "between":
             if not isinstance(expected, (tuple, list)):
-                raise TypeError(
-                    "'between' expects exactly two values"
-                )
+                raise TypeError("'between' expects exactly two values")
 
             if len(expected) != 2:
-                raise ValueError(
-                    "'between' expects exactly two values"
-                )
+                raise ValueError("'between' expects exactly two values")
 
             minimum, maximum = expected
             return minimum <= actual <= maximum
 
-        raise ValueError(
-            f"Unsupported operator: {operator!r}"
-        )
+        raise ValueError(f"Unsupported operator: {operator!r}")

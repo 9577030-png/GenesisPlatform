@@ -27,6 +27,7 @@ def main() -> int:
     old = git_text("show", f"{args.base}:{args.version_file}")
     current = Path(args.version_file).read_text(encoding="utf-8")
     import re
+
     old_version = Version(re.search(r'version = "([^"]+)"', old).group(1))
     current_version = Version(re.search(r'version = "([^"]+)"', current).group(1))
 

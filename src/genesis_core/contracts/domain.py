@@ -17,6 +17,6 @@ class DomainDescriptor(ABC):
     version: str
 
     @abstractmethod
-    def get_rule_loader(self) -> "RuleLoader":
+    def get_rule_loader(self) -> RuleLoader:
         """Return the domain's configured rule loader."""
         raise NotImplementedError

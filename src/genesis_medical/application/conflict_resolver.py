@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import logging
-from typing import Dict, List, Set
 
 from genesis_medical.domain.entities.finding import ClinicalFinding
 from genesis_medical.domain.rule_version import RulePriority, RuleVersion
@@ -12,10 +11,10 @@ logger = logging.getLogger(__name__)
 class ConflictResolver:
     def resolve(
         self,
-        findings: List[ClinicalFinding],
-        rules: Dict[str, RuleVersion],
-        finding_rule_ids: Dict[str, str] | None = None,
-    ) -> List[ClinicalFinding]:
+        findings: list[ClinicalFinding],
+        rules: dict[str, RuleVersion],
+        finding_rule_ids: dict[str, str] | None = None,
+    ) -> list[ClinicalFinding]:
         if not findings:
             return []
 
@@ -24,23 +23,18 @@ class ConflictResolver:
         def rule_of(finding_id: str) -> str:
             return finding_rule_ids.get(finding_id, finding_id)
 
-        conflict_graph: Dict[str, Set[str]] = {
-            rule_id: set(rule.conflicts_with)
-            for rule_id, rule in rules.items()
+        conflict_graph: dict[str, set[str]] = {
+            rule_id: set(rule.conflicts_with) for rule_id, rule in rules.items()
         }
 
         finding_priorities = {}
         for finding in findings:
             rule = rules.get(rule_of(finding.id))
-            finding_priorities[finding.id] = (
-                rule.priority if rule else RulePriority.MEDIUM
-            )
+            finding_priorities[finding.id] = rule.priority if rule else RulePriority.MEDIUM
 
         sorted_findings = sorted(
             findings,
-            key=lambda finding: finding_priorities.get(
-                finding.id, RulePriority.MEDIUM
-            ),
+            key=lambda finding: finding_priorities.get(finding.id, RulePriority.MEDIUM),
             reverse=True,
         )
 
@@ -56,9 +50,5 @@ class ConflictResolver:
             kept_ids.add(finding.id)
 
         return list(
-            {
-                finding.id: finding
-                for finding in findings
-                if finding.id in kept_ids
-            }.values()
+            {finding.id: finding for finding in findings if finding.id in kept_ids}.values()
         )

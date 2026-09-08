@@ -1,6 +1,6 @@
-from genesis_core import Fact, RuleEngine
 from genesis_banking import get_domain_descriptor
 from genesis_banking.resolvers import BankingRuleResolver
+from genesis_core import Fact, RuleEngine
 
 
 def test_banking_descriptor_loads_rule_set() -> None:

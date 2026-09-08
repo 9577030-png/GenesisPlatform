@@ -1,9 +1,9 @@
 from unittest.mock import Mock
 
-from genesis_medical.services import PostProcessor
 from genesis_medical.domain.entities.finding import ClinicalFinding
 from genesis_medical.domain.entities.report import AnalysisReport
 from genesis_medical.domain.value_objects.risk_level import RiskLevel
+from genesis_medical.services import PostProcessor
 
 
 def make_processor(
@@ -108,9 +108,7 @@ def test_exclusion_matches_parameterized_finding_id():
         make_finding("creatinine_high_female", 0.8),
     )
 
-    result = processor._apply_exclusions(
-        report.findings
-    )
+    result = processor._apply_exclusions(report.findings)
 
     assert result == []
 
@@ -134,10 +132,7 @@ def test_system_group_contains_matching_findings():
 
     assert "kidney" in grouped
     assert len(grouped["kidney"]) == 1
-    assert (
-        grouped["kidney"][0]["id"]
-        == "chronic_kidney_disease"
-    )
+    assert grouped["kidney"][0]["id"] == "chronic_kidney_disease"
 
 
 def test_combination_requires_all_conditions():
@@ -158,9 +153,7 @@ def test_combination_requires_all_conditions():
         make_finding("a", 0.8),
     ]
 
-    diagnoses, recommendations = (
-        processor._apply_combinations(findings)
-    )
+    diagnoses, recommendations = processor._apply_combinations(findings)
 
     assert diagnoses == []
     assert recommendations == []
@@ -186,9 +179,7 @@ def test_combination_calculates_probability():
         make_finding("b", 0.6),
     ]
 
-    diagnoses, _ = processor._apply_combinations(
-        findings
-    )
+    diagnoses, _ = processor._apply_combinations(findings)
 
     assert len(diagnoses) == 1
     assert diagnoses[0]["id"] == "combined"
@@ -207,7 +198,7 @@ def test_combination_below_threshold_is_ignored():
                 ],
                 "probability_factor": 0.2,
             }
-        ]
+        ],
     )
 
     findings = [
@@ -215,9 +206,7 @@ def test_combination_below_threshold_is_ignored():
         make_finding("b", 0.4),
     ]
 
-    diagnoses, _ = processor._apply_combinations(
-        findings
-    )
+    diagnoses, _ = processor._apply_combinations(findings)
 
     assert diagnoses == []
 
@@ -249,10 +238,7 @@ def test_grouped_findings_preserve_probability_and_risk():
 def test_empty_report_produces_no_diagnoses():
     processor = make_processor()
 
-    result = processor.process(
-        make_report()
-    )
+    result = processor.process(make_report())
 
     assert result["diagnoses"] == []
     assert result["grouped_findings"] == {}
-        

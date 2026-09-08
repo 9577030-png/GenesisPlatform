@@ -2,11 +2,10 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from genesis_core import DefaultRuleLoader
-from genesis_core.contracts import DomainDescriptor, RuleLoader
-
 from genesis_construction.parsers import ConstructionRuleParser
 from genesis_construction.sources import YamlConstructionRuleSource
+from genesis_core import DefaultRuleLoader
+from genesis_core.contracts import DomainDescriptor, RuleLoader
 
 
 class ConstructionDomainDescriptor(DomainDescriptor):

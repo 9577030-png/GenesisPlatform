@@ -1,9 +1,12 @@
-from sqlalchemy import Column, Integer, String, Boolean, DateTime, JSON, Enum
+from datetime import UTC, datetime
+
+from sqlalchemy import JSON, Boolean, Column, DateTime, Enum, Integer, String
 from sqlalchemy.orm import declarative_base
-from datetime import datetime, UTC
+
 from genesis_medical.domain.rule_version import RulePriority, RuleTier
 
 Base = declarative_base()
+
 
 class RuleVersionModel(Base):
     __tablename__ = "rule_versions"
@@ -20,6 +23,7 @@ class RuleVersionModel(Base):
     is_active = Column(Boolean, default=False)
     comment = Column(String(500), nullable=True)
     tier = Column(Enum(RuleTier), default=RuleTier.BASIC)
+
 
 class AuditLogModel(Base):
     __tablename__ = "audit_logs"

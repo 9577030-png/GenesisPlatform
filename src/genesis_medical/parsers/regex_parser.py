@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import re
-from typing import List
 
 from ..domain.entities.parameter import Parameter
 from ..domain.exceptions import InvalidParameterError, ParsingError
@@ -20,11 +19,11 @@ class RegexParser:
             r"(?P<name>[A-Za-zА-Яа-я_ ]+)\s*(?P<value>-?[\d.]+)\s*(?P<unit>[A-Za-z/%]+)?"
         )
 
-    def parse(self, raw_text: str) -> List[Parameter]:
+    def parse(self, raw_text: str) -> list[Parameter]:
         if not raw_text or not raw_text.strip():
             raise ParsingError("Input text is empty")
 
-        parameters: List[Parameter] = []
+        parameters: list[Parameter] = []
         for line in (part.strip() for part in raw_text.strip().splitlines() if part.strip()):
             match = self.pattern_with_digits.search(line) or self.pattern_with_spaces.search(line)
             if not match:

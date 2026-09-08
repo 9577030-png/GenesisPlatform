@@ -1,13 +1,14 @@
 from dataclasses import dataclass, field
-from typing import Dict, Any, Optional, List
+from typing import Any
+
 
 @dataclass
 class SpecialtyGuideline:
     id: str
-    scoring_rules: Dict[str, float] = field(default_factory=dict)
-    override_thresholds: Dict[str, Any] = field(default_factory=dict)
-    description: Optional[str] = None
+    scoring_rules: dict[str, float] = field(default_factory=dict)
+    override_thresholds: dict[str, Any] = field(default_factory=dict)
+    description: str | None = None
     condition: str = "any"
-    recommendations: List[str] = field(default_factory=list)
+    recommendations: list[str] = field(default_factory=list)
     # Новое поле для условий диапазонов
-    conditions: List[Dict[str, Any]] = field(default_factory=list)
+    conditions: list[dict[str, Any]] = field(default_factory=list)

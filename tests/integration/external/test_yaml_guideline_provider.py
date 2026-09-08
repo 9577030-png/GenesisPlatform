@@ -1,9 +1,13 @@
+# ruff: noqa: E402
 import pytest
-pytest.importorskip('passlib', reason="optional external dependency not installed")
+
+pytest.importorskip("passlib", reason="optional external dependency not installed")
 pytestmark = pytest.mark.external
-pytest.importorskip('passlib', reason="optional external dependency not installed")
+pytest.importorskip("passlib", reason="optional external dependency not installed")
 from medical_app.infrastructure.bootstrap.di_container import DIContainer
+
 from genesis_medical.domain.entities.guideline import SpecialtyGuideline
+
 
 @pytest.mark.integration
 def test_guideline_provider_loads_all_guidelines():
@@ -35,7 +39,8 @@ def test_guideline_provider_loads_all_guidelines():
     for g in guidelines:
         assert isinstance(g, SpecialtyGuideline)
         assert g.id is not None
-        assert hasattr(g, 'conditions') and g.conditions is not None
+        assert hasattr(g, "conditions") and g.conditions is not None
+
 
 @pytest.mark.integration
 def test_guideline_provider_applies_overrides():

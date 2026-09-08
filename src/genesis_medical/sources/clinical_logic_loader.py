@@ -14,12 +14,14 @@ class ClinicalLogicLoader:
         self._config: dict[str, Any] | None = None
 
     def _default_resource(self):
-        return files("genesis_medical").joinpath(
-            "knowledge", "configs", "clinical_logic.yaml"
-        )
+        return files("genesis_medical").joinpath("knowledge", "configs", "clinical_logic.yaml")
 
     def _load(self) -> dict[str, Any]:
-        resource = open(self.config_path, "r", encoding="utf-8") if self.config_path else self._default_resource().open("r", encoding="utf-8")
+        resource = (
+            open(self.config_path, encoding="utf-8")
+            if self.config_path
+            else self._default_resource().open("r", encoding="utf-8")
+        )
         try:
             data = yaml.safe_load(resource) or {}
         finally:

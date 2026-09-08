@@ -34,15 +34,11 @@ class RuleEngine:
         if loader_or_evaluator is not None:
             if isinstance(loader_or_evaluator, Evaluator):
                 if evaluator is not None:
-                    raise TypeError(
-                        "Evaluator provided both positionally and by keyword"
-                    )
+                    raise TypeError("Evaluator provided both positionally and by keyword")
                 evaluator = loader_or_evaluator
             else:
                 if loader is not None:
-                    raise TypeError(
-                        "Loader provided both positionally and by keyword"
-                    )
+                    raise TypeError("Loader provided both positionally and by keyword")
                 loader = loader_or_evaluator
 
         self.evaluator = evaluator or Evaluator()
@@ -69,9 +65,7 @@ class RuleEngine:
     ) -> tuple[RuleEvaluation, ...]:
         if facts is None:
             if self.loader is None:
-                raise ValueError(
-                    "RuleEngine requires loader when facts are passed alone"
-                )
+                raise ValueError("RuleEngine requires loader when facts are passed alone")
 
             rule_source = self.loader.load()
             rules = rule_source.rules

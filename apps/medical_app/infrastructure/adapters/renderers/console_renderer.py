@@ -1,8 +1,11 @@
 import logging
-from genesis_medical.domain.entities.report import AnalysisReport
+
 from medical_app.application.ports.renderer_interface import RendererInterface
 
+from genesis_medical.domain.entities.report import AnalysisReport
+
 logger = logging.getLogger(__name__)
+
 
 class ConsoleRenderer(RendererInterface):
     """Р РµРЅРґРµСЂРёС‚ РѕС‚С‡С‘С‚ РІ РєРѕРЅСЃРѕР»СЊ СЃ РїСЂРѕСЃС‚С‹Рј С‚РµРєСЃС‚РѕРІС‹Рј С„РѕСЂРјР°С‚РёСЂРѕРІР°РЅРёРµРј."""

@@ -56,31 +56,19 @@ def test_rule_set_get_returns_rule():
 
 
 def test_rule_set_get_returns_none_for_unknown_rule():
-    rules = RuleSet(
-        (
-            make_rule("first"),
-        )
-    )
+    rules = RuleSet((make_rule("first"),))
 
     assert rules.get("missing") is None
 
 
 def test_rule_set_require_returns_rule():
-    rules = RuleSet(
-        (
-            make_rule("first"),
-        )
-    )
+    rules = RuleSet((make_rule("first"),))
 
     assert rules.require("first").id == "first"
 
 
 def test_rule_set_require_raises_for_unknown_rule():
-    rules = RuleSet(
-        (
-            make_rule("first"),
-        )
-    )
+    rules = RuleSet((make_rule("first"),))
 
     with pytest.raises(
         KeyError,
@@ -124,11 +112,7 @@ def test_rule_set_rejects_invalid_rule_members():
 
 
 def test_rule_set_is_immutable():
-    rules = RuleSet(
-        (
-            make_rule("first"),
-        )
-    )
+    rules = RuleSet((make_rule("first"),))
 
     with pytest.raises(AttributeError):
         rules.rules = (make_rule("second"),)

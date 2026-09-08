@@ -4,18 +4,20 @@ import pytest
 
 from genesis_core import (
     Condition,
+    DefaultRuleLoader,
     Fact,
     Rule,
     RuleEngine,
-    DefaultRuleLoader,
     RuleSet,
 )
 from genesis_core.contracts import (
     OutputAdapter,
-    RuleLoader as RuleLoaderContract,
     RuleParser,
     RuleResolver,
     RuleSource,
+)
+from genesis_core.contracts import (
+    RuleLoader as RuleLoaderContract,
 )
 
 

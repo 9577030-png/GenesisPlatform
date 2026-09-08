@@ -47,9 +47,7 @@ def test_condition_is_converted_to_clinical_finding():
     assert finding.evidence == [
         "Repeat glucose test",
     ]
-    assert finding.description == (
-        "Glucose above reference range"
-    )
+    assert finding.description == ("Glucose above reference range")
 
 
 def test_probability_is_limited_to_one():

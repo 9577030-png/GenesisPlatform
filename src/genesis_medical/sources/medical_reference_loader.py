@@ -45,12 +45,10 @@ class MedicalReferenceLoader:
         )
         with medical_data_resource.open("r", encoding="utf-8") as handle:
             medical_data = json.load(handle)
-        self._references = self._build_references_from_norms(
-            medical_data.get("norms", {})
-        )
+        self._references = self._build_references_from_norms(medical_data.get("norms", {}))
 
     def _load_from_file(self, path: str) -> None:
-        with open(path, "r", encoding="utf-8") as handle:
+        with open(path, encoding="utf-8") as handle:
             data = yaml.safe_load(handle) or {}
         self._references = data.get("parameters", {})
 
@@ -145,8 +143,7 @@ class MedicalReferenceLoader:
         return {
             "status": "unknown",
             "comment": (
-                f"Значение {numeric_value} вне заданных референсных "
-                f"интервалов для {param_name}"
+                f"Значение {numeric_value} вне заданных референсных интервалов для {param_name}"
             ),
             "range": "не определено",
             "risk_level": "MEDIUM",

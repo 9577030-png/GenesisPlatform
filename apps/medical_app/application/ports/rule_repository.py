@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Optional
 
 from genesis_medical.domain.rule_version import RuleVersion
 
@@ -24,8 +23,8 @@ class RuleRepository(ABC):
     def get_by_id(
         self,
         rule_id: str,
-        version_id: Optional[int] = None,
-    ) -> Optional[RuleVersion]:
+        version_id: int | None = None,
+    ) -> RuleVersion | None:
         pass
 
     @abstractmethod

@@ -1,13 +1,11 @@
 import pytest
-from genesis_medical.domain.exceptions import (
-    MedicalAIError,
-    InvalidPatientDataError,
-    InvalidParameterError,
-    ParsingError,
-    ConfigurationError
-)
-from genesis_medical.domain.entities.patient import PatientProfile
+
 from genesis_medical.domain.entities.parameter import Parameter
+from genesis_medical.domain.entities.patient import PatientProfile
+from genesis_medical.domain.exceptions import (
+    InvalidParameterError,
+    InvalidPatientDataError,
+)
 from genesis_medical.domain.value_objects.gender import Gender
 from genesis_medical.domain.value_objects.unit import Unit
 

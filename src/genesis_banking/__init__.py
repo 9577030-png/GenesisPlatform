@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from importlib.metadata import PackageNotFoundError, version as _distribution_version
+from importlib.metadata import PackageNotFoundError
+from importlib.metadata import version as _distribution_version
 from importlib.resources import files
 from pathlib import Path
 

@@ -1,8 +1,10 @@
 import pytest
-from genesis_medical.sources.yaml_threshold_loader import YamlThresholdLoader
+
 from genesis_medical.domain.entities.threshold import Threshold
-from genesis_medical.domain.value_objects.unit import Unit
 from genesis_medical.domain.value_objects.risk_level import RiskLevel
+from genesis_medical.domain.value_objects.unit import Unit
+from genesis_medical.sources.yaml_threshold_loader import YamlThresholdLoader
+
 
 @pytest.mark.integration
 def test_load_global_thresholds():
@@ -34,6 +36,7 @@ def test_load_global_thresholds():
     assert ferritin.high == 400
     assert ferritin.unit == Unit("ng/mL")
     assert ferritin.risk_level == RiskLevel.HIGH
+
 
 @pytest.mark.integration
 def test_threshold_loader_returns_dict():

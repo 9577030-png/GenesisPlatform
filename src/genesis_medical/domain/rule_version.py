@@ -1,7 +1,8 @@
 from dataclasses import dataclass, field
-from datetime import datetime, UTC
-from typing import Optional, List, Dict, Any
-from enum import IntEnum, Enum
+from datetime import UTC, datetime
+from enum import IntEnum, StrEnum
+from typing import Any
+
 
 class RulePriority(IntEnum):
     LOW = 10
@@ -9,28 +10,36 @@ class RulePriority(IntEnum):
     HIGH = 100
     CRITICAL = 200
 
-class RuleTier(str, Enum):
+
+class RuleTier(StrEnum):
     BASIC = "basic"
     ENRICHED = "enriched"
+
 
 @dataclass
 class RuleVersion:
     rule_id: str
     name: str
-    conditions: List[Dict[str, Any]]
-    actions: List[Dict[str, Any]]
+    conditions: list[dict[str, Any]]
+    actions: list[dict[str, Any]]
     created_at: datetime
     created_by: str
     version_id: int = 0
     priority: RulePriority = RulePriority.MEDIUM
-    conflicts_with: List[str] = field(default_factory=list)
-    supports: List[str] = field(default_factory=list)
+    conflicts_with: list[str] = field(default_factory=list)
+    supports: list[str] = field(default_factory=list)
     is_active: bool = False
-    comment: Optional[str] = None
+    comment: str | None = None
     tier: RuleTier = RuleTier.BASIC  # <-- новое поле
 
     @classmethod
-    def from_yaml(cls, rule_id: str, yaml_data: Dict[str, Any], created_by: str = "system", tier: RuleTier = RuleTier.BASIC) -> "RuleVersion":
+    def from_yaml(
+        cls,
+        rule_id: str,
+        yaml_data: dict[str, Any],
+        created_by: str = "system",
+        tier: RuleTier = RuleTier.BASIC,
+    ) -> "RuleVersion":
         """
         Создать версию из YAML-словаря.
         Если в YAML есть секция 'conditions', используем её.
@@ -62,11 +71,11 @@ class RuleVersion:
             created_by=created_by,
             is_active=False,
             comment=yaml_data.get("comment"),
-            tier=tier
+            tier=tier,
         )
 
     @staticmethod
-    def _convert_old_format(yaml_data: Dict[str, Any], rule_id: str) -> List[Dict[str, Any]]:
+    def _convert_old_format(yaml_data: dict[str, Any], rule_id: str) -> list[dict[str, Any]]:
         """
         Преобразует старый формат (thresholds/scoring) в список conditions.
         Поддерживает:
@@ -115,7 +124,7 @@ class RuleVersion:
                     "parameter": param,
                     "scoring": weight,
                     "risk": "MEDIUM",
-                    "label": f"{param} abnormal"
+                    "label": f"{param} abnormal",
                 }
                 # Если есть override_thresholds, можно добавить min/max
                 if "override_thresholds" in yaml_data and param in yaml_data["override_thresholds"]:
@@ -127,10 +136,7 @@ class RuleVersion:
                 conditions.append(cond)
         else:
             # Если ничего нет, создаём заглушку
-            conditions.append({
-                "parameter": "unknown",
-                "scoring": 5,
-                "risk": "LOW",
-                "label": "Unknown condition"
-            })
+            conditions.append(
+                {"parameter": "unknown", "scoring": 5, "risk": "LOW", "label": "Unknown condition"}
+            )
         return conditions

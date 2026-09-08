@@ -1,16 +1,9 @@
 from __future__ import annotations
 
-from importlib.metadata import PackageNotFoundError, version as _distribution_version
+from importlib.metadata import PackageNotFoundError
+from importlib.metadata import version as _distribution_version
 
 from .condition import Condition
-from .default_rule_loader import DefaultRuleLoader
-from .evaluation import Evidence, RuleEvaluation
-from .evaluator import Evaluator
-from .fact import Fact
-from .plugin_registry import discover_domains, list_domains, load_domain
-from .rule import Rule
-from .rule_engine import RuleEngine
-from .rule_set import RuleSet
 from .contracts import (
     DomainDescriptor,
     OutputAdapter,
@@ -19,6 +12,14 @@ from .contracts import (
     RuleResolver,
     RuleSource,
 )
+from .default_rule_loader import DefaultRuleLoader
+from .evaluation import Evidence, RuleEvaluation
+from .evaluator import Evaluator
+from .fact import Fact
+from .plugin_registry import discover_domains, list_domains, load_domain
+from .rule import Rule
+from .rule_engine import RuleEngine
+from .rule_set import RuleSet
 
 API_VERSION = "1"
 

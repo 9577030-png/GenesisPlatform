@@ -4,7 +4,6 @@ from pathlib import Path
 
 from genesis_core import DefaultRuleLoader
 from genesis_core.contracts import DomainDescriptor, RuleLoader
-
 from genesis_medical.parsers import MedicalRuleParser
 from genesis_medical.sources import YamlMedicalRuleSource
 

@@ -18,9 +18,6 @@ class DefaultRuleLoader(RuleLoaderContract):
         self.parser = parser
 
     def load(self) -> RuleSet:
-        rules = tuple(
-            self.parser.parse(raw)
-            for raw in self.source.load_rules()
-        )
+        rules = tuple(self.parser.parse(raw) for raw in self.source.load_rules())
 
         return RuleSet(rules)

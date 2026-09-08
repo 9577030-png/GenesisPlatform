@@ -1,12 +1,16 @@
+# ruff: noqa: E402
 import pytest
-pytest.importorskip('passlib', reason="optional external dependency not installed")
+
+pytest.importorskip("passlib", reason="optional external dependency not installed")
 pytestmark = pytest.mark.external
-pytest.importorskip('passlib', reason="optional external dependency not installed")
+pytest.importorskip("passlib", reason="optional external dependency not installed")
 from medical_app.infrastructure.bootstrap.di_container import DIContainer
-from genesis_medical.domain.entities.patient import PatientProfile
+
 from genesis_medical.domain.entities.parameter import Parameter
-from genesis_medical.domain.value_objects.unit import Unit
+from genesis_medical.domain.entities.patient import PatientProfile
 from genesis_medical.domain.value_objects.gender import Gender
+from genesis_medical.domain.value_objects.unit import Unit
+
 
 @pytest.mark.integration
 def test_gender_thresholds_creatinine_affects_probability():
@@ -17,7 +21,7 @@ def test_gender_thresholds_creatinine_affects_probability():
     params = [
         Parameter("creatinine", 110, Unit("umol/L")),
         Parameter("egfr", 45, Unit("mL/min/1.73m2")),
-        Parameter("urea", 6, Unit("mmol/L"))
+        Parameter("urea", 6, Unit("mmol/L")),
     ]
 
     findings_male = container.inference_engine.infer(male, params)
@@ -32,7 +36,10 @@ def test_gender_thresholds_creatinine_affects_probability():
     male_prob_sum = sum(f.probability for f in male_kidney)
     female_prob_sum = sum(f.probability for f in female_kidney)
 
-    assert female_prob_sum > male_prob_sum, "Female should have higher kidney disease probability due to elevated creatinine"
+    assert female_prob_sum > male_prob_sum, (
+        "Female should have higher kidney disease probability due to elevated creatinine"
+    )
+
 
 @pytest.mark.integration
 def test_gender_thresholds_hemoglobin_no_finding_for_female():
@@ -49,4 +56,6 @@ def test_gender_thresholds_hemoglobin_no_finding_for_female():
     female_has = any(f.id == "anemia_female" and f.probability > 0 for f in findings_female)
 
     assert male_has, "Male should have anemia finding due to low hemoglobin"
-    assert not female_has, "Female should have no anemia finding from hemoglobin 125 (within normal range)"
+    assert not female_has, (
+        "Female should have no anemia finding from hemoglobin 125 (within normal range)"
+    )

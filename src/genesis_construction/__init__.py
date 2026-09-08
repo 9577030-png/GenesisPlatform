@@ -5,6 +5,7 @@ from .sources import YamlConstructionRuleSource
 
 try:
     from importlib.metadata import version as _distribution_version
+
     __version__ = _distribution_version("genesis-construction")
 except Exception:
     __version__ = "0.1.0"
@@ -20,8 +21,8 @@ __all__ = [
 
 
 def get_domain_descriptor():
-    from pathlib import Path
     from importlib.resources import files
+    from pathlib import Path
 
     return ConstructionDomainDescriptor(
         package="genesis_construction",

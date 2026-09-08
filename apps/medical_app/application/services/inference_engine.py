@@ -1,16 +1,16 @@
 import logging
-from typing import List
 
+from medical_app.application.ports.rule_repository import RuleRepository
+
+from genesis_core import Fact, RuleEngine
 from genesis_medical.adapters.condition_finding_mapper import (
     ConditionFindingMapper,
 )
 from genesis_medical.adapters.rule_compiler import RuleCompiler
-from genesis_core import Fact, RuleEngine
+from genesis_medical.application.conflict_resolver import ConflictResolver
 from genesis_medical.domain.entities.finding import ClinicalFinding
 from genesis_medical.domain.entities.parameter import Parameter
 from genesis_medical.domain.entities.patient import PatientProfile
-from medical_app.application.ports.rule_repository import RuleRepository
-from genesis_medical.application.conflict_resolver import ConflictResolver
 
 logger = logging.getLogger(__name__)
 
@@ -31,8 +31,8 @@ class InferenceEngine:
     def infer(
         self,
         patient: PatientProfile,
-        parameters: List[Parameter],
-    ) -> List[ClinicalFinding]:
+        parameters: list[Parameter],
+    ) -> list[ClinicalFinding]:
         logger.info(
             "Inference for patient %s (gender=%s)",
             patient.id,
@@ -43,10 +43,7 @@ class InferenceEngine:
 
         active_rules = self.rule_repo.get_active_versions()
 
-        rules_dict = {
-            rule.rule_id: rule
-            for rule in active_rules
-        }
+        rules_dict = {rule.rule_id: rule for rule in active_rules}
 
         compiled_rules = []
 
@@ -63,13 +60,10 @@ class InferenceEngine:
             facts,
         )
 
-        findings: List[ClinicalFinding] = []
+        findings: list[ClinicalFinding] = []
         finding_rule_ids: dict[str, str] = {}
 
-        for compiled_rule, evaluation in zip(
-            compiled_rules,
-            evaluations,
-        ):
+        for compiled_rule, evaluation in zip(compiled_rules, evaluations, strict=True):
             if not evaluation.matched:
                 continue
 
@@ -80,9 +74,7 @@ class InferenceEngine:
 
             findings.append(finding)
 
-            finding_rule_ids[finding.id] = (
-                compiled_rule.rule_version.rule_id
-            )
+            finding_rule_ids[finding.id] = compiled_rule.rule_version.rule_id
 
             logger.debug(
                 "Rule %s / condition %s matched",
@@ -100,8 +92,7 @@ class InferenceEngine:
         )
 
         logger.info(
-            "Inference complete: %s findings after "
-            "conflict resolution",
+            "Inference complete: %s findings after conflict resolution",
             len(findings),
         )
 
@@ -109,7 +100,7 @@ class InferenceEngine:
 
     @staticmethod
     def _build_facts(
-        parameters: List[Parameter],
+        parameters: list[Parameter],
     ) -> list[Fact]:
         return [
             Fact(

@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 import argparse
-from pathlib import Path
 import shutil
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -44,13 +44,17 @@ def main() -> int:
     shutil.copytree(source, target)
     shutil.copytree(tests_source, tests_target)
     package_dir.mkdir(parents=True)
-    shutil.copy(ROOT / "template" / "genesis-example-pyproject.toml", package_dir / "pyproject.toml")
+    shutil.copy(
+        ROOT / "template" / "genesis-example-pyproject.toml", package_dir / "pyproject.toml"
+    )
     shutil.copy(ROOT / "template" / "genesis_example" / "README.md", package_dir / "README.md")
 
     replace_tree(target, "genesis_example", package)
     replace_tree(tests_target, "genesis_example", package)
     replace_tree(package_dir, "genesis_example", package)
-    replace_tree(target, "ExampleDomainDescriptor", f"{domain.title().replace('_', '')}DomainDescriptor")
+    replace_tree(
+        target, "ExampleDomainDescriptor", f"{domain.title().replace('_', '')}DomainDescriptor"
+    )
     replace_tree(target, 'name="example"', f'name="{domain}"')
     replace_tree(package_dir, "genesis-example", f"genesis-{domain}")
     replace_tree(package_dir, "example", domain)

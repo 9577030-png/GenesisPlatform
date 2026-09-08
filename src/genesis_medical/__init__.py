@@ -1,7 +1,6 @@
 from genesis_core.contracts import DomainDescriptor
 
 from .domain.descriptor import MedicalDomainDescriptor
-
 from .domain.entities import (
     AnalysisReport,
     ClinicalFinding,
@@ -13,8 +12,6 @@ from .domain.entities import (
 )
 from .domain.rule_version import RulePriority, RuleTier, RuleVersion
 from .domain.value_objects import Gender, RiskLevel, Severity, Unit
-from .parsers import ParameterNormalizer, RegexParser
-
 from .models import (
     ClinicalInsights,
     CriterionEvaluation,
@@ -22,6 +19,7 @@ from .models import (
     RedFlag,
     TreatmentHint,
 )
+from .parsers import ParameterNormalizer, RegexParser
 from .services import (
     ActionMapper,
     ClinicalInterpreter,
@@ -30,7 +28,6 @@ from .services import (
     ReportBuilder,
     build_explanation,
 )
-
 from .sources import (
     ClinicalLogicLoader,
     MedicalReferenceLoader,
@@ -42,6 +39,7 @@ from .sources import (
 
 try:
     from importlib.metadata import version as _distribution_version
+
     __version__ = _distribution_version("genesis-medical")
 except Exception:
     __version__ = "0.0.0"
@@ -98,7 +96,7 @@ __all__ = [
 
 def knowledge_dir():
     """Return the bundled Genesis Medical knowledge directory."""
-    from pathlib import Path
     from importlib.resources import files
+    from pathlib import Path
 
     return Path(str(files("genesis_medical").joinpath("knowledge")))

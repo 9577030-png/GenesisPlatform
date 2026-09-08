@@ -1,9 +1,10 @@
-﻿import logging
+import logging
 import sys
-from typing import Optional
+
 from medical_app.config import settings
 
-def setup_logging(level: Optional[str] = None, log_file: Optional[str] = None) -> None:
+
+def setup_logging(level: str | None = None, log_file: str | None = None) -> None:
     """РќР°СЃС‚СЂР°РёРІР°РµС‚ Р»РѕРіРёСЂРѕРІР°РЅРёРµ РґР»СЏ РІСЃРµРіРѕ РїСЂРёР»РѕР¶РµРЅРёСЏ."""
     if level is None:
         level = settings.LOG_LEVEL

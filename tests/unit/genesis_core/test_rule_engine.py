@@ -95,9 +95,7 @@ def test_rule_engine_returns_only_matched_rules():
 def test_rule_engine_evaluates_empty_rules():
     evaluations = RuleEngine().evaluate(
         (),
-        (
-            Fact("temperature", 100, "C"),
-        ),
+        (Fact("temperature", 100, "C"),),
     )
 
     assert evaluations == ()
@@ -131,15 +129,10 @@ def test_rule_engine_preserves_rule_order():
 
     evaluations = RuleEngine().evaluate(
         rules,
-        (
-            Fact("value", 10),
-        ),
+        (Fact("value", 10),),
     )
 
-    assert [
-        evaluation.rule_id
-        for evaluation in evaluations
-    ] == [
+    assert [evaluation.rule_id for evaluation in evaluations] == [
         "first",
         "second",
     ]

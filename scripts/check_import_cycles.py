@@ -33,7 +33,7 @@ def main() -> int:
 
     def dfs(node: str) -> list[str] | None:
         if node in visiting:
-            return stack[stack.index(node):] + [node]
+            return stack[stack.index(node) :] + [node]
         if node in visited:
             return None
         visiting.add(node)

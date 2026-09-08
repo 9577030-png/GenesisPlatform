@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class Severity(Enum):
     MINOR = "minor"
     MODERATE = "moderate"

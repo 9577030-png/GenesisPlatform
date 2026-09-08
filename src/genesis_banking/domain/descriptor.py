@@ -2,11 +2,10 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from genesis_core import DefaultRuleLoader
-from genesis_core.contracts import DomainDescriptor, RuleLoader
-
 from genesis_banking.parsers import BankingRuleParser
 from genesis_banking.sources import YamlBankingRuleSource
+from genesis_core import DefaultRuleLoader
+from genesis_core.contracts import DomainDescriptor, RuleLoader
 
 
 class BankingDomainDescriptor(DomainDescriptor):

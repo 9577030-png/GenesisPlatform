@@ -1,5 +1,7 @@
 import pytest
+
 from genesis_medical.parsers.regex_parser import RegexParser
+
 
 @pytest.mark.integration
 def test_parser_handles_tsh():
@@ -10,6 +12,7 @@ def test_parser_handles_tsh():
     assert params[0].name == "tsh"
     assert params[0].value == 5.2
 
+
 @pytest.mark.integration
 def test_parser_handles_potassium():
     parser = RegexParser()
@@ -18,6 +21,7 @@ def test_parser_handles_potassium():
     assert len(params) == 1
     assert params[0].name == "potassium"
     assert params[0].value == 6.0
+
 
 @pytest.mark.integration
 def test_parser_handles_t4():

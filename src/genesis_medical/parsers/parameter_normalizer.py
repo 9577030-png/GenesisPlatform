@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from typing import Dict, Tuple
 from importlib.resources import files
 
 import yaml
@@ -23,7 +22,7 @@ class ParameterNormalizer:
         with resource.open("r", encoding="utf-8") as handle:
             return yaml.safe_load(handle) or {}
 
-    def _load_aliases(self) -> Dict[str, str]:
+    def _load_aliases(self) -> dict[str, str]:
         data = self._load_yaml("laboratory/aliases.yaml")
         return {
             synonym.lower(): canonical
@@ -31,7 +30,7 @@ class ParameterNormalizer:
             for synonym in synonyms
         }
 
-    def _load_units(self) -> Dict[str, Dict]:
+    def _load_units(self) -> dict[str, dict]:
         return self._load_yaml("laboratory/units.yaml").get("units", {})
 
     def normalize(
@@ -39,7 +38,7 @@ class ParameterNormalizer:
         raw_name: str,
         raw_value: float,
         raw_unit: str,
-    ) -> Tuple[str, float, Unit]:
+    ) -> tuple[str, float, Unit]:
         if raw_value < 0:
             raise InvalidParameterError(
                 f"Parameter value cannot be negative: {raw_value} for {raw_name}"

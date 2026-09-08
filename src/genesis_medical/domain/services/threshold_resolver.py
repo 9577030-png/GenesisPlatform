@@ -10,14 +10,10 @@ def resolve(
     overrides: dict[str, dict[str, Any]],
 ) -> dict[str, Threshold]:
     if global_thresholds is None:
-        raise ConfigurationError(
-            "global_thresholds cannot be None"
-        )
+        raise ConfigurationError("global_thresholds cannot be None")
 
     if not isinstance(global_thresholds, dict):
-        raise ConfigurationError(
-            "global_thresholds must be a dict"
-        )
+        raise ConfigurationError("global_thresholds must be a dict")
 
     result: dict[str, Threshold] = {}
 
@@ -30,8 +26,7 @@ def resolve(
 
         if not isinstance(override, dict):
             raise ConfigurationError(
-                f"Override for '{param_name}' must be a dict, "
-                f"got {type(override)}"
+                f"Override for '{param_name}' must be a dict, got {type(override)}"
             )
 
         try:
@@ -46,9 +41,6 @@ def resolve(
                 ),
             )
         except Exception as exc:
-            raise ConfigurationError(
-                f"Failed to apply override for "
-                f"'{param_name}': {exc}"
-            ) from exc
+            raise ConfigurationError(f"Failed to apply override for '{param_name}': {exc}") from exc
 
     return result

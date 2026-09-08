@@ -1,8 +1,7 @@
 from __future__ import annotations
 
-from pathlib import Path
-from typing import List
 from importlib.resources import files
+from pathlib import Path
 
 import yaml
 
@@ -20,8 +19,10 @@ class MergedGuidelineProvider:
     def _default_directory(self) -> Path:
         return Path(str(files("genesis_medical").joinpath("knowledge", "guidelines")))
 
-    def _load_guidelines(self) -> List[SpecialtyGuideline]:
-        guidelines_dir = Path(self.guidelines_dir) if self.guidelines_dir else self._default_directory()
+    def _load_guidelines(self) -> list[SpecialtyGuideline]:
+        guidelines_dir = (
+            Path(self.guidelines_dir) if self.guidelines_dir else self._default_directory()
+        )
         result: list[SpecialtyGuideline] = []
         for path in sorted(guidelines_dir.rglob("*.yaml")):
             with path.open("r", encoding="utf-8") as handle:
@@ -68,7 +69,7 @@ class MergedGuidelineProvider:
             )
         return result
 
-    def get_all(self) -> List[SpecialtyGuideline]:
+    def get_all(self) -> list[SpecialtyGuideline]:
         if self._guidelines is None:
             self._guidelines = self._load_guidelines()
         return list(self._guidelines)

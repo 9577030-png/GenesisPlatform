@@ -22,9 +22,7 @@ class MedicalConditionAdapter:
         parameter = condition.get("parameter")
 
         if not parameter:
-            raise ValueError(
-                "Medical condition requires 'parameter'"
-            )
+            raise ValueError("Medical condition requires 'parameter'")
 
         parameter = str(parameter).lower()
 
@@ -49,10 +47,7 @@ class MedicalConditionAdapter:
             )
 
         if not result:
-            raise ValueError(
-                f"Medical condition for {parameter!r} "
-                "must contain 'min' or 'max'"
-            )
+            raise ValueError(f"Medical condition for {parameter!r} must contain 'min' or 'max'")
 
         return tuple(result)
 

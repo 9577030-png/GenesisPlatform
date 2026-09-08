@@ -1,5 +1,4 @@
 from pydantic import BaseModel, Field
-from typing import List, Optional
 
 
 class CriterionEvaluation(BaseModel):
@@ -7,7 +6,7 @@ class CriterionEvaluation(BaseModel):
         ...,
         description="Каноническое имя параметра",
     )
-    value: Optional[float] = Field(
+    value: float | None = Field(
         None,
         description="Значение параметра у пациента",
     )
@@ -15,11 +14,11 @@ class CriterionEvaluation(BaseModel):
         ...,
         description="Единица измерения",
     )
-    threshold: Optional[float] = Field(
+    threshold: float | None = Field(
         None,
         description="Пороговое значение",
     )
-    condition: Optional[str] = Field(
+    condition: str | None = Field(
         None,
         description="Условие сравнения",
     )
@@ -66,17 +65,9 @@ class ClinicalInsights(BaseModel):
     diagnosis_id: str
     label: str
     category: str
-    description: Optional[str] = None
-    criteria: List[CriterionEvaluation] = Field(
-        default_factory=list
-    )
-    differentials: List[DifferentialSuggestion] = Field(
-        default_factory=list
-    )
-    red_flags: List[RedFlag] = Field(
-        default_factory=list
-    )
-    treatment_hints: List[TreatmentHint] = Field(
-        default_factory=list
-    )
-    references: Optional[List[str]] = None
+    description: str | None = None
+    criteria: list[CriterionEvaluation] = Field(default_factory=list)
+    differentials: list[DifferentialSuggestion] = Field(default_factory=list)
+    red_flags: list[RedFlag] = Field(default_factory=list)
+    treatment_hints: list[TreatmentHint] = Field(default_factory=list)
+    references: list[str] | None = None

@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
-from typing import List, Optional
+
 from genesis_medical.domain.value_objects.risk_level import RiskLevel
+
 
 @dataclass(frozen=True)
 class ClinicalFinding:
@@ -8,8 +9,8 @@ class ClinicalFinding:
     title: str
     probability: float
     risk: RiskLevel
-    doctor_specialty: Optional[str] = None
-    tests: List[str] = field(default_factory=list)
-    evidence: List[str] = field(default_factory=list)
-    excluded_by: List[str] = field(default_factory=list)
-    description: Optional[str] = None
+    doctor_specialty: str | None = None
+    tests: list[str] = field(default_factory=list)
+    evidence: list[str] = field(default_factory=list)
+    excluded_by: list[str] = field(default_factory=list)
+    description: str | None = None

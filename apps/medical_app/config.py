@@ -1,6 +1,5 @@
 import os
 import secrets
-from typing import Optional
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -20,7 +19,7 @@ class Settings(BaseSettings):
     DB_PATH: str = "cdss.db"
     DATABASE_URL: str = "sqlite:///./cdss.db"
 
-    REDIS_URL: Optional[str] = None
+    REDIS_URL: str | None = None
 
     SECRET_KEY: str = os.getenv("SECRET_KEY", secrets.token_urlsafe(32))
     ALGORITHM: str = "HS256"
@@ -30,4 +29,3 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
-

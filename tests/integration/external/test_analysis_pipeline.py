@@ -1,20 +1,22 @@
+# ruff: noqa: E402
 import pytest
-pytest.importorskip('redis', reason="optional external dependency not installed")
+
+pytest.importorskip("redis", reason="optional external dependency not installed")
 pytestmark = pytest.mark.external
-pytest.importorskip('redis', reason="optional external dependency not installed")
+pytest.importorskip("redis", reason="optional external dependency not installed")
 from unittest.mock import Mock
 
-from genesis_medical.domain.entities.patient import PatientProfile
-from genesis_medical.domain.entities.parameter import Parameter
+from medical_app.application.services.analysis_pipeline import AnalysisPipeline
+
 from genesis_medical.domain.entities.finding import ClinicalFinding
+from genesis_medical.domain.entities.parameter import Parameter
+from genesis_medical.domain.entities.patient import PatientProfile
 from genesis_medical.domain.entities.recommendation import Recommendation
 from genesis_medical.domain.entities.report import AnalysisReport
 from genesis_medical.domain.value_objects.gender import Gender
-from genesis_medical.domain.value_objects.unit import Unit
 from genesis_medical.domain.value_objects.risk_level import RiskLevel
 from genesis_medical.domain.value_objects.severity import Severity
-
-from medical_app.application.services.analysis_pipeline import AnalysisPipeline
+from genesis_medical.domain.value_objects.unit import Unit
 
 
 def test_analysis_pipeline():
@@ -33,11 +35,11 @@ def test_analysis_pipeline():
     findings = [ClinicalFinding(id="F1", title="Anemia", probability=0.9, risk=RiskLevel.HIGH)]
     inference_engine.infer.return_value = findings
 
-    actions = [Recommendation(
-        doctor_specialty="Hematologist",
-        urgency=Severity.MODERATE,
-        additional_tests=[]
-    )]
+    actions = [
+        Recommendation(
+            doctor_specialty="Hematologist", urgency=Severity.MODERATE, additional_tests=[]
+        )
+    ]
     action_mapper.map_to_actions.return_value = actions
 
     report = AnalysisReport(findings=findings, actions=actions, explanation="Test")

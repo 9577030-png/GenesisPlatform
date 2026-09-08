@@ -22,24 +22,15 @@ class RuleSet:
 
     def __post_init__(self) -> None:
         if not isinstance(self.rules, tuple):
-            raise TypeError(
-                "RuleSet rules must be a tuple"
-            )
+            raise TypeError("RuleSet rules must be a tuple")
 
-        if any(
-            not isinstance(rule, Rule)
-            for rule in self.rules
-        ):
-            raise TypeError(
-                "RuleSet rules must contain only Rule objects"
-            )
+        if any(not isinstance(rule, Rule) for rule in self.rules):
+            raise TypeError("RuleSet rules must contain only Rule objects")
 
         rule_ids = [rule.id for rule in self.rules]
 
         if len(rule_ids) != len(set(rule_ids)):
-            raise ValueError(
-                "RuleSet rule ids must be unique"
-            )
+            raise ValueError("RuleSet rule ids must be unique")
 
     def __iter__(self) -> Iterator[Rule]:
         return iter(self.rules)
@@ -58,8 +49,6 @@ class RuleSet:
         rule = self.get(rule_id)
 
         if rule is None:
-            raise KeyError(
-                f"Rule not found: {rule_id!r}"
-            )
+            raise KeyError(f"Rule not found: {rule_id!r}")
 
         return rule
