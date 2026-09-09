@@ -30,6 +30,8 @@ class BankingRuleParser(RuleParser):
 
             if not isinstance(fact, str) or not fact.strip():
                 raise ValueError("Banking condition requires 'fact'")
+            if not isinstance(operator, str) or not operator.strip():
+                raise ValueError("Banking condition requires non-empty 'operator'")
 
             parsed.append(
                 Condition(

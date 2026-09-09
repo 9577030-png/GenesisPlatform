@@ -1,8 +1,9 @@
 import ast
 import operator
+from collections.abc import Callable
 from importlib.resources import files
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 import yaml
 
@@ -19,21 +20,21 @@ from genesis_medical.sources.medical_reference_loader import MedicalReferenceLoa
 
 
 class ClinicalInterpreter:
-    def __init__(self, config_path: str | None = None):
+    def __init__(self, config_path: str | None = None) -> None:
         self.config_path = Path(config_path) if config_path else None
         self._load_config()
         self.reference_loader = MedicalReferenceLoader()
 
-    def _load_config(self):
+    def _load_config(self) -> None:
         if self.config_path is None:
             resource = files("genesis_medical").joinpath(
                 "knowledge", "configs", "clinical_interpretations.yaml"
             )
             with resource.open("r", encoding="utf-8") as f:
-                self.config = yaml.safe_load(f) or {}
+                self.config = cast(dict[str, Any], yaml.safe_load(f) or {})
         else:
             with open(self.config_path, encoding="utf-8") as f:
-                self.config = yaml.safe_load(f) or {}
+                self.config = cast(dict[str, Any], yaml.safe_load(f) or {})
         self.interpretations = self.config.get("interpretations", {})
 
     def interpret(
@@ -53,7 +54,7 @@ class ClinicalInterpreter:
             "age": patient.age,
         }
 
-        result = {}
+        result: dict[str, ClinicalInsights] = {}
         for diag in diagnoses:
             diag_id = diag.get("id")
             if not diag_id:
@@ -128,11 +129,11 @@ class ClinicalInterpreter:
     def _generate_comment(
         self, crit_config: dict[str, Any], value: float | None, patient_info: dict[str, Any]
     ) -> str:
-        template = crit_config.get("comment_template", "")
+        template = str(crit_config.get("comment_template", ""))
         if not template:
             return ""
 
-        param_name = crit_config.get("parameter")
+        param_name = str(crit_config.get("parameter", ""))
         gender = patient_info.get("gender", "male")
         age = patient_info.get("age", 30)
         ref_info = (
@@ -141,7 +142,7 @@ class ClinicalInterpreter:
             else {}
         )
 
-        context = {
+        context: dict[str, Any] = {
             "value": value if value is not None else "не указан",
             "gender": gender,
             "age": age,
@@ -162,12 +163,14 @@ class ClinicalInterpreter:
 
         for rule in crit_config.get("additional_rules", []):
             condition = rule.get("condition", "")
-            if self._check_condition(condition, {crit_config["parameter"]: value}, patient_info):
-                comment += " " + rule.get("text", "")
+            if self._check_condition(
+                condition, {str(crit_config.get("parameter", "")): value}, patient_info
+            ):
+                comment += " " + str(rule.get("text", ""))
 
         return comment
 
-    def _determine_severity(self, value: float | None, mapping: list[dict]) -> str:
+    def _determine_severity(self, value: float | None, mapping: list[dict[str, Any]]) -> str:
         if value is None:
             return "не определено"
         for item in mapping:
@@ -176,52 +179,56 @@ class ClinicalInterpreter:
                 if ">=" in range_str:
                     threshold = float(range_str.split(">=")[1].strip())
                     if value >= threshold:
-                        return item.get("label", "")
+                        return str(item.get("label", ""))
                 elif "-" in range_str:
                     parts = range_str.split("-")
                     low = float(parts[0].strip())
                     high = float(parts[1].strip())
                     if low <= value <= high:
-                        return item.get("label", "")
+                        return str(item.get("label", ""))
                 elif "<" in range_str:
                     threshold = float(range_str.split("<")[1].strip())
                     if value < threshold:
-                        return item.get("label", "")
+                        return str(item.get("label", ""))
             except Exception:
                 continue
         return "не классифицировано"
 
     def _check_condition(
-        self, condition: str, param_dict: dict[str, float], patient_info: dict[str, Any]
+        self, condition: str, param_dict: dict[str, Any], patient_info: dict[str, Any]
     ) -> bool:
         if not condition:
             return True
 
-        allowed_vars = {}
+        allowed_vars: dict[str, Any] = {}
         for k, v in {**param_dict, **patient_info}.items():
             if isinstance(v, (int, float, str, bool)):
                 allowed_vars[k] = v
 
-        operators = {
+        binary_operators: dict[type[ast.AST], Callable[[Any, Any], Any]] = {
             ast.Add: operator.add,
             ast.Sub: operator.sub,
             ast.Mult: operator.mul,
             ast.Div: operator.truediv,
             ast.Mod: operator.mod,
+        }
+
+        comparison_operators: dict[type[ast.AST], Callable[[Any, Any], Any]] = {
             ast.Eq: operator.eq,
             ast.NotEq: operator.ne,
             ast.Lt: operator.lt,
             ast.LtE: operator.le,
             ast.Gt: operator.gt,
             ast.GtE: operator.ge,
-            ast.And: operator.and_,
-            ast.Or: operator.or_,
+        }
+
+        unary_operators: dict[type[ast.AST], Callable[[Any], Any]] = {
             ast.Not: operator.not_,
             ast.USub: operator.neg,
             ast.UAdd: operator.pos,
         }
 
-        def _eval_node(node):
+        def _eval_node(node: ast.AST) -> Any:
             if isinstance(node, ast.Constant):
                 return node.value
             elif isinstance(node, ast.Name):
@@ -231,10 +238,10 @@ class ClinicalInterpreter:
             elif isinstance(node, ast.BinOp):
                 left = _eval_node(node.left)
                 right = _eval_node(node.right)
-                op_type = type(node.op)
-                if op_type not in operators:
-                    raise ValueError(f"Unsupported operator: {op_type}")
-                return operators[op_type](left, right)
+                binary_op_type = type(node.op)
+                if binary_op_type not in binary_operators:
+                    raise ValueError(f"Unsupported operator: {binary_op_type}")
+                return binary_operators[binary_op_type](left, right)
             elif isinstance(node, ast.Compare):
                 left = _eval_node(node.left)
                 for op, comp in zip(
@@ -243,10 +250,10 @@ class ClinicalInterpreter:
                     strict=True,
                 ):
                     right = _eval_node(comp)
-                    op_type = type(op)
-                    if op_type not in operators:
-                        raise ValueError(f"Unsupported comparison: {op_type}")
-                    if not operators[op_type](left, right):
+                    comparison_op_type = type(op)
+                    if comparison_op_type not in comparison_operators:
+                        raise ValueError(f"Unsupported comparison: {comparison_op_type}")
+                    if not comparison_operators[comparison_op_type](left, right):
                         return False
                     left = right
                 return True
@@ -260,10 +267,10 @@ class ClinicalInterpreter:
                     raise ValueError("Unsupported boolean operator")
             elif isinstance(node, ast.UnaryOp):
                 operand = _eval_node(node.operand)
-                op_type = type(node.op)
-                if op_type not in operators:
-                    raise ValueError(f"Unsupported unary operator: {op_type}")
-                return operators[op_type](operand)
+                unary_op_type = type(node.op)
+                if unary_op_type not in unary_operators:
+                    raise ValueError(f"Unsupported unary operator: {unary_op_type}")
+                return unary_operators[unary_op_type](operand)
             elif isinstance(node, ast.Attribute):
                 raise ValueError("Attribute access not allowed")
             else:

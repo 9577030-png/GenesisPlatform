@@ -27,6 +27,8 @@ class ConstructionRuleParser(RuleParser):
             value = item.get("value")
             if not isinstance(fact, str) or not fact.strip():
                 raise ValueError("Construction condition requires 'fact'")
+            if not isinstance(operator, str) or not operator.strip():
+                raise ValueError("Construction condition requires non-empty 'operator'")
             parsed.append(Condition(fact=fact, operator=operator, value=value))
 
         return Rule(

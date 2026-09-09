@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from genesis_core.contracts import DomainDescriptor
 
 from .domain.descriptor import MedicalDomainDescriptor
@@ -94,7 +96,7 @@ __all__ = [
 ]
 
 
-def knowledge_dir():
+def knowledge_dir() -> Path:
     """Return the bundled Genesis Medical knowledge directory."""
     from importlib.resources import files
     from pathlib import Path

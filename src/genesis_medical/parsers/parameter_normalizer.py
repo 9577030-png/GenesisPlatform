@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from importlib.resources import files
+from typing import Any, cast
 
 import yaml
 
@@ -17,10 +18,10 @@ class ParameterNormalizer:
         self._units = self._load_units()
 
     @staticmethod
-    def _load_yaml(relative_path: str) -> dict:
+    def _load_yaml(relative_path: str) -> dict[str, Any]:
         resource = files("genesis_medical").joinpath("knowledge", relative_path)
         with resource.open("r", encoding="utf-8") as handle:
-            return yaml.safe_load(handle) or {}
+            return cast(dict[str, Any], yaml.safe_load(handle) or {})
 
     def _load_aliases(self) -> dict[str, str]:
         data = self._load_yaml("laboratory/aliases.yaml")
@@ -30,8 +31,10 @@ class ParameterNormalizer:
             for synonym in synonyms
         }
 
-    def _load_units(self) -> dict[str, dict]:
-        return self._load_yaml("laboratory/units.yaml").get("units", {})
+    def _load_units(self) -> dict[str, dict[str, Any]]:
+        return cast(
+            dict[str, dict[str, Any]], self._load_yaml("laboratory/units.yaml").get("units", {})
+        )
 
     def normalize(
         self,

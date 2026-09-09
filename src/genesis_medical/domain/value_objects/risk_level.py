@@ -10,7 +10,7 @@ class RiskLevel(Enum):
     HIGH = (3, "Высокий")
     CRITICAL = (4, "Критический")
 
-    def __new__(cls, value, label):
+    def __new__(cls, value: int, label: str) -> "RiskLevel":
         obj = object.__new__(cls)
         obj._value_ = value
         obj.label = label
@@ -21,5 +21,5 @@ class RiskLevel(Enum):
         return self._label
 
     @label.setter
-    def label(self, value: str):
+    def label(self, value: str) -> None:
         self._label = value

@@ -12,7 +12,7 @@ class Parameter:
     value: float
     unit: Unit
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         if not self.name or not self.name.strip():
             raise InvalidParameterError("Parameter name cannot be empty")
         if self.value < 0:

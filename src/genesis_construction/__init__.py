@@ -20,7 +20,7 @@ __all__ = [
 ]
 
 
-def get_domain_descriptor():
+def get_domain_descriptor() -> ConstructionDomainDescriptor:
     from importlib.resources import files
     from pathlib import Path
 

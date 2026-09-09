@@ -5,10 +5,11 @@ from dataclasses import asdict
 from datetime import timedelta
 from typing import Any
 
+import jwt
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.responses import Response
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from jose import JWTError, jwt
+from jwt.exceptions import InvalidTokenError
 from pydantic import BaseModel, Field
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
@@ -85,7 +86,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
         username: str = payload.get("sub")
         if username is None:
             raise credentials_exception
-    except JWTError:
+    except InvalidTokenError:
         raise credentials_exception from None
     user = container.user_repo.get_by_username(username)
     if user is None:

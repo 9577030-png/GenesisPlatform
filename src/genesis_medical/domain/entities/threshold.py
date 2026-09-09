@@ -13,7 +13,7 @@ class Threshold:
     unit: Unit
     risk_level: RiskLevel
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         if not self.parameter_name or not self.parameter_name.strip():
             raise ConfigurationError("Threshold parameter_name cannot be empty")
         if self.low is not None and self.high is not None and self.low >= self.high:

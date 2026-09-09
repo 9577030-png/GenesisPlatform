@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 from importlib.resources import files
+from importlib.resources.abc import Traversable
+from typing import Any, cast
 
 import yaml
 
@@ -13,14 +15,14 @@ class YamlRecommendationLoader:
 
     def __init__(self, config_path: str | None = None) -> None:
         self.config_path = config_path
-        self._recommendations: dict | None = None
+        self._recommendations: dict[str, dict[str, Any]] | None = None
 
-    def _default_resource(self):
+    def _default_resource(self) -> Traversable:
         return files("genesis_medical").joinpath(
             "knowledge", "configs", "doctor_recommendations.yaml"
         )
 
-    def _load(self) -> dict:
+    def _load(self) -> dict[str, dict[str, Any]]:
         resource = (
             open(self.config_path, encoding="utf-8")
             if self.config_path
@@ -30,7 +32,7 @@ class YamlRecommendationLoader:
             data = yaml.safe_load(resource) or {}
         finally:
             resource.close()
-        return data.get("recommendations", {})
+        return cast(dict[str, dict[str, Any]], data.get("recommendations", {}))
 
     def get_recommendation(self, finding_id: str) -> Recommendation | None:
         if self._recommendations is None:

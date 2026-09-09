@@ -12,7 +12,7 @@ class PatientProfile:
     complaints: list[str] = field(default_factory=list)
     medications: list[str] = field(default_factory=list)
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         """Р’Р°Р»РёРґР°С†РёСЏ РґР°РЅРЅС‹С… РїР°С†РёРµРЅС‚Р°."""
         if not self.id or not self.id.strip():
             raise InvalidPatientDataError("Patient ID cannot be empty")

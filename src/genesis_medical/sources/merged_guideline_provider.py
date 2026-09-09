@@ -42,7 +42,7 @@ class MergedGuidelineProvider:
                 continue
 
             scoring_rules: dict[str, float] = {}
-            override_thresholds: dict[str, dict] = {}
+            override_thresholds: dict[str, dict[str, float]] = {}
             if "thresholds" in data:
                 for param, condition in data["thresholds"].items():
                     scoring_rules[param] = 5

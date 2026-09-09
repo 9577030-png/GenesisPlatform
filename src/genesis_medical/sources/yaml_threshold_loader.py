@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from importlib.resources import files
+from importlib.resources.abc import Traversable
 
 import yaml
 
@@ -19,7 +20,7 @@ class YamlThresholdLoader:
         self._male_thresholds: dict[str, Threshold] = {}
         self._female_thresholds: dict[str, Threshold] = {}
 
-    def _default_path(self):
+    def _default_path(self) -> Traversable:
         return files("genesis_medical").joinpath("knowledge", "configs", "clinical_thresholds.yaml")
 
     def _load(self) -> None:

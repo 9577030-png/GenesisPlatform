@@ -94,32 +94,32 @@ class Evaluator:
         expected: Any,
     ) -> bool:
         if operator == "==":
-            return actual == expected
+            return bool(actual == expected)
 
         if operator == "!=":
-            return actual != expected
+            return bool(actual != expected)
 
         if operator == ">":
-            return actual > expected
+            return bool(actual > expected)
 
         if operator == ">=":
-            return actual >= expected
+            return bool(actual >= expected)
 
         if operator == "<":
-            return actual < expected
+            return bool(actual < expected)
 
         if operator == "<=":
-            return actual <= expected
+            return bool(actual <= expected)
 
         if operator == "in":
             try:
-                return actual in expected
+                return bool(actual in expected)
             except TypeError:
                 raise TypeError("'in' expects a membership-compatible value") from None
 
         if operator == "not_in":
             try:
-                return actual not in expected
+                return bool(actual not in expected)
             except TypeError:
                 raise TypeError("'not_in' expects a membership-compatible value") from None
 
@@ -131,6 +131,6 @@ class Evaluator:
                 raise ValueError("'between' expects exactly two values")
 
             minimum, maximum = expected
-            return minimum <= actual <= maximum
+            return bool(minimum <= actual <= maximum)
 
         raise ValueError(f"Unsupported operator: {operator!r}")

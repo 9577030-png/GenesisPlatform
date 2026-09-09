@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Iterable, Sequence
-from typing import overload
+from typing import cast, overload
 
 from .contracts.rule_loader import RuleLoader as RuleLoaderContract
 from .contracts.rule_resolver import RuleResolver
@@ -48,19 +48,19 @@ class RuleEngine:
     @overload
     def evaluate(
         self,
-        rules: Iterable[Rule],
+        rules_or_facts: Iterable[Rule],
         facts: Iterable[Fact],
     ) -> tuple[RuleEvaluation, ...]: ...
 
     @overload
     def evaluate(
         self,
-        facts: Iterable[Fact],
+        rules_or_facts: Iterable[Fact],
     ) -> tuple[RuleEvaluation, ...]: ...
 
     def evaluate(
         self,
-        rules_or_facts: Iterable[Rule] | Iterable[Fact],
+        rules_or_facts: Iterable[object],
         facts: Iterable[Fact] | None = None,
     ) -> tuple[RuleEvaluation, ...]:
         if facts is None:
@@ -69,9 +69,9 @@ class RuleEngine:
 
             rule_source = self.loader.load()
             rules = rule_source.rules
-            fact_values = tuple(rules_or_facts)  # type: ignore[arg-type]
+            fact_values = tuple(cast(Iterable[Fact], rules_or_facts))
         else:
-            rules = tuple(rules_or_facts)  # type: ignore[arg-type]
+            rules = tuple(cast(Iterable[Rule], rules_or_facts))
             fact_values = tuple(facts)
 
         evaluations = tuple(

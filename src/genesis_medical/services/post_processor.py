@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 class PostProcessor:
     def __init__(
-        self, logic_loader: ClinicalLogicLoader = None, probability_threshold: float = 0.3
+        self, logic_loader: ClinicalLogicLoader | None = None, probability_threshold: float = 0.3
     ):
         self.threshold = probability_threshold
         self.logic_loader = logic_loader or ClinicalLogicLoader()
@@ -91,7 +91,7 @@ class PostProcessor:
         combined_actions = self._create_actions_from_combinations(combined_recommendations)
         all_actions = base_actions + combined_actions
 
-        recommendations_by_specialty = {}
+        recommendations_by_specialty: dict[str, list[dict[str, Any]]] = {}
         for action in all_actions:
             spec = action.doctor_specialty
             if spec not in recommendations_by_specialty:
@@ -138,7 +138,7 @@ class PostProcessor:
             prefix = base_id + "_"
             return any(fid.startswith(prefix) for fid in ids)
 
-        def _remove(base_id: str):
+        def _remove(base_id: str) -> None:
             if base_id in ids:
                 to_remove.add(base_id)
             prefix = base_id + "_"
@@ -146,7 +146,7 @@ class PostProcessor:
                 if fid.startswith(prefix):
                     to_remove.add(fid)
 
-        to_remove = set()
+        to_remove: set[str] = set()
         for rule in self.exclusions:
             if_condition = rule.get("if")
             if _matches(if_condition):
@@ -154,7 +154,7 @@ class PostProcessor:
                     _remove(excluded)
         return [f for f in findings if f.id not in to_remove]
 
-    def _build_grouped(self, findings: list[ClinicalFinding]) -> dict[str, list[dict]]:
+    def _build_grouped(self, findings: list[ClinicalFinding]) -> dict[str, list[dict[str, Any]]]:
         grouped = {}
         for system, ids in self.system_groups.items():
             found = [f for f in findings if f.id in ids]
@@ -174,10 +174,12 @@ class PostProcessor:
                 ]
         return grouped
 
-    def _apply_combinations(self, findings: list[ClinicalFinding]) -> tuple:
+    def _apply_combinations(
+        self, findings: list[ClinicalFinding]
+    ) -> tuple[list[dict[str, Any]], list[Recommendation]]:
         findings_dict = {f.id: f for f in findings}
-        combined_diagnoses = []
-        combined_recommendations = []
+        combined_diagnoses: list[dict[str, Any]] = []
+        combined_recommendations: list[Recommendation] = []
 
         for combo in self.combinations:
             conditions = combo.get("conditions", [])
@@ -228,7 +230,13 @@ class PostProcessor:
     ) -> list[Recommendation]:
         return recommendations
 
-    def _build_conclusion(self, diagnoses, grouped, recommendations_by_specialty, max_risk) -> str:
+    def _build_conclusion(
+        self,
+        diagnoses: list[dict[str, Any]],
+        grouped: dict[str, list[dict[str, Any]]],
+        recommendations_by_specialty: dict[str, list[dict[str, Any]]],
+        max_risk: Any,
+    ) -> str:
         lines = []
         lines.append("=" * 60)
         lines.append("РљР›РРќРР§Р•РЎРљРћР• Р—РђРљР›Р®Р§Р•РќРР•")
