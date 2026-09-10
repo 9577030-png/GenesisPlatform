@@ -50,7 +50,7 @@ This allows `genesis-core` to discover the installed domain without importing it
 A deployable application consumes the package:
 
 ```text
-medical_app → genesis-medical → genesis-core
+genesis_app → genesis-medical → genesis-core
 ```
 
-`medical_app` owns HTTP, UI, authentication, persistence, caching, logging, and deployment configuration. Medical rules and medical knowledge stay in `genesis-medical`.
+`genesis_app` owns HTTP, UI, authentication, persistence, caching, logging, and deployment configuration. Medical rules and medical knowledge stay in `genesis-medical`.

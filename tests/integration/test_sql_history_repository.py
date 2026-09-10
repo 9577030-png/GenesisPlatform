@@ -1,5 +1,5 @@
 import pytest
-from medical_app.infrastructure.adapters.storage.sql_history_repository import SqlHistoryRepository
+from genesis_app.infrastructure.adapters.storage.sql_history_repository import SqlHistoryRepository
 
 from genesis_medical.domain.entities.finding import ClinicalFinding
 from genesis_medical.domain.entities.recommendation import Recommendation

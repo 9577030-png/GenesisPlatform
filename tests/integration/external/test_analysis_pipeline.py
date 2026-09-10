@@ -6,7 +6,7 @@ pytestmark = pytest.mark.external
 pytest.importorskip("redis", reason="optional external dependency not installed")
 from unittest.mock import Mock
 
-from medical_app.application.services.analysis_pipeline import AnalysisPipeline
+from genesis_app.application.services.analysis_pipeline import AnalysisPipeline
 
 from genesis_medical.domain.entities.finding import ClinicalFinding
 from genesis_medical.domain.entities.parameter import Parameter

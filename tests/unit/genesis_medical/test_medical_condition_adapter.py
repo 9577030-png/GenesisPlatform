@@ -215,4 +215,3 @@ def test_is_not_applicable_for_wrong_gender():
         },
         "female",
     )
-

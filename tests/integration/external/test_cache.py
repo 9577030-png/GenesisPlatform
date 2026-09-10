@@ -6,15 +6,15 @@ pytestmark = pytest.mark.external
 pytest.importorskip("redis", reason="optional external dependency not installed")
 from unittest.mock import MagicMock
 
-from medical_app.application.ports.history_repository import HistoryRepository
-from medical_app.application.ports.parser_interface import ParserInterface
-from medical_app.application.ports.renderer_interface import RendererInterface
-from medical_app.application.ports.rule_repository import RuleRepository
-from medical_app.application.services.analysis_pipeline import AnalysisPipeline
-from medical_app.application.services.inference_engine import InferenceEngine
-from medical_app.infrastructure.cache.redis_cache import RedisCache
-from medical_app.infrastructure.repositories.audit_repository import AuditRepository
+from genesis_app.application.ports.history_repository import HistoryRepository
+from genesis_app.application.ports.parser_interface import ParserInterface
+from genesis_app.application.ports.renderer_interface import RendererInterface
+from genesis_app.application.services.analysis_pipeline import AnalysisPipeline
+from genesis_app.infrastructure.cache.redis_cache import RedisCache
+from genesis_app.infrastructure.repositories.audit_repository import AuditRepository
 
+from genesis_medical.application.ports.rule_repository import RuleRepository
+from genesis_medical.application.services.inference_engine import InferenceEngine
 from genesis_medical.domain.entities.parameter import Parameter
 from genesis_medical.domain.entities.patient import PatientProfile
 from genesis_medical.domain.entities.report import AnalysisReport

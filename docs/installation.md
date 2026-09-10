@@ -20,7 +20,7 @@ For the universal engine only:
 pip install genesis-core
 ```
 
-Applications such as `medical_app` are deployed separately from the reusable distributions.
+Applications such as `genesis_app` are deployed separately from the reusable distributions.
 
 
 ## Domain discovery

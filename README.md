@@ -19,7 +19,7 @@ Genesis is a modular rule-engine platform distributed as independent Python pack
 | `genesis-construction` | Construction domain logic and knowledge | `0.2.0` |
 | `genesis-banking` | Banking domain logic and knowledge | `0.1.0` |
 
-Each reusable package has its own `pyproject.toml` under `packages/` and its own version. The deployable `medical_app` application has its own application manifest under `apps/medical_app/pyproject.toml`.
+Each reusable package has its own `pyproject.toml` under `packages/` and its own version. The deployable `genesis_app` application has its own application manifest under `apps/genesis_app/pyproject.toml`.
 
 ## Architecture rule
 
@@ -35,7 +35,7 @@ genesis-banking      ──→ genesis-core
 Applications consume domain packages. For example:
 
 ```text
-medical_app → genesis-medical → genesis-core
+genesis_app → genesis-medical → genesis-core
 ```
 
 ## Source layout
@@ -79,4 +79,4 @@ A package-specific version tag (`genesis-core-v*`, `genesis-medical-v*`, or `gen
 
 ## Medical application dependency
 
-`medical_app` is a deployable application and explicitly requires `genesis-medical>=0.3,<0.4`. It does not belong to the reusable `genesis-core`, `genesis-medical`, or `genesis-construction` distributions.
+`genesis_app` is a deployable application and explicitly requires `genesis-medical>=0.3,<0.4`. It does not belong to the reusable `genesis-core`, `genesis-medical`, or `genesis-construction` distributions.

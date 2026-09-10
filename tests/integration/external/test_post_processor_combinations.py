@@ -4,7 +4,7 @@ import pytest
 pytest.importorskip("passlib", reason="optional external dependency not installed")
 pytestmark = pytest.mark.external
 pytest.importorskip("passlib", reason="optional external dependency not installed")
-from medical_app.infrastructure.bootstrap.di_container import DIContainer
+from genesis_app.infrastructure.bootstrap.di_container import DIContainer
 
 from genesis_medical.domain.entities.finding import ClinicalFinding
 from genesis_medical.domain.entities.report import AnalysisReport

@@ -1,0 +1,20 @@
+[project]
+name = "genesis-app"
+version = "0.3.0"
+description = "Genesis application built on Genesis domain packages and Genesis Core"
+requires-python = ">=3.11"
+dependencies = [
+    "genesis-medical>=0.3,<0.4",
+    "fastapi",
+    "streamlit",
+    "sqlalchemy==2.0.52",
+    "redis",
+    "passlib[bcrypt]",
+]
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["genesis_app*"]

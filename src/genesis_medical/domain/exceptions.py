@@ -32,3 +32,7 @@ class InferenceError(MedicalAIError):
 
 class ConflictResolutionError(MedicalAIError):
     """Medical conflict resolution failed."""
+
+
+class VersionNotFoundError(MedicalAIError):
+    """Requested rule version was not found."""

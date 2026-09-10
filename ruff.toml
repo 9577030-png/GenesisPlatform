@@ -1,8 +1,8 @@
-﻿extend = "pyproject.toml"
+extend = "pyproject.toml"
 
 [lint]
 extend-ignore = ["E501"]
 
 [lint.per-file-ignores]
-"apps/medical_app/api/main.py" = ["B008"]
-"apps/medical_app/api/routes/admin.py" = ["B008"]
+"apps/genesis_app/api/main.py" = ["B008"]
+"apps/genesis_app/api/routes/admin.py" = ["B008"]

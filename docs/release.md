@@ -11,7 +11,7 @@ Each reusable package is released independently:
 - `genesis-construction`
 - `genesis-banking`
 
-`medical_app` is an application and is not part of the reusable Genesis domain distributions.
+`genesis_app` is an application and is not part of the reusable Genesis domain distributions.
 
 Package versions are defined in their own `pyproject.toml` files. There is no second version source.
 

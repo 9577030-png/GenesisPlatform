@@ -10,7 +10,7 @@ It owns medical semantics and medical expert knowledge, including:
 - clinical thresholds, guidelines, recommendations, and reference intervals;
 - medical conflict resolution.
 
-The package does not depend on `medical_app` and does not contain web, database, Redis, or authentication infrastructure.
+The package does not depend on `genesis_app` and does not contain web, database, Redis, or authentication infrastructure.
 
 ## Install
 

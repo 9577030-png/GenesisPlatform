@@ -24,7 +24,7 @@ genesis-construction ──→ genesis-core
 Applications consume domain packages:
 
 ```text
-medical_app → genesis-medical → genesis-core
+genesis_app → genesis-medical → genesis-core
 ```
 
 ## Source layout
