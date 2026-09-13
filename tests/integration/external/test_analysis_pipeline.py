@@ -8,6 +8,7 @@ from unittest.mock import Mock
 
 from genesis_app.application.services.analysis_pipeline import AnalysisPipeline
 
+from genesis_medical.application.services.medical_analysis_service import MedicalAnalysisService
 from genesis_medical.domain.entities.finding import ClinicalFinding
 from genesis_medical.domain.entities.parameter import Parameter
 from genesis_medical.domain.entities.patient import PatientProfile
@@ -47,8 +48,17 @@ def test_analysis_pipeline():
 
     renderer.render.return_value = "Rendered report"
 
+    medical_analysis_service = MedicalAnalysisService(
+        inference_engine=inference_engine,
+        action_mapper=action_mapper,
+        report_builder=report_builder,
+    )
+
     pipeline = AnalysisPipeline(
-        parser, inference_engine, action_mapper, report_builder, history_repo, renderer
+        parser=parser,
+        medical_analysis_service=medical_analysis_service,
+        history_repo=history_repo,
+        renderer=renderer,
     )
 
     patient = PatientProfile(id="P1", gender=Gender.MALE, age=30)

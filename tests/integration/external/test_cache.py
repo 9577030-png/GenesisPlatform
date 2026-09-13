@@ -15,6 +15,7 @@ from genesis_app.infrastructure.repositories.audit_repository import AuditReposi
 
 from genesis_medical.application.ports.rule_repository import RuleRepository
 from genesis_medical.application.services.inference_engine import InferenceEngine
+from genesis_medical.application.services.medical_analysis_service import MedicalAnalysisService
 from genesis_medical.domain.entities.parameter import Parameter
 from genesis_medical.domain.entities.patient import PatientProfile
 from genesis_medical.domain.entities.report import AnalysisReport
@@ -72,11 +73,15 @@ def test_cache_hit_does_not_raise_name_error():
     validator = MagicMock(spec=PhysiologicalValidator)
     validator.validate.return_value = []
 
-    pipeline = AnalysisPipeline(
-        parser=parser,
+    medical_analysis_service = MedicalAnalysisService(
         inference_engine=inference_engine,
         action_mapper=action_mapper,
         report_builder=report_builder,
+    )
+
+    pipeline = AnalysisPipeline(
+        parser=parser,
+        medical_analysis_service=medical_analysis_service,
         history_repo=history_repo,
         renderer=renderer,
         post_processor=post_processor,

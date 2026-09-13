@@ -15,6 +15,7 @@ from genesis_app.infrastructure.repositories.sqlalchemy_rule_repository import (
 
 from genesis_medical import knowledge_dir
 from genesis_medical.application.services.inference_engine import InferenceEngine
+from genesis_medical.application.services.medical_analysis_service import MedicalAnalysisService
 from genesis_medical.application.services.version_manager import VersionManager
 from genesis_medical.parsers.regex_parser import RegexParser
 from genesis_medical.services import (
@@ -107,6 +108,11 @@ class DIContainer:
 
         self.action_mapper = ActionMapper(self.recommendation_loader)
         self.report_builder = ReportBuilder()
+        self.medical_analysis_service = MedicalAnalysisService(
+            inference_engine=self.inference_engine,
+            action_mapper=self.action_mapper,
+            report_builder=self.report_builder,
+        )
 
         self.post_processor = PostProcessor(
             logic_loader=self.logic_loader, probability_threshold=probability_threshold
@@ -115,9 +121,7 @@ class DIContainer:
         # --- Р“Р»Р°РІРЅС‹Р№ РїР°Р№РїР»Р°Р№РЅ СЃ РѕРїС†РёРѕРЅР°Р»СЊРЅС‹РјРё СѓР»СѓС‡С€РµРЅРёСЏРјРё ---
         self.pipeline = AnalysisPipeline(
             parser=self.parser,
-            inference_engine=self.inference_engine,
-            action_mapper=self.action_mapper,
-            report_builder=self.report_builder,
+            medical_analysis_service=self.medical_analysis_service,
             history_repo=self.history_repo,
             renderer=self.renderer,
             post_processor=self.post_processor,
@@ -146,12 +150,15 @@ class DIContainer:
             guideline_provider=self.guideline_provider,
         )
         self.action_mapper = ActionMapper(self.recommendation_loader)
-
-        self.pipeline = AnalysisPipeline(
-            parser=self.parser,
+        self.medical_analysis_service = MedicalAnalysisService(
             inference_engine=self.inference_engine,
             action_mapper=self.action_mapper,
             report_builder=self.report_builder,
+        )
+
+        self.pipeline = AnalysisPipeline(
+            parser=self.parser,
+            medical_analysis_service=self.medical_analysis_service,
             history_repo=self.history_repo,
             renderer=self.renderer,
             post_processor=self.post_processor,

@@ -8,18 +8,13 @@ from genesis_app.infrastructure.cache.redis_cache import RedisCache
 from genesis_app.infrastructure.repositories.audit_repository import AuditRepository
 
 from genesis_medical.application.ports.rule_repository import RuleRepository
-from genesis_medical.application.services.inference_engine import InferenceEngine
+from genesis_medical.application.services.medical_analysis_service import MedicalAnalysisService
 from genesis_medical.domain.entities.finding import ClinicalFinding  # <-- РґРѕР±Р°РІР»РµРЅРѕ
 from genesis_medical.domain.entities.patient import PatientProfile
 from genesis_medical.domain.entities.recommendation import Recommendation  # <-- РґРѕР±Р°РІР»РµРЅРѕ
 from genesis_medical.domain.entities.report import AnalysisReport
 from genesis_medical.domain.exceptions import MedicalAIError
-from genesis_medical.services import (
-    ActionMapper,
-    PhysiologicalValidator,
-    PostProcessor,
-    ReportBuilder,
-)
+from genesis_medical.services import PhysiologicalValidator, PostProcessor
 
 logger = logging.getLogger(__name__)
 
@@ -28,9 +23,7 @@ class AnalysisPipeline:
     def __init__(
         self,
         parser: ParserInterface,
-        inference_engine: InferenceEngine,
-        action_mapper: ActionMapper,
-        report_builder: ReportBuilder,
+        medical_analysis_service: MedicalAnalysisService,
         history_repo: HistoryRepository,
         renderer: RendererInterface,
         post_processor: PostProcessor | None = None,
@@ -40,9 +33,7 @@ class AnalysisPipeline:
         validator: PhysiologicalValidator | None = None,
     ):
         self.parser = parser
-        self.inference_engine = inference_engine
-        self.action_mapper = action_mapper
-        self.report_builder = report_builder
+        self.medical_analysis_service = medical_analysis_service
         self.history_repo = history_repo
         self.renderer = renderer
         self.post_processor = post_processor or PostProcessor()
@@ -160,9 +151,7 @@ class AnalysisPipeline:
 
     def _run_core(self, patient: PatientProfile, raw_text: str) -> AnalysisReport:
         parameters = self.parser.parse(raw_text)
-        findings = self.inference_engine.infer(patient, parameters)
-        actions = self.action_mapper.map_to_actions(findings)
-        report = self.report_builder.build(findings, actions)
+        report = self.medical_analysis_service.analyze(patient, parameters)
         self.history_repo.save(patient.id, report)
         return report
 
