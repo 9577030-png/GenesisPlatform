@@ -10,11 +10,28 @@ dependencies = [
     "sqlalchemy==2.0.52",
     "redis",
     "passlib[bcrypt]",
+    "PyJWT",
+    "reportlab",
+    "pydantic-settings",
 ]
 
 [tool.setuptools]
-package-dir = {"" = "."}
-
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["genesis_app*"]
+package-dir = { "genesis_app" = "." }
+packages = [
+    "genesis_app",
+    "genesis_app.api",
+    "genesis_app.api.routes",
+    "genesis_app.application",
+    "genesis_app.application.ports",
+    "genesis_app.application.services",
+    "genesis_app.domain",
+    "genesis_app.domain.entities",
+    "genesis_app.domain.value_objects",
+    "genesis_app.infrastructure",
+    "genesis_app.infrastructure.adapters",
+    "genesis_app.infrastructure.adapters.renderers",
+    "genesis_app.infrastructure.adapters.storage",
+    "genesis_app.infrastructure.bootstrap",
+    "genesis_app.infrastructure.cache",
+    "genesis_app.infrastructure.repositories",
+]
