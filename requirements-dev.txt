@@ -3,4 +3,4 @@ mypy>=1.10,<2.0
 pip-audit>=2.7,<3.0
 packaging>=24,<26
 types-PyYAML
-pytest>=8,<9
+pytest>=9.0.3,<10
