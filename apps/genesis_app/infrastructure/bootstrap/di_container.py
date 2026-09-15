@@ -4,6 +4,7 @@ import os
 # РќРѕРІС‹Рµ РёРјРїРѕСЂС‚С‹
 from genesis_app.application.services.analysis_pipeline import AnalysisPipeline
 from genesis_app.application.services.domain_resolver_registry import DomainResolverRegistry
+from genesis_app.application.services.domain_runtime import DomainRuntime
 from genesis_app.config import settings
 from genesis_app.infrastructure.adapters.renderers.console_renderer import ConsoleRenderer
 from genesis_app.infrastructure.adapters.storage.sql_history_repository import SqlHistoryRepository
@@ -144,6 +145,13 @@ class DIContainer:
         )
 
         logger.info("DIContainer initialized successfully")
+
+    def create_domain_runtime(self, domain_name: str) -> DomainRuntime:
+        """Create a generic runtime for a registered Genesis domain."""
+        return DomainRuntime(
+            domain_name=domain_name,
+            resolver_registry=self.domain_resolver_registry,
+        )
 
     def reload_configuration(self) -> None:
         logger.info("Reloading all configurations...")
