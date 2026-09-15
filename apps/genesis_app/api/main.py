@@ -309,7 +309,7 @@ async def evaluate_domain(
             domain=domain_name,
             results=[asdict(item) for item in result],
         )
-    except (ValueError, KeyError) as e:
+    except (LookupError, ValueError) as e:
         raise HTTPException(status_code=404, detail=str(e)) from e
     except Exception:
         logger.exception("Unexpected domain evaluation error")
