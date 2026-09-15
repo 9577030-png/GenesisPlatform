@@ -22,7 +22,6 @@ from genesis_app.api.auth_config import authenticate_user, create_access_token, 
 from genesis_app.config import settings
 from genesis_app.infrastructure.bootstrap.di_container import DIContainer
 from genesis_app.infrastructure.logging_config import setup_logging
-from genesis_core import Fact, discover_domains
 
 # Р”РѕРјРµРЅРЅС‹Рµ Рё РёРЅС„СЂР°СЃС‚СЂСѓРєС‚СѓСЂРЅС‹Рµ РјРѕРґСѓР»Рё
 from genesis_medical import knowledge_dir
@@ -61,7 +60,7 @@ app = FastAPI(
 container = DIContainer(probability_threshold=0.3)
 
 # ---------- РџРћР”РљР›Р®Р§РђР•Рњ Р РћРЈРўР•Р  РђР”РњРРќРРЎРўР РР РћР’РђРќРРЇ (РїРѕСЃР»Рµ СЃРѕР·РґР°РЅРёСЏ app Рё container) ----------
-from genesis_app.api.routes import admin  # noqa: E402
+from genesis_app.api.routes import admin, domains  # noqa: E402
 
 admin.set_version_manager(
     container.version_manager
@@ -105,6 +104,11 @@ def require_admin(current_user=Depends(get_current_user)):
 
 
 # ---------- РњРћР”Р•Р›Р ----------
+
+domains.set_container(container)
+app.include_router(domains.router, dependencies=[Depends(get_current_user)])
+
+
 class PatientRequest(BaseModel):
     id: str
     gender: str
@@ -116,27 +120,6 @@ class PatientRequest(BaseModel):
 class AnalysisRequest(BaseModel):
     patient: PatientRequest
     raw_text: str
-
-
-class FactRequest(BaseModel):
-    name: str
-    value: Any
-    unit: str | None = None
-
-
-class DomainEvaluateRequest(BaseModel):
-    facts: list[FactRequest] = Field(default_factory=list)
-
-
-class DomainEvaluationResponse(BaseModel):
-    domain: str
-    results: list[dict[str, Any]]
-
-
-class DomainDescriptorResponse(BaseModel):
-    name: str
-    package: str
-    version: str
 
 
 class RegisterRequest(BaseModel):
@@ -274,46 +257,6 @@ async def get_history(patient_id: str, admin=Depends(require_admin)):
             "explanation": report.explanation,
         },
     }
-
-
-@app.get("/domains", response_model=list[DomainDescriptorResponse])
-async def list_genesis_domains(
-    current_user=Depends(get_current_user),
-):
-    try:
-        return [
-            DomainDescriptorResponse(
-                name=descriptor.name,
-                package=descriptor.package,
-                version=descriptor.version,
-            )
-            for descriptor in discover_domains()
-        ]
-    except Exception:
-        logger.exception("Unexpected domain discovery error")
-        raise HTTPException(status_code=500, detail="Internal server error") from None
-
-
-@app.post("/domains/{domain_name}/evaluate", response_model=DomainEvaluationResponse)
-async def evaluate_domain(
-    domain_name: str,
-    request: DomainEvaluateRequest,
-    current_user=Depends(get_current_user),
-):
-    try:
-        facts = tuple(Fact(fact.name, fact.value, fact.unit) for fact in request.facts)
-        runtime = container.create_domain_runtime(domain_name)
-        result = runtime.evaluate(facts)
-
-        return DomainEvaluationResponse(
-            domain=domain_name,
-            results=[asdict(item) for item in result],
-        )
-    except (LookupError, ValueError) as e:
-        raise HTTPException(status_code=404, detail=str(e)) from e
-    except Exception:
-        logger.exception("Unexpected domain evaluation error")
-        raise HTTPException(status_code=500, detail="Internal server error") from None
 
 
 @app.post("/analyze")

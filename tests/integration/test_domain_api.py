@@ -2,17 +2,21 @@ import asyncio
 
 import pytest
 from fastapi import HTTPException
-from genesis_app.api.main import (
+from genesis_app.api.main import container
+from genesis_app.api.routes.domains import (
     DomainDescriptorResponse,
     DomainEvaluateRequest,
     DomainEvaluationResponse,
     FactRequest,
     evaluate_domain,
     list_genesis_domains,
+    set_container,
 )
 
 
 def test_evaluate_domain_executes_construction() -> None:
+    set_container(container)
+
     request = DomainEvaluateRequest(
         facts=[
             FactRequest(name="steel_capacity_kn", value=120),
@@ -32,6 +36,8 @@ def test_evaluate_domain_executes_construction() -> None:
 
 
 def test_list_genesis_domains() -> None:
+    set_container(container)
+
     response = asyncio.run(list_genesis_domains())
 
     assert response
@@ -45,6 +51,8 @@ def test_list_genesis_domains() -> None:
 
 
 def test_evaluate_domain_returns_404_for_unknown_domain() -> None:
+    set_container(container)
+
     request = DomainEvaluateRequest(facts=[])
 
     with pytest.raises(HTTPException) as exc_info:
