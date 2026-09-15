@@ -1,10 +1,12 @@
 import asyncio
 
 from genesis_app.api.main import (
+    DomainDescriptorResponse,
     DomainEvaluateRequest,
     DomainEvaluationResponse,
     FactRequest,
     evaluate_domain,
+    list_genesis_domains,
 )
 
 
@@ -25,3 +27,16 @@ def test_evaluate_domain_executes_construction() -> None:
         "status": "review",
         "message": "applied load exceeds the demonstration capacity",
     }
+
+
+def test_list_genesis_domains() -> None:
+    response = asyncio.run(list_genesis_domains())
+
+    assert response
+    assert all(isinstance(item, DomainDescriptorResponse) for item in response)
+
+    discovered = {(item.name, item.package, item.version) for item in response}
+
+    assert ("banking", "genesis_banking", "0.1.0") in discovered
+    assert ("construction", "genesis_construction", "0.2.0") in discovered
+    assert ("medical", "genesis_medical", "0.3.0") in discovered

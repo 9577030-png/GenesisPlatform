@@ -22,7 +22,7 @@ from genesis_app.api.auth_config import authenticate_user, create_access_token, 
 from genesis_app.config import settings
 from genesis_app.infrastructure.bootstrap.di_container import DIContainer
 from genesis_app.infrastructure.logging_config import setup_logging
-from genesis_core import Fact
+from genesis_core import Fact, discover_domains
 
 # Р”РѕРјРµРЅРЅС‹Рµ Рё РёРЅС„СЂР°СЃС‚СЂСѓРєС‚СѓСЂРЅС‹Рµ РјРѕРґСѓР»Рё
 from genesis_medical import knowledge_dir
@@ -131,6 +131,12 @@ class DomainEvaluateRequest(BaseModel):
 class DomainEvaluationResponse(BaseModel):
     domain: str
     results: list[dict[str, Any]]
+
+
+class DomainDescriptorResponse(BaseModel):
+    name: str
+    package: str
+    version: str
 
 
 class RegisterRequest(BaseModel):
@@ -268,6 +274,24 @@ async def get_history(patient_id: str, admin=Depends(require_admin)):
             "explanation": report.explanation,
         },
     }
+
+
+@app.get("/domains", response_model=list[DomainDescriptorResponse])
+async def list_genesis_domains(
+    current_user=Depends(get_current_user),
+):
+    try:
+        return [
+            DomainDescriptorResponse(
+                name=descriptor.name,
+                package=descriptor.package,
+                version=descriptor.version,
+            )
+            for descriptor in discover_domains()
+        ]
+    except Exception:
+        logger.exception("Unexpected domain discovery error")
+        raise HTTPException(status_code=500, detail="Internal server error") from None
 
 
 @app.post("/domains/{domain_name}/evaluate", response_model=DomainEvaluationResponse)
