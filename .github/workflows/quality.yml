@@ -25,6 +25,8 @@ jobs:
           python -m pip install -e ./packages/genesis-medical
           python -m pip install -e ./packages/genesis-construction
           python -m pip install -e ./packages/genesis-banking
+          python -m pip install -e ./apps/genesis_app
+          python -c "import fastapi, redis; print('Runtime dependencies OK')"
       - name: Ruff
         run: ruff check src tests scripts apps
       - name: Mypy strict
