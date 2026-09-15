@@ -1,3 +1,6 @@
+from genesis_app.application.services.domain_resolver_registry import (
+    DomainResolverRegistry,
+)
 from genesis_app.application.services.domain_runtime import DomainRuntime
 
 from genesis_construction.resolvers import ConstructionRuleResolver
@@ -5,7 +8,8 @@ from genesis_core import Fact
 
 
 def test_domain_runtime_executes_construction() -> None:
-    runtime = DomainRuntime("construction", ConstructionRuleResolver())
+    registry = DomainResolverRegistry({"construction": ConstructionRuleResolver()})
+    runtime = DomainRuntime("construction", registry)
 
     result = runtime.evaluate(
         (
