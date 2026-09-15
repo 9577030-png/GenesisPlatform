@@ -3,7 +3,10 @@ import os
 
 # РќРѕРІС‹Рµ РёРјРїРѕСЂС‚С‹
 from genesis_app.application.services.analysis_pipeline import AnalysisPipeline
-from genesis_app.application.services.domain_resolver_registry import DomainResolverRegistry
+from genesis_app.application.services.domain_resolver_registry import (
+    DomainResolverRegistry,
+    discover_domain_resolvers,
+)
 from genesis_app.application.services.domain_runtime import DomainRuntime
 from genesis_app.config import settings
 from genesis_app.infrastructure.adapters.renderers.console_renderer import ConsoleRenderer
@@ -15,14 +18,11 @@ from genesis_app.infrastructure.repositories.sqlalchemy_rule_repository import (
     SQLAlchemyRuleRepository,
 )
 
-from genesis_banking.resolvers import BankingRuleResolver
-from genesis_construction.resolvers import ConstructionRuleResolver
 from genesis_medical import knowledge_dir
 from genesis_medical.application.services.inference_engine import InferenceEngine
 from genesis_medical.application.services.medical_analysis_service import MedicalAnalysisService
 from genesis_medical.application.services.version_manager import VersionManager
 from genesis_medical.parsers.regex_parser import RegexParser
-from genesis_medical.resolvers import MedicalRuleResolver
 from genesis_medical.services import (
     ActionMapper,
     PhysiologicalValidator,
@@ -119,13 +119,7 @@ class DIContainer:
             report_builder=self.report_builder,
         )
 
-        self.domain_resolver_registry = DomainResolverRegistry(
-            {
-                "medical": MedicalRuleResolver(),
-                "construction": ConstructionRuleResolver(),
-                "banking": BankingRuleResolver(),
-            }
-        )
+        self.domain_resolver_registry = DomainResolverRegistry(discover_domain_resolvers())
 
         self.post_processor = PostProcessor(
             logic_loader=self.logic_loader, probability_threshold=probability_threshold

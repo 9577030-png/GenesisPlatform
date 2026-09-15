@@ -22,3 +22,6 @@ include = ["genesis_banking*"]
 
 [project.entry-points."genesis.domains"]
 banking = "genesis_banking:get_domain_descriptor"
+
+[project.entry-points."genesis.app.resolvers"]
+banking = "genesis_banking.resolvers:BankingRuleResolver"

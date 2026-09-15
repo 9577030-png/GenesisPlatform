@@ -22,3 +22,6 @@ include = ["genesis_construction*"]
 
 [project.entry-points."genesis.domains"]
 construction = "genesis_construction:get_domain_descriptor"
+
+[project.entry-points."genesis.app.resolvers"]
+construction = "genesis_construction.resolvers:ConstructionRuleResolver"

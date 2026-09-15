@@ -1,22 +1,38 @@
-# Medical application
+# Genesis application
 
-`genesis_app` is an application layer, not a reusable Genesis distribution.
+`genesis_app` is a deployable application layer, not a reusable Genesis domain distribution.
 
-Its intended dependency direction is:
+Its role is to orchestrate installed domain packages through Genesis Core contracts and application-level services.
 
 ```text
-genesis_app → genesis-medical → genesis-core
+genesis_app
+   |
+   +-- discovers installed domains via genesis.domains
+   +-- discovers installed domain resolvers via genesis.app.resolvers
+   +-- executes domains through the generic DomainRuntime
+   +-- retains Medical-specific application services where required
 ```
 
-Install and deploy the reusable packages independently from the application.
+Domain packages are installed and deployed independently from the application.
 
+## Dependency model
 
-## Dependency
+The application currently requires:
 
-The application explicitly requires `genesis-medical>=0.3,<0.4`. Deployment-specific dependencies such as FastAPI, Streamlit, SQLAlchemy, Redis, and authentication libraries remain application dependencies.
+```text
+genesis-app
+   +-- genesis-medical>=0.3,<0.4
+   +-- application infrastructure dependencies
+```
 
-Medical knowledge is supplied by the `genesis-medical` package. The application does not maintain a second YAML knowledge tree.
+`genesis-banking` and `genesis-construction` are independently installable domain plugins. When installed, their domain descriptors and application-level resolvers are discovered through entry points.
+
+Deployment-specific dependencies such as FastAPI, Streamlit, SQLAlchemy, Redis, and authentication libraries remain application dependencies.
+
+## Medical knowledge
+
+Medical thresholds, reference ranges, guidelines, recommendations, and related knowledge are owned by `genesis-medical`. The application does not maintain a second YAML knowledge tree.
 
 ## Data migration status
 
-The application database models contain `rule_versions` and `audit_logs`. Medical thresholds, reference ranges, guidelines, and recommendations are file-based knowledge owned by `genesis-medical`; no separate database migration is required for those knowledge assets in the current layout.
+The application database models contain `rule_versions` and `audit_logs`. Medical knowledge remains file-based and is owned by `genesis-medical`; no separate database migration is required for those knowledge assets in the current layout.

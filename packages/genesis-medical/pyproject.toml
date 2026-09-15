@@ -22,3 +22,6 @@ include = ["genesis_medical*"]
 
 [project.entry-points."genesis.domains"]
 medical = "genesis_medical:get_domain_descriptor"
+
+[project.entry-points."genesis.app.resolvers"]
+medical = "genesis_medical.resolvers:MedicalRuleResolver"

@@ -55,6 +55,17 @@ loader = insurance.get_rule_loader()
 
 Unknown domains raise `LookupError`.
 
+## Application resolver entry point
+
+A domain that provides a rule resolver for a deployable application may additionally register that resolver through the application-level entry-point group:
+
+```toml
+[project.entry-points."genesis.app.resolvers"]
+insurance = "genesis_insurance.resolvers:InsuranceRuleResolver"
+```
+
+The resolver must implement the Core RuleResolver contract. The application discovers installed resolver entry points independently from Core domain discovery.
+
 ## Example: Banking
 
 `genesis_banking` is the reference proof-of-concept for a second domain. A new domain should follow the same package shape without copying banking-specific knowledge.
