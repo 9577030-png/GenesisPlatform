@@ -22,6 +22,7 @@ from genesis_app.api.auth_config import authenticate_user, create_access_token, 
 from genesis_app.config import settings
 from genesis_app.infrastructure.bootstrap.di_container import DIContainer
 from genesis_app.infrastructure.logging_config import setup_logging
+from genesis_core import Fact
 
 # Р”РѕРјРµРЅРЅС‹Рµ Рё РёРЅС„СЂР°СЃС‚СЂСѓРєС‚СѓСЂРЅС‹Рµ РјРѕРґСѓР»Рё
 from genesis_medical import knowledge_dir
@@ -115,6 +116,21 @@ class PatientRequest(BaseModel):
 class AnalysisRequest(BaseModel):
     patient: PatientRequest
     raw_text: str
+
+
+class FactRequest(BaseModel):
+    name: str
+    value: Any
+    unit: str | None = None
+
+
+class DomainEvaluateRequest(BaseModel):
+    facts: list[FactRequest] = Field(default_factory=list)
+
+
+class DomainEvaluationResponse(BaseModel):
+    domain: str
+    results: list[dict[str, Any]]
 
 
 class RegisterRequest(BaseModel):
@@ -252,6 +268,28 @@ async def get_history(patient_id: str, admin=Depends(require_admin)):
             "explanation": report.explanation,
         },
     }
+
+
+@app.post("/domains/{domain_name}/evaluate", response_model=DomainEvaluationResponse)
+async def evaluate_domain(
+    domain_name: str,
+    request: DomainEvaluateRequest,
+    current_user=Depends(get_current_user),
+):
+    try:
+        facts = tuple(Fact(fact.name, fact.value, fact.unit) for fact in request.facts)
+        runtime = container.create_domain_runtime(domain_name)
+        result = runtime.evaluate(facts)
+
+        return DomainEvaluationResponse(
+            domain=domain_name,
+            results=[asdict(item) for item in result],
+        )
+    except (ValueError, KeyError) as e:
+        raise HTTPException(status_code=404, detail=str(e)) from e
+    except Exception:
+        logger.exception("Unexpected domain evaluation error")
+        raise HTTPException(status_code=500, detail="Internal server error") from None
 
 
 @app.post("/analyze")
